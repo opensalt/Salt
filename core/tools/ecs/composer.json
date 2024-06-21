@@ -1,6 +1,6 @@
 {
     "require": {
-        "symplify/easy-coding-standard": "^9.3",
-        "escapestudios/symfony2-coding-standard": "^3.12"
+        "symplify/easy-coding-standard": "^12.2",
+        "escapestudios/symfony2-coding-standard": "^3.13"
     }
 }
