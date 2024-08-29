@@ -6,7 +6,7 @@ if [ ! -d core/docker/data/composer ]; then
     mkdir -p core/docker/data/composer
 fi
 
-docker-compose run --rm --no-deps \
+docker compose run --rm --no-deps \
     -u $(id -u):$(id -g) \
     -v "$(pwd)/core/docker/data/composer:/.composer" \
     php composer "$@"
