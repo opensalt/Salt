@@ -11,12 +11,12 @@ default:
 
 # Docker commands
 docker-start:
-	docker-compose up -d
+	docker compose up -d
 up: docker-start
 .PHONY: docker-start up
 
 docker-stop:
-	docker-compose down -v
+	docker compose down -v
 down: docker-stop
 .PHONY: docker-stop down
 
@@ -25,7 +25,7 @@ restart: docker-restart
 .PHONY: docker-restart restart
 
 docker-build:
-	VERSION=${VERSION} BUILD_NUMBER=${BUILD_NUMBER} BUILD_DATE=${BUILD_DATE} COMMIT=${COMMIT} COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose build --pull
+	VERSION=${VERSION} BUILD_NUMBER=${BUILD_NUMBER} BUILD_DATE=${BUILD_DATE} COMMIT=${COMMIT} COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker compose build --pull
 image: docker-build
 .PHONY: docker-build image
 
