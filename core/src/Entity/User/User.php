@@ -48,9 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
     #[Assert\Email(groups: ['registration'])]
     protected string $username;
 
-    /**
-     * @CustomAssert\PasswordField(groups={"registration"})
-     */
+    #[CustomAssert\PasswordField(groups: ["registration"])]
     #[Assert\NotBlank(groups: ['registration'])]
     #[Assert\Length(min: 8, max: 4096, minMessage: 'Password must be at least {{ limit }} characters long', maxMessage: 'Password cannot be longer than {{ limit }} characters', groups: ['registration'])]
     private ?string $plainPassword = null;
