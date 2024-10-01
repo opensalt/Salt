@@ -92,6 +92,13 @@ class CaseImport
             }
         }
 
+        // Fixup for some frameworks from mt.satchelcommons.com where the hierarchyCode is an integer instead of a string
+        foreach (($json['CFDefinitions']['CFItemTypes'] ?? []) as $key => $itemType) {
+            if (is_int($itemType['hierarchyCode'] ?? null) || is_float($itemType['hierarchyCode'] ?? null)) {
+                $json['CFDefinitions']['CFItemTypes'][$key]['hierarchyCode'] = (string) $itemType['hierarchyCode'];
+            }
+        }
+
         return json_encode($json, JSON_THROW_ON_ERROR | JSON_UNESCAPED_SLASHES);
     }
 }
