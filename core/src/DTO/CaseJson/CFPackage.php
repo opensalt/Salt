@@ -10,13 +10,13 @@ class CFPackage
     public CFPackageDocument $cfDocument;
 
     /**
-     * @var CFPackageItem[]|array|null
+     * @var CFPackageItem[]|null
      */
     #[SerializedName('CFItems')]
     public ?array $cfItems = [];
 
     /**
-     * @var CFPackageAssociation[]|array|null
+     * @var CFPackageAssociation[]|null
      */
     #[SerializedName('CFAssociations')]
     public ?array $cfAssociations = [];
@@ -25,7 +25,7 @@ class CFPackage
     public ?CFDefinition $cfDefinitions = null;
 
     /**
-     * @var CFRubric[]|array|null
+     * @var CFRubric[]|null
      */
     #[SerializedName('CFRubrics')]
     public ?array $cfRubrics = [];

@@ -14,7 +14,7 @@ class CFRubric
     public \DateTimeInterface $lastChangeDateTime;
 
     /**
-     * @var CFRubricCriterion[]|array|null
+     * @var CFRubricCriterion[]|null
      */
     #[SerializedName('CFRubricCriteria')]
     public ?array $cfRubricCriteria = [];

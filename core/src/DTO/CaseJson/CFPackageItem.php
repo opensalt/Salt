@@ -26,7 +26,7 @@ class CFPackageItem
     public ?string $notes = null;
     public ?string $language = null;
 
-    /** @var string[]|array|string|null */
+    /** @var string[]|string|null */
     public string|array|null $educationLevel = null;
 
     #[SerializedName('CFItemTypeURI')]
