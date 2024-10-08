@@ -44,6 +44,7 @@ class CaseImportController extends AbstractController
         $form = $this->createFormBuilder($defaultData)
             ->add('url', UrlType::class, [
                 'constraints' => new NotBlank(),
+                'default_protocol' => 'http',
             ])
             ->getForm();
 
