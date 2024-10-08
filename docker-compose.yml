@@ -1,5 +1,3 @@
-version: "3.4"
-
 services:
   crontab:
     image: opensalt/opensalt:cron-3.x
