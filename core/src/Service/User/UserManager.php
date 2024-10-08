@@ -24,7 +24,7 @@ class UserManager
      */
     public function addNewUser(string $username, Organization $org, ?string $plainPassword = null, ?string $role = null, ?int $status = null): string
     {
-        if (null === $plainPassword || empty(trim($plainPassword))) {
+        if (null === $plainPassword || ('' === trim($plainPassword))) {
             // if there is no password, make something ugly up
             $plainPassword = rtrim(strtr(base64_encode(random_bytes(15)), '+/', '-_'), '=');
         }
@@ -63,7 +63,7 @@ class UserManager
      */
     public function setUserPassword(string $username, ?string $plainPassword = null): string
     {
-        if (null === $plainPassword || empty(trim($plainPassword))) {
+        if (null === $plainPassword || ('' === trim($plainPassword))) {
             // if there is no password, make something ugly up
             $plainPassword = rtrim(strtr(base64_encode(random_bytes(15)), '+/', '-_'), '=');
         }
