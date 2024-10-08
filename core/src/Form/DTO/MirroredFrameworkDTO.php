@@ -12,7 +12,7 @@ class MirroredFrameworkDTO
      */
     #[Assert\NotNull]
     #[Assert\NotBlank]
-    #[Assert\Url]
+    #[Assert\Url(requireTld: true)]
     public $url;
 
     /**

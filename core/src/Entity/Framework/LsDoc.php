@@ -40,7 +40,7 @@ class LsDoc extends AbstractLsBase implements CaseApiInterface, LockableInterfac
 
     #[ORM\Column(name: 'official_uri', type: 'string', length: 300, nullable: true)]
     #[Assert\Length(max: 300)]
-    #[Assert\Url]
+    #[Assert\Url(requireTld: true)]
     private ?string $officialUri = null;
 
     #[ORM\Column(name: 'creator', type: 'string', length: 300, nullable: false)]
