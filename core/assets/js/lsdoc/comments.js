@@ -1,11 +1,11 @@
-var CommentSystem = (function (){
-    var commentItem = {
+const CommentSystem = (function (){
+    let commentItem = {
         itemId: null,
         itemType: 'document'
     };
 
     function exportCSV (){
-        var url = "/salt/case/export_comment/"+commentItem.itemType+"/"+commentItem.itemId+"/comment.csv";
+        const url = "/salt/case/export_comment/"+commentItem.itemType+"/"+commentItem.itemId+"/comment.csv";
         window.location = url;
     }
 
@@ -74,7 +74,7 @@ var CommentSystem = (function (){
                 });
             },
             upvoteComment: function (commentJSON, success, error) {
-                var commentURL = '/comments/' + commentJSON.id + '/upvote';
+                const commentURL = '/comments/' + commentJSON.id + '/upvote';
 
                 if (commentJSON.user_has_upvoted) {
                     $.ajax({
@@ -113,10 +113,10 @@ var CommentSystem = (function (){
                 }
             },
             uploadAttachments: function (commentArray, success, error) {
-                var responses = 0;
-                var successfulUploads = [];
+                let responses = 0;
+                let successfulUploads = [];
 
-                var serverResponded = function () {
+                const serverResponded = function () {
                     responses++;
 
                     if (responses == commentArray.length) {
@@ -129,10 +129,10 @@ var CommentSystem = (function (){
                 }
 
                 $(commentArray).each(function (index, commentJSON) {
-                    var formData = new FormData();
+                    let formData = new FormData();
 
                     $(Object.keys(commentJSON)).each(function (index, key) {
-                        var value = commentJSON[key];
+                        const value = commentJSON[key];
                         if (value) {
                             formData.append(key, value);
                         }
@@ -177,9 +177,9 @@ var CommentSystem = (function (){
     };
 })();
 
-global.CommentSystem = CommentSystem;
+globalThis.CommentSystem = CommentSystem;
 
-$(document).ready (function(){
+$(function(){
     CommentSystem.init();
 });
 

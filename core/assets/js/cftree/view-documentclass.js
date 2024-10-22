@@ -1,23 +1,16 @@
-/* global apx */
-window.apx = window.apx||{};
-
-/* global empty */
-/* global op */
-
-/* global render */
-var render = require('render-md');
+import { empty, op } from './utils';
+import render from './render-md';
 
 /////////////////////////////////////////////////////////////////////////////
-apx.allDocs = {};
-apx.allItemsHash = {};
 
 /**
  * Class for representing/manipulating/using a document
  *
  * @class
  */
-function ApxDocument(initializer) {
-    var self = this;
+
+function ApxDocument(initializer, apx) {
+    let self = this;
 
     // record the initializer for use when the document is loaded
     self.initializer = initializer;
@@ -368,11 +361,11 @@ function ApxDocument(initializer) {
             let a = self.assocs[i];
             if (a.origin.doc !== "-" && a.origin.doc !== "?" && !(a.origin.doc in apx.allDocs)) {
                 apx.allDocs[a.origin.doc] = "loading";
-                new ApxDocument({"identifier": a.origin.doc}).load();
+                new ApxDocument({"identifier": a.origin.doc}, apx).load();
             }
             if (a.dest.doc !== a.origin.doc && a.dest.doc !== "-" && a.dest.doc !== "?" && !(a.dest.doc in apx.allDocs)) {
                 apx.allDocs[a.dest.doc] = "loading";
-                new ApxDocument({"identifier": a.dest.doc}).load();
+                new ApxDocument({"identifier": a.dest.doc}, apx).load();
             }
         }
     };
@@ -1904,7 +1897,7 @@ function ApxDocument(initializer) {
     };
 
     self.toggleFolders = function(items, val) {
-        if (!$.isArray(items)) {
+        if (!Array.isArray(items)) {
             items = [self.currentItem];
         }
         if (typeof(val) !== "boolean") {
@@ -1946,3 +1939,5 @@ function ApxDocument(initializer) {
         self.toggleItemCreationButtons();
     };
 }
+
+export default ApxDocument;

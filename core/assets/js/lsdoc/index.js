@@ -1,6 +1,7 @@
-var utilSalt = require('util-salt');
-var SaltGithub = (function () {
+import { simplify, spinner, titleize } from '../util-salt';
+import Papa from 'papaparse';
 
+const SaltGithub = (function () {
     function getRepoList(page, perPage) {
         if ($('.js-github-list').length > 0) {
             $.get('/user/github/repos', {page: page, perPage: perPage}, function (data) {
@@ -24,7 +25,7 @@ var SaltGithub = (function () {
     }
 
     function getFiles(evt, isFile) {
-        var name = $(evt.target).attr('data-fname'),
+        let name = $(evt.target).attr('data-fname'),
                 hasSubFolder = false;
 
         $.ajax({
@@ -39,7 +40,7 @@ var SaltGithub = (function () {
             dataType: 'json',
             success: function (response) {
                 if (isFile) {
-                    var content = window.atob(response.data.content);
+                    const content = window.atob(response.data.content);
                     if (name.endsWith('.csv')) {
                         Import.csv(content);
                     } else if (name.endsWith('.json')) {
@@ -77,10 +78,10 @@ var SaltGithub = (function () {
                     }
 
                     if ($(evt.target).attr('data-path').length > 0) {
-                        var path = $(evt.target).attr('data-path'), back = '';
-                        var split = path.split('/');
+                        let path = $(evt.target).attr('data-path'), back = '';
+                        let split = path.split('/');
 
-                        for (var i = 0; i < split.length - 1; i++) {
+                        for (let i = 0; i < split.length - 1; i++) {
                             back += split[i] + '/';
                         }
 
@@ -112,7 +113,7 @@ var SaltGithub = (function () {
     }
 
     function itemListener(elementClass, isFile) {
-        var $element = $('.' + elementClass);
+        const $element = $('.' + elementClass);
 
         $element.on('click', function (evt) {
             getFiles(evt, isFile);
@@ -125,8 +126,8 @@ var SaltGithub = (function () {
     };
 })();
 
-var UpdateFramework = (function () {
-    var frameworkToAssociateSelector = '#js-framework-to-association-on-update',
+const UpdateFramework = (function () {
+    const frameworkToAssociateSelector = '#js-framework-to-association-on-update',
             pathToUpdateFramework = "/cfdoc/doc/" + getCurrentCfDocId();
 
     function init() {
@@ -166,27 +167,26 @@ var UpdateFramework = (function () {
     return {init: init, derivative: derivative, update: update};
 })();
 
-var Import = (function () {
+const Import = (function () {
 
-    var file = "";
-    var cfItemKeys = {};
+    let file = "";
+    let cfItemKeys = {};
 
     function csvImporter(content, disableRequest) {
         file = content;
 
-        var Papa = require('papaparse');
-        var csv = Papa.parse(file);
+        let csv = Papa.parse(file);
 
-        var fields = CfItem.fields;
-        var columns = csv.data[0];
-        var index = null, field = null, column = null;
+        let fields = CfItem.fields;
+        let columns = csv.data[0];
+        let index = null, field = null, column = null;
 
-        for (var i = 0; i < fields.length; i++) {
+        for (let i = 0; i < fields.length; i++) {
             field = fields[i];
-            for (var j = 0; j < columns.length; j++) {
+            for (let j = 0; j < columns.length; j++) {
                 column = columns[j];
                 if (column.length > 0) {
-                    if (utilSalt.simplify(field) === utilSalt.simplify(column)) {
+                    if (simplify(field) === simplify(column)) {
                         cfItemKeys[field] = column.replace(/"/g, '');
 
                         index = fields.indexOf(field);
@@ -211,7 +211,7 @@ var Import = (function () {
         }
 
         $('.missing-fields').html('');
-        var validatedValues = validateContent(csv);
+        let validatedValues = validateContent(csv);
 
         if (fields.length > 0) {
             fields.forEach(function (field) {
@@ -222,7 +222,7 @@ var Import = (function () {
             $('#errors').removeClass('hidden');
         }
 
-        $('.file-loading .row .col-md-12').html(utilSalt.spinner('Loading file'));
+        $('.file-loading .row .col-md-12').html(spinner('Loading file'));
         $('.file-loading').removeClass('hidden');
 
         index = fields.indexOf('humanCodingScheme');
@@ -236,7 +236,7 @@ var Import = (function () {
     }
 
     function validateContent(csv) {
-        var sw = true;
+        let sw = true;
         csv.data.forEach(function (row, i) {
             if (row[3]) {
                 if (row[3].length > 60) {
@@ -250,9 +250,9 @@ var Import = (function () {
     }
 
     function jsonImporter(file) {
-        var json = JSON.parse(file);
-        var keys = Object.keys(json);
-        var subKey = [];
+        let json = JSON.parse(file);
+        let keys = Object.keys(json);
+        let subKey = [];
 
         keys.forEach(function (subJson) {
             subKey = Object.keys(subJson);
@@ -260,7 +260,7 @@ var Import = (function () {
     }
 
     function sendData() {
-        var dataRequest = {
+        let dataRequest = {
             content: window.btoa(encodeURIComponent(file).replace(/%([0-9A-F]{2})/g,
                     function toSolidBytes(match, p1) {
                         return String.fromCharCode('0x' + p1);
@@ -299,7 +299,7 @@ var Import = (function () {
 
     function caseImporter(file) {
         $('.tab-content').addClass('hidden');
-        $('.file-loading .row .col-md-12').html(utilSalt.spinner('Loading file'));
+        $('.file-loading .row .col-md-12').html(spinner('Loading file'));
         $('.file-loading').removeClass('hidden');
         $('.case-error-msg').addClass('hidden');
 
@@ -333,11 +333,11 @@ var Import = (function () {
     };
 })();
 
-var SaltLocal = (function () {
+const SaltLocal = (function () {
 
     function handleFileSelect(fileType, input) {
-        var files = document.getElementById(input).files;
-        var json = '', f;
+        let files = document.getElementById(input).files;
+        let json = '', f;
 
         if (fileType === 'update' || fileType === 'derivative') {
             files = document.getElementById('file-for-update').files;
@@ -346,13 +346,13 @@ var SaltLocal = (function () {
         }
 
         if (window.File && window.FileReader && window.FileList && window.Blob) {
-            for (var i = 0; f = files[i]; i++) {
+            for (let i = 0; f = files[i]; i++) {
 
-                var reader = new FileReader();
+                let reader = new FileReader();
                 if (isTypeValid(f.name)) {
                     reader.onload = (function (theFile) {
                         return function (e) {
-                            var file = e.target.result;
+                            let file = e.target.result;
                             switch (fileType) {
                                 case 'local':
                                     Import.csv(file);
@@ -384,16 +384,16 @@ var SaltLocal = (function () {
     }
 
     function handleExcelFile() {
-        var files = document.getElementById('excel-url').files;
-        var file;
-        var data = new FormData();
+        let files = document.getElementById('excel-url').files;
+        let file;
+        let data = new FormData();
 
         if (window.File && window.FileReader && window.FileList && window.Blob) {
-            var file = files[0];
+            let file = files[0];
             if (isTypeValid(file.name)) {
 
                 $('.tab-content').addClass('hidden');
-                $('.file-loading .row .col-md-12').html(utilSalt.spinner('Loading file'));
+                $('.file-loading .row .col-md-12').html(spinner('Loading file'));
                 $('.file-loading').removeClass('hidden');
                 $('.case-error-msg').addClass('hidden');
 
@@ -425,8 +425,8 @@ var SaltLocal = (function () {
     }
 
     function isTypeValid(file) {
-        var types = ['xls', 'xlsx', 'json', 'csv'];
-        var filename = file.split('.').pop();
+        const types = ['xls', 'xlsx', 'json', 'csv'];
+        const filename = file.split('.').pop();
 
         if (types.indexOf(filename) >= 0) {
             return true;
@@ -447,7 +447,7 @@ if (document.getElementById("toggleRight")) {
     };
 
     function toggleDivRight() {
-        var rightWindow = document.getElementById("treeSideRight");
+        const rightWindow = document.getElementById("treeSideRight");
         if (rightWindow.style.display === "none") {
             rightWindow.style.display = "block";
             document.getElementById("treeSideLeft").setAttribute("style", "width:50%");
@@ -467,7 +467,7 @@ if (document.getElementById("toggleLeft")) {
     };
 
     function toggleDivLeft() {
-        var leftWindow = document.getElementById("treeSideLeft");
+        const leftWindow = document.getElementById("treeSideLeft");
         if (leftWindow.style.display === "none") {
             leftWindow.style.display = "block";
             document.getElementById("treeSideRight").setAttribute("style", "width:50%");
@@ -480,11 +480,11 @@ if (document.getElementById("toggleLeft")) {
         }
     }
 }
-var CfItem = (function () {
+const CfItem = (function () {
 
-    var missingFieldsErrorMessages = [];
+    let missingFieldsErrorMessages = [];
 
-    var fields = [
+    let fields = [
         'identifier',
         'fullStatement',
         'humanCodingScheme',
@@ -507,8 +507,8 @@ var CfItem = (function () {
     ];
 
     function generateDropdowns(arrData, type) {
-        var mandatoryClass = "";
-        var panelType = "default";
+        let mandatoryClass = "";
+        let panelType = "default";
         arrData.chunk(2).forEach(function (dropdownGrouped) {
             $('.dropdowns.' + type).append('<div class="row"></div>');
             dropdownGrouped.forEach(function (dropdown) {
@@ -526,7 +526,7 @@ var CfItem = (function () {
     }
 
     function validDropdowns(formMatchedSelector) {
-        var missingRequiredFiles = false;
+        let missingRequiredFiles = false;
 
         $(formMatchedSelector).find("select").each(function (i, e) {
             if ($(e).val().length < 1) {
@@ -544,10 +544,10 @@ var CfItem = (function () {
     }
 
     function missingField(field) {
-        var alert = '<div class="alert alert-warning js-alert-missing-fields" role="alert">';
+        let alert = '<div class="alert alert-warning js-alert-missing-fields" role="alert">';
         alert += '<a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>';
         alert += '<div class="js-error-message-missing-field">';
-        alert += '<strong>Missing field "' + utilSalt.titleize(field) + '"</strong>, if you did not list a column ' + field + ' in your CSV ignore this message! ';
+        alert += '<strong>Missing field "' + titleize(field) + '"</strong>, if you did not list a column ' + field + ' in your CSV ignore this message! ';
         alert += 'if you meant to, please take a look at the import template and try again!';
         alert += '</div>';
         alert += '</div>';
@@ -557,7 +557,7 @@ var CfItem = (function () {
     }
 
     function errorValue(err, msg, alertType) {
-        var alert = '<div class="alert alert-' + alertType + ' js-alert-missing-fields" role="alert">';
+        let alert = '<div class="alert alert-' + alertType + ' js-alert-missing-fields" role="alert">';
         alert += '<a href="#" class="close" data-dismiss="alert" aria-label="close">x</a>';
         alert += '<div class="js-error-message-missing-field">';
         alert += '<strong>Error:</strong> ' + err + ', ' + msg;
@@ -579,10 +579,9 @@ var CfItem = (function () {
     };
 })();
 
-var SanitizeData = (function () {
-
+const SanitizeData = (function () {
     function matchedFields(formSelector) {
-        var sanitizedData = {},
+        let sanitizedData = {},
                 tempData = {},
                 formData = $(formSelector).serializeArray();
 
@@ -607,7 +606,7 @@ function listRepositories() {
     $('#back').html('');
 }
 
-$(document).ready(function () {
+$(function () {
     $('.github-tab').on('click', function () {
         SaltGithub.getRepoList(1, 30);
         listRepositories();
@@ -621,15 +620,15 @@ $(document).ready(function () {
 });
 
 // Used from page-level javascript
-global.SaltLocal = SaltLocal;
-global.SaltGithub = SaltGithub;
-global.listRepositories = listRepositories;
+globalThis.SaltLocal = SaltLocal;
+globalThis.SaltGithub = SaltGithub;
+globalThis.listRepositories = listRepositories;
 
-var dragbar = $("#dragbar");
+const dragbar = $("#dragbar");
 
-dragbar.mousedown(function (upperEvent) {
+dragbar.on('mousedown', function (upperEvent) {
     upperEvent.preventDefault();
-    var treeSideLeft = $('#treeSideLeft'),
+    let treeSideLeft = $('#treeSideLeft'),
             treeSideRight = $('#treeSideRight'),
             treeView = $("#treeView"),
             treeViewOffsetLeft = treeView.offset().left,
@@ -643,7 +642,7 @@ dragbar.mousedown(function (upperEvent) {
     });
 
     function dragBar(e) {
-        var cursorX = e.clientX,
+        let cursorX = e.clientX,
                 cursorFromOffsetLeft = cursorX - treeViewOffsetLeft,
                 cursorFromOffsetRight = treeViewOffsetRight - cursorX;
         if (cursorFromOffsetLeft < threshold || cursorFromOffsetRight < threshold) {
@@ -655,7 +654,7 @@ dragbar.mousedown(function (upperEvent) {
     }
 });
 
-var adjustWindow = function (e) {
+const adjustWindow = function (e) {
     if ($('#treeView').width() <= 768)
     {
         $('#treeSideLeft').width('100%');
@@ -672,11 +671,11 @@ var adjustWindow = function (e) {
         $("#dragbar").show();
     }
 };
-$(document).ready(adjustWindow);
+$(adjustWindow);
 
 $(window).on('resize', adjustWindow);
 
-$(document).ready(function () {
+$(function () {
     let table = $('#datatable').DataTable();
     $('#search_form_organization').on('keyup', function () {
         table

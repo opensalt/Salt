@@ -1,25 +1,24 @@
-$(document).ready(function(){
-    var apx = window.apx||{};
-    var utilSalt = require("util-salt");
+import { spinner } from '../util-salt';
 
+export default function(apx){
     apx.copyFramework = {
         init() {
-            $("#copyFrameworkModal_copyLeftBtn").click(function(e){
+            $("#copyFrameworkModal_copyLeftBtn").on('click', function(e){
                 e.preventDefault();
                 apx.copyFramework.copyFrameworkToLeft();
             });
-            $("#copyFrameworkModal_copyRightBtn").click(function(e){
+            $("#copyFrameworkModal_copyRightBtn").on('click', function(e){
                 e.preventDefault();
                 apx.copyFramework.copyFrameworkToRight();
             });
-            $("#copyFrameworkForm").submit(function(e){
+            $("#copyFrameworkForm").on('submit', function(e){
                 e.preventDefault();
                 apx.copyFramework.copyFrameworkRequest();
             });
         },
 
         copyFrameworkRequest() {
-            $("#copyFrameworkModal .file-loading .row .col-md-12").html(utilSalt.spinner("Copying Document"));
+            $("#copyFrameworkModal .file-loading .row .col-md-12").html(spinner("Copying Document"));
             $("#copyFrameworkModal .contentModal").addClass("hidden");
             $("#copyFrameworkModal .file-loading").removeClass("hidden");
 
@@ -78,4 +77,4 @@ $(document).ready(function(){
             $("#copyFrameworkModal .contentModal").removeClass("hidden");
         }
     };
-});
+};

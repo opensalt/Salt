@@ -7,13 +7,6 @@ const assetsDir = './assets';
 const buildDir = './public/build';
 
 var sharedScripts = [
-    npmDir+'/html5-boilerplate/dist/js/plugins.js',
-    npmDir+'/jquery/dist/jquery.js',
-    npmDir+'/jquery-migrate/dist/jquery-migrate'+(Encore.isProduction()?'.min':'')+'.js',
-    //npmDir+'/jquery-ui-bundle/jquery-ui.js',
-    npmDir+'/jquery-ui-dist/jquery-ui.js',
-    npmDir+'/bootstrap-sass/assets/javascripts/bootstrap.js',
-    npmDir+'/jquery.fancytree/dist/jquery.fancytree-all.js',
     assetsDir+'/js/site.js'
 ];
 if (Encore.isProduction()) {
@@ -22,28 +15,8 @@ if (Encore.isProduction()) {
     //sharedScripts.splice(2, 1);
 }
 
-const apxScripts = [
-    assetsDir+'/js/cftree/view-documentclass.js',
-    assetsDir+'/js/cftree/view-trees.js',
-    assetsDir+'/js/cftree/view-edit.js',
-    assetsDir+'/js/cftree/view-modes.js',
-    assetsDir+'/js/cftree/viewx.js',
-    assetsDir+'/js/cftree/apxglobal.js',
-    assetsDir+'/js/cftree/copy-framework.js'
-];
-
-const fs = require('fs');
-if (!fs.existsSync('./build/js')) {
-    if (!fs.existsSync('./build')) {
-        fs.mkdirSync('./build');
-    }
-    fs.mkdirSync('./build/js');
-}
-fs.writeFileSync('./build/js/apx.js', apxScripts.map((f) => {
-    return fs.readFileSync(f).toString();
-}).join(';'));
-
 const mainScripts = [
+    /*
     npmDir+'/datatables.net/js/jquery.dataTables.js',
     npmDir+'/datatables.net-bs/js/dataTables.bootstrap.js',
     npmDir+'/datatables.net-fixedheader/js/dataTables.fixedHeader.js',
@@ -60,7 +33,9 @@ const mainScripts = [
     assetsDir+'/js/lsdoc/index.js',
     npmDir+'/papaparse/papaparse.min.js',
     npmDir+'/ajaxq/ajaxq.js',
-    './build/js/apx.js'
+    assetsDir+'/js/cftree/apx.js',
+    */
+    assetsDir+'/js/main.js',
 ];
 
 Encore
@@ -187,9 +162,7 @@ config.resolve.alias = {
   //'simplemde': path.resolve(__dirname, npmDir+'/simplemde/dist/simplemde.min.js'),
   //'papaparse': path.resolve(__dirname, npmDir+'/papaparse/papaparse.min.js'),
   //'markdown-it-underline': path.resolve(__dirname, npmDir+'/markdown-it-underline/index.js'),
-  'render-md': path.resolve(__dirname, assetsDir+'/js/cftree/render-md.js'),
-  'util-salt': path.resolve(__dirname, assetsDir+'/js/util-salt.js'),
-  'ajaxq': path.resolve(__dirname, npmDir+'/ajaxq/ajaxq.js')
+  //'ajaxq': path.resolve(__dirname, npmDir+'/ajaxq/ajaxq.js')
 };
 config.resolve.modules = [
   'node_modules',

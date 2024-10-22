@@ -1,8 +1,10 @@
+import underline from 'markdown-it-underline';
+import mk from 'markdown-it-katex';
+import markdown from 'markdown-it';
+import sanitizeHtml from 'sanitize-html';
+
 const render = (function() {
-    let
-        underline = require('markdown-it-underline'),
-        mk = require('markdown-it-katex'),
-        markdown = require('markdown-it'),
+    const
         md = markdown('default', {
             html: true,
             breaks: true,
@@ -29,8 +31,6 @@ const render = (function() {
         });
 
     function sanitizerBlock(dirty) {
-        let sanitizeHtml = require('sanitize-html');
-
         return sanitizeHtml(dirty, {
             allowedTags: [
                 'ul', 'ol', 'li',
@@ -55,7 +55,7 @@ const render = (function() {
         });
     }
 
-    let render = {
+    const render = {
         block: function(value) {
             return md.render(sanitizerBlock(value));
         },
@@ -279,4 +279,4 @@ const render = (function() {
     return render;
 })();
 
-module.exports = render;
+export default render;

@@ -2,7 +2,6 @@ function addBackdrop() {
     if (0 === $('#sessionModalBackdrop').length) {
         $('<style id="sessionModalBackdrop">#sessionTimeoutModal.in ~ .modal-backdrop { z-index: 1100; }</style>').appendTo('head');
     }
-
 }
 
 function showWarning(warning) {
@@ -167,6 +166,4 @@ const check = () => {
     checkSession();
 };
 
-module.exports = {
-    check
-};
+export default check;
