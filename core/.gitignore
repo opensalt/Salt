@@ -83,3 +83,8 @@ pw-archive/
 !/var/SymfonyRequirements.php
 /vendor/
 ###< symfony/framework-bundle ###
+
+###> pentatrion/vite-bundle ###
+/node_modules/
+/public/build/
+###< pentatrion/vite-bundle ###

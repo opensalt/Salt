@@ -1,12 +1,11 @@
-import * as boilerplate from 'html5-boilerplate/dist/js/plugins';
+import 'html5-boilerplate/dist/js/plugins';
 
-import $ from 'jquery';
-globalThis.$ = globalThis.jQuery = $;
+import $ from './_jquery';
+import 'jquery-ui-dist/jquery-ui';
+import 'bootstrap-sass/assets/javascripts/bootstrap';
+import 'jquery.fancytree/dist/jquery.fancytree-all';
 
-import jQueryMigrate from 'jquery-migrate';
-import jQueryUi from 'jquery-ui';
-import bootstrapSass from 'bootstrap-sass/assets/javascripts/bootstrap';
-import fancytree from 'jquery.fancytree/dist/jquery.fancytree-all';
+//import './styles/main.scss';
 
 import check from './session';
 check();

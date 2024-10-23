@@ -1,5 +1,6 @@
 import 'inline-attachment/src/inline-attachment.js';
 import 'inline-attachment/src/codemirror-4.inline-attachment.js';
+import render from './render-md';
 
 import { empty } from './utils';
 

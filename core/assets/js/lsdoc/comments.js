@@ -1,3 +1,7 @@
+import $ from '../_jquery';
+//import jqComments from 'jquery-comments';
+//jqComments($);
+
 const CommentSystem = (function (){
     let commentItem = {
         itemId: null,

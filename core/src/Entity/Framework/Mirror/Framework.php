@@ -232,6 +232,8 @@ class Framework
             return null;
         }
 
+        $uncompressed = false;
+
         if (is_string($this->lastSuccessContent)) {
             $uncompressed = bzdecompress($this->lastSuccessContent);
         }
@@ -267,6 +269,8 @@ class Framework
         if (null === $this->lastContent) {
             return null;
         }
+
+        $uncompressed = false;
 
         if (is_string($this->lastContent)) {
             $uncompressed = bzdecompress($this->lastContent);

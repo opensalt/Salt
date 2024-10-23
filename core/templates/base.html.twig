@@ -13,7 +13,9 @@
         {% endblock %}
         <title>{% block title %}OpenSALT™{% endblock %}</title>
         {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('build/main.css', 'encore') }}" />
+            {# vite_entry_link_tags('app') #}
+            {{ vite_entry_link_tags('main') }}
+            {{ vite_entry_link_tags('commentcss') }}
             {% block styles %}{% endblock %}
         {% endblock %}
         {# <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" /> #}
@@ -136,11 +138,12 @@
         </div>
         <div style="display: none;">
             {% block sitejavascripts %}
-                <script src="{{ asset('build/manifest.js', 'encore') }}"></script>
-                <script src="{{ asset('build/base.js', 'encore') }}"></script>
-                <script src="{{ asset('build/site.js', 'encore') }}"></script>
+            {# <script src="{{ asset('build/manifest.js', 'encore') }}"></script> #}
+                {{ vite_entry_script_tags('base') }}
+                {{ vite_entry_script_tags('site') }}
             {% endblock %}
             {% block javascripts %}{% endblock %}
+            {{ vite_entry_script_tags('app') }}
         </div>
     </body>
 </html>

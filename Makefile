@@ -54,9 +54,9 @@ js: encore cache-clear
 .PHONY: js
 
 encore: yarn-install
-	core/bin/node ./node_modules/.bin/encore production
+	core/bin/yarn build
 encore-dev: yarn-install
-	core/bin/node ./node_modules/.bin/encore dev
+	core/bin/yarn build
 encore-build: encore
 .PHONY: encore encore-dev encore-build
 

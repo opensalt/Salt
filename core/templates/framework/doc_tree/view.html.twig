@@ -5,7 +5,7 @@
 {% block stylesheets %}
     {{ parent() }}
     {% if isFeatureEnabled('comments') %}
-        <link rel="stylesheet" href="{{ asset('build/commentscss.css', 'encore') }}"/>
+      {{ vite_entry_link_tags('commentcss') }}
     {% endif %}
 {% endblock %}
 
@@ -693,8 +693,8 @@
     {% endblock %}
 
     {% block sitejavascripts %}
-        <script>
-            window.apx = window.apx || {};
+        <script type="module">
+            apx = window.apx = window.apx || {};
 
             apx.enableEdit = {{ editorRights |json_encode |raw }};
             {% if editorRights -%}
@@ -716,11 +716,12 @@
         {% endif %}
 
         {% if isFeatureEnabled('comments') %}
-            <script src="{{ asset('build/comments.js', 'encore') }}"></script>
+            {{ vite_entry_script_tags('comments') }}
         {% endif %}
 
         {% autoescape 'js' %}
-        <script>
+        <script type="module">
+            apx = window.apx = window.apx || {};
             // loaded docid and initial lsItem and assocGroup to show
             apx.lsDocId = {{ lsDocId |json_encode |raw }};
             apx.initialLsItemId = {{ lsItemId |default(null) |json_encode |raw }};

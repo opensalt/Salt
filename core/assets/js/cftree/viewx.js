@@ -5,6 +5,18 @@ import render from './render-md';
 //////////////////////////////////////////////////
 // INITIALIZE WEB APP
 
+let apx = window.apx || {};
+
+apx.locks = apx.locks || {
+    docs: [],
+    items: [],
+    mine: {
+        docs: {},
+        items: {},
+        warnings: {}
+    }
+};
+
 export default function (apx) {
     apx.initialize = function () {
         // prepare edit modals/functions

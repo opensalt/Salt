@@ -9,11 +9,14 @@ use Rector\Php80\Rector\Catch_\RemoveUnusedVariableInCatchRector;
 use Rector\Symfony\Set\SymfonySetList;
 
 return RectorConfig::configure()
+    ->withParallel()
     ->withPaths([
         __DIR__ . '/src',
         __DIR__ . '/templates',
         __DIR__ . '/config',
     ])
+    ->withPhpVersion(\Rector\ValueObject\PhpVersion::PHP_83)
+    ->withPhpSets(php83: true)
     ->withSkip([
         __DIR__ . '/config/bundles.php',
         RemoveUnusedVariableInCatchRector::class,
@@ -21,16 +24,31 @@ return RectorConfig::configure()
         ClassPropertyAssignToConstructorPromotionRector::class,
         NullToStrictStringFuncCallArgRector::class,
         ReadOnlyPropertyRector::class,
+        Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector::class,
+        Rector\CodeQuality\Rector\Identical\FlipTypeControlToUseExclusiveTypeRector::class,
     ])
-    ->withPhpSets(php81: true)
-    //->withPreparedSets(typeDeclaration: true)
-    //->withTypeCoverageLevel(1)
-    ->withDeadCodeLevel(1)
-    ->withAttributesSets(symfony: true, doctrine: true)
-    ->withImportNames(importShortClasses: false, removeUnusedImports: true)
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true,
+        codingStyle: true,
+        typeDeclarations: true,
+        privatization: true,
+        //naming: true,
+        instanceOf: true,
+        earlyReturn: true,
+        strictBooleans: true
+    )
+    ->withAttributesSets(
+        symfony: true,
+        doctrine: true,
+    )
     ->withSets([
-        SymfonySetList::SYMFONY_64,
-        SymfonySetList::SYMFONY_CODE_QUALITY,
+        \Rector\Set\ValueObject\LevelSetList::UP_TO_PHP_83,
+        \Rector\Symfony\Set\SymfonySetList::SYMFONY_71,
+        \Rector\Symfony\Set\SymfonySetList::SYMFONY_CODE_QUALITY,
         //SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
     ])
+    //->withTypeCoverageLevel(1)
+    //->withDeadCodeLevel(1)
+    ->withImportNames(true, true, false, true)
 ;

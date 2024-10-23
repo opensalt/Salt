@@ -3,16 +3,16 @@
 # https://docs.docker.com/compose/compose-file/#target
 
 # Version and build of OpenSALT
-ARG VERSION=3.2.0
+ARG VERSION=3.3.0
 ARG BUILD_NUMBER=x
 ARG BUILD_DATE=0
 ARG COMMIT=unknown
 
-ARG NODE_VERSION=14
+ARG NODE_VERSION=20
 ARG PHP_VERSION=8.3
 ARG CADDY_VERSION=2
 #=======================================================================
-FROM node:${NODE_VERSION}-alpine AS salt_core_js_build
+FROM node:${NODE_VERSION} AS salt_core_js_build
 
 USER node
 WORKDIR /srv/core
@@ -20,11 +20,11 @@ WORKDIR /srv/core
 COPY package.json yarn.lock ./
 RUN yarn install --non-interactive
 
-COPY webpack.config.js ./
+COPY vite.config.js ./
 COPY assets ./assets/
 
 RUN mkdir -p public/build \
-  && ./node_modules/.bin/encore production
+  && yarn build
 
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
 #=======================================================================
@@ -155,7 +155,7 @@ ARG APP_ENV=prod
 # copy only specifically what we need
 COPY .env \
      composer.json composer.lock symfony.lock \
-     package.json webpack.config.js yarn.lock \
+     package.json vite.config.js yarn.lock \
      codeception.dist.yml \
 	 ./
 COPY bin/ bin/

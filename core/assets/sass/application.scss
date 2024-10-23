@@ -3,20 +3,21 @@
 
 @import "bootstrap";
 
-@import "~bootstrap-material-icons/scss/material-icons";
-@import "~font-awesome/scss/font-awesome";
-@import "~katex/dist/katex.min.css";
-@import "~github-markdown-css/github-markdown.css";
-@import "~simplemde/dist/simplemde.min.css";
-@import "~jquery.fancytree/dist/skin-lion/ui.fancytree";
-@import "~bootstrap-multiselect/dist/css/bootstrap-multiselect";
-@import "~select2/dist/css/select2";
-@import "~select2-bootstrap-theme/src/select2-bootstrap";
+@import "bootstrap-material-icons/scss/material-icons";
+$fa-font-path: 'font-awesome/fonts';
+@import "font-awesome/scss/font-awesome";
+@import "katex/dist/katex.min.css";
+@import "github-markdown-css/github-markdown.css";
+@import "simplemde/dist/simplemde.min.css";
+@import "jquery.fancytree/dist/skin-lion/ui.fancytree";
+@import "bootstrap-multiselect/dist/css/bootstrap-multiselect";
+@import "select2/dist/css/select2";
+@import "select2-bootstrap-theme/src/select2-bootstrap";
 
-@import "~datatables.net-bs/css/dataTables.bootstrap";
-@import "~datatables.net-fixedheader-bs/css/fixedHeader.bootstrap";
-@import "~datatables.net-scroller-bs/css/scroller.bootstrap";
-@import "~datatables.net-select-bs/css/select.bootstrap";
+@import "datatables.net-bs/css/dataTables.bootstrap";
+@import "datatables.net-fixedheader-bs/css/fixedHeader.bootstrap";
+@import "datatables.net-scroller-bs/css/scroller.bootstrap";
+@import "datatables.net-select-bs/css/select.bootstrap";
 
 @import "layout";
 @import "styles";

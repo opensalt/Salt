@@ -1452,7 +1452,7 @@ function ApxDocument(initializer, apx) {
                             .addClass('disabled');
                     } else {
                         $('button[data-target="' + button + '"]')
-                            .removeAttr('disabled')
+                            .prop('disabled', false)
                             .removeClass('disabled');
                     }
                 });
@@ -1750,7 +1750,7 @@ function ApxDocument(initializer, apx) {
                             .addClass('disabled');
                     } else {
                         $('button[data-target="' + button + '"]')
-                            .removeAttr('disabled')
+                            .prop('disabled', false)
                             .removeClass('disabled');
                     }
                 });
@@ -1761,11 +1761,11 @@ function ApxDocument(initializer, apx) {
                     if ("undefined" !== typeof apx.locks['items'][item.id]
                         && false !== apx.locks['items'][item.id]) {
                         $(button)
-                            .attr('disabled', 'disabled')
+                            .prop('disabled', true)
                             .addClass('disabled');
                     } else {
                         $(button)
-                            .removeAttr('disabled')
+                            .prop('disabled', false)
                             .removeClass('disabled');
                     }
                 });

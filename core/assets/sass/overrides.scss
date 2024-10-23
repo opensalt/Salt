@@ -6,7 +6,7 @@ span.fancytree-checkbox,
 span.fancytree-radio,
 span.fancytree-drag-helper-img,
 #fancytree-drop-marker {
-    background-image: url("~jquery.fancytree/dist/skin-lion/icons.gif");
+    background-image: url("jquery.fancytree/dist/skin-lion/icons.gif");
 }
 
 span.fancytree-node {
@@ -42,7 +42,7 @@ span.fancytree-node {
             }
         }
     }
-    
+
     .salt-framework-link span.fancytree-title:hover {
         text-decoration: $link-hover-decoration;
         color: $link-hover-color;

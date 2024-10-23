@@ -72,6 +72,7 @@
         "nelmio/cors-bundle": "^2.0",
         "nelmio/security-bundle": "^3.0",
         "novaway/feature-flag-bundle": "^3.0",
+        "pentatrion/vite-bundle": "^7.0",
         "phpdocumentor/reflection-docblock": "^5.2",
         "phpoffice/phpspreadsheet": "~3.3.0",
         "phpoffice/phpword": "^1.0",

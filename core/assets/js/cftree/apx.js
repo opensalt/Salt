@@ -13,3 +13,5 @@ initEdit(apx);
 initViewMode(apx);
 initViewX(apx);
 initCopy(apx);
+
+export default apx;

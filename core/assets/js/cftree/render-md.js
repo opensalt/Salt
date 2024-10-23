@@ -2,6 +2,7 @@ import underline from 'markdown-it-underline';
 import mk from 'markdown-it-katex';
 import markdown from 'markdown-it';
 import sanitizeHtml from 'sanitize-html';
+import SimpleMDE from 'simplemde';
 
 const render = (function() {
     const
@@ -47,8 +48,6 @@ const render = (function() {
     }
 
     function sanitizerInline(dirty) {
-        let sanitizeHtml = require('sanitize-html');
-
         return sanitizeHtml(dirty, {
             allowedTags: ['img'],
             allowedAttributes: {'img': ['alt', 'title']}
@@ -240,7 +239,6 @@ const render = (function() {
     }
 
     render.mde = function(element) {
-        let SimpleMDE = require('simplemde');
         return new SimpleMDE({
             element: element,
             toolbar: [{

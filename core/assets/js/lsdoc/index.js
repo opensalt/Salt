@@ -1,5 +1,6 @@
 import { simplify, spinner, titleize } from '../util-salt';
-import Papa from 'papaparse';
+import 'papaparse';
+import $ from '../_jquery';
 
 const SaltGithub = (function () {
     function getRepoList(page, perPage) {
@@ -125,6 +126,7 @@ const SaltGithub = (function () {
         getFiles: getFiles
     };
 })();
+window.SaltGithub = SaltGithub;
 
 const UpdateFramework = (function () {
     const frameworkToAssociateSelector = '#js-framework-to-association-on-update',
@@ -166,6 +168,7 @@ const UpdateFramework = (function () {
 
     return {init: init, derivative: derivative, update: update};
 })();
+window.UpdateFramework = UpdateFramework;
 
 const Import = (function () {
 
@@ -332,9 +335,9 @@ const Import = (function () {
         case: caseImporter
     };
 })();
+window.Import = Import;
 
 const SaltLocal = (function () {
-
     function handleFileSelect(fileType, input) {
         let files = document.getElementById(input).files;
         let json = '', f;
@@ -440,6 +443,7 @@ const SaltLocal = (function () {
         handleExcelFile: handleExcelFile
     };
 })();
+window.SaltLocal = SaltLocal;
 
 if (document.getElementById("toggleRight")) {
     document.getElementById("toggleRight").onclick = function () {
