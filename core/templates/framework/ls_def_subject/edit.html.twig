@@ -11,10 +11,10 @@
     {{ form_end(edit_form) }}
 
     <ul class="list-inline text-right">
-        <li>
+        <li class="list-inline-item">
             <a class="btn btn-default" href="{{ path('lsdef_subject_index') }}">Back to the list</a>
         </li>
-        <li>
+        <li class="list-inline-item">
             {{ form_start(delete_form) }}
                 <input class="btn btn-danger" type="submit" value="Delete">
             {{ form_end(delete_form) }}

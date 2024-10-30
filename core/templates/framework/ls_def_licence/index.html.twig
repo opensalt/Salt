@@ -21,14 +21,8 @@
                 <td>{{ lsDefLicence.description }}</td>
                 <td>{% if lsDefLicence.updatedAt %}{{ lsDefLicence.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    <ul class="list-inline">
-                        <li>
-                            <a class="btn btn-primary" href="{{ path('lsdef_licence_show', { 'id': lsDefLicence.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-default" href="{{ path('lsdef_licence_edit', { 'id': lsDefLicence.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-primary" href="{{ path('lsdef_licence_show', { 'id': lsDefLicence.id }) }}">show</a>
+                    <a class="btn btn-default" href="{{ path('lsdef_licence_edit', { 'id': lsDefLicence.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
@@ -36,7 +30,7 @@
     </table>
 
     <ul class="list-inline">
-        <li>
+        <li class="list-inline-item">
             <a class="btn btn-default" href="{{ path('lsdef_licence_new') }}">Create a new entry</a>
         </li>
     </ul>

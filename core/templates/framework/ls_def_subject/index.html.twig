@@ -24,10 +24,10 @@
                 <td>{% if lsDefSubject.updatedAt %}{{ lsDefSubject.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul class="list-inline">
-                        <li>
+                        <li class="list-inline-item">
                             <a class="btn btn-primary" href="{{ path('lsdef_subject_show', { 'id': lsDefSubject.id }) }}">show</a>
                         </li>
-                        <li>
+                        <li class="list-inline-item">
                             <a class="btn btn-default" href="{{ path('lsdef_subject_edit', { 'id': lsDefSubject.id }) }}">edit</a>
                         </li>
                     </ul>
@@ -38,7 +38,7 @@
     </table>
 
     <ul class="list-inline">
-        <li>
+        <li class="list-inline-item">
             <a class="btn btn-default" href="{{ path('lsdef_subject_new') }}">Create a new entry</a>
         </li>
     </ul>

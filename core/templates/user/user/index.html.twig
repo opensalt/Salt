@@ -43,40 +43,28 @@
                         {{ user.status }}
                     </td>
                     <td class="">
-                        <ul class="list-inline">
-                                <li>
-                                    <a class="btn btn-primary" href="{{ path('admin_user_show', { 'id': user.id }) }}">show</a>
-                                </li>
-                                {% if not user.suspended %}
-                                    <li>
-                                        <a class="btn btn-default" href="{{ path('admin_user_edit', { 'id': user.id }) }}">edit</a>
-                                    </li>
-                                {% endif %}
-                                {% if user.pending %}
-                                    <li>
-                                        {{ form_start(activate_form[user.id]) }}
-                                            <input class="btn btn-primary" type="submit" value="Approve">
-                                        {{ form_end(activate_form[user.id]) }}
-                                    </li>
-                                    <li>
-                                        {{ form_start(reject_form[user.id]) }}
-                                            <input class="btn btn-danger" type="submit" value="Reject">
-                                        {{ form_end(reject_form[user.id]) }}
-                                    </li>
-                                {% else %}
-                                  <li>
-                                    {% if user.suspended %}
-                                        {{ form_start(activate_form[user.id]) }}
-                                            <input class="btn btn-default" type="submit" value="Unsuspend">
-                                        {{ form_end(activate_form[user.id]) }}
-                                    {% else %}
-                                        {{ form_start(suspend_form[user.id]) }}
-                                            <input class="btn btn-default" type="submit" value="Suspend">
-                                        {{ form_end(suspend_form[user.id]) }}
-                                    {% endif %}
-                                  </li>
-                                {% endif %}
-                        </ul>
+                        <a class="btn btn-primary" href="{{ path('admin_user_show', { 'id': user.id }) }}">show</a>
+                        {% if not user.suspended %}
+                                <a class="btn btn-default" href="{{ path('admin_user_edit', { 'id': user.id }) }}">edit</a>
+                        {% endif %}
+                        {% if user.pending %}
+                            {{ form_start(activate_form[user.id], {"attr": {"class": "d-inline-block"}}) }}
+                                <input class="btn btn-primary" type="submit" value="Approve">
+                            {{ form_end(activate_form[user.id]) }}
+                            {{ form_start(reject_form[user.id], {"attr": {"class": "d-inline-block"}}) }}
+                                <input class="btn btn-danger" type="submit" value="Reject">
+                            {{ form_end(reject_form[user.id]) }}
+                        {% else %}
+                            {% if user.suspended %}
+                                {{ form_start(activate_form[user.id], {"attr": {"class": "d-inline-block"}}) }}
+                                    <input class="btn btn-default" type="submit" value="Unsuspend">
+                                {{ form_end(activate_form[user.id]) }}
+                            {% else %}
+                                {{ form_start(suspend_form[user.id], {"attr": {"class": "d-inline-block"}}) }}
+                                    <input class="btn btn-default" type="submit" value="Suspend">
+                                {{ form_end(suspend_form[user.id]) }}
+                            {% endif %}
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

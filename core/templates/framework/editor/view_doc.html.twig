@@ -53,19 +53,19 @@
 
                     <div class="text-center">
                         <ul class="list-inline">
-                            <li>
+                            <li class="list-inline-item">
                                 <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
                             </li>
                             {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsDoc) %}
-                                <li>
+                                <li class="list-inline-item">
                                     <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
                                 </li>
-                                <li>
+                                <li class="list-inline-item">
                                     <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#addChildModal">Add Learning Standard</button>
                                 </li>
                             {% endif %}
                             {% if is_granted(constant('App\\Security\\Permission::MANAGE_EDITORS'), lsDoc) %}
-                                <li>
+                                <li class="list-inline-item">
                                     <a href="{{ path('framework_acl_edit', {'id':lsDoc.id}) }}" class="btn btn-default">Manage Access</a>
                                 </li>
                             {% endif %}

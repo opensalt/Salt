@@ -25,14 +25,8 @@
                 <td>{{ lsDefConcept.keywords }}</td>
                 <td>{% if lsDefConcept.updatedAt %}{{ lsDefConcept.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
-                    <ul class="list-inline">
-                        <li>
-                            <a class="btn btn-primary" href="{{ path('lsdef_concept_show', { 'id': lsDefConcept.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a class="btn btn-default" href="{{ path('lsdef_concept_edit', { 'id': lsDefConcept.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <a class="btn btn-primary" href="{{ path('lsdef_concept_show', { 'id': lsDefConcept.id }) }}">show</a>
+                    <a class="btn btn-default" href="{{ path('lsdef_concept_edit', { 'id': lsDefConcept.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
@@ -40,7 +34,7 @@
     </table>
 
     <ul class="list-inline">
-        <li>
+        <li class="list-inline-item">
             <a class="btn btn-default" href="{{ path('lsdef_concept_new') }}">Create a new entry</a>
         </li>
     </ul>
