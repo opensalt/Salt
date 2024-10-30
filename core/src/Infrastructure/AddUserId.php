@@ -3,4 +3,6 @@
 namespace App\Infrastructure;
 
 #[\Attribute]
-class AddUserId {}
+class AddUserId
+{
+}
