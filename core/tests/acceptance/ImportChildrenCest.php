@@ -14,7 +14,7 @@ class ImportChildrenCest
         $loginPage->loginAsRole('super_user');
         $I->amOnPage(self::$docPath.$I->getDocId());
         $I->waitForElementNotVisible('#modalSpinner', 120);
-        $I->waitForElementVisible('[data-target="#addChildrenModal"]', 120);
+        $I->waitForElementVisible('[data-bs-target="#addChildrenModal"]', 120);
         $I->see('Import Children');
         $I->click('Import Children');
         $I->waitForElementVisible('#addChildrenModal', 120);
@@ -68,7 +68,7 @@ class ImportChildrenCest
 
         $I->amOnPage(self::$docPath.$I->getDocId());
         $I->waitForElementNotVisible('#modalSpinner', 120);
-        $I->waitForElementVisible('[data-target="#addChildrenModal"]', 120);
+        $I->waitForElementVisible('[data-bs-target="#addChildrenModal"]', 120);
         $I->see('Import Children');
         $I->click('Import Children');
         $I->waitForElementVisible('#addChildrenModal', 120);
@@ -91,7 +91,7 @@ class ImportChildrenCest
 
         $I->amOnPage(self::$docPath.$I->getDocId());
         $I->waitForElementNotVisible('#modalSpinner', 120);
-        $I->waitForElementVisible('[data-target="#addChildrenModal"]', 120);
+        $I->waitForElementVisible('[data-bs-target="#addChildrenModal"]', 120);
         $I->see('Import Children');
         $I->click('Import Children');
         $I->waitForElementVisible('#addChildrenModal', 120);

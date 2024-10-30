@@ -731,8 +731,8 @@ class Framework implements Context
         $I = $this->I;
 
         $this->iGoToTheFrameworkDocument();
-        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-target="#editDocModal"]');
-        $I->click('//*[@id="documentOptions"]/button[@data-target="#editDocModal"]');
+        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-bs-target="#editDocModal"]');
+        $I->click('//*[@id="documentOptions"]/button[@data-bs-target="#editDocModal"]');
         $I->waitForElementVisible('#ls_doc_title');
 
         return $this;
@@ -987,8 +987,8 @@ class Framework implements Context
         $I = $this->I;
 
         $this->iGoToTheFrameworkDocument();
-        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-target="#editDocModal"]');
-        $I->click('//*[@id="documentOptions"]/button[@data-target="#editDocModal"]');
+        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-bs-target="#editDocModal"]');
+        $I->click('//*[@id="documentOptions"]/button[@data-bs-target="#editDocModal"]');
         $I->waitForElementVisible('#ls_doc_title');
 
         $rows = $table->getRows();
@@ -1143,8 +1143,8 @@ class Framework implements Context
         $I = $this->I;
 
         $this->iGoToTheFrameworkDocument();
-        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-target="#editDocModal"]');
-        $I->click('//*[@id="documentOptions"]/button[@data-target="#editDocModal"]');
+        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-bs-target="#editDocModal"]');
+        $I->click('//*[@id="documentOptions"]/button[@data-bs-target="#editDocModal"]');
         $I->waitForElementVisible('#ls_doc_title');
 
         $rows = $table->getRows();
@@ -1309,7 +1309,7 @@ class Framework implements Context
         $writer->save(codecept_data_dir().$filename.'.mod.xlsx');
 
         $I->amOnPage(self::$docPath.$I->getDocId());
-        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-target="#updateFrameworkModal"]', 120);
+        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-bs-target="#updateFrameworkModal"]', 120);
         $I->see('Update Framework');
         try {
             $I->click('Update Framework');
@@ -1367,7 +1367,7 @@ class Framework implements Context
         $writer->save(codecept_data_dir().''.$filename.'.xlsx');
 
         $I->amOnPage(self::$docPath.$I->getDocId());
-        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-target="#updateFrameworkModal"]', 120);
+        $I->waitForElementVisible('//*[@id="documentOptions"]/button[@data-bs-target="#updateFrameworkModal"]', 120);
         $I->see('Update Framework');
 
         try {

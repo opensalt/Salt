@@ -15,7 +15,7 @@ class EditBarButtonCest
         $Acpt->amOnPage(self::$itemPath.$Acpt->getItemId());
         $Acpt->waitForElementNotVisible('#modalSpinner', 120);
         $Acpt->see('Edit');
-        $Acpt->click('[data-target="#editItemModal"]');
+        $Acpt->click('[data-bs-target="#editItemModal"]');
         $Acpt->waitForElementVisible('#editItemModal');
         $Acpt->waitForElementVisible('#ls_item', 120);
         $Acpt->seeElement('.fa.fa-sort-alpha-asc');

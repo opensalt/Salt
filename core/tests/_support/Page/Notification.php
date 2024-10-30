@@ -61,7 +61,7 @@ class Notification implements Context
         $admin = $I->haveFriend('new user');
         $admin->does(
             function (\AcceptanceTester $I) {
-                $I->waitForElementChange('button[data-target="#editDocModal"]', function (WebDriverElement $el) {
+                $I->waitForElementChange('button[data-bs-target="#editDocModal"]', function (WebDriverElement $el) {
                     return false !== strpos($el->getAttribute('class'), 'disabled');
                 }, 30);
                 $I->see('Edit', '.disabled');
@@ -139,7 +139,7 @@ class Notification implements Context
         $admin = $I->haveFriend('new user');
         $admin->does(
             function (\AcceptanceTester $I) {
-                $I->waitForElementChange('button[data-target="#editDocModal"]', function (WebDriverElement $el) {
+                $I->waitForElementChange('button[data-bs-target="#editDocModal"]', function (WebDriverElement $el) {
                     return false === strpos($el->getAttribute('class'), 'disabled');
                 }, 30);
                 $I->dontSee('Edit', '.disabled');
@@ -161,7 +161,7 @@ class Notification implements Context
         $admin = $I->haveFriend('new user');
         $admin->does(
             function (\AcceptanceTester $I) {
-                $I->waitForElementChange('button[data-target="#editItemModal"]', function (WebDriverElement $el) {
+                $I->waitForElementChange('button[data-bs-target="#editItemModal"]', function (WebDriverElement $el) {
                     return false !== strpos($el->getAttribute('class'), 'disabled');
                 }, 30);
                 $I->see('Edit', '.disabled');
@@ -182,7 +182,7 @@ class Notification implements Context
         $admin = $I->haveFriend('new user');
         $admin->does(
             function (\AcceptanceTester $I) {
-                $I->waitForElementChange('button[data-target="#editItemModal"]', function (WebDriverElement $el) {
+                $I->waitForElementChange('button[data-bs-target="#editItemModal"]', function (WebDriverElement $el) {
                     return false === strpos($el->getAttribute('class'), 'disabled');
                 }, 30);
                 $I->dontSee('Edit', '.disabled');

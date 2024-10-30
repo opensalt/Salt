@@ -14,7 +14,7 @@ class FullScreenModalCest
         $I->amOnPage(self::$docPath.$I->getDocId());
         $I->waitForElementNotVisible('#modalSpinner', 120);
         $I->see('Edit');
-        $I->click('[data-target="#editDocModal"]');
+        $I->click('[data-bs-target="#editDocModal"]');
         $I->waitForElementVisible('#editDocModal');
         $contentSize = $I->executeJS('return $("#editDocModal .modal-dialog.modal-lg").width()');
         $fullSize = $I->executeJS('return $("body").width()');
