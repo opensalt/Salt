@@ -11,7 +11,7 @@ const SaltGithub = (function () {
                 $.each(data.data, function (i, e) {
                     $(".js-github-list .js-github-message-loading").hide();
                     $(".js-github-list #repos").append('<li class="list-group-item item" data-owner="' + e.owner.login + '" data-repo="'
-                            + e.name + '" data-sha="" data-path=""><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> ' + e.name + '</li>');
+                            + e.name + '" data-sha="" data-path=""><i class="fa fa-folder" aria-hidden="true"></i> ' + e.name + '</li>');
                     $('#repos').removeClass('hidden');
                 });
 
@@ -56,12 +56,12 @@ const SaltGithub = (function () {
                                 $(".js-github-list #files")
                                         .append('<li class="list-group-item file-item" data-owner="' + $(evt.target)
                                                 .attr('data-owner') + '" data-repo="' + $(evt.target).attr('data-repo') + '" data-sha="' + item.sha
-                                                + '" data-fname="' + item.name + '"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> ' + item.name + '</li>');
+                                                + '" data-fname="' + item.name + '"><i class="fa fa-file" aria-hidden="true"></i> ' + item.name + '</li>');
                             }
                         } else if (item.type === 'dir') {
                             $(".js-github-list #files").append('<li class="list-group-item item" data-owner="' + $(evt.target).attr('data-owner')
                                     + '" data-repo="' + $(evt.target).attr('data-repo') + '" data-sha="" data-path="' + item.path
-                                    + '"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> ' + item.name + '</li>');
+                                    + '"><i class="fa fa-folder" aria-hidden="true"></i> ' + item.name + '</li>');
 
                             hasSubFolder = true;
                         }

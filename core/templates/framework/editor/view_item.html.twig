@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
             <ol class="breadcrumb">
-                <li><a href="{{ path('lsdoc_index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span class="visually-hidden">Home</span></a></li>
+                <li><a href="{{ path('lsdoc_index') }}"><i class="fa fa-home" aria-hidden="true"></i><span class="visually-hidden">Home</span></a></li>
                 <li><a href="{{ path('editor_lsdoc', {'id':lsItem.lsDoc.id}) }}">{{ lsItem.lsDoc.title |u.truncate(32, '...', false) }}</a></li>
                 <li class="active">{{ lsItem.displayIdentifier |u.truncate(64, '...', false) }}</li>
             </ol>

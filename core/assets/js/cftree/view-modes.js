@@ -475,7 +475,7 @@ export default function (apx) {
 
             // add new interface
             let html = '<div id="chooserModeShowForChoosing" style="position:fixed; z-index:10; top:5px; right:1px; border:2px solid #444; border-radius:5px; background-color:#eee; padding:10px; width:350px;">';
-            html += '<span id="chooserModeShowForChoosingClose" class="glyphicon glyphicon-remove" title="Close" style="float:right; margin-left:10px; cursor:pointer;"></span>'
+            html += '<i id="chooserModeShowForChoosingClose" class="fa fa-remove" title="Close" style="float:right; margin-left:10px; cursor:pointer;"></i>'
             // full item title
             html += apx.mainDoc.getItemTitle(node.data.ref, true);
             html += '<div style="text-align:right; margin-top:10px">'

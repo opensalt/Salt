@@ -449,7 +449,7 @@ export default function (apx) {
                             },
                             delay: warningTime,
                             msgType: 'warning',
-                            icon: 'glyphicon glyphicon-warning-sign',
+                            icon: 'fa fa-exclamation-triangle',
                             url: 'javascript:apx.notifications.relockItem(' + id + ');',
                             onClose: function (e) {
                                 if (0 === apx.locks.mine.items[id].timeout) {
@@ -475,7 +475,7 @@ export default function (apx) {
                                     },
                                     delay: 0,
                                     msgType: 'danger',
-                                    icon: 'glyphicon glyphicon-alert'
+                                    icon: 'fa fa-exclamation-triangle'
                                 });
                             }
                         });
@@ -640,7 +640,7 @@ export default function (apx) {
                             },
                             delay: warningTime,
                             msgType: 'warning',
-                            icon: 'glyphicon glyphicon-warning-sign',
+                            icon: 'fa fa-exclamation-triangle',
                             url: 'javascript:apx.notifications.relockDoc(' + id + ');',
                             onClose: function (e) {
                                 if (0 === apx.locks.mine.docs[id].timeout) {
@@ -666,7 +666,7 @@ export default function (apx) {
                                     },
                                     delay: 0,
                                     msgType: 'danger',
-                                    icon: 'glyphicon glyphicon-alert'
+                                    icon: 'fa fa-exclamation-triangle'
                                 });
                             }
                         });
@@ -1011,7 +1011,7 @@ export default function (apx) {
      */
     apx.spinner = {};
     apx.spinner.html = function (msg) {
-        return '<div class="spinnerOuter"><span class="glyphicon glyphicon-cog spinning spinnerCog"></span><span class="spinnerText">' + msg + '</span></div>';
+        return '<div class="spinnerOuter"><i class="fa fa-cog spinning spinnerCog"></i><span class="spinnerText">' + msg + '</span></div>';
     };
 
     apx.spinner.showModal = function (msg) {

@@ -97,7 +97,7 @@
                         </ul>
                     </span>
                         {% endif %}
-                        <span class="filterClear glyphicon glyphicon-remove-circle"></span>
+                        <i class="filterClear fa fa-times-circle-o"></i>
                         <input type="text" class="form-control treeFilter" id="filterOnTree" placeholder="Search...">
                         {% if editorRights  and isDraft %}
                     </div>
@@ -156,7 +156,7 @@
                         <div id="itemInfo">
                             <div id="chooserModeButtons">
                                 <button id="chooserModeItemDetailsChooseBtn" class="btn btn-primary btn-sm">Choose</button>
-                                <span id="chooserModeItemDetailsCloseDetailsBtn" class="glyphicon glyphicon-remove" title="Close details"></span>
+                                <i id="chooserModeItemDetailsCloseDetailsBtn" class="fa fa-remove" title="Close details"></i>
                             </div>
                             <h4 class="itemTitle">
                                 <img class="itemTitleIcon" src="/assets/img/item.png"/>
@@ -249,12 +249,12 @@
 
                             <div id="associationEditBtn" style="display:none">
                                 {% if editorRights and not isDeprecated %}
-                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-edit-association"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span class="visually-hidden">Edit</span></span></span>
+                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-edit-association"><i class="fa fa-edit" aria-hidden="true"></i><span class="visually-hidden">Edit</span></span></span>
                                 {% endif %}
                             </div>
                             <div id="associationRemoveBtn" style="display:none">
                                 {% if editorRights and not isDeprecated %}
-                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-remove-association"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="visually-hidden">Remove</span></span></span>
+                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-remove-association"><i class="fa fa-remove" aria-hidden="true"></i><span class="visually-hidden">Remove</span></span></span>
                                 {% endif %}
                             </div>
                         </div>  <!-- itemInfo -->
@@ -308,7 +308,7 @@
                                         <li><a class="treeCheckboxMenuItem" data-cmd="hideCheckboxes">Hide Checkboxes</a></li>
                                     </ul>
                                 </span>
-                                <span class="filterClear glyphicon glyphicon-remove-circle"></span>
+                                <i class="filterClear fa fa-times-circle-o"></i>
                                 <input type="text" class="form-control treeFilter" placeholder="Search...">
                             </div>
                         </div>

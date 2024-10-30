@@ -11,5 +11,5 @@ export function titleize(string) {
 }
 
 export function spinner(msg) {
-    return '<div class="spinnerOuter"><span class="glyphicon glyphicon-cog spinning spinnerCog"></span><span class="spinnerText">' + msg + '</span></div>';
+    return '<div class="spinnerOuter"><i class="fa fa-cog spinning spinnerCog"></i><span class="spinnerText">' + msg + '</span></div>';
 }
