@@ -18,7 +18,7 @@ class DocTreeCest
         $I->click('Import framework');
         $I->waitForElementVisible('.modal');
         $I->see('Import CASE® file');
-        $I->click('//*[@href="#case"]');
+        $I->click('//*[@data-bs-target="#case"]');
 
         $data = file_get_contents(codecept_data_dir().'Ordering.json');
 

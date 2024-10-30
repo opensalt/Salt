@@ -8,27 +8,27 @@
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="#case" data-bs-toggle="tab">Import CASE® file</a></li>
-                            <li><a href="#spreadsheet" data-bs-toggle="tab">Import Spreadsheet file</a></li>
+                            <li class="nav-item"><button class="nav-link active" data-bs-target="#case" data-bs-toggle="tab" type="button">Import CASE® file</button></li>
+                            <li class="nav-item"><button class="nav-link" data-bs-target="#spreadsheet" data-bs-toggle="tab" type="button">Import Spreadsheet file</button></li>
                         </ul>
                         <br>
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="case">
-                                <input id="file-url" type="file" class="form-control">
+                            <div class="tab-pane fade show active" id="case">
+                                <input id="file-url" type="file" class="form-control" title="CASE file to import">
                                 <br/>
-                                <div class="alert alert-danger case-error-msg hidden" role="alert"></div>
+                                <div class="alert alert-danger case-error-msg d-none" role="alert"></div>
                                 <a type="button" class="btn btn-primary btn-import btn-import-case" onclick="SaltLocal.handleFile('case', 'file-url');">Import Framework</a>
                             </div>
                             <div class="tab-pane fade" id="spreadsheet">
-                                <input id="excel-url" type="file" class="form-control">
+                                <input id="excel-url" type="file" class="form-control" title="Spreadsheet to import">
                                 <br/>
-                                <div class="alert alert-danger case-error-msg hidden" role="alert"></div>
+                                <div class="alert alert-danger case-error-msg d-none" role="alert"></div>
                                 <a type="button" class="btn btn-primary btn-import btn-import-spreadsheet" onclick="SaltLocal.handleExcelFile('spreadsheet', 'file-url');">Import Framework</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="file-loading hidden">
+                <div class="file-loading d-none">
                     <div class="row">
                         <div class="col-md-12"></div>
                     </div>
