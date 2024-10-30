@@ -1,4 +1,3 @@
-version: '3.4'
 services:
   phantomjs:
     image: wernight/phantomjs:2
@@ -7,7 +6,7 @@ services:
       - "./core/tests:/srv/core/tests"
 
   chrome:
-    image: selenium/standalone-chrome:3.8
+    image: selenium/standalone-chrome:130.0
     environment:
       DBUS_SESSION_BUS_ADDRESS: "/dev/null"
     shm_size: '2gb'
@@ -17,7 +16,7 @@ services:
       #- "/dev/shm:/dev/shm"
 
   firefox:
-    image: selenium/standalone-firefox:3.8
+    image: selenium/standalone-firefox:131.0
     environment:
       SE_OPTS: "-enablePassThrough false"
     shm_size: '2gb'

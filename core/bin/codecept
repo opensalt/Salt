@@ -14,7 +14,7 @@ if [[ "$@" == *"phantomjs"* ]]; then
 fi
 
 if [ "${BROWSER}x" == "x" ]; then
-  BROWSER=firefox
+  BROWSER=chrome
 fi
 
 cd $(dirname $0)/../..

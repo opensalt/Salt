@@ -14,8 +14,11 @@ modules:
             url: 'http://web'
         - WebDriver:
             url: 'http://web'
-            browser: firefox
-            host: firefox
+            browser: chrome
+            host: chrome
+            capabilities:
+                chromeOptions:
+                    args: ['--headless', '--disable-gpu']
             restart: true
             window_size: 1500x1100
             log_js_errors: true
