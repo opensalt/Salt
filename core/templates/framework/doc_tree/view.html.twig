@@ -25,10 +25,10 @@
             <div id="docTitleWrapper">
                 <div id="displayBtnGroup" class="form-group">
                     <div class="btn-group" role="group" aria-label="...">
-                        <button id="displayTreeBtn" type="button" class="view-btn btn btn-primary btn-default btn-xs">Tree<br/>View</button>
-                        <button id="displayAssocBtn" type="button" class="view-btn btn btn-default btn-xs">Association<br/>View</button>
+                        <button id="displayTreeBtn" type="button" class="view-btn btn btn-primary btn-default btn-sm">Tree<br/>View</button>
+                        <button id="displayAssocBtn" type="button" class="view-btn btn btn-default btn-sm">Association<br/>View</button>
                         {% if editorRights %}
-                            <button id="displayLogBtn" type="button" class="view-btn btn btn-default btn-xs">Log<br/>View</button>
+                            <button id="displayLogBtn" type="button" class="view-btn btn btn-default btn-sm">Log<br/>View</button>
                         {% endif %}
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         </div>
                         {% if isDraft %}
                             <div id="tree1SectionThisDocInstructions" class="bg-info instructions">
-                                <button type="button" class="changeTree1DocumentBtn btn btn-primary btn-xs pull-right">
+                                <button type="button" class="changeTree1DocumentBtn btn btn-primary btn-sm pull-right">
                                     Change Document
                                 </button>
                                 Browse, edit, reorder, and create new items here.<br/>
@@ -62,7 +62,7 @@
                         {% endif %}
 
                         <div id="tree1SectionOtherDocInstructions" class="bg-info instructions" style="display:none">
-                            <button type="button" class="changeTree1DocumentBtn btn btn-primary btn-xs pull-right">
+                            <button type="button" class="changeTree1DocumentBtn btn btn-primary btn-sm pull-right">
                                 Change Document
                             </button>
                             Drag and drop from right to left to <b>create associations</b>.
@@ -88,7 +88,7 @@
                             <input class="treeCheckboxControl" type="checkbox">
                         </button>
 
-                        <button type="button" class="treeCheckboxMenuBtn btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display:none">Action <span class="caret"></span></button>
+                        <button type="button" class="treeCheckboxMenuBtn btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display:none">Action <span class="caret"></span></button>
                         <ul class="dropdown-menu">
                             <li><a class="treeCheckboxMenuItem" data-cmd="delete">Delete</a></li>
                             <!-- <li><a class="treeCheckboxMenuItem" data-cmd="edit">Edit</a></li> -->
@@ -151,8 +151,8 @@
                     </div>
                 {% endif %}
 
-                <section id="itemSection" class="panel panel-default">
-                    <div id="items" class="panel-body">
+                <section id="itemSection" class="card card-default">
+                    <div id="items" class="card-body">
                         <div id="itemInfo">
                             <div id="chooserModeButtons">
                                 <button id="chooserModeItemDetailsChooseBtn" class="btn btn-primary btn-sm">Choose</button>
@@ -171,19 +171,19 @@
                                         <div class="itemOptions" id="itemOptions">
                                             {% if editorRights %}
                                             {% if isDraft %}
-                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editItemModal" data-alt-document-disabled="true">
+                                                <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#editItemModal" data-alt-document-disabled="true">
                                                     Edit
                                                 </button>
-                                                <button type="button" id="deleteItemBtn" class="btn btn-default btn-sm" data-toggle="modal" data-alt-document-disabled="true">Delete</button>
-                                                <button type="button" id="toggleFolderBtn" class="btn btn-default btn-sm" data-toggle="modal" data-alt-document-disabled="true">
+                                                <button type="button" id="deleteItemBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-alt-document-disabled="true">Delete</button>
+                                                <button type="button" id="toggleFolderBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-alt-document-disabled="true">
                                                     Make This Item a Parent
                                                 </button>
-                                                <button type="button" id="addChildBtn" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addNewChildModal" data-alt-document-disabled="true">
+                                                <button type="button" id="addChildBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addNewChildModal" data-alt-document-disabled="true">
                                                     Add a New Child Item
                                                 </button>
                                             {% endif %}
                                             {% if not isDeprecated %}
-                                                <button type="button" id="addExemplarBtn" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addExemplarModal">
+                                                <button type="button" id="addExemplarBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addExemplarModal">
                                                     Add an Exemplar
                                                 </button>
                                             {% endif %}
@@ -194,16 +194,16 @@
                                         </div>
 
                                     <div class="itemOptions" id="documentOptions">
-                                        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#exportModal">
+                                        <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#exportModal">
                                             Export
                                         </button>
                                         {# use first version if we need to edit the adoptionStatus #}
                                         {% if editorRights %}
-                                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editDocModal" data-alt-document-disabled="true">
+                                            <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#editDocModal" data-alt-document-disabled="true">
                                                 Edit
                                             </button>
                                             {% if editorRights and not isDeprecated %}
-                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#manageAssocGroupsModal" data-alt-document-disabled="true">
+                                                <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#manageAssocGroupsModal" data-alt-document-disabled="true">
                                                     Manage Association Groups
                                                 </button>
                                             {% endif %}
@@ -214,22 +214,22 @@
 
                                         {% if editorRights %}
                                             {% if isDraft %}
-                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addNewChildModal" data-alt-document-disabled="true">
+                                                <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addNewChildModal" data-alt-document-disabled="true">
                                                     Add New Child Item
                                                 </button>
-                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addChildrenModal" data-alt-document-disabled="true">
+                                                <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addChildrenModal" data-alt-document-disabled="true">
                                                     Import Children
                                                 </button>
-                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#updateFrameworkModal" data-alt-document-disabled="true">
+                                                <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#updateFrameworkModal" data-alt-document-disabled="true">
                                                     Update Framework
                                                 </button>
-                                                <button type="button" id="js-copy-framework-modal-button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#copyFrameworkModal" data-alt-document-disabled="true">
+                                                <button type="button" id="js-copy-framework-modal-button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#copyFrameworkModal" data-alt-document-disabled="true">
                                                     Copy Framework
                                                 </button>
                                                 <a href="{{ path('clone_framework', {'id':lsDocId}) }}" class="btn btn-default btn-sm" data-alt-document-disabled="true">Clone Framework</a>
                                             {% endif %}
                                             {% if lsDoc.importLogs is not empty %}
-                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#seeImportLogs" data-alt-document-disabled="true">
+                                                <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#seeImportLogs" data-alt-document-disabled="true">
                                                     Import Logs
                                                 </button>
                                             {% endif %}
@@ -238,7 +238,7 @@
                                                 <a href="#" id="doc_export_comment" class="export_csv_comment btn btn-default btn-sm" onclick="CommentSystem.exportCSV();" data-alt-document-disabled="true">Export Comments</a>
                                         {% endif %}
                                         {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_DELETE'), lsDoc) %}
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteFrameworkModal" data-alt-document-disabled="true">
+                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteFrameworkModal" data-alt-document-disabled="true">
                                                 Delete Framework
                                             </button>
                                         {% endif %}
@@ -249,12 +249,12 @@
 
                             <div id="associationEditBtn" style="display:none">
                                 {% if editorRights and not isDeprecated %}
-                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-xs btn-default btn-edit-association"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span class="sr-only">Edit</span></span></span>
+                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-edit-association"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span><span class="visually-hidden">Edit</span></span></span>
                                 {% endif %}
                             </div>
                             <div id="associationRemoveBtn" style="display:none">
                                 {% if editorRights and not isDeprecated %}
-                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-xs btn-default btn-remove-association"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="sr-only">Remove</span></span></span>
+                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-remove-association"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span><span class="visually-hidden">Remove</span></span></span>
                                 {% endif %}
                             </div>
                         </div>  <!-- itemInfo -->
@@ -273,13 +273,13 @@
                             Document to view on the right side.
                         </div>
                         <div id="tree2SectionCopyInstructions" class="bg-info instructions" style="display:none">
-                            <button type="button" class="changeTree2DocumentBtn btn btn-primary btn-xs pull-right">
+                            <button type="button" class="changeTree2DocumentBtn btn btn-primary btn-sm pull-right">
                                 Change Document
                             </button>
                             Drag and drop from right to left to <b>copy items</b>.
                         </div>
                         <div id="tree2SectionRelationshipInstructions" class="bg-info instructions" style="display:none">
-                            <button type="button" class="changeTree2DocumentBtn btn btn-primary btn-xs pull-right">
+                            <button type="button" class="changeTree2DocumentBtn btn btn-primary btn-sm pull-right">
                                 Change Document
                             </button>
                             Drag and drop from right to left to <b>create associations</b>.
@@ -303,7 +303,7 @@
                                         <input class="treeCheckboxControl" type="checkbox">
                                     </button>
 
-                                    <button type="button" class="treeCheckboxMenuBtn btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display:none">Action <span class="caret"></span></button>
+                                    <button type="button" class="treeCheckboxMenuBtn btn btn-default dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="display:none">Action <span class="caret"></span></button>
                                     <ul class="dropdown-menu">
                                         <li><a class="treeCheckboxMenuItem" data-cmd="hideCheckboxes">Hide Checkboxes</a></li>
                                     </ul>
@@ -371,7 +371,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">Import Logs</h4>
                     </div>
                     <div class="modal-body">
@@ -394,7 +394,7 @@
                 <div class="modal-content">
                     <form id="copyFrameworkForm">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span
                                                                    aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel">Copy Framework</h4>
                         </div>
@@ -409,10 +409,10 @@
                                     </div>
                                     <div class="col-sm-2">
                                         <div class="btn-group" role="group" aria-label="">
-                                            <a id="copyFrameworkModal_copyLeftBtn" href="#" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Copy From" role="button">
+                                            <a id="copyFrameworkModal_copyLeftBtn" href="#" class="btn btn-default" data-bs-toggle="tooltip" data-placement="bottom" title="Copy From" role="button">
                                                 <i class="fa fa-arrow-left fa-lg"></i>
                                             </a>
-                                            <a id="copyFrameworkModal_copyRightBtn" href="#" class="btn btn-default active" data-toggle="tooltip" data-placement="bottom" title="Copy To" role="button">
+                                            <a id="copyFrameworkModal_copyRightBtn" href="#" class="btn btn-default active" data-bs-toggle="tooltip" data-placement="bottom" title="Copy To" role="button">
                                                 <i class="fa fa-arrow-right fa-lg"></i>
                                             </a>
                                         </div>
@@ -471,7 +471,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="js-btn-copy-button btn btn-primary">Copy</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
                         </div>
                     </form>
                 </div>

@@ -2,3 +2,67 @@
   This file can be customized by implementors to override the values
   of the variables in _variables.scss for branding puposes.
 */
+
+// scss-docs-start theme-color-variables
+/*
+$primary:       $blue !default;
+$secondary:     $gray-600 !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $gray-100 !default;
+$dark:          $gray-900 !default;
+ */
+$primary:       #337ab7; // darken(#428bca, 6.5%)
+$secondary:     #dee2e6; // gray-300
+$success:       #5cb85c;
+$info:          #5bc0de;
+$warning:       #f0ad4e;
+$danger:        #d9534f;
+
+$blue: $primary;
+$green: $success;
+$cyan: $info;
+$yellow: $warning;
+$red: $danger;
+// scss-docs-end theme-color-variables
+
+$gray-base:              #000 !default;
+$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
+$gray-dark:              lighten($gray-base, 20%) !default;   // #333
+$gray:                   lighten($gray-base, 33.5%) !default; // #555
+$gray-light:             lighten($gray-base, 46.7%) !default; // #777
+$gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
+$white:                  #fff !default;
+$black:                  #000 !default;
+
+$brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
+$brand-success:         #5cb85c !default;
+$brand-info:            #5bc0de !default;
+$brand-warning:         #f0ad4e !default;
+$brand-danger:          #d9534f !default;
+
+$brand-header:          #78c9e9 !default;
+$brand-header-light:    lighten($brand-header, 20%) !default;
+$brand-header-alternate:#e6793a !default;
+$brand-header-alternate-light:
+                        lighten($brand-header-alternate, 30%) !default;
+
+$alternate-doc-bg:      #ffd !default;
+
+$text-color:            $gray-dark !default;
+$text-color-light:      $gray-light !default;
+
+$neutral-bg:            #777;
+$neutral-bg-light:      #ddd;
+
+$btn-signup-color:               $white !default;
+$btn-signup-bg:                  $brand-header-alternate !default;
+$btn-signup-border:              darken($btn-signup-bg, 5%) !default;
+
+$doc-status-draft:            $brand-warning !default;
+$doc-status-deprecated:       $brand-danger !default;
+$dragbar-bg: #D5D5D5;
+
+$font-size-base: 0.875rem !default;

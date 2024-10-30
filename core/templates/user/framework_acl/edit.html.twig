@@ -57,7 +57,7 @@
     <div class="clearfix">
         {% if is_granted(constant('App\\Security\\Permission::MANAGE_EDITORS'), lsDoc) and lsDoc.org is not empty %}
             <div class="col-md-6 row">
-                <div class="panel panel-default panel-body">
+                <div class="card card-default card-body">
                     <p>
                         Select a user from your organization to <strong>deny</strong> them access to edit this framework.
                     </p>
@@ -70,7 +70,7 @@
         {% endif %}
         {% if is_granted(constant('App\\Security\\Permission::MANAGE_EDITORS'), lsDoc) %}
             <div class="col-md-6 row pull-right">
-                <div class="panel panel-default panel-body">
+                <div class="card card-default card-body">
                     <p>
                         {% if lsDoc.org is not empty %}
                             Enter the username for an editor outside your organization to <strong>allow</strong> them to edit this framework.

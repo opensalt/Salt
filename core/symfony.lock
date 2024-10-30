@@ -150,8 +150,20 @@
     "doctrine/sql-formatter": {
         "version": "1.1.0"
     },
+    "ecotone/symfony-bundle": {
+        "version": "1.234.0"
+    },
     "egulias/email-validator": {
         "version": "2.1.4"
+    },
+    "enqueue/dbal": {
+        "version": "0.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.4",
+            "ref": "4dd47013ecec8a158d186f63ec4b51f1defff897"
+        }
     },
     "ericmartel/codeception-email": {
         "version": "1.0.3"
@@ -360,6 +372,18 @@
             ".env.test",
             "phpunit.xml.dist",
             "tests/bootstrap.php"
+        ]
+    },
+    "prooph/pdo-event-store": {
+        "version": "1.15",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.15",
+            "ref": "020f87be92de58907f180d552e1a1b0d8c34cdd1"
+        },
+        "files": [
+            "config/packages/prooph_pdo_event_store.yaml"
         ]
     },
     "psr/cache": {
@@ -785,6 +809,15 @@
             "config/packages/twig.yaml",
             "templates/base.html.twig"
         ]
+    },
+    "symfony/uid": {
+        "version": "7.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "7.0",
+            "ref": "0df5844274d871b37fc3816c57a768ffc60a43a5"
+        }
     },
     "symfony/validator": {
         "version": "4.3",

@@ -1,7 +1,12 @@
+@import "bootstrap/scss/functions";
 @import "brand-variables";
 @import "variables";
 
-@import "bootstrap";
+:root {
+    --bs-border-color: #{$border-color};
+}
+
+@import "bootstrap/scss/bootstrap";
 
 @import "bootstrap-material-icons/scss/material-icons";
 $fa-font-path: 'font-awesome/fonts';
@@ -12,7 +17,7 @@ $fa-font-path: 'font-awesome/fonts';
 @import "jquery.fancytree/dist/skin-lion/ui.fancytree";
 @import "bootstrap-multiselect/dist/css/bootstrap-multiselect";
 @import "select2/dist/css/select2";
-@import "select2-bootstrap-theme/src/select2-bootstrap";
+@import "select2-bootstrap-5-theme/src/select2-bootstrap-5-theme";
 
 @import "datatables.net-bs/css/dataTables.bootstrap";
 @import "datatables.net-fixedheader-bs/css/fixedHeader.bootstrap";

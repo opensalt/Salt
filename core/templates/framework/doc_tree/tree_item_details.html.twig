@@ -60,17 +60,17 @@
     {% if is_granted(constant('App\\Security\\Permission::ITEM_EDIT'), lsItem) or is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsItem.lsDoc) %}
     <div class="itemOptions">
         {% if is_granted(constant('App\\Security\\Permission::ITEM_EDIT'), lsItem) %}
-            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#editItemModal">Edit</button>
-            <button type="button" id="deleteItemBtn" class="btn btn-default btn-sm" data-toggle="modal">Delete</button>
+            <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#editItemModal">Edit</button>
+            <button type="button" id="deleteItemBtn" class="btn btn-default btn-sm" data-bs-toggle="modal">Delete</button>
         {% endif %}
         {# TODO: How do we "find aligned resources"
         <button type="button" class="btn btn-default btn-sm" disabled="disabled">Find Aligned Resources</button>
         #}
 
         {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsItem.lsDoc) %}
-            <button type="button" id="toggleFolderBtn" class="btn btn-default btn-sm" data-toggle="modal">Make This Item a Parent</button>
-            <button type="button" id="addChildBtn" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addNewChildModal">Add a New Child Item</button>
-            <button type="button" id="addExemplarBtn" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addExemplarModal">Add an Exemplar</button>
+            <button type="button" id="toggleFolderBtn" class="btn btn-default btn-sm" data-bs-toggle="modal">Make This Item a Parent</button>
+            <button type="button" id="addChildBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addNewChildModal">Add a New Child Item</button>
+            <button type="button" id="addExemplarBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addExemplarModal">Add an Exemplar</button>
         {% endif %}
     </div>
     {% endif %}
@@ -83,7 +83,7 @@
                 {% block start_of_item_a %}
                     {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsItem.lsDoc) %}
                         <span class="pull-right">
-                            <span role="button" class="btn btn-xs btn-default btn-remove-association">Remove</span>
+                            <span role="button" class="btn btn-sm btn-default btn-remove-association">Remove</span>
                         </span>
                     {% endif %}
                 {% endblock %}
@@ -110,7 +110,7 @@
                     {% block start_of_item_a %}
                         {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsItem.lsDoc) %}
                             <span class="pull-right">
-                                <span role="button" class="btn btn-xs btn-default btn-remove-association">Remove</span>
+                                <span role="button" class="btn btn-sm btn-default btn-remove-association">Remove</span>
                             </span>
                         {% endif %}
                     {% endblock %}

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
                 <ol class="breadcrumb">
-                    <li><a href="{{ path('lsdoc_index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span class="sr-only">Home</span></a></li>
+                    <li><a href="{{ path('lsdoc_index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span class="visually-hidden">Home</span></a></li>
                     <li class="active">{{ lsDoc.title |u.truncate(64, '...', false) }}</li>
                 </ol>
         </div>
@@ -14,8 +14,8 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <section class="panel panel-default">
-                <div class="panel-body">
+            <section class="card card-default">
+                <div class="card-body">
                     <ul class="list-group">
                         {% for field, name in {
                             'title': 'Title',
@@ -54,14 +54,14 @@
                     <div class="text-center">
                         <ul class="list-inline">
                             <li>
-                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#exportModal">Export</button>
+                                <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#exportModal">Export</button>
                             </li>
                             {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsDoc) %}
                                 <li>
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                                    <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
                                 </li>
                                 <li>
-                                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addChildModal">Add Learning Standard</button>
+                                    <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#addChildModal">Add Learning Standard</button>
                                 </li>
                             {% endif %}
                             {% if is_granted(constant('App\\Security\\Permission::MANAGE_EDITORS'), lsDoc) %}
@@ -83,9 +83,9 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <section class="panel panel-default panel-component">
-                <div class="panel-heading">{{ lsDoc.title }}</div>
-                <div class="rendered-document panel-body">
+            <section class="card card-default card-component">
+                <div class="card-header">{{ lsDoc.title }}</div>
+                <div class="rendered-document card-body">
                     {{ render_esi(path('editor_render', {'id':lsDoc.id})) }}
                 </div>
             </section>
@@ -130,7 +130,7 @@
 
         function prepareExportModal(){
             var $exportModal = $('#exportModal');
-            $('[data-toggle="popover"]').popover();
+            $('[data-bs-toggle="popover"]').popover();
         }
 
         function prepareEditModal(){

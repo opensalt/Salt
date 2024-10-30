@@ -39,6 +39,7 @@ export default function (apx) {
             'selector': '.fancytree-title',
             // "content": content,  // this is for popover
             "title": function () {
+                return ""; // TODO: Fix this, "this" seems to be null now in next line
                 let node = $.ui.fancytree.getNode(this);
                 return apx.treeDoc1.tooltipContent(node);
             },
@@ -74,13 +75,13 @@ export default function (apx) {
         treeSideRight.find(".treeCheckboxMenuItem").on('click', function () { apx.treeDoc2.treeCheckboxMenuItemSelected($(this), 2); });
 
         // popovers on export modal
-        $('#exportModal').find('[data-toggle="popover"]').popover();
+        $('#exportModal').find('[data-bs-toggle="popover"]').popover();
 
         // change event on assocGroup menus
         treeSideLeft.find(".assocGroupSelect").off().on('change', function () { apx.treeDoc1.assocGroupSelected(this, 1); });
         treeSideRight.find(".assocGroupSelect").off().on('change', function () { apx.treeDoc2.assocGroupSelected(this, 2); });
 
-        // links/buttons on item info panel
+        // links/buttons on item info card
         // enable more info link
         $(".lsItemDetailsMoreInfoLink a").on('click', function () { apx.toggleMoreInfo(); });
 

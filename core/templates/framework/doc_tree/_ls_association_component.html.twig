@@ -1,13 +1,13 @@
 {% if items is not empty %}
-    <section class="panel panel-default panel-component item-component" id="item-component-{{ componentName }}">
-        <div class="panel-heading">{{ title }}</div>
-        <div class="panel-body">
+    <section class="card card-default card-component item-component" id="item-component-{{ componentName }}">
+        <div class="card-header">{{ title }}</div>
+        <div class="card-body">
             <div>
                 <div class="list-group">
                     {% for association in items %}
                         {% set groupLabel = '' %}
                         {% if association.group is not empty %}
-                            {% set groupLabel =  '<span class="label label-default">'~association.group.title|e~'</span>' %}
+                            {% set groupLabel =  '<span class="badge badge-default">'~association.group.title|e~'</span>' %}
                         {% endif %}
                         {% if association.destinationLsItem is defined %}
                             {% if association.destinationLsItem is not empty %}
@@ -26,7 +26,7 @@
                                         {{ item.fullStatement }}
                                     {% endif %}
                                     {% if item.lsDoc != viewingItem.lsDoc %}
-                                        <span class="label label-default">{{ item.lsDoc.title|u.truncate(30) }}</span>
+                                        <span class="badge badge-default">{{ item.lsDoc.title|u.truncate(30) }}</span>
                                     {% endif %}
                                     {% block end_of_item_a '' %}
                                 </a>

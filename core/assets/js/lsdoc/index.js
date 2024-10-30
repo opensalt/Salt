@@ -71,7 +71,7 @@ const SaltGithub = (function () {
                     $('#files').removeClass('hidden');
                     $('#pagination').addClass('hidden');
                     $('.repositories-list').removeClass('hidden');
-                    $('.panel-title').html($(evt.target).attr('data-repo') + '/');
+                    $('.card-title').html($(evt.target).attr('data-repo') + '/');
                     itemListener('file-item', true);
 
                     if (hasSubFolder) {
@@ -86,14 +86,14 @@ const SaltGithub = (function () {
                             back += split[i] + '/';
                         }
 
-                        $('.panel-title').html($(evt.target).attr('data-repo') + '/' + $(evt.target).attr('data-path') + '/');
+                        $('.card-title').html($(evt.target).attr('data-repo') + '/' + $(evt.target).attr('data-path') + '/');
 
                         $('.back').attr('data-owner', $(evt.target).attr('data-owner'));
                         $('.back').attr('data-repo', $(evt.target).attr('data-repo'));
                         $('.back').attr('data-path', back);
                     }
 
-                    if ($(evt.target).attr('data-repo') + '/' == $('.panel-title').html()) {
+                    if ($(evt.target).attr('data-repo') + '/' == $('.card-title').html()) {
                         $('.back').addClass('hidden');
                     } else {
                         $('.back').removeClass('hidden');
@@ -520,9 +520,9 @@ const CfItem = (function () {
                     mandatoryClass = "mandatory-class";
                     panelType = "primary"
                 }
-                $('.dropdowns.' + type + ' .row').last().append('<div class="col-xs-6"><div class="panel panel-' + panelType + '"><div class="panel-body ' + mandatoryClass + '"></div></div></div>');
-                $('.dropdowns.' + type + ' .row .panel-body').last().append('<div class="col-xs-6"><div class="form-group"><label>' + dropdown[0].titleize() + '</label><select name="' + dropdown[0] + '" class="form-control select"><option>Choose one option</option></select></div></div>');
-                $('.dropdowns.' + type + ' .row .panel-body').last().append('<div class="col-xs-6"><div class="form-group"><label>Enter default value if needed</label><input name="' + dropdown[0] + '_default_value" type="text" class="form-control"/></div></div>');
+                $('.dropdowns.' + type + ' .row').last().append('<div class="col-xs-6"><div class="card card-' + panelType + '"><div class="card-body ' + mandatoryClass + '"></div></div></div>');
+                $('.dropdowns.' + type + ' .row .card-body').last().append('<div class="col-xs-6"><div class="form-group"><label>' + dropdown[0].titleize() + '</label><select name="' + dropdown[0] + '" class="form-control select"><option>Choose one option</option></select></div></div>');
+                $('.dropdowns.' + type + ' .row .card-body').last().append('<div class="col-xs-6"><div class="form-group"><label>Enter default value if needed</label><input name="' + dropdown[0] + '_default_value" type="text" class="form-control"/></div></div>');
                 mandatoryClass = "";
                 panelType = "default";
             });
@@ -606,7 +606,7 @@ function listRepositories() {
     $('#repos').removeClass('hidden');
     $('#pagination').removeClass('hidden');
     $('.repositories-list').addClass('hidden');
-    $('.panel-title').html('Repositories list');
+    $('.card-title').html('Repositories list');
     $('#back').html('');
 }
 

@@ -21,7 +21,7 @@ class ItemTypeTransformer implements DataTransformerInterface
     public function __construct(
         private readonly EntityManagerInterface $em,
         private readonly string $className,
-        private readonly ? string $textProperty = null,
+        private readonly ?string $textProperty = null,
         private readonly string $primaryKey = 'id'
     ) {
         $this->accessor = PropertyAccess::createPropertyAccessor();

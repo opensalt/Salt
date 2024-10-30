@@ -1,26 +1,26 @@
 <div>
     <div class="container-fluid" style="margin-bottom:15px"><div class="row">
-        <div class="col-sm-5 vcenter"><div class="lsAssociationItemDisplay" id="lsAssociationOriginDisplay"></div></div><!-- 
-     --><div class="col-sm-2 vcenter" style="font-size:24px; text-align:center; line-height:24px"><span id="lsAssociationDirection" class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span><br><button id="lsAssociationSwitchDirection" class='btn btn-default btn-xs'>Switch</button></div><!-- 
+        <div class="col-sm-5 vcenter"><div class="lsAssociationItemDisplay" id="lsAssociationOriginDisplay"></div></div><!--
+     --><div class="col-sm-2 vcenter" style="font-size:24px; text-align:center; line-height:24px"><span id="lsAssociationDirection" class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span><br><button id="lsAssociationSwitchDirection" class='btn btn-default btn-sm'>Switch</button></div><!--
      --><div class="col-sm-5 vcenter"><div class="lsAssociationItemDisplay" id="lsAssociationDestinationDisplay"></div></div>
     </div></div>
 
-    <div class="form-horizontal">
-        <div class="form-group">
-            <label class="col-sm-3 control-label required" for="associationFormType">Association Type</label>
+    <div class="form-horizontal ms-4">
+        <div class="form-group row">
+            <label class="col-sm-3 control-label required text-end" for="associationFormType">Association Type</label>
             <div class="col-sm-9">
                 <select id="associationFormType" class="form-control">
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label" for="associationFormAnnotation">Annotation</label>
+        <div class="form-group row mt-3">
+            <label class="col-sm-3 control-label text-end" for="associationFormAnnotation">Annotation</label>
             <div class="col-sm-9">
                 <textarea id="associationFormAnnotation" class="form-control"></textarea>
             </div>
         </div>
-        <div id="associationFormGroupHolderOuter" class="form-group" style="display:none">
-            <label class="col-sm-3 control-label required" for="associationFormGroup">Association Group</label>
+        <div id="associationFormGroupHolderOuter" class="form-group row mt-3" style="display:none">
+            <label class="col-sm-3 control-label required text-end" for="associationFormGroup">Association Group</label>
             <div class="col-sm-9" id="associationFormGroupHolder"></div>
         </div>
     </div>

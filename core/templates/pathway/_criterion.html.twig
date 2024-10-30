@@ -19,7 +19,7 @@
                     <li><strong>Requires {{ conditions.requires }} of:</strong>
                         <ul>
                             {% for c in criteria %}
-                                {{ include('credential/_criterion.html.twig', {criterion: c}) }}
+                                {{ include('pathway/_criterion.html.twig', {criterion: c}) }}
                             {% endfor %}
                         </ul>
                     </li>
@@ -27,7 +27,7 @@
             {% else %}
                 <ul>
                     {% for c in criteria %}
-                        {{ include('credential/_criterion.html.twig', {criterion: c}) }}
+                        {{ include('pathway/_criterion.html.twig', {criterion: c}) }}
                     {% endfor %}
                 </ul>
             {% endif %}

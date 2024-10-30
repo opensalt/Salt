@@ -91,7 +91,7 @@ export default function (apx) {
 
             // if user selects to load a new document by URL, get the URL now
             if (lsDocId === "url") {
-                $("#loadExternalDocumentModal").modal();
+                $("#loadExternalDocumentModal").modal('show');
                 $(menuOrUrl).val("");
 
                 // stash side so we can retrieve it if the user chooses a URL
@@ -315,9 +315,9 @@ export default function (apx) {
                 // if user doubleclicks on a node, open the node, then simulate clicking the "Edit" button for it
                 dblclick: function (event, data) {
                     if (apx.treeDoc1.isDocNode(data.node)) {
-                        $(".btn[data-target='#editDocModal']").click();
+                        $(".btn[data-bs-target='#editDocModal']").click();
                     } else {
-                        $(".btn[data-target='#editItemModal']").click();
+                        $(".btn[data-bs-target='#editItemModal']").click();
                     }
 
                     // return false to cancel default processing (i.e. opening folders)
@@ -466,7 +466,7 @@ export default function (apx) {
                                 };
 
                                 // then open the modal form to allow the user to choose the association type
-                                $('#associateModal').modal();
+                                $('#associateModal').modal('show');
 
                                 // else if we're in copy mode; copy node(s) to new tree
                             } else if (apx.rightSideMode === "copyItem") {

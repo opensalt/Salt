@@ -9,5 +9,5 @@ $.fn.select2.defaults.set('theme', 'bootstrap');
 //  });
 $('body').tooltip({
     container: 'body',
-    selector: '[data-toggle="tooltip"]'
+    selector: '[data-bs-toggle="tooltip"]'
 });

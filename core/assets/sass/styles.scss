@@ -12,18 +12,22 @@ html,body {
     max-width: 1500px;
 }
 
+.bg-body-brand-header {
+    background-color:$brand-header;
+}
+
 header {
-    .navbar-default {
+    .navbar-expand {
         border-width:0;
-        background-color:$brand-header;
     }
 
     .navbar-brand {
         padding:5px;
-        background-color:$white;
+        background-color: var(--bs-white);
         border-radius:4px;
         margin:10px 15px 10px -5px !important;
         height:inherit;
+        display: inline-block;
 
         img {
             height:60px;
@@ -72,15 +76,15 @@ footer {
     width: 100%;
     padding: 0 15px;
 
-    .navbar-default {
+    .navbar-expand {
         border-radius:4px 4px 0 0;
         border-width: 0;
         min-height: auto;
         margin-bottom:0;
-        background-color:$brand-header;
+        background-color: $brand-header;
 
         a {
-            color: $white;
+            color: var(--bs-white);
         }
 
         a:hover {
@@ -88,7 +92,7 @@ footer {
         }
 
         .navbar-text {
-            color: $white;
+            color: var(--bs-white);
             margin-top: 8px;
             margin-bottom: 8px;
         }
@@ -100,16 +104,16 @@ footer {
     }
 }
 
-.navbar-default .navbar-nav > li > a, .navbar-default .navbar-nav > li > a:hover {
-    color:$white;
+.navbar-expand .navbar-nav > li > a, .navbar-expand .navbar-nav > li > a:hover {
+    color: var(--bs-white);
 }
 
 label.required:before {
     content: '*';
-    color: $brand-danger;
+    color: var(--bs-danger);
 }
 
-.panel-component .panel-body {
+.card-component .card-body {
     max-height: 300px;
     overflow-y: auto;
 }
@@ -152,22 +156,22 @@ span.notification-url-indicator {
 
 .status {
     .fa-star { // new
-        color: $brand-primary;
+        color: var(--bs-primary);
     }
     .fa-check-circle { // okay
-        color: $brand-success;
+        color: var(--bs-success);
     }
     .fa-calendar-check-o { // scheduled
-        color: $brand-primary;
+        color: var(--bs-primary);
     }
     .fa-refresh { // processing
-        color: $brand-info;
+        color: var(--bs-info);
     }
     .fa-exclamation-triangle, .fa-warning { // error
-        color: $brand-danger;
+        color: var(--bs-danger);
     }
     .fa-minus-circle { // excluded
-        color: $gray-dark;
+        color: var(--bs-gray-dark);
     }
 }
 
@@ -175,4 +179,20 @@ table.mirror_log-table {
     .mirror_log-occurred {
         min-width: 150px;
     }
+}
+
+.btn-default {
+    @extend .btn-outline-secondary;
+    --bs-btn-color: #333;
+    --bs-btn-border-color: #ccc;
+    --bs-btn-bg: #fff;
+}
+
+.btn-primary.btn-default {
+    @extend .btn-primary;
+}
+
+.card {
+    margin-top: var(--bs-card-spacer-y);
+    margin-bottom: var(--bs-card-spacer-y);
 }

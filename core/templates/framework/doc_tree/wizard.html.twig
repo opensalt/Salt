@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#local-file" data-toggle="tab">Import local file</a></li>
+                                <li class="active"><a href="#local-file" data-bs-toggle="tab">Import local file</a></li>
                             </ul>
                             <br>
                             <div class="tab-content">
@@ -44,11 +44,11 @@
                                     <a href="#" class="btn btn-primary btn-import-csv" onclick="SaltLocal.handleFile('local', 'file-url');">Import Children</a>
                                 </div>
                                 <div id="github" class="tab-pane fade">
-                                    <div class="panel panel-default">
-                                        <div class= "panel-heading panel-title">
+                                    <div class="card card-default">
+                                        <div class= "card-header card-title">
                                             Repositories list
                                         </div>
-                                        <div class="panel-body js-github-list">
+                                        <div class="card-body js-github-list">
                                             <div id="repos" class="hidden"></div>
                                             <div id="files" class="hidden"></div>
                                             <p class="js-github-message-error" style="display: none;">
@@ -56,7 +56,7 @@
                                             </p>
                                             <p class="js-github-message-loading">Loading...</p>
                                         </div>
-                                        <div class="panel-footer">
+                                        <div class="card-footer">
                                             <a href="#" onclick="listRepositories();" class="repositories-list hidden">List Repositories</a>
                                             <a href="#" onclick="SaltGithub.getFiles(event, false);" class="back hidden"> - Go Back</a>
                                             <div id="pagination"></div>
@@ -69,20 +69,20 @@
                 </div>
                 <div class="errors hidden">
                     <div class="alert alert-warning hidden" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <a href="#" class="close" data-bs-dismiss="alert" aria-label="close">&times;</a>
                         Make sure the columns are there and labeled correctly
                     </div>
                     <div class="alert alert-warning hidden" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <a href="#" class="close" data-bs-dismiss="alert" aria-label="close">&times;</a>
                         Make sure the trees are parsed correctly (pre-load and check)
                     </div>
                     <div class="alert alert-warning hidden" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <a href="#" class="close" data-bs-dismiss="alert" aria-label="close">&times;</a>
                         Make sure a tree exists (might not need to be 'is child of', but can parse
                         the human coding scheme)
                     </div>
                     <div class="alert alert-warning hidden" role="alert">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <a href="#" class="close" data-bs-dismiss="alert" aria-label="close">&times;</a>
                         Make sure each row can be loaded as an item and association
                     </div>
                 </div>
@@ -95,7 +95,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

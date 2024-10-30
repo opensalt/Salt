@@ -204,3 +204,9 @@ services:
             $connOrDsn: '@doctrine.dbal.default_connection'
             $namespace: 'externalDoc-'
             $defaultLifetime: 0
+
+
+    # For Ecotone
+    Enqueue\Dbal\DbalConnectionFactory:
+        factory: [ 'Ecotone\Dbal\DbalConnection', 'createForManagerRegistry' ]
+        arguments: [ "@doctrine","default" ]

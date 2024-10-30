@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
             <ol class="breadcrumb">
-                <li><a href="{{ path('lsdoc_index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span class="sr-only">Home</span></a></li>
+                <li><a href="{{ path('lsdoc_index') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><span class="visually-hidden">Home</span></a></li>
                 <li><a href="{{ path('editor_lsdoc', {'id':lsItem.lsDoc.id}) }}">{{ lsItem.lsDoc.title |u.truncate(32, '...', false) }}</a></li>
                 <li class="active">{{ lsItem.displayIdentifier |u.truncate(64, '...', false) }}</li>
             </ol>
@@ -15,13 +15,13 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <section class="panel panel-default">
+            <section class="card card-default">
                 {#
-                <div class="panel-heading">
+                <div class="card-header">
                     Learning Standard Item
                 </div>
                 #}
-                <div class="panel-body">
+                <div class="card-body">
                     <ul class="list-group">
                         {% for field, name in {
                             'humanCodingScheme': 'Human Coding Scheme',
@@ -60,20 +60,20 @@
                         <ul class="list-inline">
                             {% if is_granted(constant('App\\Security\\Permission::ITEM_EDIT'), lsItem) %}
                             <li>
-                                <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editModal">Edit</button>
+                                <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#editModal">Edit</button>
                             </li>
                             {% endif %}
                             {% if is_granted(constant('App\\Security\\Permission::ITEM_ADD_TO'), null) %}
                             <li>
-                                <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#copyModal">Add to Another CF Package</button>
+                                <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#copyModal">Add to Another CF Package</button>
                             </li>
                             {% endif %}
                             {% if is_granted(constant('App\\Security\\Permission::ITEM_EDIT'), lsItem) %}
                             <li>
-                                <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#addChildModal">Create Child Statement</button>
+                                <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#addChildModal">Create Child Statement</button>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#associateModal">Add Association</button>
+                                <button type="button" class="btn btn-sm btn-default" data-bs-toggle="modal" data-bs-target="#associateModal">Add Association</button>
                             </li>
                             {% endif %}
                             {# TODO: How do we "find aligned resources"
@@ -95,11 +95,11 @@
                         {% if is_granted(constant('App\\Security\\Permission::ITEM_EDIT'), lsItem) or is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsItem.lsDoc) %}
                             <span class="pull-right">
                             {% if group is constant('App\\Entity\\Framework\\LsAssociation::CHILD_OF') %}
-                                <span role="button" class="btn btn-xs btn-default btn-change-parent">Change</span>
+                                <span role="button" class="btn btn-sm btn-default btn-change-parent">Change</span>
                             {% elseif group is constant('App\\Entity\\Framework\\LsAssociation::INVERSE_CHILD_OF') %}
-                                <span role="button" class="btn btn-xs btn-danger btn-remove-child">Remove</span>
+                                <span role="button" class="btn btn-sm btn-danger btn-remove-child">Remove</span>
                             {% else %}
-                                <span role="button" class="btn btn-xs btn-danger btn-remove-association">Remove</span>
+                                <span role="button" class="btn btn-sm btn-danger btn-remove-association">Remove</span>
                             {% endif %}
                             </span>
                         {% endif %}
@@ -111,9 +111,9 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <section class="panel panel-default panel-component">
-                <div class="panel-heading">{{ lsItem.lsDoc.title }}</div>
-                <div class="rendered-document panel-body">
+            <section class="card card-default card-component">
+                <div class="card-header">{{ lsItem.lsDoc.title }}</div>
+                <div class="rendered-document card-body">
                     {{ render_esi(path('editor_render', {'id':lsItem.lsDoc.id, 'highlight':lsItem.id})) }}
                 </div>
             </section>

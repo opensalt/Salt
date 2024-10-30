@@ -9,10 +9,14 @@ import commonjs from '@rollup/plugin-commonjs';
 export default defineConfig({
     plugins: [
         commonjs(),
+        /*
         inject({
             $: 'jquery',
             jQuery: 'jquery',
+            exclude: ['*.css', '*.scss'],
+            include: ['./assets/js/**.js']
         }),
+         */
         /* react(), // if you're using React */
         symfonyPlugin(),
     ],
@@ -24,6 +28,8 @@ export default defineConfig({
                 main: "./assets/sass/application.scss",
                 comments: "./assets/js/lsdoc/comments.js",
                 commentcss: "./assets/sass/comments.scss",
+                credentialcss: "./assets/sass/credential.scss",
+                credential: "./assets/js/credential.js",
                 //swaggercss: "swagger-ui-dist/swagger-ui.css",
             },
             /*

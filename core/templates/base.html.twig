@@ -32,57 +32,61 @@
     </head>
     <body class="{% block bodyclasses %}{% endblock %}">
         <div class="container container--main">
-            <header class="header">
+            <header class="header mb-3">
                 {%- block header -%}
-                    <nav class="navbar navbar-default">
-                        <div class="container-fluid">
+                    <nav class="navbar navbar-light navbar-expand bg-body-brand-header rounded-bottom p-0">
+                        <div class="container-fluid ms-1">
                             {%- block navbar_left -%}
+                                <div class="me-auto">
                                 <a class="navbar-brand" href="{{ url('salt_index') }}"><img src="{{ asset('assets/img/opensalt.svg') }}" alt="OpenSALT™"></a>
                                 {% if brand_logo_url is not empty %}<a class="navbar-brand" href="{{ brand_link_url |default(url('salt_index')) |e('html_attr') }}" {% if brand_link_style is not empty %}style="{{ brand_link_style |e('html_attr') }}"{% endif %}><img src="{{ brand_logo_url |default('') |e('html_attr') }}" {% if brand_logo_style is not empty %}style="{{ brand_logo_style |e('html_attr') }}"{% endif %}></a>{% endif %}
+                                </div>
                             {%- endblock -%}
                             {%- block navbar_right -%}
                             {% if (is_granted('IS_AUTHENTICATED_REMEMBERED')) %}
-                                <ul class="nav navbar-nav navbar-right">
+                                <ul class="nav navbar-nav">
                                     <li id="notifications-switch-location" class="notifications-switch-wrapper"></li>
+                                    <div class="">
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" area-expanded="false">Signed in as <strong>{{ app.user.username }}</strong> <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
+                                        <button class="dropdown-toggle btn btn-link text-white" data-bs-toggle="dropdown" role="button" aria-haspopup="true" area-expanded="false">Signed in as <strong>{{ app.user.userIdentifier }}</strong></button>
+                                        <ul class="dropdown-menu position-absolute">
                                             {%- set seperator_1 = false -%}
                                             {% if is_granted(constant('App\\Security\\Permission::MANAGE_ORGANIZATIONS')) %}
                                                 {%- set seperator_1 = true -%}
-                                                <li><a href="{{ url("admin_organization_index") }}">Manage organizations</a></li>
+                                                <li><a href="{{ url("admin_organization_index") }}" class="dropdown-item">Manage organizations</a></li>
                                             {% endif %}
                                             {% if is_granted(constant('App\\Security\\Permission::MANAGE_USERS')) %}
                                                 {%- set seperator_1 = true -%}
-                                                <li><a href="{{ url("admin_user_index") }}">Manage users</a></li>
+                                                <li><a href="{{ url("admin_user_index") }}" class="dropdown-item">Manage users</a></li>
                                             {% endif %}
                                             {% if is_granted(constant('App\\Security\\Permission::MANAGE_SYSTEM_LOGS')) %}
                                                 {%- set seperator_1 = true -%}
-                                                <li><a href="{{ url("system_logs_show") }}">Manage system logs</a></li>
+                                                <li><a href="{{ url("system_logs_show") }}" class="dropdown-item">Manage system logs</a></li>
                                             {% endif %}
                                             {% if is_granted(constant('App\\Security\\Permission::MANAGE_MIRRORS')) %}
                                                 {% if seperator_1 %}
                                                     <li role="separator" class="divider"></li>
                                                 {% endif %}
                                                 {%- set seperator_1 = true -%}
-                                                <li><a href="{{ url("mirror_server_index") }}">Manage mirrors</a></li>
+                                                <li><a href="{{ url("mirror_server_index") }}" class="dropdown-item">Manage mirrors</a></li>
                                             {% endif %}
                                             {% if seperator_1 %}
-                                                <li role="separator" class="divider"></li>
+                                                <li role="separator" class="dropdown-divider"></li>
                                             {% endif %}
-                                            <li><a href="{{ url("user_change_password") }}">Change password</a></li>
+                                            <li><a href="{{ url("user_change_password") }}" class="dropdown-item">Change password</a></li>
                                             {% if isFeatureEnabled('mfa') %}
-                                                <li><a href="{{ url("app_2fa_reset_confirm") }}">Reset 2FA Config</a></li>
+                                                <li><a href="{{ url("app_2fa_reset_confirm") }}" class="dropdown-item">Reset 2FA Config</a></li>
                                             {% endif %}
                                             <li role="separator" class="divider"></li>
-                                            <li><a href="{{ url("logout") }}" class="logout">Sign out</a></li>
+                                            <li><a href="{{ url("logout") }}" class="logout dropdown-item">Sign out</a></li>
                                         </ul>
                                     </li>
+                                    </div>
                                 </ul>
                             {% elseif (app.request.attributes.get('_route') != 'login') %}
-                                <a href="{{ url("login") }}" class="btn {% if isFeatureEnabled('create_account') %}btn-login{% else %}btn-default{% endif %} navbar-btn pull-right login">Sign in</a>
+                                <a href="{{ url("login") }}" class="btn {% if isFeatureEnabled('create_account') %}btn-login{% else %}btn-default{% endif %} btn-sm navbar-btn me-3 position-absolute end-0 login">Sign in</a>
                                 {% if isFeatureEnabled('create_account') %}
-                                    <a href="{{ url("public_user_signup") }}" class="btn btn-signup navbar-btn pull-right login">Sign up</a>
+                                    <a href="{{ url("public_user_signup") }}" class="btn btn-signup navbar-btn position-absolute end-0 login">Sign up</a>
                                 {% endif %}
                             {% endif %}
                             {%- endblock -%}
@@ -90,30 +94,30 @@
                     </nav>
                 {%- endblock -%}
             </header>
-            <main class="content clearfix" role="main">
+            <main class="content clearfix {% block mainclasses %}{% endblock %}" role="main">
                 {% if app.request.hasPreviousSession %}
                     <div class="flash-messages">
                         {% for flash_message in app.session.flashBag.get('error') %}
-                            <div class="flash-error alert alert-danger alert-dismissable" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <div class="flash-error alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ flash_message|raw }}
+                                <button type="button" class="btn-close pull-right" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         {% endfor %}
                         {% for flash_message in app.session.flashBag.get('warning') %}
-                            <div class="flash-warning alert alert-warning alert-dismissable" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <div class="flash-warning alert alert-warning alert-dismissible fade show" role="alert">
                                 {{ flash_message|raw }}
+                                <button type="button" class="btn-close pull-right" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         {% endfor %}
                         {% for flash_message in app.session.flashBag.get('success') %}
-                            <div class="flash-notice alert alert-success alert-dismissable" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <div class="flash-notice alert alert-success alert-dismissible fade show" role="alert">
                                 {{ flash_message|raw }}
+                                <button type="button" class="btn-close pull-right" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         {% endfor %}
                         {% for flash_message in app.session.flashBag.get('info') %}
-                            <div class="flash-notice alert alert-info alert-dismissable" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <div class="flash-notice alert alert-info alert-dismissible fade show" role="alert">
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 {{ flash_message|raw }}
                             </div>
                         {% endfor %}
@@ -121,15 +125,15 @@
                 {% endif %}
                 {% block body %}{% endblock %}
             </main>
-            <footer class="footer">
+            <footer class="footer pt-3">
                 {%- block footer -%}
-                    <nav class="navbar navbar-default">
+                    <nav class="navbar navbar-light bg-body-brand-header rounded-top">
                         <div class="container-fluid">
                             <div class="navbar-text navbar-left">
                                 {{ footer_left_text|raw }}
                             </div>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a href="{{ url('site_about') }}">About OpenSALT™</a></li>
+                                <li><a href="{{ url('site_about') }}" class="text-white">About OpenSALT™</a></li>
                             </ul>
                         </div>
                     </nav>

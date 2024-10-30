@@ -6,20 +6,20 @@
         <tbody>
             <tr data-assocgroupid="default">
                 <td>– Default Group –</td>
-                <td><!-- <button class="assocgroup-edit-btn btn btn-default btn-xs pull-right">Edit</button> -->—</td>
+                <td><!-- <button class="assocgroup-edit-btn btn btn-default btn-sm pull-right">Edit</button> -->—</td>
             </tr>
 
             {% for ag in assocGroups %}{% if ag.lsDoc.id == lsDoc.id %}
             <tr data-assocgroupid="{{ ag.id }}">
                 <td>{{ ag.title }}</td>
                 <td>
-                    <button class="assocgroup-edit-btn btn btn-default btn-xs pull-right">Edit</button>
-                    <button class="assocgroup-delete-btn btn btn-default btn-xs pull-right" style="margin-right:5px">Delete</button>
+                    <button class="assocgroup-edit-btn btn btn-default btn-sm pull-right">Edit</button>
+                    <button class="assocgroup-delete-btn btn btn-default btn-sm pull-right" style="margin-right:5px">Delete</button>
                     <span class="assocgroup-description">{{ ag.description|default('—') }}</span>
                 </td>
             </tr>
             {% endif %}{% endfor %}
         </tbody>
     </table>
-    <p><button class="assocgroup-add-btn btn btn-default" data-toggle="modal" data-target="#addAssocGroupModal">Add a New Association Group</button></p>
+    <p><button class="assocgroup-add-btn btn btn-default" data-bs-toggle="modal" data-bs-target="#addAssocGroupModal">Add a New Association Group</button></p>
 </div>

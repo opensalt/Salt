@@ -1447,11 +1447,11 @@ function ApxDocument(initializer, apx) {
                 ], function (i, button) {
                     if ("undefined" !== typeof apx.locks['docs'][apx.lsDocId]
                         && false !== apx.locks['docs'][apx.lsDocId]) {
-                        $('button[data-target="' + button + '"]')
+                        $('button[data-bs-target="' + button + '"]')
                             .attr('disabled', 'disabled')
                             .addClass('disabled');
                     } else {
-                        $('button[data-target="' + button + '"]')
+                        $('button[data-bs-target="' + button + '"]')
                             .prop('disabled', false)
                             .removeClass('disabled');
                     }
@@ -1628,11 +1628,11 @@ function ApxDocument(initializer, apx) {
                         let title = self.getAssociationTypePretty(a) + subtype;
                         let icon = "";
                         if (a.type !== "isChildOf") {
-                            icon = '<img class="association-panel-icon" src="/assets/img/association-icon.png">';
+                            icon = '<img class="association-card-icon" src="/assets/img/association-icon.png">';
                         }
-                        html += '<section class="panel panel-default panel-component item-component">'
-                            + '<div class="panel-heading">' + icon + render.escaped(title) + '</div>'
-                            + '<div class="panel-body"><div><div class="list-group">'
+                        html += '<section class="card card-default card-component item-component">'
+                            + '<div class="card-header">' + icon + render.escaped(title) + '</div>'
+                            + '<div class="card-body"><div><div class="list-group">'
                         ;
 
                         lastType = nextType;
@@ -1745,11 +1745,11 @@ function ApxDocument(initializer, apx) {
                 ], function (i, button) {
                     if ("undefined" !== typeof apx.locks['items'][item.id]
                         && false !== apx.locks['items'][item.id]) {
-                        $('button[data-target="' + button + '"]')
+                        $('button[data-bs-target="' + button + '"]')
                             .attr('disabled', 'disabled')
                             .addClass('disabled');
                     } else {
-                        $('button[data-target="' + button + '"]')
+                        $('button[data-bs-target="' + button + '"]')
                             .prop('disabled', false)
                             .removeClass('disabled');
                     }

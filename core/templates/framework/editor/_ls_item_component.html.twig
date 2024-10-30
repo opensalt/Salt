@@ -1,7 +1,7 @@
 {% if items is not empty %}
-    <section class="panel panel-default panel-component" id="item-component-{{ componentName }}">
-        <div class="panel-heading">{{ title }}</div>
-        <div class="panel-body">
+    <section class="card card-default card-component" id="item-component-{{ componentName }}">
+        <div class="card-header">{{ title }}</div>
+        <div class="card-body">
             <div>
                 <div class="list-group">
                     {% for item in items %}

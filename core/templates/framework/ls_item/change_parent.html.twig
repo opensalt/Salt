@@ -10,10 +10,10 @@
 
     <div id="lsItemListWrap-changeParent" class="row">
         <div class="col-sm-12">
-            <section id="lsItemList" class="panel panel-default panel-component">
+            <section id="lsItemList" class="card card-default card-component">
                 {% if lsDoc is not empty %}
-                    <div class="panel-heading">Select Destination Standard:</div>
-                    <div class="panel-body">
+                    <div class="card-header">Select Destination Standard:</div>
+                    <div class="card-body">
                         <div>
                             {{ render_esi(path('editor_render', {'id':lsDoc.id})) }}
                         </div>

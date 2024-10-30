@@ -8,7 +8,7 @@ twig:
     #number_format:
     #    thousands_separator: ','
     form_themes:
-        - 'bootstrap_3_horizontal_layout.html.twig'
+        - 'bootstrap_5_horizontal_layout.html.twig'
         - '@TetranzSelect2Entity/Form/fields.html.twig'
         - 'form/fields.html.twig'
     globals:
