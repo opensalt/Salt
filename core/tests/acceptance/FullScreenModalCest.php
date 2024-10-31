@@ -16,7 +16,7 @@ class FullScreenModalCest
         $I->see('Edit');
         $I->click('[data-bs-target="#editDocModal"]');
         $I->waitForElementVisible('#editDocModal');
-        $contentSize = $I->executeJS('return $("#editDocModal .modal-dialog.modal-lg").width()');
+        $contentSize = $I->executeJS('return $("#editDocModal .modal-dialog.modal-xl").width()');
         $fullSize = $I->executeJS('return $("body").width()');
         $I->assertGreaterThan($fullSize * 0.98, $contentSize, 'Full Screen');
     }
