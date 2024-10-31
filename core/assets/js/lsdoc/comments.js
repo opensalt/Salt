@@ -1,4 +1,4 @@
-import $ from '../_jquery';
+import $ from '../_jquerySetup';
 //import jqComments from 'jquery-comments';
 //jqComments($);
 

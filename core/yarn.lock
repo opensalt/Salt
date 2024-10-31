@@ -529,14 +529,11 @@ bootstrap-material-icons@^2.2.0:
 bootstrap-multiselect@=0.9.13:
   version "0.9.13"
   resolved "https://registry.yarnpkg.com/bootstrap-multiselect/-/bootstrap-multiselect-0.9.13.tgz#57b874511495393b23f866da6d2e866579fc27e5"
+  integrity sha512-Ku7IB4yGGqz27s3SQUUz2tjZofhbkeMY5Qrt79oZKl5daeuRBx38S51kiOarnAyywzpI3PgER2eaRF3uBoNQtg==
 
 bootstrap-notify@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/bootstrap-notify/-/bootstrap-notify-3.1.3.tgz#7e98b3a696cf452a7b56727f0b3316a90037c10b"
-
-bootstrap-sass@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/bootstrap-sass/-/bootstrap-sass-3.4.1.tgz#6843c73b1c258a0ac5cb2cc6f6f5285b664a8e9a"
 
 bootstrap@^5.1.3, bootstrap@^5.3.3:
   version "5.3.3"
@@ -616,65 +613,129 @@ csstype@^3.1.3:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
   integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
 
-datatables.net-bs@^1.10.15, datatables.net-bs@^1.10.23:
-  version "1.10.23"
-  resolved "https://registry.yarnpkg.com/datatables.net-bs/-/datatables.net-bs-1.10.23.tgz#985094ea63b28c630de4a0ecb75804ab53341fb0"
-  integrity sha512-O/kJxT93i9hIq8trdbHuIcHhrTodkVPfPqvxOqKK8lJ03XUUrT6V8ZoGyxROFjQGcgbye5CoRLVf7MY+5biOIQ==
+"datatables.net-bs5@1.11 - 2", datatables.net-bs5@^2, datatables.net-bs5@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/datatables.net-bs5/-/datatables.net-bs5-2.1.8.tgz#860717c4ee85ecb84812ba9a73fb1204aa2a68b6"
+  integrity sha512-YlGws8eI3iw/1AmKJH18+YMzm/UgGb6o9s14KAC24QT1/8anolm8GnVAgGcwUcvHm3hn1i8A5QXqgbqeMRINeg==
   dependencies:
-    datatables.net "1.10.23"
+    datatables.net "2.1.8"
     jquery ">=1.7"
 
-datatables.net-fixedheader-bs@^3.1.2:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader-bs/-/datatables.net-fixedheader-bs-3.1.5.tgz#20bcf41d80789b768a56b3386b16461542f71e8b"
+datatables.net-bs5@^1.13.0:
+  version "1.13.11"
+  resolved "https://registry.yarnpkg.com/datatables.net-bs5/-/datatables.net-bs5-1.13.11.tgz#c7c23aaf37e9fdd1274e172845ad29c9c9d78bb8"
+  integrity sha512-NQO15TjXo4xvZ0jReC4Uf86ezbQzPQPdaN2YncrCPhzQ6fx+2WD7DUq4ur0HbAcYHo94/M+MtD5Ch29To7Rj3Q==
   dependencies:
-    datatables.net-bs "^1.10.15"
-    datatables.net-fixedheader "3.1.5"
+    datatables.net "1.13.11"
+    jquery "1.8 - 4"
+
+"datatables.net-dt@1.11 - 2", datatables.net-dt@^2, datatables.net-dt@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/datatables.net-dt/-/datatables.net-dt-2.1.8.tgz#ef4ada436411bff6c68ee02213222d8caefa7af9"
+  integrity sha512-/ScKmyKIpKXzjOJrnJLOWMf2jOQfrYjayNMhUyeMzf3jKhNevHNvImU9MQ/Bab9yheKLjHLL24IgnshAvRFrng==
+  dependencies:
+    datatables.net "2.1.8"
     jquery ">=1.7"
 
-datatables.net-fixedheader@3.1.5, datatables.net-fixedheader@^3.1.2:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader/-/datatables.net-fixedheader-3.1.5.tgz#4b6051a877e2c625604f0847b4b7227faddcccea"
+datatables.net-fixedheader-bs5@^3.1.2:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader-bs5/-/datatables.net-fixedheader-bs5-3.4.1.tgz#b6e66989fd393983c3df9d5827d3a53ad028b36b"
+  integrity sha512-A2oDu1dcDzM6tF1IJNFtcnPQ5Vl3wJewyEs9I9/oI/a5P93nAZGbG6F5ZZedE9UDSMfNfCU3MbXYaUYmZEAqrA==
   dependencies:
-    datatables.net "^1.10.15"
+    datatables.net-bs5 "^1.13.0"
+    datatables.net-fixedheader "3.4.1"
     jquery ">=1.7"
 
-datatables.net-scroller-bs@^1.4.2:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/datatables.net-scroller-bs/-/datatables.net-scroller-bs-1.5.1.tgz#5803987536bcf44e3eb69b6a26fcf76f03f5f6b6"
+datatables.net-fixedheader-dt@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader-dt/-/datatables.net-fixedheader-dt-4.0.1.tgz#89f3a0adaee408b4ec65d3381bd0d68a0412c943"
+  integrity sha512-9Fzmue2d4ld1xQL5t8GDqoOOTWkEhyLa15TevS9na57qC60e1B+K3U+mxLUSyBJ08eJ2kaOXskOptwQ2GzSvfw==
   dependencies:
-    datatables.net-bs "^1.10.15"
-    datatables.net-scroller "1.5.1"
+    datatables.net-dt "^2"
+    datatables.net-fixedheader "4.0.1"
     jquery ">=1.7"
 
-datatables.net-scroller@1.5.1, datatables.net-scroller@^1.4.2:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/datatables.net-scroller/-/datatables.net-scroller-1.5.1.tgz#6f993db9e1976b425c6d9dfe05efd4ab39327733"
+datatables.net-fixedheader@3.4.1, datatables.net-fixedheader@^3.1.2:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader/-/datatables.net-fixedheader-3.4.1.tgz#db8b250e7819da989baa5df8c757a5a382754752"
+  integrity sha512-c9FJAShG5r8RJDIszWQvMFe6Ie+njfbHB9GhzOPjEF7zhbsMUQEkoYq1qW3ppOxY5psadDrT+D3f4iGM589u6w==
   dependencies:
-    datatables.net "^1.10.15"
+    datatables.net "^1.13.0"
     jquery ">=1.7"
 
-datatables.net-select-bs@^1.2.2:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/datatables.net-select-bs/-/datatables.net-select-bs-1.2.7.tgz#0fa812fb73ce8d0bae8356ea4d9601399d805ab5"
+datatables.net-fixedheader@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/datatables.net-fixedheader/-/datatables.net-fixedheader-4.0.1.tgz#d3c4866fa96fc468002f72b9e8efa3276aa4807b"
+  integrity sha512-jdwvGvI/WBKjNDJ5JwcTqmh7ehLkzXmTqvVCWJ6ig3+P9EHasoTq6Ys08WfICXpCHZgDKwDYLiW2rqVLK5TWOg==
   dependencies:
-    datatables.net-bs "^1.10.15"
-    datatables.net-select "1.2.7"
+    datatables.net "^2"
     jquery ">=1.7"
 
-datatables.net-select@1.2.7, datatables.net-select@^1.2.2:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/datatables.net-select/-/datatables.net-select-1.2.7.tgz#7d5badfca49c438f8b51df04483d8d77857e917c"
+datatables.net-scroller-bs5@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/datatables.net-scroller-bs5/-/datatables.net-scroller-bs5-2.4.3.tgz#ee79bbfdd0886b62af319e52efc4a5c4ff2c4007"
+  integrity sha512-Dcg0dlp6XHw7MvnohbygY3fc2KxBGVPFveAlo2oXXKUTzXbiO3hWBvwnk5wKK9Bz5QP47XqqiImtui5ZprOcSg==
   dependencies:
-    datatables.net "^1.10.15"
+    datatables.net-bs5 "1.11 - 2"
+    datatables.net-scroller "2.4.3"
     jquery ">=1.7"
 
-datatables.net@1.10.23, datatables.net@^1.10.15, datatables.net@^1.10.23:
-  version "1.10.23"
-  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.23.tgz#59f7d7b12845183b1b379530d1385077e113ec01"
-  integrity sha512-we3tlNkzpxvgkKKlTxTMXPCt35untVXNg8zUYWpQyC1U5vJc+lT0+Zdc1ztK8d3lh5CfdnuFde2p8n3XwaGl3Q==
+datatables.net-scroller-dt@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/datatables.net-scroller-dt/-/datatables.net-scroller-dt-2.4.3.tgz#8b20593bd59f903ae7290c3aa3d89242007f8afe"
+  integrity sha512-DDeQRPKHdv1I/5NGifpfW58bonq+bWFEBHNIsPOZW13ILzFimqOVnilS8nz6KtBY2NnX6K7Rj0bifZkvjh23KQ==
+  dependencies:
+    datatables.net-dt "1.11 - 2"
+    datatables.net-scroller "2.4.3"
+    jquery ">=1.7"
+
+datatables.net-scroller@2.4.3, datatables.net-scroller@^2.4.3:
+  version "2.4.3"
+  resolved "https://registry.yarnpkg.com/datatables.net-scroller/-/datatables.net-scroller-2.4.3.tgz#0ee8774d3b34a57356b1cf1657c5f2d2e79c6c6a"
+  integrity sha512-ce6Qa7ObGQmLJYvm6eMglf54L+01/Omn3N1pw7SiQjGYv8AKRRp1ex+U0NWmx3QaWp0iEeTnBaM4G6ay4juYZg==
+  dependencies:
+    datatables.net "1.11 - 2"
+    jquery ">=1.7"
+
+datatables.net-select-bs5@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/datatables.net-select-bs5/-/datatables.net-select-bs5-2.1.0.tgz#4cfd61007c644f224e10e1eae7662204d167caf2"
+  integrity sha512-N6VFo3DHsMCzM1Ef2pbUh1+pUd/MSHk48Z+X0QvbeknShWKdx0PS7FhLkaq8OalhHiEH0lyCy5L+1iR4bgAu9A==
+  dependencies:
+    datatables.net-bs5 "^2"
+    datatables.net-select "2.1.0"
+    jquery ">=1.7"
+
+datatables.net-select-dt@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/datatables.net-select-dt/-/datatables.net-select-dt-2.1.0.tgz#6dc55250f8e8ce42eb6c3325c46835f0538c1ed0"
+  integrity sha512-vYnYpD2Zy7UsuQ8RIoiEfehSuXYEZDAIOs4rvG6KLiBEnyfob9nyAE8TP361rH4bK8evecNufK7YuhYQPI4gvA==
+  dependencies:
+    datatables.net-dt "^2"
+    datatables.net-select "2.1.0"
+    jquery ">=1.7"
+
+datatables.net-select@2.1.0, datatables.net-select@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/datatables.net-select/-/datatables.net-select-2.1.0.tgz#d50f13cd4c18d50c06b24efd8ca5371ed0bbe59d"
+  integrity sha512-6B1sI5pfvBen+8kySl1T0hkGoUmrw+5YGqaW4NCg+1srMw+48YV5SdWPiyCQDoev2ajBdKzHuG/wzD2INMbmJw==
+  dependencies:
+    datatables.net "^2"
+    jquery ">=1.7"
+
+"datatables.net@1.11 - 2", datatables.net@2.1.8, datatables.net@^2, datatables.net@^2.1.8:
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-2.1.8.tgz#9b020f18e927cc924d72411f62dc595cc688669b"
+  integrity sha512-47ULt+U4bcjbuGTpTlT6SnCuSFVRBxxdWa6X3NfvTObBJ2BZU0o+JUIl05wQ6cABNIavjbAV51gpgvFsMHL9zA==
   dependencies:
     jquery ">=1.7"
+
+datatables.net@1.13.11, datatables.net@^1.13.0:
+  version "1.13.11"
+  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.13.11.tgz#e2a4c8b50553512f241ebfcbc078d74d551183b2"
+  integrity sha512-AE6RkMXziRaqzPcu/pl3SJXeRa6fmXQG/fVjuRESujvkzqDCYEeKTTpPMuVJSGYJpPi32WGSphVNNY1G4nSN/g==
+  dependencies:
+    jquery "1.8 - 4"
 
 debug@^4.3.6:
   version "4.3.7"
@@ -964,15 +1025,20 @@ jquery.fancytree@=2.24.0:
   version "2.24.0"
   resolved "https://registry.yarnpkg.com/jquery.fancytree/-/jquery.fancytree-2.24.0.tgz#60442a65648515d3e652197693efc0646af57629"
 
-jquery@>=1.7, jquery@>=1.9.0:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
-  integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
+"jquery@1.8 - 4", jquery@>=1.7:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
+  integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 "jquery@>=1.8.0 <4.0.0", jquery@^3.6.0:
   version "3.6.3"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.3.tgz#23ed2ffed8a19e048814f13391a19afcdba160e6"
   integrity sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==
+
+jquery@>=1.9.0:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
+  integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
 
 "js-yaml@>= 3.13.1":
   version "3.13.1"
@@ -1457,10 +1523,6 @@ select2-bootstrap-5-theme@^1.3.0:
   integrity sha512-uEJDruP4tmwyKcs3V0oP7CIsyC45PGF5ddo8unwTp8OucJ1PSuTOBr+xbWaHTQPGnvp7N96psVQ5UBMQvFCcHA==
   dependencies:
     bootstrap "^5.1.3"
-
-select2-bootstrap-theme@^0.1.0-beta.10:
-  version "0.1.0-beta.10"
-  resolved "https://registry.yarnpkg.com/select2-bootstrap-theme/-/select2-bootstrap-theme-0.1.0-beta.10.tgz#b9426ecfc03bf4a235e76a132377574310469ac0"
 
 select2@^4.0.3:
   version "4.0.13"

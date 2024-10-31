@@ -21,6 +21,7 @@ export default defineConfig({
         symfonyPlugin(),
     ],
     build: {
+        //target: "ES2022",
         rollupOptions: {
             input: {
                 base: "./assets/js/site.js",

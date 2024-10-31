@@ -1,4 +1,4 @@
-import $ from './_jquery';
+import $ from './_jquerySetup';
 
 import 'bootstrap-multiselect/dist/js/bootstrap-multiselect';
 import '../../node_modules/select2entity-bundle/Resources/public/js/select2entity';

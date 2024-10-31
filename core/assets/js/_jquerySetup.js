@@ -1,4 +1,5 @@
-import $ from 'jquery';
+import jQuery from 'jquery';
+let $ = jQuery;
 window.$ = window.jQuery = $;
 
 import migrate from 'jquery-migrate';
@@ -41,12 +42,26 @@ select2(window, $);
 import jqComments from 'jquery-comments';
 jqComments(window, $);
 
-import DataTable from 'datatables.net';
-new DataTable(window, $);
-import DataTablesBS from 'datatables.net-bs';
-import DataTablesFixedHeader from 'datatables.net-fixedheader';
-import DataTablesScroller from 'datatables.net-scroller';
-import DataTablesSelect from 'datatables.net-select';
+//import DataTable from 'datatables.net-bs5';
+// Just load fixedheader instead -- not yet sure how to install multiple plugins
+import DataTable from 'datatables.net-fixedheader-bs5';
+
+// This shouldn't be necessary...
+$.fn.dataTable = DataTable;
+$.fn.dataTableSettings = DataTable.settings;
+$.fn.dataTableExt = DataTable.ext;
+DataTable.$ = $;
+
+$.fn.DataTable = function ( opts ) {
+    return $(this).dataTable( opts ).api();
+};
+
+//import FixedHeader from 'datatables.net-fixedheader/js/dataTables.fixedHeader.mjs';
+//FixedHeader(window, $);
+//import Scroller from 'datatables.net-scroller/js/dataTables.scroller.mjs';
+//Scroller(window, $);
+//import Select from 'datatables.net-select/js/dataTables.select.mjs';
+//Select(window, $);
 
 
 function defineJQueryPlugin(plugin) {

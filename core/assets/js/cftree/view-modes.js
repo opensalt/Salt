@@ -246,6 +246,7 @@ export default function (apx) {
 
             // populate the table
             $("#assocViewTable").DataTable({
+                destroy: true,
                 "data": dataSet,
                 "columns": columns,
                 "stateSave": true,

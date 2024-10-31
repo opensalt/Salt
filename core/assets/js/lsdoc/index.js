@@ -1,6 +1,6 @@
 import { simplify, spinner, titleize } from '../util-salt';
 import 'papaparse';
-import $ from '../_jquery';
+import $ from '../_jquerySetup';
 
 const SaltGithub = (function () {
     function getRepoList(page, perPage) {
@@ -12,7 +12,7 @@ const SaltGithub = (function () {
                     $(".js-github-list .js-github-message-loading").hide();
                     $(".js-github-list #repos").append('<li class="list-group-item item" data-owner="' + e.owner.login + '" data-repo="'
                             + e.name + '" data-sha="" data-path=""><i class="fa fa-folder" aria-hidden="true"></i> ' + e.name + '</li>');
-                    $('#repos').removeClass('hidden');
+                    $('#repos').removeClass('d-none');
                 });
 
                 paginate(data.totalPages);
@@ -67,10 +67,10 @@ const SaltGithub = (function () {
                         }
                     });
 
-                    $('#repos').addClass('hidden');
-                    $('#files').removeClass('hidden');
-                    $('#pagination').addClass('hidden');
-                    $('.repositories-list').removeClass('hidden');
+                    $('#repos').addClass('d-none');
+                    $('#files').removeClass('d-none');
+                    $('#pagination').addClass('d-none');
+                    $('.repositories-list').removeClass('d-none');
                     $('.card-title').html($(evt.target).attr('data-repo') + '/');
                     itemListener('file-item', true);
 
@@ -94,9 +94,9 @@ const SaltGithub = (function () {
                     }
 
                     if ($(evt.target).attr('data-repo') + '/' == $('.card-title').html()) {
-                        $('.back').addClass('hidden');
+                        $('.back').addClass('d-none');
                     } else {
-                        $('.back').removeClass('hidden');
+                        $('.back').removeClass('d-none');
                     }
                 }
             }
@@ -221,20 +221,20 @@ const Import = (function () {
                 CfItem.missingField(field);
             });
 
-            $('#import-div').addClass('hidden');
-            $('#errors').removeClass('hidden');
+            $('#import-div').addClass('d-none');
+            $('#errors').removeClass('d-none');
         }
 
         $('.file-loading .row .col-md-12').html(spinner('Loading file'));
-        $('.file-loading').removeClass('hidden');
+        $('.file-loading').removeClass('d-none');
 
         index = fields.indexOf('humanCodingScheme');
 
         if (index < 0 && validatedValues) {
             sendData();
         } else {
-            $('.file-loading').addClass('hidden');
-            $('#import-div').removeClass('hidden');
+            $('.file-loading').addClass('d-none');
+            $('#import-div').removeClass('d-none');
         }
     }
 
@@ -295,16 +295,16 @@ const Import = (function () {
                 location.reload();
             },
             error: function () {
-                $('.asn-error-msg').html('<strong>Error!</strong> Something went wrong.').removeClass('hidden');
+                $('.asn-error-msg').html('<strong>Error!</strong> Something went wrong.').removeClass('d-none');
             }
         });
     }
 
     function caseImporter(file) {
-        $('.tab-content').addClass('hidden');
+        $('.tab-content').addClass('d-none');
         $('.file-loading .row .col-md-12').html(spinner('Loading file'));
-        $('.file-loading').removeClass('hidden');
-        $('.case-error-msg').addClass('hidden');
+        $('.file-loading').removeClass('d-none');
+        $('.case-error-msg').addClass('d-none');
 
         $.ajax({
             url: '/salt/case/import',
@@ -319,10 +319,10 @@ const Import = (function () {
                 location.reload();
             },
             error: function () {
-                $('.tab-content').removeClass('hidden');
+                $('.tab-content').removeClass('d-none');
                 $('.case-error-msg').html('Error while importing the file');
-                $('.case-error-msg').removeClass('hidden');
-                $('.file-loading').addClass('hidden');
+                $('.case-error-msg').removeClass('d-none');
+                $('.file-loading').addClass('d-none');
             }
         });
     }
@@ -375,10 +375,10 @@ const SaltLocal = (function () {
 
                     reader.readAsText(f);
                 } else {
-                    $('.tab-content').removeClass('hidden');
+                    $('.tab-content').removeClass('d-none');
                     $('.case-error-msg').html('File type not allowed');
-                    $('.case-error-msg').removeClass('hidden');
-                    $('.file-loading').addClass('hidden');
+                    $('.case-error-msg').removeClass('d-none');
+                    $('.file-loading').addClass('d-none');
                 }
             }
         } else {
@@ -395,10 +395,10 @@ const SaltLocal = (function () {
             let file = files[0];
             if (isTypeValid(file.name)) {
 
-                $('.tab-content').addClass('hidden');
+                $('.tab-content').addClass('d-none');
                 $('.file-loading .row .col-md-12').html(spinner('Loading file'));
-                $('.file-loading').removeClass('hidden');
-                $('.case-error-msg').addClass('hidden');
+                $('.file-loading').removeClass('d-none');
+                $('.case-error-msg').addClass('d-none');
 
                 data.append('file', file);
                 $.ajax({
@@ -412,17 +412,17 @@ const SaltLocal = (function () {
                         location.reload();
                     },
                     error: function () {
-                        $('.tab-content').removeClass('hidden');
+                        $('.tab-content').removeClass('d-none');
                         $('.case-error-msg').html("We're sorry, we cannot load this document. Please ensure this document is not already on the server, or see the Spreadsheet loading guide at docs.opensalt.org");
-                        $('.case-error-msg').removeClass('hidden');
-                        $('.file-loading').addClass('hidden');
+                        $('.case-error-msg').removeClass('d-none');
+                        $('.file-loading').addClass('d-none');
                     }
                 });
             } else {
-                $('.tab-content').removeClass('hidden');
+                $('.tab-content').removeClass('d-none');
                 $('.case-error-msg').html('File type not allowed');
-                $('.case-error-msg').removeClass('hidden');
-                $('.file-loading').addClass('hidden');
+                $('.case-error-msg').removeClass('d-none');
+                $('.file-loading').addClass('d-none');
             }
         }
     }
@@ -539,9 +539,9 @@ const CfItem = (function () {
         });
 
         if (missingRequiredFiles) {
-            $(".js-alert-missing-fields").removeClass("hidden");
+            $(".js-alert-missing-fields").removeClass("d-none");
         } else {
-            $(".js-alert-missing-fields").addClass("hidden");
+            $(".js-alert-missing-fields").addClass("d-none");
         }
 
         return !missingRequiredFiles;
@@ -602,10 +602,10 @@ const SanitizeData = (function () {
 })();
 
 function listRepositories() {
-    $('#files').addClass('hidden');
-    $('#repos').removeClass('hidden');
-    $('#pagination').removeClass('hidden');
-    $('.repositories-list').addClass('hidden');
+    $('#files').addClass('d-none');
+    $('#repos').removeClass('d-none');
+    $('#pagination').removeClass('d-none');
+    $('.repositories-list').addClass('d-none');
     $('.card-title').html('Repositories list');
     $('#back').html('');
 }

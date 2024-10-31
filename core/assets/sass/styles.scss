@@ -196,3 +196,10 @@ table.mirror_log-table {
     margin-top: var(--bs-card-spacer-y);
     margin-bottom: var(--bs-card-spacer-y);
 }
+
+
+@media (min-width: 1440px) {
+    .modal-xl {
+        --bs-modal-width: 99%;
+    }
+}

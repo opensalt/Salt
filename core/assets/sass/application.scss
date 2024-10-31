@@ -19,10 +19,10 @@ $fa-font-path: 'font-awesome/fonts';
 @import "select2/dist/css/select2";
 @import "select2-bootstrap-5-theme/src/select2-bootstrap-5-theme";
 
-@import "datatables.net-bs/css/dataTables.bootstrap";
-@import "datatables.net-fixedheader-bs/css/fixedHeader.bootstrap";
-@import "datatables.net-scroller-bs/css/scroller.bootstrap";
-@import "datatables.net-select-bs/css/select.bootstrap";
+@import "datatables.net-bs5/css/dataTables.bootstrap5";
+@import "datatables.net-fixedheader-bs5/css/fixedHeader.bootstrap5";
+@import "datatables.net-scroller-bs5/css/scroller.bootstrap5";
+@import "datatables.net-select-bs5/css/select.bootstrap5";
 
 @import "layout";
 @import "styles";
