@@ -198,8 +198,28 @@ table.mirror_log-table {
 }
 
 
+// Have modal window be larger
 @media (min-width: 1440px) {
     .modal-xl {
         --bs-modal-width: 99%;
     }
+}
+
+// Adjustments for Bootstrap 5 styling on multiselect
+.multiselect.dropdown-toggle {
+    & .caret {
+        margin-left: 5px;
+    }
+
+    &:after {
+        border-top: 3px solid transparent;
+    }
+}
+
+.multiselect-container {
+    width: max-content;
+}
+
+.multiselect-container > li > a > label {
+    padding: 3px 10px;
 }

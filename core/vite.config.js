@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
 import inject from '@rollup/plugin-inject';
 import commonjs from '@rollup/plugin-commonjs';
+import { fileURLToPath } from 'url';
 
 /* if you're using React */
 // import react from '@vitejs/plugin-react';
@@ -12,7 +13,9 @@ export default defineConfig({
         /*
         inject({
             $: 'jquery',
+            'window.$': 'jquery',
             jQuery: 'jquery',
+            'window.jQuery': 'jquery',
             exclude: ['*.css', '*.scss'],
             include: ['./assets/js/**.js']
         }),
@@ -21,6 +24,12 @@ export default defineConfig({
         symfonyPlugin(),
     ],
     build: {
+        alias: [
+            {
+                find: /jquery/,
+                replacement: fileURLToPath(new URL('./assets/js/_jquery.js', import.meta.url))
+            }
+        ],
         //target: "ES2022",
         rollupOptions: {
             input: {

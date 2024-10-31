@@ -1,9 +1,9 @@
-import jQuery from 'jquery';
+import jQuery from './_jquery';
 let $ = jQuery;
-window.$ = window.jQuery = $;
+globalThis.$ = globalThis.jQuery = $;
 
 import migrate from 'jquery-migrate';
-migrate($, window);
+migrate($, globalThis);
 
 // $.browser is needed by jquery-comments but has been deprecated and removed a long time ago
 jQuery.uaMatch = function( ua ) {
@@ -36,11 +36,11 @@ if ( !jQuery.browser ) {
 }
 
 import select2 from 'select2/dist/js/select2.full';
-select2(window, $);
+select2(globalThis, $);
 
 //import 'jquery-comments';
 import jqComments from 'jquery-comments';
-jqComments(window, $);
+jqComments(globalThis, $);
 
 //import DataTable from 'datatables.net-bs5';
 // Just load fixedheader instead -- not yet sure how to install multiple plugins
@@ -57,11 +57,11 @@ $.fn.DataTable = function ( opts ) {
 };
 
 //import FixedHeader from 'datatables.net-fixedheader/js/dataTables.fixedHeader.mjs';
-//FixedHeader(window, $);
+//FixedHeader(globalThis, $);
 //import Scroller from 'datatables.net-scroller/js/dataTables.scroller.mjs';
-//Scroller(window, $);
+//Scroller(globalThis, $);
 //import Select from 'datatables.net-select/js/dataTables.select.mjs';
-//Select(window, $);
+//Select(globalThis, $);
 
 
 function defineJQueryPlugin(plugin) {

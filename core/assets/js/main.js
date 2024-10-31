@@ -1,4 +1,6 @@
-import $ from './_jquerySetup';
+import jQuery from './_jquerySetup';
+let $ = jQuery;
+globalThis.$ = globalThis.jQuery = $;
 
 import 'bootstrap-multiselect/dist/js/bootstrap-multiselect';
 import '../../node_modules/select2entity-bundle/Resources/public/js/select2entity';
