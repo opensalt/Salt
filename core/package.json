@@ -12,6 +12,7 @@
     "@opensalt/ob3-definer": "^1.2.0",
     "@popperjs/core": "^2.11.8",
     "ajaxq": "^0.0.7",
+    "bootbox": "^6.0.0",
     "bootstrap": "^5.3.3",
     "bootstrap-material-icons": "^2.2.0",
     "bootstrap-multiselect": "opensalt/bootstrap-multiselect#bs5",
@@ -73,6 +74,5 @@
     "tunnel-agent": ">= 0.6.0",
     "underscore.string": ">= 3.3.5"
   },
-  "peerDependencies": {
-  }
+  "peerDependencies": {}
 }
