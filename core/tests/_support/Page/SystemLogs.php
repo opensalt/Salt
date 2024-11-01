@@ -38,7 +38,7 @@ class SystemLogs implements Context
     {
         $I = $this->I;
 
-        $I->click('header .navbar-right a.dropdown-toggle');
+        $I->click('header .navbar .dropdown-toggle');
         $I->click($menuOption);
     }
 
@@ -117,7 +117,7 @@ class SystemLogs implements Context
     {
         $I = $this->I;
 
-        $I->click('header .navbar-right a.dropdown-toggle');
+        $I->click('header .navbar .dropdown-toggle');
         $I->dontSee($menuOption);
     }
 
