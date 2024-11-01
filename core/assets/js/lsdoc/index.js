@@ -1,5 +1,5 @@
 import { simplify, spinner, titleize } from '../util-salt';
-import 'papaparse';
+import Papa from 'papaparse';
 import $ from '../_jquerySetup';
 
 const SaltGithub = (function () {
