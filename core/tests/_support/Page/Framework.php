@@ -844,11 +844,13 @@ class Framework implements Context
         $I->executeJS("$('#ls_doc_create_statusEnd').val('{$statusEnd}');");
         $I->fillField('#ls_doc_create_note', $note);
         // Choose one license
-        $I->click(Locator::lastElement('.select2-container--bootstrap'));
+        $I->click(Locator::lastElement('.select2-container--bootstrap-5'));
         $I->waitForElementVisible('.select2-results__option--highlighted');
         $I->click('.select2-results__option--highlighted');
 
-        $I->click('Create');
+        $I->submitForm(['css' => 'form[name="ls_doc_create"]'], []);
+        //$I->scrollTo(['css' => 'footer']);
+        //$I->clickWithLeftButton(['css' => 'input[value="Create"]']);
 
         try {
             $I->waitForElementNotVisible('#ls_doc_create', 30);

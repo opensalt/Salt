@@ -1,5 +1,5 @@
 <div id="addChildrenModal" class="modal bs-example-modal-lg fade" role="dialog">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h4>Import Items</h4>
@@ -10,30 +10,30 @@
                     <div class="row">
                         <div class="col-md-12">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#local-file" data-bs-toggle="tab">Import local file</a></li>
+                                <li class="nav-item"><a href="#local-file" class="nav-link active" data-bs-toggle="tab">Import local file</a></li>
                             </ul>
                             <br>
                             <div class="tab-content">
-                                <div class="tab-pane fade in active" id="local-file">
+                                <div class="tab-pane fade show in active" id="local-file">
                                     <div class="row">
-                                        <div class="col-xs-5">
+                                        <div class="col-5">
                                             <input id="file-url" type="file" class="form-control" accept=".csv,.json">
-                                            <div class="alert alert-danger asn-error-msg hidden" role="alert"></div>
+                                            <div class="alert alert-danger asn-error-msg d-none" role="alert"></div>
                                         </div>
-                                        <div class="col-xs-3" style="padding-left: 0px; text-align: right; line-height: 34px;">
+                                        <div class="col-3" style="padding-left: 0px; text-align: right; line-height: 34px;">
                                             <label> Framework to be associated</label>
                                         </div>
                                         {% set lastCreator = '' %}
-                                        <div class="col-xs-4">
+                                        <div class="col-4">
                                             <select id="js-framework-to-association" class="form-control">
                                                 <option value="all">All</option>
                                                 {% for framework in lsDocs %}
                                                     {% if framework.creator != lastCreator %}
                                                         {% if not loop.first %}</ul></li>{% endif %}
                                                         <optgroup label="{{ framework.creator }}">
-                                                                {% set lastCreator = framework.creator %}
+                                                        {% set lastCreator = framework.creator %}
                                                     {% endif %}
-                                                    <option value="{{ framework.id }}">{{ framework.title }}</a></li>
+                                                    <option value="{{ framework.id }}">{{ framework.title }}</option></li>
                                                     {% if loop.last == true and framework.creator != '' %}
                                                         </optgroup>
                                                     {% endif %}
@@ -41,7 +41,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <a href="#" class="btn btn-primary btn-import-csv" onclick="SaltLocal.handleFile('local', 'file-url');">Import Children</a>
+                                    <a href="#" class="btn btn-primary btn-import-csv mt-3" onclick="SaltLocal.handleFile('local', 'file-url');">Import Children</a>
                                 </div>
                                 <div id="github" class="tab-pane fade">
                                     <div class="card card-default">
@@ -49,8 +49,8 @@
                                             Repositories list
                                         </div>
                                         <div class="card-body js-github-list">
-                                            <div id="repos" class="hidden"></div>
-                                            <div id="files" class="hidden"></div>
+                                            <div id="repos" class="d-none"></div>
+                                            <div id="files" class="d-none"></div>
                                             <p class="js-github-message-error" style="display: none;">
                                                 <a href="{{ path('github_login') }}">Login with your GitHub credentials</a>
                                             </p>
@@ -67,21 +67,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="errors hidden">
-                    <div class="alert alert-warning hidden" role="alert">
+                <div class="errors d-none">
+                    <div class="alert alert-warning d-none" role="alert">
                         Make sure the columns are there and labeled correctly
                         <button href="#" class="close btn-close" data-bs-dismiss="alert" aria-label="close"></button>
                     </div>
-                    <div class="alert alert-warning hidden" role="alert">
+                    <div class="alert alert-warning d-none" role="alert">
                         Make sure the trees are parsed correctly (pre-load and check)
                         <button href="#" class="close btn-close" data-bs-dismiss="alert" aria-label="close"></button>
                     </div>
-                    <div class="alert alert-warning hidden" role="alert">
+                    <div class="alert alert-warning d-none" role="alert">
                         Make sure a tree exists (might not need to be 'is child of', but can parse
                         the human coding scheme)
                         <button href="#" class="close btn-close" data-bs-dismiss="alert" aria-label="close"></button>
                     </div>
-                    <div class="alert alert-warning hidden" role="alert">
+                    <div class="alert alert-warning d-none" role="alert">
                         Make sure each row can be loaded as an item and association
                         <button href="#" class="close btn-close" data-bs-dismiss="alert" aria-label="close"></button>
                     </div>
