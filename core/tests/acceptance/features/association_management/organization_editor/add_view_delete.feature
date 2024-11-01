@@ -4,7 +4,7 @@ Feature: Adding, viewing and deleting a association management
   I need to see a all of the fields
 
   @organization-editor @association @add-association @1109-1505
-  Scenario: 1016-1505 An organization-editor can add a association group
+  Scenario: 1109-1505 An organization-editor can add a association group
     Given I log in as a user with role "Editor"
     Then I create a framework
     And I add a Item

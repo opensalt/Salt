@@ -105,7 +105,7 @@ class Exemplar implements Context
 
     protected function waitAndAcceptPopup($tries = 30): void
     {
-        $this->I->waitForElementVisible('.bootbox');
+        $this->I->waitFor3yyElementVisible('.bootbox');
         $this->I->click('.bootbox-accept');
         $this->I->waitForElementNotVisible('.bootbox');
         /*

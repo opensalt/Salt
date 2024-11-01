@@ -327,7 +327,7 @@ class Item implements Context
 
         $I->amOnPage(self::$itemPath . $I->getItemId());
         $I->waitForElementVisible('#deleteItemBtn');
-        $I->click('//*[@id="itemInfo"]/div[3]/section[1]/div[2]/div/div/a//span[contains(concat(" ",normalize-space(@class), " "), " btn-remove-association ")]/*[contains(concat(" ",normalize-space(@class), " "), " glyphicon ")]');
+        $I->click('//*[@id="itemInfo"]/div[3]/section[1]/div[2]/div/div/a//span[contains(concat(" ",normalize-space(@class), " "), " btn-remove-association ")]/*[contains(concat(" ",normalize-space(@class), " "), " fa-remove ")]');
         $this->waitAndAcceptPopup(30);
     }
 
@@ -487,6 +487,11 @@ class Item implements Context
 
     protected function waitAndAcceptPopup($tries = 30)
     {
+        $this->I->waitForElementVisible('.bootbox');
+        $this->I->click('.bootbox-accept');
+        $this->I->waitForElementNotVisible('.bootbox');
+
+        /*
         while ($tries--) {
             try {
                 $this->I->acceptPopup();
@@ -498,6 +503,7 @@ class Item implements Context
                 $this->I->wait(1);
             }
         }
+        */
     }
 
     /**
