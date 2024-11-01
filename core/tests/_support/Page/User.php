@@ -36,7 +36,7 @@ class User implements Context
         $password = $faker->password().'aB3';
         $this->userName = $username;
 
-        $I->click('a.dropdown-toggle');
+        $I->click('header .navbar .dropdown-toggle');
         $I->click('Manage user');
         $I->see('User list', 'h1');
         $I->click('Add a new user');
@@ -45,7 +45,7 @@ class User implements Context
         $I->checkOption($roleMap[$role]);
         $I->selectOption('#salt_userbundle_user_org', ['value' => 1]);
         $I->click('Add');
-        $I->waitForElementVisible('a.dropdown-toggle');
+        $I->waitForElementVisible('header .navbar .dropdown-toggle');
     }
 
     /**
@@ -61,7 +61,7 @@ class User implements Context
         $password = $faker->password().'aB3';
         $this->userName = $username;
 
-        $I->click('a.dropdown-toggle');
+        $I->click('header .navbar .dropdown-toggle');
         $I->click('Manage user');
         $I->see('User list', 'h1');
         $I->click('Add a new user');
@@ -127,7 +127,7 @@ class User implements Context
         $I->click("//td[text()='{$username}']/..//a[text()='show']");
         $I->see($username);
         $I->click('Delete');
-        $I->waitForElementVisible('a.dropdown-toggle');
+        $I->waitForElementVisible('header .navbar .dropdown-toggle');
         $I->remember('lastDeletedUsername', $username);
     }
 
