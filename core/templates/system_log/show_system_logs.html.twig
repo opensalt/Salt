@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script>
+    <script type="module">
         if ($.fn.dataTable.isDataTable('#systemLogTable')) {
             $('#systemLogTable').DataTable().clear().ajax.reload();
         } else {
