@@ -1,6 +1,7 @@
 import 'inline-attachment/src/inline-attachment.js';
 import 'inline-attachment/src/codemirror-4.inline-attachment.js';
 import render from './render-md';
+import bootbox from 'bootbox';
 
 import { empty } from './utils';
 
@@ -1131,10 +1132,28 @@ export default function (apx) {
     };
 
     apx.edit.deleteAssociation = function (assocId, callbackFn) {
-        if (!confirm("Are you sure you want to remove this association? This can’t be undone.")) {
-            return;
-        }
+        bootbox.confirm({
+            title: "Remove association",
+            message: "Are you sure you want to remove this association?<br/><strong>This cannot be undone.</strong>",
+            buttons: {
+                confirm: {
+                    label: "Proceed",
+                    className: "btn-danger"
+                },
+                cancel: {
+                    label: "Cancel",
+                    className: "btn-default"
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    apx.edit.deleteAssociationConfirmed(assocId, callbackFn);
+                }
+            }
+        });
+    };
 
+    apx.edit.deleteAssociationConfirmed = function (assocId, callbackFn) {
         apx.spinner.showModal("Removing association");
         let callback = function () {
             apx.spinner.hideModal();

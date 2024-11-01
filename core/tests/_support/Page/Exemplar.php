@@ -4,6 +4,7 @@ namespace Page;
 
 use Behat\Behat\Context\Context;
 use Facebook\WebDriver\Exception\NoAlertOpenException;
+use Facebook\WebDriver\WebDriverExpectedCondition;
 
 class Exemplar implements Context
 {
@@ -85,7 +86,8 @@ class Exemplar implements Context
 
         $I->amOnPage(self::$docPath.$I->getDocId().self::$av);
         $I->waitForElementVisible('#assocViewTable_wrapper');
-        $I->click("//*[@id='assocViewTable']//td/span/span");
+        $this->I->wait(1);
+        $I->clickWithLeftButton(['xpath' => '//*[@id="assocViewTable"]//tr[1]/td/span/span[contains(concat(" ",normalize-space(@class), " "), " btn-remove-association ")]']);
         $this->waitAndAcceptPopup();
     }
 
@@ -103,16 +105,33 @@ class Exemplar implements Context
 
     protected function waitAndAcceptPopup($tries = 30): void
     {
+        $this->I->waitForElementVisible('.bootbox');
+        $this->I->click('.bootbox-accept');
+        $this->I->waitForElementNotVisible('.bootbox');
+        /*
+        $this->I->executeInSelenium(function (\Facebook\WebDriver\WebDriver $webDriver) {
+            try {
+                $webDriver->wait(5, 200)
+                    ->until(WebDriverExpectedCondition::alertIsPresent()
+                );
+                $webDriver->switchTo()->alert()->accept();
+            } catch (\Exception $e) {
+                throw $e;
+            }
+        });
+        */
+        /*
         while ($tries--) {
             try {
                 $this->I->acceptPopup();
                 break;
-            } catch (NoAlertOpenException $e) {
+            } catch (\Throwable $e) {
                 if (0 === $tries) {
                     throw $e;
                 }
                 $this->I->wait(1);
             }
         }
+        */
     }
 }
