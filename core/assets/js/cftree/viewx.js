@@ -590,7 +590,7 @@ export default function (apx) {
             $.each(list, function (id, identifier) {
                 let item = apx.mainDoc.itemIdHash[id];
 
-                if ("object" === typeof item.assocs) {
+                if ('undefined' !== typeof item && "object" === typeof item.assocs) {
                     $.each(item.assocs, function (i, assoc) {
                         if (true !== assoc.inverse) {
                             apx.edit.performDeleteAssociation(assoc.id);

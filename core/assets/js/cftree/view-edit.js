@@ -516,9 +516,10 @@ export default function (apx) {
             modalId = '#deleteMultipleItemsModal';
         }
 
-        $(modalId).modal().one('click', '.btn-delete', function () {
-            $(this).closest('.modal').modal('hide');
+        (new bootstrap.Modal(modalId)).show();
+        $(modalId).one('click', '.btn-delete', function () {
             deleteItemsInternal(items);
+            $(this).closest('.modal').modal('hide');
         });
     };
 

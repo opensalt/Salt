@@ -174,7 +174,7 @@
                                                 <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#editItemModal" data-alt-document-disabled="true">
                                                     Edit
                                                 </button>
-                                                <button type="button" id="deleteItemBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-alt-document-disabled="true">Delete</button>
+                                                <button type="button" id="deleteItemBtn" class="btn btn-default btn-sm" data-alt-document-disabled="true">Delete</button>
                                                 <button type="button" id="toggleFolderBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-alt-document-disabled="true">
                                                     Make This Item a Parent
                                                 </button>
@@ -565,6 +565,7 @@
 
         {% embed 'framework/editor/_modal_component.html.twig' with {
         'modalName':'addExemplar',
+        'modalSize': 'lg',
         'modalTitle':'Add an Exemplar',
         'closeButton': 'Cancel',
         'saveButton': 'Add Exemplar'
@@ -577,6 +578,7 @@
 
         {% embed 'framework/editor/_modal_component.html.twig' with {
             'modalName':'deleteFramework',
+            'modalSize': 'lg',
             'modalTitle':'Delete Framework',
             'saveButton': 'Delete',
             'closeButton': 'Cancel'
@@ -601,6 +603,7 @@
 
         {% embed 'framework/editor/_modal_component.html.twig' with {
         'modalName':'deleteOneItem',
+        'modalSize': 'lg',
         'modalTitle':'Delete Item',
         'saveButton': 'Delete',
         'closeButton': 'Cancel'
@@ -615,6 +618,7 @@
 
         {% embed 'framework/editor/_modal_component.html.twig' with {
         'modalName':'deleteItemAndChildren',
+        'modalSize': 'lg',
         'modalTitle':'Delete Item and Children',
         'saveButton': 'Delete',
         'closeButton': 'Cancel'
@@ -630,6 +634,7 @@
 
         {% embed 'framework/editor/_modal_component.html.twig' with {
         'modalName':'deleteMultipleItems',
+        'modalSize': 'lg',
         'modalTitle':'Delete Items',
         'saveButton': 'Delete',
         'closeButton': 'Cancel'

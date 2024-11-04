@@ -5,7 +5,7 @@
     {% set saveButton = 'Save' %}
 {% endif %}
 <div class="modal fade" id="{{ modalName }}Modal" tabindex="-1" role="dialog" aria-labelledby="{{ modalName }}ModalLabel">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-{{ modalSize|default('xl') }}" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="{{ modalName }}ModalLabel">{{ modalTitle }}</h4>
