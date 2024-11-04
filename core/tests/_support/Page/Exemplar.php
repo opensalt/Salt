@@ -72,7 +72,7 @@ class Exemplar implements Context
 
         $I->amOnPage(self::$itemPath.$I->getItemId());
         $I->waitForElementVisible('#deleteItemBtn');
-        $I->click('//*[@id="itemInfo"]/div[3]/section[1]/div[2]/div/div/a/span[1]/span/span[1]');
+        $I->click('//*[@id="itemInfo"]/div[3]/section[1]/div[2]/div/div/a/span[1]/span/i');
         $this->waitAndAcceptPopup();
         $I->waitForElementNotVisible('.spinnerOuter');
     }

@@ -57,8 +57,8 @@
                                             <p class="js-github-message-loading">Loading...</p>
                                         </div>
                                         <div class="card-footer">
-                                            <a href="#" onclick="listRepositories();" class="repositories-list hidden">List Repositories</a>
-                                            <a href="#" onclick="SaltGithub.getFiles(event, false);" class="back hidden"> - Go Back</a>
+                                            <a href="#" onclick="listRepositories();" class="repositories-list d-none">List Repositories</a>
+                                            <a href="#" onclick="SaltGithub.getFiles(event, false);" class="back d-none"> - Go Back</a>
                                             <div id="pagination"></div>
                                         </div>
                                     </div>
@@ -88,7 +88,7 @@
                 </div>
                 <br>
                 <div class="missing-fields"></div>
-                <div class="file-loading hidden">
+                <div class="file-loading d-none">
                     <div class="row">
                         <div class="col-md-12"></div>
                     </div>

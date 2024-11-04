@@ -456,15 +456,15 @@
                                     <div class="col-sm-2"></div>
                                 </div>
                             </div>
-                            <div class="file-loading hidden">
+                            <div class="file-loading d-none">
                                 <div class="row">
                                     <div class="col-md-12"></div>
                                 </div>
                             </div>
-                            <div class="alert alert-success hidden">
+                            <div class="alert alert-success d-none">
                               <strong>Success!</strong> Document successful copied. <a href="" class="js-docDestination" target="_blank">Go there</a>.
                             </div>
-                            <div class="alert alert-danger hidden">
+                            <div class="alert alert-danger d-none">
                               <strong>Oops!</strong> Something went wrong.
                             </div>
                         </div>
@@ -482,6 +482,7 @@
     {% if lsDoc is not empty %}
         {% embed 'framework/editor/_modal_component.html.twig' with {
         'modalName':'export',
+        'modalSize':'lg',
         'modalTitle':'Export Document',
         'closeButton': 'Done'
         } %}
