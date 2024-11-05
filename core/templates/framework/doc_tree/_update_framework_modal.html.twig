@@ -1,5 +1,5 @@
 <div class="modal fade" id="updateFrameworkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">Update Framework</h4>
@@ -7,18 +7,17 @@
             </div>
             <div class="modal-body">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li class="active"><a href="#excel" data-bs-toggle="tab">Import Spreadsheet file</a></li>
-
+                    <li class="nav-item"><button data-bs-target="#excel" data-bs-toggle="tab" class="nav-link active">Import Spreadsheet file</button></li>
                 </ul>
                 <br/>
                 <div class="tab-content">
-                    <div class="tab-pane fade in active" id="excel">
+                    <div class="tab-pane fade show active" id="excel">
                         <input id="excel-url" type="file" class="form-control" accept=".xls,.xlsx,.json,.csv">
                         <br/>
                         <div class="alert alert-danger case-error-msg d-none" role="alert"></div>
                         <a type="button" class="btn btn-primary btn-import btn-import-excel" onclick="SaltLocal.handleExcelFile();">Import Framework</a>
                     </div>
-                    <div class="tab-pane fade in" id="csv">
+                    <div class="tab-pane fade" id="csv">
                         <div class="row">
                             <div class="col-xs-5">
                                 <input id="file-for-update" type="file" class="form-control" accept=".csv">
