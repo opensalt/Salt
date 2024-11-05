@@ -268,11 +268,11 @@ class Framework implements Context
         $creatorName = $this->creatorName;
 
         $I->iAmOnTheHomepage();
-        $I->click("//span[text()='{$creatorName}']/../..");
+        $I->clickWithLeftButton(['xpath' => "//span[text()='{$creatorName}']/../.."]);
 
         $frameworkName = $this->rememberedFramework;
         $I->waitForElementVisible("//span[text()='{$frameworkName}']");
-        $I->click("//span[text()='{$frameworkName}']/../..");
+        $I->clickWithLeftButton(['xpath' => "//span[text()='{$frameworkName}']/../.."]);
 
         $I->waitForElementNotVisible('#modalSpinner', 120);
         $I->waitForElementVisible('#itemSection h4.itemTitle', 120);
@@ -847,7 +847,7 @@ class Framework implements Context
         // Choose one license
         $I->click(Locator::lastElement('.select2-container--bootstrap-5'));
         $I->waitForElementVisible('.select2-results__option--highlighted');
-        $I->click('.select2-results__option--highlighted');
+        $I->clickWithLeftButton(['xpath' => '*//ul[@role="listbox"]/li[text()="'.$this->frameworkData['license'].'"]']);
 
         $I->submitForm(['css' => 'form[name="ls_doc_create"]'], []);
         //$I->scrollTo(['css' => 'footer']);
@@ -933,6 +933,11 @@ class Framework implements Context
         $I = $this->I;
 
         $I->amOnPage(self::$lsdocPath.$I->getDocId());
+        try {
+            $I->waitForText('Internal Id', 10);
+        } catch (\Throwable) {
+            $I->amOnPage(self::$lsdocPath.$I->getDocId());
+        }
 
         $I->click('Delete');
     }
@@ -1551,11 +1556,11 @@ class Framework implements Context
         $creatorName = $this->creatorName;
 
         $I->iAmOnTheHomepage();
-        $I->click("//span[text()='{$creatorName}']/../..");
+        $I->clickWithLeftButton(['xpath' => "//span[text()='{$creatorName}']/../.."]);
 
         $frameworkName = $this->rememberedFramework;
         $I->waitForElementVisible("//span[text()='{$frameworkName}']");
-        $I->click("//span[text()='{$frameworkName}']/../..");
+        $I->clickWithLeftButton(['xpath' => "//span[text()='{$frameworkName}']/../.."]);
 
         $I->waitForElementNotVisible('#modalSpinner', 120);
         $I->waitForElementVisible('#itemSection h4.itemTitle', 120);

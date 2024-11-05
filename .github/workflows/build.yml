@@ -12,7 +12,7 @@ jobs:
     env:
       COMPOSE_FILE: "docker-compose.yml:docker-compose.test.yml"
       RUN_TEST_ARGS: ${{ secrets.RUN_TEST_ARGS }}
-      DEFAULT_RUN_TEST_ARGS: "--fail-fast --steps -x duplicate -x skip -x skip-firefox -x 0117-0708 -x 0108-0801 -x 1013-1444 -x change-notification"
+      DEFAULT_RUN_TEST_ARGS: "--fail-fast --steps -x incomplete -x duplicate -x skip -x skip-firefox -x 0117-0708 -x 0108-0801 -x 1013-1444 -x change-notification"
     steps:
       - name: Checkout
         uses: actions/checkout@v4

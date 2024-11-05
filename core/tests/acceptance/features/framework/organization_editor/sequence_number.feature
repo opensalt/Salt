@@ -4,7 +4,7 @@ Feature: A CASE framework with sequence numbers can be loaded
   I need to be able to load sequence numbers from CASE files
 
   @editor @case-file @1103-1626
-  Scenario: A CASE file can contain sequence numbers
+  Scenario: 1103-1626 A CASE file can contain sequence numbers
     Given I log in as a user with role "Editor"
     And I am on the homepage
     When I click "Import framework"

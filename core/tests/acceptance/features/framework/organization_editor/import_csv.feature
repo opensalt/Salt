@@ -3,7 +3,7 @@ Feature: The framework can be uploaded as CSV
   As an organization-editor
   I need to upload a CSV file of the framework
 
-  @incomplete @organization-editor @framework @case-file @csv
+  @incomplete @organization-editor @framework @case-file @csv @1013-1215
   Scenario: 1013-1215 A CSV file can be uploaded and downloaded
     Given I log in as a user with role "Editor"
     And I am on the homepage
