@@ -130,6 +130,7 @@ class Framework implements Context
      */
     public function IClickOnCopyFramework()
     {
+        $this->I->click('#copyFrameworkModal_copyLeftBtn');
         $this->I->click('#copyFrameworkModal .modal-footer .js-btn-copy-button');
 
         return $this;

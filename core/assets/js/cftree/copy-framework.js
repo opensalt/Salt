@@ -67,7 +67,9 @@ export default function(apx){
         },
 
         resetModalAfterRequest(data) {
-            setTimeout(apx.copyFramework.resetModal, 3000);
+            //setTimeout(apx.copyFramework.resetModal, 5000);
+            $('#copyFrameworkModal .js-btn-copy-button').hide();
+            $('#copyFrameworkModal').on('hide.bs.modal', () => { window.location.reload(); });
         },
 
         resetModal(data) {
@@ -75,6 +77,7 @@ export default function(apx){
             $("#copyFrameworkModal .alert-danger").addClass("d-none");
             $("#copyFrameworkModal .file-loading").addClass("d-none");
             $("#copyFrameworkModal .contentModal").removeClass("d-none");
+            window.location.reload();
         }
     };
 };
