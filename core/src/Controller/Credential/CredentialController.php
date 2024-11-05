@@ -327,7 +327,7 @@ class CredentialController extends AbstractController
 
         $curVersion = $credential->getLastVersion();
 
-        dump($credential);
+        //dump($credential);
 
         return $this->redirectToRoute('credential_show', ['id' => $id, 'versionId' => $curVersion->getId()->toBase58()]);
     }
@@ -372,7 +372,7 @@ class CredentialController extends AbstractController
         }
 
         $history = $store->load(CredentialDefinition::STREAM, metadataMatcher: (new MetadataMatcher())->withMetadataMatch('_aggregate_id', Operator::EQUALS(), $uuid->toString()), deserialize: false);
-        dump($history);
+        //dump($history);
 
         return $this->render('credential/show.html.twig', [
             'credential' => $credential,
