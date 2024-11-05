@@ -182,7 +182,8 @@ RUN set -eux; \
 	chmod +x bin/console-real; sync; \
 	composer dump-autoload --no-interaction --classmap-authoritative; \
 	composer dump-env prod; \
-	composer run-script post-install-cmd
+	composer run-script post-install-cmd; \
+	chown -R www-data:www-data var public/attachments
 
 ARG VERSION
 ARG BUILD_NUMBER
