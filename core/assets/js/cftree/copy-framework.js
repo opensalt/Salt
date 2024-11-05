@@ -19,8 +19,8 @@ export default function(apx){
 
         copyFrameworkRequest() {
             $("#copyFrameworkModal .file-loading .row .col-md-12").html(spinner("Copying Document"));
-            $("#copyFrameworkModal .contentModal").addClass("hidden");
-            $("#copyFrameworkModal .file-loading").removeClass("hidden");
+            $("#copyFrameworkModal .contentModal").addClass("d-none");
+            $("#copyFrameworkModal .file-loading").removeClass("d-none");
 
             let selectedDoc = $('#js-framework-to-copy').val();
 
@@ -45,14 +45,14 @@ export default function(apx){
         copyFrameworkRequestSuccess(data) {
             $("#copyFrameworkModal .alert-success").find("a.js-docDestination")
                 .attr("href", apx.path.lsDoc.replace('ID', data.docDestinationId));
-            $("#copyFrameworkModal .alert-success").removeClass("hidden");
-            $("#copyFrameworkModal .file-loading").addClass("hidden");
+            $("#copyFrameworkModal .alert-success").removeClass("d-none");
+            $("#copyFrameworkModal .file-loading").addClass("d-none");
             apx.copyFramework.resetModalAfterRequest();
         },
 
         copyFrameworkRequestFail(data) {
-            $("#copyFrameworkModal .alert-danger").removeClass("hidden");
-            $("#copyFrameworkModal .file-loading").addClass("hidden");
+            $("#copyFrameworkModal .alert-danger").removeClass("d-none");
+            $("#copyFrameworkModal .file-loading").addClass("d-none");
             apx.copyFramework.resetModalAfterRequest();
         },
 
@@ -71,10 +71,10 @@ export default function(apx){
         },
 
         resetModal(data) {
-            $("#copyFrameworkModal .alert-success").addClass("hidden");
-            $("#copyFrameworkModal .alert-danger").addClass("hidden");
-            $("#copyFrameworkModal .file-loading").addClass("hidden");
-            $("#copyFrameworkModal .contentModal").removeClass("hidden");
+            $("#copyFrameworkModal .alert-success").addClass("d-none");
+            $("#copyFrameworkModal .alert-danger").addClass("d-none");
+            $("#copyFrameworkModal .file-loading").addClass("d-none");
+            $("#copyFrameworkModal .contentModal").removeClass("d-none");
         }
     };
 };
