@@ -939,7 +939,7 @@ class Framework implements Context
             $I->amOnPage(self::$lsdocPath.$I->getDocId());
         }
 
-        $I->click('Delete');
+        $I->clickWithLeftButton(['xpath' => '*//input[@value="Delete"]']);
     }
 
     /**
