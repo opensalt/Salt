@@ -31,7 +31,7 @@ class Organization implements Context
         $name = str_replace("'", '', $faker->company());
         $this->orgName = $name;
 
-        $I->click('a.dropdown-toggle');
+        $I->click('.dropdown-toggle');
         $I->click('Manage organizations');
         $I->see('Organizations list', 'h1');
         $I->click('Add a new organization');

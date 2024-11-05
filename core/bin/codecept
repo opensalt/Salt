@@ -1,15 +1,15 @@
 #!/bin/bash
 
 BROWSER=
-if [[ "$@" == *"firefox"* ]]; then
+if [[ "$@" == *"=firefox"* ]]; then
   BROWSER="${BROWSER} firefox"
 fi
 
-if [[ "$@" == *"chrome"* ]]; then
+if [[ "$@" == *"=chrome"* ]]; then
   BROWSER="${BROWSER} chrome"
 fi
 
-if [[ "$@" == *"phantomjs"* ]]; then
+if [[ "$@" == *"=phantomjs"* ]]; then
   BROWSER="${BROWSER} phantomjs"
 fi
 

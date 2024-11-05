@@ -159,7 +159,7 @@ class Item implements Context
         $I->amOnPage(self::$itemPath . $I->getItemId());
         $I->waitForElementVisible('#deleteItemBtn');
         $I->click('//*[@id="deleteItemBtn"]');
-        $I->click('//*[@id="deleteOneItemModal"]/div/div/div[3]/button[2]');
+        $I->click('#deleteOneItemModal .btn-delete');
     }
 
     /**
