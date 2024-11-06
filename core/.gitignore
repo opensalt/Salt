@@ -68,6 +68,7 @@ pw-archive/
 /.symfony.env.local
 /.symfony.env.local.php
 /.symfony.env.*.local
+.env.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
