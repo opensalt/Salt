@@ -10,6 +10,9 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @template-extends AbstractType<CredentialDefinitionDto>
+ */
 class CredentialDefinitionContentType extends AbstractType
 {
     public function __construct(

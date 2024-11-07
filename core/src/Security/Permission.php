@@ -46,4 +46,11 @@ class Permission
     final public const string CREDENTIAL_DEF_EDIT = 'credential_def_edit';
     final public const string CREDENTIAL_DEF_EDIT_ALL = 'credential_def_edit_all';
     final public const string CREDENTIAL_DEF_DELETE = 'credential_def_delete';
+
+    final public const string FRONT_MATTER_VIEW = 'front_matter_view';
+    final public const string FRONT_MATTER_LIST = 'front_matter_list';
+    final public const string FRONT_MATTER_CREATE = 'front_matter_create';
+    final public const string FRONT_MATTER_EDIT = 'front_matter_edit';
+    final public const string FRONT_MATTER_EDIT_ALL = 'front_matter_edit_all';
+    final public const string FRONT_MATTER_DELETE = 'front_matter_delete';
 }

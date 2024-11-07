@@ -63,7 +63,7 @@ class CredentialDefinitionProjection
     {
         $json = json5_decode($event->newContent, true);
 
-        $curDoc = $this->documentStore->getDocument(self::NAME, $event->versionId);
+        $curDoc = $this->documentStore->getDocument(self::NAME, $event->id);
         $curDoc['name'] = $json['name'] ?? 'Unknown';
 
         $this->documentStore->updateDocument(

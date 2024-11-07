@@ -1,0 +1,20 @@
+{% extends base_template %}
+
+{% block body %}
+    <h1>Create New Template</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input class="btn btn-primary" type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <br/>
+    <ul class="list-inline">
+        <li class="list-inline-item">
+            <a class="btn btn-default" href="{{ path('front_matter_list') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

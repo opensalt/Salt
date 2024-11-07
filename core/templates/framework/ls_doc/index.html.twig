@@ -2,21 +2,7 @@
 
 {% block bodyclasses %}{{ parent() }}{% endblock %}
 {% block body %}
-    <h1>Competency Frameworks
-        {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_CREATE')) %}
-            <ul class="list-inline hstack pull-right">
-                <li class="ms-2 list-inline-item">
-                    <a class="btn btn-default" href="{{ path('lsdoc_new') }}">Create a new Framework</a>
-                </li>
-                <li class="ms-2 list-inline-item">
-                    <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#wizard">Import framework</button>
-                </li>
-            </ul>
-        {% endif %}
-        <div class="pull-right">
-            <a class="btn btn-default" href="{{ path('credential_index') }}">Credential Definitions</a>
-        </div>
-    </h1>
+    {% include 'framework/ls_doc/_competency_header.html.twig' %}
 
     <div id="competencyTree">
         {% set lastCreator = '' %}
@@ -41,7 +27,7 @@
 <script type="module">
     $('#competencyTree').fancytree({
         activate: function(event, data){
-            var node = data.node;
+            let node = data.node;
             if (!$.isEmptyObject(node.data)) {
                 if (undefined !== node.data.href)
                     window.location.href = node.data.href;

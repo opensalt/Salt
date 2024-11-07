@@ -1,0 +1,15 @@
+<h1>Competency Frameworks
+    {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_CREATE')) %}
+        <ul class="list-inline hstack pull-right">
+            <li class="ms-2 list-inline-item">
+                <a class="btn btn-default" href="{{ path('lsdoc_new') }}">Create a new Framework</a>
+            </li>
+            <li class="ms-2 list-inline-item">
+                <button type="button" class="btn btn-default" data-bs-toggle="modal" data-bs-target="#wizard">Import framework</button>
+            </li>
+        </ul>
+    {% endif %}
+    <div class="pull-right">
+        <a class="btn btn-default" href="{{ path('credential_index') }}">Credential Definitions</a>
+    </div>
+</h1>

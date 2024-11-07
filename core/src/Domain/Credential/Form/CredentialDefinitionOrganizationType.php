@@ -12,6 +12,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
+/**
+ * @template-extends AbstractType<CredentialDefinitionDto>
+ */
 class CredentialDefinitionOrganizationType extends AbstractType
 {
     public function __construct(

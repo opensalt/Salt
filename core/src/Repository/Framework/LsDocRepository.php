@@ -29,6 +29,9 @@ class LsDocRepository extends ServiceEntityRepository
         parent::__construct($registry, LsDoc::class);
     }
 
+    /**
+     * @return LsDoc[]
+     */
     public function findForList(): array
     {
         return $this->createQueryBuilder('d')

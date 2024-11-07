@@ -14,6 +14,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
+/**
+ * @template-extends AbstractType<CredentialDefinitionDto>
+ */
 class CredentialDefinitionCreateType extends AbstractType
 {
     public function __construct(

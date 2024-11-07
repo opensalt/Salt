@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {% if is_granted(constant('App\\Security\\Permission::FRONT_MATTER_CREATE')) %}
+        <ul class="list-inline hstack pull-right">
+            <li class="ms-2 list-inline-item">
+                <a class="btn btn-default" href="{{ path('front_matter_new') }}">Create a new page</a>
+            </li>
+        </ul>
+    {% endif %}
+
+    <h1>Front matter pages</h1>
+
+    <ul>
+        {% for template in templates %}
+            <li><a href="{{ path('front_matter_edit', {'id': template.id}) }}">{{ template.filename }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

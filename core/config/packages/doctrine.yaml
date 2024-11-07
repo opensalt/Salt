@@ -19,7 +19,7 @@ doctrine:
                 password: '%database_password%'
                 options:  '%pdo_options%'
                 charset:  utf8mb4
-                schema_filter: ~^(?!(cache_items|LearningStandards|std_|map_|grade_level|ecotone_|projections|event_streams|_))~
+                schema_filter: ~^(?!(cache_items|LearningStandards|std_|map_|grade_level))~
                 server_version: 8.0.29
                 mapping_types:
                     json: string

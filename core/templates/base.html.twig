@@ -64,11 +64,12 @@
                                                 <li><a href="{{ url("system_logs_show") }}" class="dropdown-item">Manage system logs</a></li>
                                             {% endif %}
                                             {% if is_granted(constant('App\\Security\\Permission::MANAGE_MIRRORS')) %}
-                                                {% if seperator_1 %}
-                                                    <li role="separator" class="divider"></li>
-                                                {% endif %}
                                                 {%- set seperator_1 = true -%}
                                                 <li><a href="{{ url("mirror_server_index") }}" class="dropdown-item">Manage mirrors</a></li>
+                                            {% endif %}
+                                            {% if is_granted(constant('App\\Security\\Permission::FRONT_MATTER_EDIT_ALL')) %}
+                                                {%- set seperator_1 = true -%}
+                                                <li><a href="{{ url("front_matter_list") }}" class="dropdown-item">Manage front matter</a></li>
                                             {% endif %}
                                             {% if seperator_1 %}
                                                 <li role="separator" class="dropdown-divider"></li>
