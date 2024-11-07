@@ -3,6 +3,7 @@ twig:
     paths: ['%kernel.project_dir%/templates']
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    auto_reload: true
     # Set to null for Symfony 4.4 to use framework.error_controller instead
     exception_controller: ~
     #number_format:
