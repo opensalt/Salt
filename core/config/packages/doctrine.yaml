@@ -21,6 +21,7 @@ doctrine:
                 charset:  utf8mb4
                 schema_filter: ~^(?!(cache_items|LearningStandards|std_|map_|grade_level))~
                 server_version: 8.0.29
+                use_savepoints: true
                 mapping_types:
                     json: string
                 default_table_options:
