@@ -59,7 +59,7 @@
         "ecotone/jms-converter": "^1.234",
         "ecotone/pdo-event-sourcing": "*",
         "ecotone/symfony-bundle": "^1.234",
-        "endroid/qr-code": "^5.0",
+        "endroid/qr-code": "^6.0",
         "firebase/php-jwt": "^6.0",
         "google/recaptcha": "~1.1",
         "guzzlehttp/guzzle": "^6.5|^7.3",
