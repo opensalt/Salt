@@ -21,7 +21,7 @@ class LsAssociationRepository extends ServiceEntityRepository
 
     public function removeAssociation(LsAssociation $lsAssociation): void
     {
-        $this->_em->remove($lsAssociation);
+        $this->getEntityManager()->remove($lsAssociation);
         $origin = $lsAssociation->getOrigin();
         if (is_object($origin)) {
             $origin->removeAssociation($lsAssociation);

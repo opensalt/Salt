@@ -92,7 +92,7 @@ class ObjectLockRepository extends ServiceEntityRepository
             throw new \RuntimeException('Cannot release lock for a different user');
         }
 
-        $this->_em->remove($lock);
+        $this->getEntityManager()->remove($lock);
     }
 
     public function release(ObjectLock $lock): void
@@ -101,13 +101,13 @@ class ObjectLockRepository extends ServiceEntityRepository
             return;
         }
 
-        $this->_em->getConnection()->delete($this->getClassMetadata()->getTableName(), ['id' => $lock->getId()]);
+        $this->getEntityManager()->getConnection()->delete($this->getClassMetadata()->getTableName(), ['id' => $lock->getId()]);
     }
 
     public function removeExpiredLocks(): void
     {
         $qb = $this->getEntityManager()->createQueryBuilder();
-        $query = $qb->delete($this->_entityName, 'o')
+        $query = $qb->delete($this->getEntityName(), 'o')
             ->where('o.timeout < :now')
             ->setParameter('now', new \DateTimeImmutable(), Types::DATETIME_IMMUTABLE)
             ->getQuery();

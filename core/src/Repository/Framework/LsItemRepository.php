@@ -77,7 +77,7 @@ class LsItemRepository extends ServiceEntityRepository
 
     public function removeAssociation(LsAssociation $association): void
     {
-        $this->_em->getRepository(LsAssociation::class)->removeAssociation($association);
+        $this->getEntityManager()->getRepository(LsAssociation::class)->removeAssociation($association);
     }
 
     public function removeChild(LsItem $parent, LsItem $child): void
@@ -102,8 +102,8 @@ class LsItemRepository extends ServiceEntityRepository
     {
         $hasChildren = $lsItem->getChildren();
         if ($hasChildren->isEmpty()) {
-            $this->_em->getRepository(LsAssociation::class)->removeAllAssociations($lsItem);
-            $this->_em->remove($lsItem);
+            $this->getEntityManager()->getRepository(LsAssociation::class)->removeAllAssociations($lsItem);
+            $this->getEntityManager()->remove($lsItem);
 
             return true;
         }
@@ -113,7 +113,7 @@ class LsItemRepository extends ServiceEntityRepository
 
     public function findExactMatches(string $identifier): array
     {
-        $assocRepo = $this->_em->getRepository(LsAssociation::class);
+        $assocRepo = $this->getEntityManager()->getRepository(LsAssociation::class);
 
         $item = $this->findOneByIdentifier($identifier);
         if (null === $item) {

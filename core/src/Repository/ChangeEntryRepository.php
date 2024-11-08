@@ -22,13 +22,13 @@ class ChangeEntryRepository extends ServiceEntityRepository
     public function updateChanged(ChangeEntry $change, NotificationEvent $notification): void
     {
         if (null !== $change->getId()) {
-            $this->_em->getConnection()->executeStatement(
+            $this->getEntityManager()->getConnection()->executeStatement(
                 sprintf('UPDATE %s SET changed = ? WHERE id = ?', $this->getClassMetadata()->getTableName()),
                 [json_encode($notification->getChanged(), JSON_THROW_ON_ERROR), $change->getId()]
             );
 
             if (null === $change->getDocId() && null !== $notification->getDoc()) {
-                $this->_em->getConnection()->executeStatement(
+                $this->getEntityManager()->getConnection()->executeStatement(
                     sprintf('UPDATE %s SET doc_id = ? WHERE id = ?', $this->getClassMetadata()->getTableName()),
                     [$notification->getDoc()->getId(), $change->getId()]
                 );
@@ -37,7 +37,7 @@ class ChangeEntryRepository extends ServiceEntityRepository
             return;
         }
 
-        $this->_em->getConnection()->executeStatement(
+        $this->getEntityManager()->getConnection()->executeStatement(
             sprintf('UPDATE %s SET changed = ? WHERE changed_at = ? and description = ?', $this->getClassMetadata()->getTableName()),
             [json_encode($notification->getChanged(), JSON_THROW_ON_ERROR), $change->getChangedAt()->format('Y-m-d H:i:s.u'), $change->getDescription()]
         );
@@ -48,7 +48,7 @@ class ChangeEntryRepository extends ServiceEntityRepository
      */
     public function getLastChangeTimeForDoc(LsDoc $doc): array
     {
-        return $this->_em->getConnection()->createQueryBuilder()
+        return $this->getEntityManager()->getConnection()->createQueryBuilder()
             ->select('MAX(a.changed_at) as changed_at')
             ->from($this->getClassMetadata()->getTableName(), 'a')
             ->where('a.doc_id = :doc_id')
@@ -59,7 +59,7 @@ class ChangeEntryRepository extends ServiceEntityRepository
 
     public function getChangeEntryCountForDoc(LsDoc $doc): int
     {
-        return $this->_em->getConnection()->createQueryBuilder()
+        return $this->getEntityManager()->getConnection()->createQueryBuilder()
             ->select('count(*)')
             ->from($this->getClassMetadata()->getTableName(), 'a')
             ->where('a.doc_id = :doc_id')
@@ -96,7 +96,7 @@ class ChangeEntryRepository extends ServiceEntityRepository
 
     public function getChangeEntryCountForSystem(): int
     {
-        return $this->_em->getConnection()->createQueryBuilder()
+        return $this->getEntityManager()->getConnection()->createQueryBuilder()
             ->select('count(*)')
             ->from($this->getClassMetadata()->getTableName(), 'a')
             ->where('a.doc_id IS NULL')

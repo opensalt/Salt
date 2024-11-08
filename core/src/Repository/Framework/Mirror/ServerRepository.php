@@ -22,7 +22,7 @@ class ServerRepository extends ServiceEntityRepository
 
     public function findFrameworkOnServer(string $identifier, Server $server): ?Framework
     {
-        return $this->_em->getRepository(Framework::class)
+        return $this->getEntityManager()->getRepository(Framework::class)
             ->findOneBy(['identifier' => $identifier, 'server' => $server])
         ;
     }
