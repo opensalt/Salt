@@ -55,7 +55,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "doctrine/doctrine-migrations-bundle": "^3.0.2",
         "doctrine/migrations": "^3.0.2",
-        "doctrine/orm": "^2.8",
+        "doctrine/orm": "^3.3",
         "ecotone/jms-converter": "^1.234",
         "ecotone/pdo-event-sourcing": "*",
         "ecotone/symfony-bundle": "^1.234",
