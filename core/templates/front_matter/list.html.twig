@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block body %}
+    <h1 class="clearfix">Page List
     {% if is_granted(constant('App\\Security\\Permission::FRONT_MATTER_CREATE')) %}
         <ul class="list-inline hstack pull-right">
             <li class="ms-2 list-inline-item">
@@ -8,13 +9,25 @@
             </li>
         </ul>
     {% endif %}
-
-    <h1>Front matter pages</h1>
-
-    <ul>
+    </h1>
+    <table class="table table-condensed table-hover table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th class="col-md-2">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
         {% for template in templates %}
-            <li><a href="{{ path('front_matter_edit', {'id': template.id}) }}">{{ template.filename }}</a></li>
+            <tr>
+                <td>{{ template.filename }}</td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('front_matter', { 'path': template.filename|replace({'front:': '', '.html.twig': ''}) }) }}">Show</a>
+                    <a class="btn btn-default" href="{{ path('front_matter_edit', { 'id': template.id }) }}">Edit</a>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
 {% endblock %}
 
