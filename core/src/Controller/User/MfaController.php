@@ -53,14 +53,16 @@ class MfaController extends AbstractController
             $user->setTotpSecret($secret); // 10/16/20 for 80/128/160 bits
             $this->entityManager->flush();
 
-            $qrCode = QrCode::create($this->totpAuthenticator->getQRContent($user))
-                ->setEncoding(new Encoding('UTF-8'))
-                ->setErrorCorrectionLevel(ErrorCorrectionLevel::High)
-                ->setSize(300)
-                ->setMargin(10)
-                ->setRoundBlockSizeMode(RoundBlockSizeMode::Margin)
-                ->setForegroundColor(new Color(0, 0, 0))
-                ->setBackgroundColor(new Color(255, 255, 255));
+            $qrCode = new QrCode(
+                data: $this->totpAuthenticator->getQRContent($user),
+                encoding: new Encoding('UTF-8'),
+                errorCorrectionLevel: ErrorCorrectionLevel::High,
+                size: 300,
+                margin: 10,
+                roundBlockSizeMode: RoundBlockSizeMode::Margin,
+                foregroundColor: new Color(0, 0, 0),
+                backgroundColor: new Color(255, 255, 255),
+            );
             $writer = new PngWriter();
             $uri = $writer->write($qrCode)->getDataUri();
 
