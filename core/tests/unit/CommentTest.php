@@ -28,7 +28,7 @@ class CommentTest extends \Codeception\Test\Unit
         $comment->setUser($user);
         $comment->setItem($item);
 
-        $em->merge($comment);
+        $em->persist($comment);
         $em->flush();
 
         $this->tester->seeInRepository(Comment::class, ['content' => 'unit test comment']);

@@ -25,7 +25,7 @@ class UserTest extends \Codeception\Test\Unit
         $user->setPassword('passwordaB3');
         $user->setOrg($org);
 
-        $em->merge($user);
+        $em->persist($user);
         $em->flush();
 
         $this->tester->seeInRepository(User::class, ['username' => 'usertest']);
