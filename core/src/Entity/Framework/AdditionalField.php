@@ -8,7 +8,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AdditionalFieldRepository::class)]
-#[ORM\Table(name: 'salt_additional_field', indexes: [new ORM\Index(name: 'applies_idx', columns: ['applies_to'])])]
+#[ORM\Table(name: 'salt_additional_field')]
+#[ORM\Index(columns: ['applies_to'], name: 'applies_idx')]
 #[UniqueEntity(fields: ['name'], message: 'The custom field name is already used.')]
 class AdditionalField
 {

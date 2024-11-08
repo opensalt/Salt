@@ -7,7 +7,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Table(name: 'ls_association', indexes: [new ORM\Index(columns: ['destination_node_identifier'], name: 'dest_id_idx'), new ORM\Index(columns: ['origin_node_identifier'], name: 'orig_id_idx')])]
+#[ORM\Table(name: 'ls_association')]
+#[ORM\Index(columns: ['destination_node_identifier'], name: 'dest_id_idx')]
+#[ORM\Index(columns: ['origin_node_identifier'], name: 'orig_id_idx')]
 #[ORM\Entity(repositoryClass: LsAssociationRepository::class)]
 class LsAssociation extends AbstractLsBase implements CaseApiInterface
 {

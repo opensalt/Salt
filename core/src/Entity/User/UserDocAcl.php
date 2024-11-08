@@ -7,7 +7,8 @@ use App\Repository\User\UserDocAclRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserDocAclRepository::class)]
-#[ORM\Table(name: 'salt_user_doc_acl', uniqueConstraints: [new ORM\UniqueConstraint(name: 'uniq_acl_id', columns: ['doc_id', 'user_id'])])]
+#[ORM\Table(name: 'salt_user_doc_acl')]
+#[ORM\UniqueConstraint(name: 'uniq_acl_id', columns: ['doc_id', 'user_id'])]
 class UserDocAcl
 {
     final public const DENY = 0;

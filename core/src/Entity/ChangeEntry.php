@@ -8,7 +8,9 @@ use App\Repository\ChangeEntryRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
-#[ORM\Table(name: 'salt_change', indexes: [new ORM\Index(columns: ['changed_at'], name: 'change_time_idx'), new ORM\Index(columns: ['doc_id', 'changed_at'], name: 'doc_idx')])]
+#[ORM\Table(name: 'salt_change')]
+#[ORM\Index(columns: ['changed_at'], name: 'change_time_idx')]
+#[ORM\Index(columns: ['doc_id', 'changed_at'], name: 'doc_idx')]
 #[ORM\Entity(repositoryClass: ChangeEntryRepository::class)]
 class ChangeEntry
 {

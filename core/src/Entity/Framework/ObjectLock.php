@@ -7,7 +7,9 @@ use App\Entity\User\User;
 use App\Repository\Framework\ObjectLockRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table(name: 'salt_object_lock', indexes: [new ORM\Index(columns: ['expiry'], name: 'expiry_idx')], uniqueConstraints: [new ORM\UniqueConstraint(name: 'lock_obj_idx', columns: ['obj_type', 'obj_id'])])]
+#[ORM\Table(name: 'salt_object_lock')]
+#[ORM\Index(columns: ['expiry'], name: 'expiry_idx')]
+#[ORM\UniqueConstraint(name: 'lock_obj_idx', columns: ['obj_type', 'obj_id'])]
 #[ORM\Entity(repositoryClass: ObjectLockRepository::class)]
 class ObjectLock
 {

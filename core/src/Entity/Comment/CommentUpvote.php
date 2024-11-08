@@ -8,7 +8,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'salt_comment_upvote', uniqueConstraints: [new ORM\UniqueConstraint(name: 'comment_user', columns: ['comment_id', 'user_id'])])]
+#[ORM\Table(name: 'salt_comment_upvote')]
+#[ORM\UniqueConstraint(name: 'comment_user', columns: ['comment_id', 'user_id'])]
 #[UniqueEntity(fields: ['comment', 'user'])]
 class CommentUpvote
 {
