@@ -60,7 +60,7 @@ class LsAssociationController extends AbstractController
     public function new(
         Request $request,
         #[MapEntity(id: 'sourceLsItem')] ?LsItem $sourceLsItem = null,
-        #[MapEntity(id: 'assocGroup')] ?LsDefAssociationGrouping $assocGroup = null
+        #[MapEntity(id: 'assocGroup')] ?LsDefAssociationGrouping $assocGroup = null,
     ): Response {
         // @TODO: Add LsDoc of the new association for when adding via AJAX
         $ajax = $request->isXmlHttpRequest();

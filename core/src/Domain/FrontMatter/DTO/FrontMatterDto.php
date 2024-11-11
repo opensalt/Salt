@@ -2,11 +2,12 @@
 
 namespace App\Domain\FrontMatter\DTO;
 
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class FrontMatterDto
 {
-    public ?int $id = null;
+    public ?UuidInterface $id = null;
 
     #[Assert\NotNull(message: 'The filename must be supplied')]
     public ?string $filename = null;

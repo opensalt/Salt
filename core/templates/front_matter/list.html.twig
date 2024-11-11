@@ -22,7 +22,9 @@
             <tr>
                 <td>{{ template.filename }}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ path('front_matter', { 'path': template.filename|replace({'front:': '', '.html.twig': ''}) }) }}">Show</a>
+                    {% if template.filename starts with 'front:' and template.filename ends with '.html.twig' %}
+                        <a class="btn btn-primary" href="{{ path('front_matter', { 'path': template.filename|replace({'front:': '', '.html.twig': ''}) }) }}">Show</a>
+                    {% endif %}
                     <a class="btn btn-default" href="{{ path('front_matter_edit', { 'id': template.id }) }}">Edit</a>
                 </td>
             </tr>

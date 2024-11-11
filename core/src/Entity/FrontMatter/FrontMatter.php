@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Ecotone\Modelling\Attribute\Aggregate;
 use Ecotone\Modelling\Attribute\CommandHandler;
 use Ecotone\Modelling\Attribute\Identifier;
+use Ramsey\Uuid\Doctrine\UuidBinaryType;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[AddUserId]
@@ -20,9 +23,8 @@ class FrontMatter
 {
     #[Identifier]
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Column(type: UuidBinaryType::NAME)]
+    private UuidInterface $id;
 
     #[ORM\Column(length: 255, unique: true)]
     private ?string $filename = null;
@@ -30,15 +32,16 @@ class FrontMatter
     #[ORM\Column(type: Types::TEXT)]
     private ?string $source = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private \DateTimeInterface $lastUpdated;
+    #[ORM\Column(type: Types::DATETIMETZ_IMMUTABLE)]
+    private \DateTimeImmutable $lastUpdated;
 
-    private function __construct()
+    private function __construct(?UuidInterface $id = null)
     {
+        $this->id = $id ?? Uuid::uuid7();
         $this->lastUpdated = new \DateTimeImmutable();
     }
 
-    public function getId(): ?int
+    public function getId(): ?UuidInterface
     {
         return $this->id;
     }
@@ -74,7 +77,7 @@ class FrontMatter
 
     public function setLastUpdated(\DateTimeInterface $lastUpdated): static
     {
-        $this->lastUpdated = $lastUpdated;
+        $this->lastUpdated = \DateTimeImmutable::createFromInterface($lastUpdated);
 
         return $this;
     }

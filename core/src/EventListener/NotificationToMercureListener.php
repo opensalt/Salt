@@ -35,7 +35,7 @@ class NotificationToMercureListener implements EventSubscriberInterface
     use LoggerTrait;
 
     public function __construct(
-        private HubInterface $publisher
+        private HubInterface $publisher,
     ) {
     }
 

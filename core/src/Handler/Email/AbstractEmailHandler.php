@@ -20,7 +20,7 @@ abstract class AbstractEmailHandler extends BaseValidatedHandler
         ValidatorInterface $validator,
         private readonly FeatureManager $featureManager,
         private readonly MailerInterface $mailer,
-        private readonly ?string $mailFromEmail = null
+        private readonly ?string $mailFromEmail = null,
     ) {
         parent::__construct($validator);
     }

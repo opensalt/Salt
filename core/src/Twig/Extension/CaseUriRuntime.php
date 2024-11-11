@@ -13,7 +13,7 @@ class CaseUriRuntime implements RuntimeExtensionInterface
     public function __construct(
         private UriGenerator $uriGenerator,
         private RouterInterface $router,
-        private IdentifiableObjectHelper $uriHelper
+        private IdentifiableObjectHelper $uriHelper,
     ) {
     }
 

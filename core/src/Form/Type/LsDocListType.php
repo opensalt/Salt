@@ -19,7 +19,7 @@ class LsDocListType extends AbstractType
 {
     public function __construct(
         private EntityManagerInterface $em,
-        private AuthorizationCheckerInterface $authChecker
+        private AuthorizationCheckerInterface $authChecker,
     ) {
     }
 

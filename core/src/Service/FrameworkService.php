@@ -27,7 +27,7 @@ class FrameworkService
 
     public function __construct(
         ManagerRegistry $registry,
-        private TokenStorageInterface $tokenStorage
+        private TokenStorageInterface $tokenStorage,
     ) {
         $this->em = $registry->getManager();
     }

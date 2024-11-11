@@ -145,7 +145,7 @@ class FrameworkAclController extends AbstractController
     public function removeAcl(
         Request $request,
         LsDoc $lsDoc,
-        #[MapEntity(id: 'targetUser')] User $targetUser
+        #[MapEntity(id: 'targetUser')] User $targetUser,
     ): RedirectResponse {
         $form = $this->createDeleteForm($lsDoc, $targetUser);
         $form->handleRequest($request);

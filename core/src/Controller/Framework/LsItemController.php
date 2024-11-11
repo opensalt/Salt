@@ -70,7 +70,7 @@ class LsItemController extends AbstractController
         Request $request,
         #[MapEntity(id: 'doc')] LsDoc $doc,
         #[MapEntity(id: 'parent')] ?LsItem $parent = null,
-        #[MapEntity(id: 'assocGroup')] ?LsDefAssociationGrouping $assocGroup = null
+        #[MapEntity(id: 'assocGroup')] ?LsDefAssociationGrouping $assocGroup = null,
     ): Response {
         $ajax = $request->isXmlHttpRequest();
 
@@ -237,7 +237,7 @@ class LsItemController extends AbstractController
     #[IsGranted(Permission::ITEM_EDIT, 'lsItem')]
     public function removeChild(
         #[MapEntity(id: 'id')] LsItem $parent,
-        #[MapEntity(id: 'child')] LsItem $child
+        #[MapEntity(id: 'child')] LsItem $child,
     ): Response {
         $command = new RemoveChildCommand($parent, $child);
         $this->sendCommand($command);

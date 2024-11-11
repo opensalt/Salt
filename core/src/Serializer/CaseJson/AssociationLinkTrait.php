@@ -109,9 +109,9 @@ trait AssociationLinkTrait
                     'isPartOf' => 'hasPart',
                     'precedes' => 'hasPredecessor',
                     'isChildOf' => 'isParentOf',
-                    default => throw new \InvalidArgumentException('Unknown association type')
+                    default => throw new \InvalidArgumentException('Unknown association type'),
                 },
-                default => throw new \InvalidArgumentException('Expecting "origin" or "destination"') // @phpstan-ignore match.unreachable
+                default => throw new \InvalidArgumentException('Expecting "origin" or "destination"'), // @phpstan-ignore match.unreachable
             },
             'title' => $targetLink['title'],
             'identifier' => $targetLink['identifier'],
