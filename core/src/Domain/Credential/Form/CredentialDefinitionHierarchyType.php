@@ -24,8 +24,8 @@ class CredentialDefinitionHierarchyType extends AbstractType
         $builder
             ->add('hierarchyParent', TextType::class, [
                 'required' => true,
-                'label' => 'Location in hierarchy',
-                'help' => 'Enter the name of the grouping that this credential definition should be listed under.',
+                'label' => 'Collection',
+                'help' => 'Enter the name of the collection that this credential definition should be listed under.',
             ])
         ;
     }
