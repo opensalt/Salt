@@ -249,7 +249,7 @@ export default function (apx) {
         }
 
         let enabled = apx.notifications.isEnabled();
-        $('#notifications-switch-location').html('<a id="notifications-switch" href="#" class="btn btn-lg"><i class="material-icons">notifications' + (enabled ? '' : '_off') + '</i></a>');
+        $('#notifications-switch-location').html('<a id="notifications-switch" href="#" class="btn"><i class="fa-bell'+(enabled ? ' fa-solid' : '-slash fa-regular')+'"></i></a>');
         $('#notifications-switch').on('click', apx.notifications.toggle);
         apx.notifications.enableMonitor();
 
@@ -350,13 +350,8 @@ export default function (apx) {
     };
 
     apx.notifications.displayToggle = function (isEnabled) {
-        let ns = $('#notifications-switch');
-
-        if (isEnabled) {
-            ns.find('i').html('notifications');
-        } else {
-            ns.find('i').html('notifications_off');
-        }
+        const enabled = apx.notifications.isEnabled();
+        $('#notifications-switch').html('<i class="fa-bell'+(enabled ? ' fa-solid' : '-slash fa-regular')+'"></i>');
     };
 
     apx.notifications.toggle = function (e) {

@@ -1,13 +1,18 @@
 #competencyTree {
     .fancytree-folder {
         span.fancytree-icon {
-            @extend .material-icons;
             background-image: none;
             color: #1e427f;
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            -webkit-font-smoothing: antialiased;
+            font-style: normal;
+            font-variant: normal;
+            line-height: 1;
+            font-size: 1.2rem;
 
-            &::after {
-                content: "account_balance";
-                font-size: 18px;
+            &:before {
+                content: "";
             }
         }
     }
