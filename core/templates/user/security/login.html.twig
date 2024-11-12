@@ -36,9 +36,9 @@
                     {% endif %}
 
                     {% if google_captcha_site_key is not empty %}
-                        <button class="pull-right btn btn-primary btn-login g-recaptcha" data-sitekey="{{ google_captcha_site_key }}" data-callback="onSubmit">Login</button>
+                        <button class="float-end btn btn-primary btn-login g-recaptcha" data-sitekey="{{ google_captcha_site_key }}" data-callback="onSubmit">Login</button>
                     {% else %}
-                        <button class="pull-right btn btn-primary btn-login" type="submit">Login</button>
+                        <button class="float-end btn btn-primary btn-login" type="submit">Login</button>
                     {% endif %}
                 </form>
                 {% if isFeatureEnabled('create_account') %}

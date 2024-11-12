@@ -63,13 +63,13 @@
                     </p>
                     {{ form_start(addOrgUserForm) }}
                         {{ form_widget(addOrgUserForm) }}
-                        <input type="submit" value="Exclude Editor" class="btn btn-default pull-right" />
+                        <input type="submit" value="Exclude Editor" class="btn btn-default float-end" />
                     {{ form_end(addOrgUserForm) }}
                 </div>
             </div>
         {% endif %}
         {% if is_granted(constant('App\\Security\\Permission::MANAGE_EDITORS'), lsDoc) %}
-            <div class="col-md-6 row pull-right">
+            <div class="col-md-6 row float-end">
                 <div class="card card-default card-body">
                     <p>
                         {% if lsDoc.org is not empty %}
@@ -80,7 +80,7 @@
                     </p>
                     {{ form_start(addUsernameForm) }}
                         {{ form_widget(addUsernameForm) }}
-                        <input type="submit" value="Allow Editor" class="btn btn-default pull-right" />
+                        <input type="submit" value="Allow Editor" class="btn btn-default float-end" />
                     {{ form_end(addUsernameForm) }}
                 </div>
             </div>

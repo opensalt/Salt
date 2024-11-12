@@ -101,19 +101,19 @@
                         {% for flash_message in app.session.flashBag.get('error') %}
                             <div class="flash-error alert alert-danger alert-dismissible fade show" role="alert">
                                 {{ flash_message|raw }}
-                                <button type="button" class="btn-close pull-right" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         {% endfor %}
                         {% for flash_message in app.session.flashBag.get('warning') %}
                             <div class="flash-warning alert alert-warning alert-dismissible fade show" role="alert">
                                 {{ flash_message|raw }}
-                                <button type="button" class="btn-close pull-right" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         {% endfor %}
                         {% for flash_message in app.session.flashBag.get('success') %}
                             <div class="flash-notice alert alert-success alert-dismissible fade show" role="alert">
                                 {{ flash_message|raw }}
-                                <button type="button" class="btn-close pull-right" data-bs-dismiss="alert" aria-label="Close"></button>
+                                <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         {% endfor %}
                         {% for flash_message in app.session.flashBag.get('info') %}

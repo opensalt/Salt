@@ -5,14 +5,14 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <ul class="list-inline pull-right">
+        <ul class="list-inline float-end">
             <li class="list-inline-item ms-2">
                 <input class="btn btn-default" type="submit" value="Save" />
             </li>
         </ul>
     {{ form_end(edit_form) }}
 
-    <ul class="list-inline pull-right">
+    <ul class="list-inline float-end">
         <li class="list-inline-item">
             <a class="btn btn-primary" href="{{ path('admin_user_index') }}">Back to the list</a>
         </li>

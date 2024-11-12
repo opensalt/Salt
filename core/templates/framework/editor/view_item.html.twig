@@ -93,7 +93,7 @@
                 {% embed 'framework/editor/_ls_association_component.html.twig' with {'title':group, 'items':list, 'viewingItem':lsItem, 'componentName':group|lower|replace({' ': '_'})} %}
                     {% block end_of_item_a %}
                         {% if is_granted(constant('App\\Security\\Permission::ITEM_EDIT'), lsItem) or is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsItem.lsDoc) %}
-                            <span class="pull-right">
+                            <span class="float-end">
                             {% if group is constant('App\\Entity\\Framework\\LsAssociation::CHILD_OF') %}
                                 <span role="button" class="btn btn-sm btn-default btn-change-parent">Change</span>
                             {% elseif group is constant('App\\Entity\\Framework\\LsAssociation::INVERSE_CHILD_OF') %}

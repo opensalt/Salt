@@ -54,7 +54,7 @@
                         </div>
                         {% if isDraft %}
                             <div id="tree1SectionThisDocInstructions" class="bg-info instructions">
-                                <button type="button" class="changeTree1DocumentBtn btn btn-primary btn-sm pull-right">
+                                <button type="button" class="changeTree1DocumentBtn btn btn-primary btn-sm float-end">
                                     Change Document
                                 </button>
                                 Browse, edit, reorder, and create new items here.<br/>
@@ -62,7 +62,7 @@
                         {% endif %}
 
                         <div id="tree1SectionOtherDocInstructions" class="bg-info instructions" style="display:none">
-                            <button type="button" class="changeTree1DocumentBtn btn btn-primary btn-sm pull-right">
+                            <button type="button" class="changeTree1DocumentBtn btn btn-primary btn-sm float-end">
                                 Change Document
                             </button>
                             Drag and drop from right to left to <b>create associations</b>.
@@ -249,12 +249,12 @@
 
                             <div id="associationEditBtn" style="display:none">
                                 {% if editorRights and not isDeprecated %}
-                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-edit-association"><i class="fa fa-edit" aria-hidden="true"></i><span class="visually-hidden">Edit</span></span></span>
+                                    <span class="float-end" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-edit-association"><i class="fa fa-edit" aria-hidden="true"></i><span class="visually-hidden">Edit</span></span></span>
                                 {% endif %}
                             </div>
                             <div id="associationRemoveBtn" style="display:none">
                                 {% if editorRights and not isDeprecated %}
-                                    <span class="pull-right" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-remove-association"><i class="fa fa-remove" aria-hidden="true"></i><span class="visually-hidden">Remove</span></span></span>
+                                    <span class="float-end" style="margin-left:5px"><span role="button" class="btn btn-sm btn-default btn-remove-association"><i class="fa fa-remove" aria-hidden="true"></i><span class="visually-hidden">Remove</span></span></span>
                                 {% endif %}
                             </div>
                         </div>  <!-- itemInfo -->
@@ -273,13 +273,13 @@
                             Document to view on the right side.
                         </div>
                         <div id="tree2SectionCopyInstructions" class="bg-info instructions" style="display:none">
-                            <button type="button" class="changeTree2DocumentBtn btn btn-primary btn-sm pull-right">
+                            <button type="button" class="changeTree2DocumentBtn btn btn-primary btn-sm float-end">
                                 Change Document
                             </button>
                             Drag and drop from right to left to <b>copy items</b>.
                         </div>
                         <div id="tree2SectionRelationshipInstructions" class="bg-info instructions" style="display:none">
-                            <button type="button" class="changeTree2DocumentBtn btn btn-primary btn-sm pull-right">
+                            <button type="button" class="changeTree2DocumentBtn btn btn-primary btn-sm float-end">
                                 Change Document
                             </button>
                             Drag and drop from right to left to <b>create associations</b>.

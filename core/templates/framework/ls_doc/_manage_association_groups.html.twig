@@ -6,15 +6,15 @@
         <tbody>
             <tr data-assocgroupid="default">
                 <td>– Default Group –</td>
-                <td><!-- <button class="assocgroup-edit-btn btn btn-default btn-sm pull-right">Edit</button> -->—</td>
+                <td><!-- <button class="assocgroup-edit-btn btn btn-default btn-sm float-end">Edit</button> -->—</td>
             </tr>
 
             {% for ag in assocGroups %}{% if ag.lsDoc.id == lsDoc.id %}
             <tr data-assocgroupid="{{ ag.id }}">
                 <td>{{ ag.title }}</td>
                 <td>
-                    <button class="assocgroup-edit-btn btn btn-default btn-sm pull-right">Edit</button>
-                    <button class="assocgroup-delete-btn btn btn-default btn-sm pull-right" style="margin-right:5px">Delete</button>
+                    <button class="assocgroup-edit-btn btn btn-default btn-sm float-end">Edit</button>
+                    <button class="assocgroup-delete-btn btn btn-default btn-sm float-end" style="margin-right:5px">Delete</button>
                     <span class="assocgroup-description">{{ ag.description|default('—') }}</span>
                 </td>
             </tr>

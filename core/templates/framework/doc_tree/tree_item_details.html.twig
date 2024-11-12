@@ -82,7 +82,7 @@
             {% embed 'framework/doc_tree/_ls_association_component.html.twig' with {'title':group, 'items':list, 'viewingItem':lsItem, 'componentName':group|lower|replace({' ': '_'})} %}
                 {% block start_of_item_a %}
                     {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsItem.lsDoc) %}
-                        <span class="pull-right">
+                        <span class="float-end">
                             <span role="button" class="btn btn-sm btn-default btn-remove-association">Remove</span>
                         </span>
                     {% endif %}
@@ -109,7 +109,7 @@
                 {% embed 'framework/doc_tree/_ls_association_component.html.twig' with {'title':group, 'items':filteredList, 'viewingItem':lsItem, 'componentName':group|lower|replace({' ': '_'})} %}
                     {% block start_of_item_a %}
                         {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_EDIT'), lsItem.lsDoc) %}
-                            <span class="pull-right">
+                            <span class="float-end">
                                 <span role="button" class="btn btn-sm btn-default btn-remove-association">Remove</span>
                             </span>
                         {% endif %}

@@ -1617,8 +1617,8 @@ export default function (apx) {
                 let html = '<tr data-assocgroupid="' + newAssocGroupId + '">';
                 html += '<td>' + render.escaped(ag.title) + '</td>';
                 html += '<td>';
-                html += '<button class="assocgroup-edit-btn btn btn-default btn-sm pull-right">Edit</button>';
-                html += '<button class="assocgroup-delete-btn btn btn-default btn-sm pull-right" style="margin-right:5px">Delete</button>';
+                html += '<button class="assocgroup-edit-btn btn btn-default btn-sm float-end">Edit</button>';
+                html += '<button class="assocgroup-delete-btn btn btn-default btn-sm float-end" style="margin-right:5px">Delete</button>';
                 html += '<span class="assocgroup-description">' + render.escaped(ag.description) + '</span>';
                 html += '</td>';
                 html += '</tr>';

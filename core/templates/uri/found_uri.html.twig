@@ -27,18 +27,18 @@
         {% endif %}
         {% if objectType == 'CFDocument' %}
             {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_VIEW'), obj) %}
-                <a class="btn btn-default pull-right" href="{{ path('doc_tree_view', {'slug': obj.slug}) }}">Show in tree view</a>
+                <a class="btn btn-default float-end" href="{{ path('doc_tree_view', {'slug': obj.slug}) }}">Show in tree view</a>
             {% endif %}
         {% elseif objectType == 'CFItem' %}
             {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_VIEW'), obj.lsDoc) %}
-                <a class="btn btn-default pull-right" href="{{ path('doc_tree_item_view', {'id': obj.id}) }}">Show in tree view</a>
+                <a class="btn btn-default float-end" href="{{ path('doc_tree_item_view', {'id': obj.id}) }}">Show in tree view</a>
             {% endif %}
         {% elseif objectType == 'CFAssociation' %}
             {% if is_granted(constant('App\\Security\\Permission::FRAMEWORK_VIEW'), obj.lsDoc) %}
                 {% if obj.originLsItem.id is defined and obj.originLsItem.lsDoc == obj.lsDoc %}
-                    <a class="btn btn-default pull-right" href="{{ path('doc_tree_item_view', {'id': obj.origin.id}) }}">Show in tree view</a>
+                    <a class="btn btn-default float-end" href="{{ path('doc_tree_item_view', {'id': obj.origin.id}) }}">Show in tree view</a>
                 {% elseif obj.originLsDoc.id is defined and obj.originLsDoc == obj.lsDoc %}
-                    <a class="btn btn-default pull-right" href="{{ path('doc_tree_view', {'slug': obj.origin.slug}) }}">Show in tree view</a>
+                    <a class="btn btn-default float-end" href="{{ path('doc_tree_view', {'slug': obj.origin.slug}) }}">Show in tree view</a>
                 {% endif %}
             {% endif %}
         {% endif %}

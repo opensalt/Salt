@@ -3,7 +3,7 @@
 {% block body %}
     <h1 class="clearfix">Page List
     {% if is_granted(constant('App\\Security\\Permission::FRONT_MATTER_CREATE')) %}
-        <ul class="list-inline hstack pull-right">
+        <ul class="list-inline hstack float-end">
             <li class="ms-2 list-inline-item">
                 <a class="btn btn-default" href="{{ path('front_matter_new') }}">Create a new page</a>
             </li>
