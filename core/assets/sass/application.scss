@@ -9,8 +9,7 @@
 @import "bootstrap/scss/bootstrap";
 
 @import "bootstrap-material-icons/scss/material-icons";
-$fa-font-path: 'font-awesome/fonts';
-@import "font-awesome/scss/font-awesome";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "katex/dist/katex.min.css";
 @import "github-markdown-css/github-markdown.css";
 @import "simplemde/dist/simplemde.min.css";

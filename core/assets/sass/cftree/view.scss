@@ -284,6 +284,9 @@ div.fancytree-drag-helper span.fancytree-childcounter {
     border-radius:4px;
     margin-bottom:10px;
     min-height: 32px;
+    &.bg-info {
+        background-color: rgba(217, 237, 247, 1) !important; //#d9edf7
+    }
 }
 
 .list-group {

@@ -9,6 +9,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.6.0",
     "@opensalt/ob3-definer": "^1.2.0",
     "@popperjs/core": "^2.11.8",
     "ajaxq": "^0.0.7",
@@ -29,7 +30,6 @@
     "datatables.net-select": "^2.1.0",
     "datatables.net-select-bs5": "^2.1.0",
     "datatables.net-select-dt": "^2.1.0",
-    "font-awesome": "^4.7.0",
     "github-markdown-css": "^2.10.0",
     "html5-boilerplate": "6.0.1",
     "inline-attachment": "^2.0.3",
