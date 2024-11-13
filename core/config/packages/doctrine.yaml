@@ -22,6 +22,7 @@ doctrine:
                 schema_filter: ~^(?!(cache_items|LearningStandards|std_|map_|grade_level))~
                 server_version: 8.0.29
                 use_savepoints: true
+                profiling_collect_backtrace: '%kernel.debug%'
                 mapping_types:
                     json: string
                 default_table_options:
@@ -60,3 +61,29 @@ doctrine:
                         dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Tree/Entity"
                         #alias: GedmoTree # (optional) it will default to the name set for the mapping
                         is_bundle: false
+
+when@test:
+    doctrine:
+        dbal:
+            # "TEST_TOKEN" is typically set by ParaTest
+            dbname_suffix: '_test%env(default::TEST_TOKEN)%'
+
+when@prod:
+    doctrine:
+        orm:
+            auto_generate_proxy_classes: false
+            proxy_dir: '%kernel.build_dir%/doctrine/orm/Proxies'
+            query_cache_driver:
+                type: pool
+                pool: doctrine.system_cache_pool
+            result_cache_driver:
+                type: pool
+                pool: doctrine.result_cache_pool
+
+    framework:
+        cache:
+            pools:
+                doctrine.result_cache_pool:
+                    adapter: cache.app
+                doctrine.system_cache_pool:
+                    adapter: cache.system
