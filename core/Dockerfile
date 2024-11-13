@@ -11,20 +11,6 @@ ARG COMMIT=unknown
 ARG NODE_VERSION=20
 ARG PHP_VERSION=8.3
 ARG CADDY_VERSION=2
-#=======================================================================
-FROM node:${NODE_VERSION} AS salt_core_js_build
-
-USER node
-WORKDIR /srv/core
-
-COPY package.json yarn.lock ./
-RUN yarn install --non-interactive
-
-COPY vite.config.js ./
-COPY assets ./assets/
-
-RUN mkdir -p public/build \
-  && yarn build
 
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
 #=======================================================================
@@ -144,6 +130,22 @@ COPY composer.json composer.lock symfony.lock ./
 RUN set -eux; \
 	composer install --no-interaction --prefer-dist --no-autoloader --no-scripts --no-progress; \
 	composer clear-cache
+
+#=======================================================================
+FROM node:${NODE_VERSION} AS salt_core_js_build
+
+USER node
+WORKDIR /srv/core
+
+COPY package.json yarn.lock ./
+COPY --from=salt_core_vendors /srv/core/vendor/symfony/ux-vue/assets ./vendor/symfony/ux-vue/assets/
+RUN yarn install --non-interactive
+
+COPY vite.config.js ./
+COPY assets ./assets/
+
+RUN mkdir -p public/build \
+  && yarn build
 
 #=======================================================================
 # Squash the COPY layers into 1 layer

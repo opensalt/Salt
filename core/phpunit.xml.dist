@@ -21,6 +21,12 @@
         <!-- postgresql+advisory://db_user:db_password@localhost/db_name -->
         <env name="LOCK_DSN" value="flock"/>
         <!-- ###- symfony/lock ### -->
+
+        <!-- ###+ prooph/pdo-event-store ### -->
+        <env name="EVENT_STORE_DSN" value="pgsql:host=127.0.0.1;dbname=event_streams"/>
+        <env name="EVENT_STORE_USER" value="user"/>
+        <env name="EVENT_STORE_PASSWORD" value="password"/>
+        <!-- ###- prooph/pdo-event-store ### -->
     </php>
 
     <testsuites>

@@ -771,6 +771,20 @@
     "symfony/service-contracts": {
         "version": "v1.1.2"
     },
+    "symfony/stimulus-bundle": {
+        "version": "2.21",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.13",
+            "ref": "6acd9ff4f7fd5626d2962109bd4ebab351d43c43"
+        },
+        "files": [
+            "assets/bootstrap.js",
+            "assets/controllers.json",
+            "assets/controllers/hello_controller.js"
+        ]
+    },
     "symfony/stopwatch": {
         "version": "v4.0.10"
     },
@@ -818,6 +832,18 @@
             "version": "7.0",
             "ref": "0df5844274d871b37fc3816c57a768ffc60a43a5"
         }
+    },
+    "symfony/ux-vue": {
+        "version": "2.21",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "2.9",
+            "ref": "7a6b5e211acc7b10b7190e704b40f6d2bca01adf"
+        },
+        "files": [
+            "assets/vue/controllers/Hello.vue"
+        ]
     },
     "symfony/validator": {
         "version": "4.3",

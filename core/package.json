@@ -56,13 +56,18 @@
     "yarn-deduplicate": "^1.1.1"
   },
   "devDependencies": {
+    "@hotwired/stimulus": "^3.0.0",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-inject": "^5.0.5",
+    "@symfony/stimulus-bridge": "^3.2.0",
+    "@symfony/ux-vue": "file:vendor/symfony/ux-vue/assets",
+    "@vitejs/plugin-vue": "^5.1.5",
     "sass-embedded": "^1.80.3",
     "sass-migrator": "^2.2.0",
     "url": "^0.11.4",
     "vite": "^5.4.9",
-    "vite-plugin-symfony": "^7.0.5"
+    "vite-plugin-symfony": "^7.0.5",
+    "vue": "^3.0"
   },
   "resolutions": {
     "cryptiles": ">= 4.1.2",

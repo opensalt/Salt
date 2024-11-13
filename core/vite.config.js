@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
+import vuePlugin from "@vitejs/plugin-vue";
 import inject from '@rollup/plugin-inject';
 import commonjs from '@rollup/plugin-commonjs';
 import { fileURLToPath } from 'url';
@@ -21,7 +22,10 @@ export default defineConfig({
         }),
          */
         /* react(), // if you're using React */
-        symfonyPlugin(),
+        vuePlugin(),
+        symfonyPlugin({
+            stimulus: true,
+        }),
     ],
     build: {
         alias: [
@@ -41,6 +45,7 @@ export default defineConfig({
                 credentialcss: "./assets/sass/credential.scss",
                 credential: "./assets/js/credential.js",
                 //swaggercss: "swagger-ui-dist/swagger-ui.css",
+                app: "./assets/app.js",
             },
             /*
             output: {

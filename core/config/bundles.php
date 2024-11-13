@@ -21,4 +21,6 @@ return [
     Novaway\Bundle\FeatureFlagBundle\NovawayFeatureFlagBundle::class => ['all' => true],
     Pentatrion\ViteBundle\PentatrionViteBundle::class => ['all' => true],
     Ecotone\SymfonyBundle\EcotoneSymfonyBundle::class => ['all' => true],
+    Symfony\UX\StimulusBundle\StimulusBundle::class => ['all' => true],
+    Symfony\UX\Vue\VueBundle::class => ['all' => true],
 ];

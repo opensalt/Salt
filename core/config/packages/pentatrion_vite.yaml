@@ -1,0 +1,6 @@
+pentatrion_vite:
+    preload: link-header
+    
+when@prod:
+    pentatrion_vite:
+        cache: true
