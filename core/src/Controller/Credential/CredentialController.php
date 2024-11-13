@@ -359,7 +359,10 @@ class CredentialController extends AbstractController
             throw $this->createNotFoundException('No credential found');
         }
 
-        if ('jsonld' === $request->getRequestFormat()) {
+        if ('jsonld' === $request->getRequestFormat()
+            || in_array('application/ld+json', $request->getAcceptableContentTypes())
+            || in_array('application/json', $request->getAcceptableContentTypes())
+        ) {
             return new JsonResponse($requestedVersion->getContent());
         }
 
