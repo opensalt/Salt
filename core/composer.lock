@@ -14279,16 +14279,16 @@
         },
         {
             "name": "codeception/module-symfony",
-            "version": "3.4.0",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/module-symfony.git",
-                "reference": "27e94c1e00b9c12a3f38d480eb7ab619e9440bb8"
+                "reference": "cad3c7a46da68f591dd363bc114ec9fde4f1dd63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/module-symfony/zipball/27e94c1e00b9c12a3f38d480eb7ab619e9440bb8",
-                "reference": "27e94c1e00b9c12a3f38d480eb7ab619e9440bb8",
+                "url": "https://api.github.com/repos/Codeception/module-symfony/zipball/cad3c7a46da68f591dd363bc114ec9fde4f1dd63",
+                "reference": "cad3c7a46da68f591dd363bc114ec9fde4f1dd63",
                 "shasum": ""
             },
             "require": {
@@ -14311,10 +14311,12 @@
                 "symfony/filesystem": "^5.4 | ^6.4 | ^7.0",
                 "symfony/form": "^5.4 | ^6.4 | ^7.0",
                 "symfony/framework-bundle": "^5.4 | ^6.4 | ^7.0",
+                "symfony/http-client": "^5.4 | ^6.4 | ^7.0",
                 "symfony/http-foundation": "^5.4 | ^6.4 | ^7.0",
                 "symfony/http-kernel": "^5.4 | ^6.4 | ^7.0",
                 "symfony/mailer": "^5.4 | ^6.4 | ^7.0",
                 "symfony/mime": "^5.4 | ^6.4 | ^7.0",
+                "symfony/notifier": "^5.4 | ^6.4 | ^7.0",
                 "symfony/options-resolver": "^5.4 | ^6.4 | ^7.0",
                 "symfony/property-access": "^5.4 | ^6.4 | ^7.0",
                 "symfony/property-info": "^5.4 | ^6.4 | ^7.0",
@@ -14355,13 +14357,14 @@
             "homepage": "https://codeception.com/",
             "keywords": [
                 "codeception",
+                "functional testing",
                 "symfony"
             ],
             "support": {
                 "issues": "https://github.com/Codeception/module-symfony/issues",
-                "source": "https://github.com/Codeception/module-symfony/tree/3.4.0"
+                "source": "https://github.com/Codeception/module-symfony/tree/3.5.0"
             },
-            "time": "2024-06-09T13:24:48+00:00"
+            "time": "2024-11-14T04:45:04+00:00"
         },
         {
             "name": "codeception/module-webdriver",
@@ -18424,9 +18427,9 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tetranz/select2entity-bundle": 20,
         "ericmartel/codeception-email-mailtrap": 20,
-        "roave/security-advisories": 20,
-        "tetranz/select2entity-bundle": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -18443,6 +18446,6 @@
         "ext-mbstring": "*",
         "ext-random": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
