@@ -275,3 +275,55 @@ table.table thead th.sorting_desc:after {
 /*!
   End Datatables sort styling
  */
+
+// Framework list styling
+.framework-list {
+    summary::before {
+        //content: url(../icons/fa-solid/landmark.svg) / "Creator";
+        content: "";
+        //display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        -webkit-mask: url(../icons/fa-solid/landmark.svg);
+        mask: url(../icons/fa-solid/landmark.svg);
+        background-color: rgba(var(--bs-primary-rgb));
+        //-webkit-mask-size: cover;
+        //mask-size: cover;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        padding: 0 0.5em;
+        margin: 0 0.25rem 0 0;
+    }
+
+    li {
+        list-style-image: url(../icons/fa6-solid/bars-staggered.svg);
+    }
+}
+
+// Credential list styling
+.credential-list {
+    summary::before {
+        //content: url(../icons/fa-solid/landmark.svg) / "Creator";
+        content: "";
+        //display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        -webkit-mask: url(../icons/fa-solid/landmark.svg);
+        mask: url(../icons/fa-solid/landmark.svg);
+        background-color: rgba(var(--bs-primary-rgb));
+        //-webkit-mask-size: cover;
+        //mask-size: cover;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        padding: 0 0.5em;
+        margin: 0 0.25rem 0 0;
+    }
+
+    li {
+        list-style-image: url(../icons/ph/certificate.svg);
+    }
+}

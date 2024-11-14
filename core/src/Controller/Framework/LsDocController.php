@@ -45,22 +45,7 @@ class LsDocController extends AbstractController
     #[Route(path: '/', name: 'lsdoc_index', methods: ['GET'])]
     public function index(): Response
     {
-        $em = $this->managerRegistry->getManager();
-
-        /** @var LsDoc[] $results */
-        $results = $em->getRepository(LsDoc::class)->findForList();
-
-        $lsDocs = [];
-        foreach ($results as $lsDoc) {
-            // Optimization: All but "Private Draft" are viewable to everyone (if not mirrored), only auth check "Private Draft"
-            if ((null !== $this->getUser() && $this->isGranted(Permission::FRAMEWORK_LIST, $lsDoc))
-                || (LsDoc::ADOPTION_STATUS_PRIVATE_DRAFT !== $lsDoc->getAdoptionStatus()
-                    && (!$lsDoc->isMirrored() || true === $lsDoc->getMirroredFramework()?->isVisible()))) {
-                $lsDocs[] = $lsDoc;
-            }
-        }
-
-        return $this->render('framework/ls_doc/index.html.twig', ['lsDocs' => $lsDocs]);
+        return $this->render('framework/ls_doc/index.html.twig');
     }
 
     /**

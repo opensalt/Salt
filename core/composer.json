@@ -85,6 +85,7 @@
         "stof/doctrine-extensions-bundle": "^1.7",
         "swaggest/json-schema": "^0.12.20",
         "symfony/asset": "*",
+        "symfony/asset-mapper": "7.1.*",
         "symfony/console": "*",
         "symfony/dotenv": "*",
         "symfony/expression-language": "*",
@@ -109,6 +110,7 @@
         "symfony/translation": "*",
         "symfony/twig-bundle": "*",
         "symfony/uid": "7.1.*",
+        "symfony/ux-icons": "^2.21",
         "symfony/ux-twig-component": "^2.21",
         "symfony/ux-vue": "^2.21",
         "symfony/validator": "*",
@@ -169,7 +171,9 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+            "importmap:install": "symfony-cmd",
+            "asset-map:compile": "symfony-cmd"
         },
         "post-install-cmd": [
             "@auto-scripts"

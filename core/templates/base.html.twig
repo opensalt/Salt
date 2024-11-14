@@ -38,7 +38,7 @@
                         <div class="container-fluid ms-1">
                             {%- block navbar_left -%}
                                 <div class="me-auto">
-                                <a class="navbar-brand" href="{{ url('salt_index') }}"><img src="{{ asset('assets/img/opensalt.svg') }}" alt="OpenSALT™"></a>
+                                <a class="navbar-brand" href="{{ url('salt_index') }}"><img src="{{ asset('static/img/opensalt.svg') }}" alt="OpenSALT™"></a>
                                 {% if brand_logo_url is not empty %}<a class="navbar-brand" href="{{ brand_link_url |default(url('salt_index')) |e('html_attr') }}" {% if brand_link_style is not empty %}style="{{ brand_link_style |e('html_attr') }}"{% endif %}><img src="{{ brand_logo_url |default('') |e('html_attr') }}" {% if brand_logo_style is not empty %}style="{{ brand_logo_style |e('html_attr') }}"{% endif %}></a>{% endif %}
                                 </div>
                             {%- endblock -%}
@@ -148,6 +148,7 @@
                 {{ vite_entry_script_tags('site') }}
             {% endblock %}
             {% block javascripts %}{% endblock %}
+            {% block importmap %}{# importmap('app') #}{% endblock %}
             {{ vite_entry_script_tags('app') }}
         </div>
     </body>

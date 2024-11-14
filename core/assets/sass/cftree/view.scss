@@ -425,7 +425,7 @@ div.fancytree-drag-helper span.fancytree-childcounter {
     // document
     .fancytree-container span.fancytree-icon, .fancytree-container span.fancytree-icon:hover
     {
-        background-image: url('#{$salt-view-font-path}/assets/img/doc.png');
+        background-image: url('#{$salt-view-font-path}/static/img/doc.png');
         background-position: inherit;
         background-size: 20px;
         width:20px;
@@ -436,19 +436,19 @@ div.fancytree-drag-helper span.fancytree-childcounter {
     .fancytree-container ul .fancytree-ico-cf span.fancytree-icon, .fancytree-container ul .fancytree-ico-cf span.fancytree-icon:hover,
     .fancytree-container ul .fancytree-ico-ef span.fancytree-icon, .fancytree-container ul .fancytree-ico-ef span.fancytree-icon:hover
     {
-        background-image: url('#{$salt-view-font-path}/assets/img/folder.png');
+        background-image: url('#{$salt-view-font-path}/static/img/folder.png');
     }
 
     .fancytree-force-folder, .fancytree-force-folder:hover
     {
-        background-image: url('#{$salt-view-font-path}/assets/img/folder.png') !important;
+        background-image: url('#{$salt-view-font-path}/static/img/folder.png') !important;
     }
 
     // leaf
     .fancytree-container ul .fancytree-exp-n span.fancytree-icon, .fancytree-container ul .fancytree-exp-n span.fancytree-icon:hover,
     .fancytree-container ul .fancytree-exp-nl span.fancytree-icon, .fancytree-container ul .fancytree-exp-nl span.fancytree-icon:hover
     {
-        background-image: url('#{$salt-view-font-path}/assets/img/item.png');
+        background-image: url('#{$salt-view-font-path}/static/img/item.png');
     }
 }
 
@@ -457,7 +457,7 @@ div.fancytree-drag-helper span.fancytree-childcounter {
     .fancytree-exp-n span.fancytree-icon, .fancytree-exp-n span.fancytree-icon:hover,
     .fancytree-exp-nl span.fancytree-icon, .fancytree-exp-nl span.fancytree-icon:hover
     {
-        background-image: url('#{$salt-view-font-path}/assets/img/doc.png');
+        background-image: url('#{$salt-view-font-path}/static/img/doc.png');
         background-position: inherit;
         background-size: 20px;
         width:20px;

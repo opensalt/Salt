@@ -430,7 +430,7 @@ function ApxDocument(initializer, apx) {
                 }
 
                 // if we don't show it now, it's there in case we add an association later
-                title = '<div class="treeHasAssociation" style="display:' + associationDisplay + '"><img src="/assets/img/association-icon.png" title="This item is the origin for one or more associations."></div>' + title;
+                title = '<div class="treeHasAssociation" style="display:' + associationDisplay + '"><img src="/static/img/association-icon.png" title="This item is the origin for one or more associations."></div>' + title;
             }
 
             return title;
@@ -1349,7 +1349,7 @@ function ApxDocument(initializer, apx) {
                 title = '<span style="float:right" class="lessImportant">Version ' + render.escaped(item.version) + '</span>' + title;
             }
             $jq.find(".itemTitleSpan").html(title);
-            $jq.find(".itemTitleIcon").attr("src", "/assets/img/doc.png");
+            $jq.find(".itemTitleIcon").attr("src", "/static/img/doc.png");
 
             /////////////////////////////////////
             // Show item details
@@ -1465,9 +1465,9 @@ function ApxDocument(initializer, apx) {
 // show title and appropriate icon
             $jq.find(".itemTitleSpan").html(self.getItemTitle(item));
             if (item.setToParent === true || (!empty(item.ftNodeData) && item.ftNodeData.children.length > 0)) {
-                $jq.find(".itemTitleIcon").attr("src", "/assets/img/folder.png");
+                $jq.find(".itemTitleIcon").attr("src", "/static/img/folder.png");
             } else {
-                $jq.find(".itemTitleIcon").attr("src", "/assets/img/item.png");
+                $jq.find(".itemTitleIcon").attr("src", "/static/img/item.png");
             }
 
             // show item details
@@ -1628,7 +1628,7 @@ function ApxDocument(initializer, apx) {
                         let title = self.getAssociationTypePretty(a) + subtype;
                         let icon = "";
                         if (a.type !== "isChildOf") {
-                            icon = '<img class="association-card-icon" src="/assets/img/association-icon.png">';
+                            icon = '<img class="association-card-icon" src="/static/img/association-icon.png">';
                         }
                         html += '<section class="card card-default card-component item-component">'
                             + '<div class="card-header">' + icon + render.escaped(title) + '</div>'
@@ -1928,9 +1928,9 @@ function ApxDocument(initializer, apx) {
             if (item == self.currentItem) {
                 let src;
                 if (item.setToParent) {
-                    src = "/assets/img/folder.png";
+                    src = "/static/img/folder.png";
                 } else {
-                    src = "/assets/img/item.png";
+                    src = "/static/img/item.png";
                 }
                 $("#itemInfo").find(".itemTitleIcon").attr("src", src);
             }

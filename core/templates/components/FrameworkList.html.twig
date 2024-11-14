@@ -1,12 +1,12 @@
-<div>
+<div class="framework-list">
     {% for creator,list in this.frameworks %}
     <details class="ms-3 my-1">
         <summary class="fw-bold">
-            <i class="fa fa-landmark text-primary"></i> {{ creator }}
+            {{ creator }}
         </summary>
-            <ul class="mb-0 ms-4 list-unstyled">
+            <ul class="mb-0 ms-4">
             {% for framework in list %}
-                <li class="my-1"><i class="fa fa-bars-staggered text-primary"></i> <a href="{{ path('doc_tree_view', {"slug": framework.id}) }}">{{ framework.title }}</a></li>
+                <li class="my-1"><a href="{{ path('doc_tree_view', {"slug": framework.id}) }}">{{ framework.title }}</a></li>
             {% endfor %}
             </ul>
     </details>

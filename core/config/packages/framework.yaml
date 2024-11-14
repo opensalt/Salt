@@ -53,9 +53,6 @@ framework:
 
     assets:
         version: '%assets_version%'
-        packages:
-          encore:
-            json_manifest_path: '%kernel.project_dir%/public/build/manifest.json'
 
     rate_limiter:
         excel_download:

@@ -92,7 +92,7 @@ parameters:
     local_filesystem_path: '%env(LOCAL_FILESYSTEM_PATH)%'
     footer_left_text: '%env(FOOTER_LEFT_TEXT)%'
     base_template: 'base.html.twig'
-    assets_version: '210901'
+    assets_version: '241101'
     case_network_client_id: '%env(CASE_NETWORK_CLIENT_ID)%'
     case_network_client_secret: '%env(CASE_NETWORK_CLIENT_SECRET)%'
     case_network_token_endpoint: '%env(CASE_NETWORK_TOKEN_ENDPOINT)%'

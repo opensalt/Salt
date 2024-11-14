@@ -1,47 +1,9 @@
 {% extends base_template %}
 
-{% block bodyclasses %}{{ parent() }}{% endblock %}
 {% block body %}
     {% include 'framework/ls_doc/_competency_header.html.twig' %}
 
-    <div id="competencyTree">
-        {% set lastCreator = '' %}
-        <ul id="comptencyTreeData" style="display:none;">
-            {% for framework in lsDocs %}
-                {% if framework.creator != lastCreator %}
-                    {% if not loop.first %}</ul></li>{% endif %}
-                        <li class="folder">{{ framework.creator }}<ul>
-                                {% set lastCreator = framework.creator %}
-                    {% endif %}
-                    <li class="salt-framework-link"><a href="{{ path('doc_tree_view', { 'slug': framework.slug }) }}">{{ framework.title }}</a></li>
-                    {% if loop.last == true and framework.creator != '' %}
-                        </ul></li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
-    </div>
-    {% include 'framework/ls_doc/wizard.html.twig' %}
-{% endblock %}
+    <twig:FrameworkList/>
 
-{% block javascripts %}
-<script type="module">
-    $('#competencyTree').fancytree({
-        activate: function(event, data){
-            let node = data.node;
-            if (!$.isEmptyObject(node.data)) {
-                if (undefined !== node.data.href)
-                    window.location.href = node.data.href;
-            }
-        },
-        dblclick: function(event, data) {
-            // ignore double clicks
-            return false;
-        },
-        click: function(event, data) {
-            if (data.node.isFolder() && data.targetType !== 'expander') {
-                data.node.toggleExpanded();
-            }
-        }
-    });
-</script>
+    {% include 'framework/ls_doc/wizard.html.twig' %}
 {% endblock %}
