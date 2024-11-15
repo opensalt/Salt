@@ -17,10 +17,6 @@ html,body {
 }
 
 header {
-    .navbar-expand {
-        border-width:0;
-    }
-
     .navbar-brand {
         padding:5px;
         background-color: var(--bs-white);
@@ -34,31 +30,10 @@ header {
         }
     }
 
-    .navbar-btn {
-        &.float-end {
-            margin-top: 28.5px;
-        }
-
-        &.btn-login {
-            @include button-variant($white, transparent, transparent);
-
-            &:hover {
-                color: darken($brand-primary, 6.5%);
-                background-color: $neutral-bg-light;
-                border-color: darken($neutral-bg-light, 10%);
-            }
-        }
-
-        &.btn-signup {
-            @include button-variant($btn-signup-color, $btn-signup-bg, $btn-signup-border);
-
-            margin-right: 5px;
-        }
+    .dropdown-menu[data-bs-popper] {
+        top: 75%;
+        left: -130px;
     }
-}
-
-.bottomPadd8{
-    padding-bottom: 8px;
 }
 
 /* hack for IE11 to at least have the logo centred */
@@ -325,5 +300,14 @@ table.table thead th.sorting_desc:after {
 
     li {
         list-style-image: url(../icons/ph/certificate.svg);
+    }
+}
+
+// Remove drop-arrow from dropdown toggle in main menu
+.dropdown-toggle[data-no-icon="true"] {
+    --bs-btn-font-size: 1.5rem;
+
+    &::after {
+        border-top: 0;
     }
 }

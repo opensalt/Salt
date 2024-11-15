@@ -368,4 +368,28 @@ class User implements Context
         $I->click('th.sorting_asc');
         $I->assertEquals($I->grabTextFrom('//*[@id="datatable"]/tbody/tr[1]/td[5]'), 'Pending', 'Can not see status column');
     }
+
+    /**
+     * @Then /^I should see the main menu in the header$/
+     */
+    public function iShouldSeeTheMainMenuInTheHeader()
+    {
+        $I = $this->I;
+
+        $I->waitForElement('header a.dropdown-toggle svg[aria-label="Main Menu"]', 60);
+        $I->seeElement('header a.dropdown-toggle svg[aria-label="Main Menu"]');
+    }
+
+    /**
+     * @Then /^I should be logged in$/
+     */
+    public function iShouldBeLoggedIn()
+    {
+        $I = $this->I;
+
+        $this->iShouldSeeTheMainMenuInTheHeader();
+        $I->clickWithLeftButton(['css' => 'header a.dropdown-toggle svg[aria-label="Main Menu"]']);
+        $I->waitForElement('a.logout', 60);
+        $I->seeElement('a.logout');
+    }
 }

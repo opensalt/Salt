@@ -17,7 +17,7 @@ Feature: A user can sign into the application
     When I fill in the username
     And I fill in the password
     And I press "Login"
-    Then I should see "Signed in as" in the header
+    Then I should be logged in
 
     Examples:
       | role |

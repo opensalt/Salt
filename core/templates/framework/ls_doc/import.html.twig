@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    {% include 'framework/ls_doc/wizard.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    <script type="module">
+        let wizard = $('#wizard');
+        wizard.on('hide.bs.modal', () => {
+            window.location.href = '{{ path('lsdoc_index') }}';
+        });
+        wizard.modal('show');
+    </script>
+{% endblock %}
+

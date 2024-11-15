@@ -48,6 +48,12 @@ class LsDocController extends AbstractController
         return $this->render('framework/ls_doc/index.html.twig');
     }
 
+    #[Route(path: '/import', name: 'lsdoc_import', methods: ['GET'])]
+    public function import(): Response
+    {
+        return $this->render('framework/ls_doc/import.html.twig');
+    }
+
     /**
      * Show frameworks from a remote system.
      */

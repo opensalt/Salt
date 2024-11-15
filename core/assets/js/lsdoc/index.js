@@ -2,6 +2,14 @@ import { simplify, spinner, titleize } from '../util-salt';
 import Papa from 'papaparse';
 import $ from '../_jquerySetup';
 
+function reloadPage() {
+    if (window.location.pathname === '/cfdoc/import') {
+        window.location.href = "/cfdoc/";
+    } else {
+        window.location.reload();
+    }
+}
+
 const SaltGithub = (function () {
     function getRepoList(page, perPage) {
         if ($('.js-github-list').length > 0) {
@@ -162,7 +170,7 @@ const UpdateFramework = (function () {
 
     function update(fileContent) {
         $.post(pathToUpdateFramework + "/update", getRequestParams(fileContent), function () {
-            location.reload();
+            reloadPage();
         });
     }
 
@@ -279,7 +287,7 @@ const Import = (function () {
             type: 'post',
             data: dataRequest,
             success: function (response) {
-                location.reload();
+                reloadPage();
             }
         });
     }
@@ -292,7 +300,7 @@ const Import = (function () {
                 fileUrl: $('#asn-url').val()
             },
             success: function (response) {
-                location.reload();
+                reloadPage();
             },
             error: function () {
                 $('.asn-error-msg').html('<strong>Error!</strong> Something went wrong.').removeClass('d-none');
@@ -316,7 +324,7 @@ const Import = (function () {
                         }))
             },
             success: function (response) {
-                location.reload();
+                reloadPage();
             },
             error: function () {
                 $('.tab-content').removeClass('d-none');
@@ -409,7 +417,7 @@ const SaltLocal = (function () {
                     processData: false,
                     type: 'POST',
                     success: function (response) {
-                        location.reload();
+                        reloadPage();
                     },
                     error: function () {
                         $('.tab-content').removeClass('d-none');

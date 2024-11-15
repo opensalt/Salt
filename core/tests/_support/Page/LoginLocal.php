@@ -53,8 +53,10 @@ class LoginLocal implements Context, Login
         $I->fillField(self::$passwordField, $password);
         $I->click(self::$loginButton);
 
-        $I->waitForText('Signed in as', 60);
-        $I->iShouldSeeInTheHeader('Signed in as');
+        $I->waitForElement('header a.dropdown-toggle svg[aria-label="Main Menu"]', 60);
+        $I->seeElement('header a.dropdown-toggle svg[aria-label="Main Menu"]');
+        $I->waitForElement('a.logout', 60);
+        $I->seeElement('a.logout');
         $I->dontSee('Unrecognized username or password');
 
         $I->iAmOnTheHomepage();
