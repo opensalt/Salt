@@ -34,13 +34,13 @@ use Symfony\Component\Uid\Uuid;
 #[EventSourcingAggregate]
 #[AddUserId]
 #[Stream(self::STREAM)]
-#[AggregateType('credential_definition')]
+#[AggregateType(self::AGGREGATE_TYPE)]
 final class CredentialDefinition
 {
     use WithAggregateVersioning;
 
     public const string STREAM = 'credential_definition_stream';
-    public const string CREATE_DRAFT_CREDENTIAL_DEFINITION = 'credential_definition.create_draft';
+    public const string AGGREGATE_TYPE = 'credential_definition';
 
     #[Identifier]
     private Uuid $id;

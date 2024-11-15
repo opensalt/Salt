@@ -4,6 +4,12 @@ controllers:
         namespace: App\Controller
     type: attribute
 
+domain_controllers:
+    resource:
+        path: ../../src/Domain/
+        namespace: App\Domain
+    type: attribute
+
 kernel:
     resource: App\Kernel
     type: attribute

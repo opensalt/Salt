@@ -1,0 +1,21 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+    <h1>Add an issuer to the registry</h1>
+
+    {{ form_start(form, {'attr': {'id': 'issuer_form'}}) }}
+        <div class="container">
+            {{ form_widget(form) }}
+            <ul class="list-inline text-end">
+                <li class="list-inline-item">
+                    <input class="btn btn-primary" type="submit" value="Add" />
+                    <a class="btn btn-default" href="{{ path('issuer_registry_index') }}">Cancel</a>
+                </li>
+            </ul>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block title %}
+    Add a new issuer
+{% endblock %}

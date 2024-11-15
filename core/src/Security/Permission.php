@@ -53,4 +53,10 @@ class Permission
     final public const string FRONT_MATTER_EDIT = 'front_matter_edit';
     final public const string FRONT_MATTER_EDIT_ALL = 'front_matter_edit_all';
     final public const string FRONT_MATTER_DELETE = 'front_matter_delete';
+
+    final public const string ISSUER_REGISTRY_LIST = 'issuer_registry_list';
+    final public const string ISSUER_REGISTRY_VIEW = 'issuer_registry_view';
+    final public const string ISSUER_REGISTRY_ADD = 'issuer_registry_add';
+    final public const string ISSUER_REGISTRY_EDIT = 'issuer_registry_edit';
+    final public const string ISSUER_REGISTRY_DELETE = 'issuer_registry_delete';
 }

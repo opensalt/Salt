@@ -1,0 +1,42 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Issuer {{ issuer.name }}
+{% endblock %}
+
+{% block body %}
+    <h1>Issuer: {{ issuer.name }}</h1>
+
+    <table class="table table-">
+        <tr>
+            <td>Name</td>
+            <td>{{ issuer.name }}</td>
+        </tr>
+        <tr>
+            <td>DID</td>
+            <td>{{ issuer.did|default('Unknown')}}</td>
+        </tr>
+        <tr>
+            <td>Contact</td>
+            <td>{{ issuer.contact|default('Unknown') }}</td>
+        </tr>
+        <tr>
+            <td>Trusted</td>
+            <td>{{ issuer.trusted ? 'Yes' : ((issuer.trusted is null) ? 'Unknown' : 'No') }}</td>
+        </tr>
+        <tr>
+            <td>Notes</td>
+            <td>{{ issuer.notes|default('None') }}</td>
+        </tr>
+    </table>
+
+    {% if is_granted(constant('App\\Security\\Permission::ISSUER_REGISTRY_EDIT'), issuer) %}
+        <ul class="list-inline text-end">
+            <li class="list-inline-item">
+                <a class="btn btn-default" href="{{ path('issuer_registry_edit', {'id': issuer.id}) }}">Edit</a>
+                <a class="btn btn-default" href="{{ path('issuer_registry_index') }}">Back to list</a>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+

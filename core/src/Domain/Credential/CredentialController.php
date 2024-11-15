@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Credential;
+namespace App\Domain\Credential;
 
 use App\Domain\Credential\Command\ChangeDefinitionContent;
 use App\Domain\Credential\Command\ChangeDefinitionHierarchy;
@@ -8,8 +8,6 @@ use App\Domain\Credential\Command\ChangeDefinitionOrganization;
 use App\Domain\Credential\Command\CreateCredentialDefinitionDraft;
 use App\Domain\Credential\Command\DeprecateCredentialDefinition;
 use App\Domain\Credential\Command\PublishCredentialDefinition;
-use App\Domain\Credential\CredentialDefinition;
-use App\Domain\Credential\CredentialDefinitionRepository;
 use App\Domain\Credential\DTO\CredentialDefinitionDto;
 use App\Domain\Credential\Form\CredentialDefinitionContentType;
 use App\Domain\Credential\Form\CredentialDefinitionCreateType;
@@ -47,7 +45,7 @@ class CredentialController extends AbstractController
     }
 
     #[Route('/credential', name: 'credential_index', methods: ['GET'])]
-    public function list(Request $request): Response
+    public function list(): Response
     {
         $list = $this->queryBus->sendWithRouting('getAllCredentialDefinitions');
 

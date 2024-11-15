@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Issuer Registry List
+{% endblock %}
+
+{% block body %}
+    <h1>Issuer Registry List</h1>
+
+    {% if issuers is not empty %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for issuer in issuers %}
+                    <tr>
+                        <td><a href="{{ path('issuer_registry_show', {'id': issuer.id}) }}">{{ issuer.name }}</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

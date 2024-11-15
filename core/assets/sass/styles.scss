@@ -311,3 +311,8 @@ table.table thead th.sorting_desc:after {
         border-top: 0;
     }
 }
+
+// Added for now, but should be removed soon
+.text-right {
+    @extend .text-end;
+}

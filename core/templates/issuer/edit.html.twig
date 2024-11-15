@@ -1,0 +1,22 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Update Issuer
+{% endblock %}
+
+{% block body %}
+    <h1>Update an issuer in the registry</h1>
+
+    {{ form_start(form, {'attr': {'id': 'issuer_form'}}) }}
+    <div class="container">
+        {{ form_widget(form) }}
+        <ul class="list-inline text-end">
+            <li class="list-inline-item">
+                <input class="btn btn-primary" type="submit" value="Update" />
+                <a class="btn btn-default" href="{{ path('issuer_registry_index') }}">Cancel</a>
+            </li>
+        </ul>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+

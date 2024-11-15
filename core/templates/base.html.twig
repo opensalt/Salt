@@ -61,11 +61,19 @@
                                                     <li><a href="{{ url("lsdoc_import") }}" class="dropdown-item">Import framework</a></li>
                                                 {% endif %}
                                                 <li role="separator" class="dropdown-divider"></li>
+
                                                 <li><a href="{{ url("credential_index") }}" class="dropdown-item">List credentials</a></li>
                                                 {% if is_granted(constant('App\\Security\\Permission::CREDENTIAL_DEF_CREATE')) %}
                                                     <li><a href="{{ url("credential_new") }}" class="dropdown-item">Add credential</a></li>
                                                 {% endif %}
                                                 <li role="separator" class="dropdown-divider"></li>
+
+                                                <li><a href="{{ url("issuer_registry_index") }}" class="dropdown-item">List issuers</a></li>
+                                                {% if is_granted(constant('App\\Security\\Permission::ISSUER_REGISTRY_ADD')) %}
+                                                    <li><a href="{{ url("issuer_registry_new") }}" class="dropdown-item">Add issuer</a></li>
+                                                {% endif %}
+                                                <li role="separator" class="dropdown-divider"></li>
+
                                                 {%- set seperator_1 = false -%}
                                                 {% if is_granted(constant('App\\Security\\Permission::MANAGE_ORGANIZATIONS')) %}
                                                     {%- set seperator_1 = true -%}
@@ -90,11 +98,13 @@
                                                 {% if seperator_1 %}
                                                     <li role="separator" class="dropdown-divider"></li>
                                                 {% endif %}
+
                                                 <li><a href="{{ url("user_change_password") }}" class="dropdown-item">Change password</a></li>
                                                 {% if isFeatureEnabled('mfa') %}
                                                     <li><a href="{{ url("app_2fa_reset_confirm") }}" class="dropdown-item">Reset 2FA Config</a></li>
                                                 {% endif %}
                                                 <li role="separator" class="dropdown-divider"></li>
+
                                                 <li><a href="{{ url("logout") }}" class="logout dropdown-item">Sign out</a></li>
                                             </ul>
                                         </li>
