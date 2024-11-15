@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Domain;
+namespace App\Domain\Credential;
 
-use App\Domain\Credential\CredentialDefinition;
 use Ecotone\Modelling\Attribute\Repository;
 use Symfony\Component\Uid\Uuid;
 
