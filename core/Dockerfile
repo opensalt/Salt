@@ -160,6 +160,7 @@ COPY .env \
      package.json vite.config.js yarn.lock \
      codeception.dist.yml \
 	 ./
+COPY assets/ assets/
 COPY bin/ bin/
 COPY config/ config/
 COPY migrations/ migrations/
