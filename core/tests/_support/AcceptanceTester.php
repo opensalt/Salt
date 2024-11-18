@@ -105,7 +105,16 @@ class AcceptanceTester extends \Codeception\Actor implements Context
      */
     public function iPress(string $link): AcceptanceTester
     {
-        $this->click($link);
+        switch ($link) {
+            case 'Import framework':
+                $this->clickWithLeftButton(['css' => 'header a.dropdown-toggle svg[aria-label="Main Menu"]']);
+                $this->click('Import framework');
+                $this->waitForElementVisible('.modal');
+                break;
+
+            default:
+                $this->click($link);
+        }
 
         return $this;
     }

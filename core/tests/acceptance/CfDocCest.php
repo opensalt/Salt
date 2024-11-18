@@ -10,7 +10,8 @@ class CfDocCest
         $loginPage = new Login($I, $scenario);
         $loginPage->loginAsRole('Editor');
         $I->amOnPage('/cfdoc');
-        $I->see('Create a new Framework');
+        $I->clickWithLeftButton(['css' => 'header a.dropdown-toggle svg[aria-label="Main Menu"]']);
+        $I->see('Add framework');
         $I->see('Import framework');
     }
 
@@ -19,7 +20,7 @@ class CfDocCest
         $loginPage = new Login($I, $scenario);
         $loginPage->loginAsRole('User');
         $I->amOnPage('/cfdoc');
-        $I->dontSee('Create a new Framework');
+        $I->dontSee('Add framework');
         $I->dontSee('Import framework');
     }
 }

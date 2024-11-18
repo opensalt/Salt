@@ -15,6 +15,7 @@ class DocTreeCest
         $loginPage->loginAsRole('Admin');
         $I->amOnPage('/cfdoc');
         $I->see('Import framework');
+        $I->clickWithLeftButton(['css' => 'header a.dropdown-toggle svg[aria-label="Main Menu"]']);
         $I->click('Import framework');
         $I->waitForElementVisible('.modal');
         $I->see('Import CASE® file');
