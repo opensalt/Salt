@@ -44,7 +44,11 @@ class AcceptanceTester extends \Codeception\Actor implements Context
      */
     public function iShouldSee(string $arg1): AcceptanceTester
     {
-        $this->see($arg1);
+        try {
+            $this->see($arg1);
+        } catch (\Facebook\WebDriver\Exception\StaleElementReferenceException) {
+            $this->see($arg1);
+        }
 
         return $this;
     }
@@ -54,7 +58,11 @@ class AcceptanceTester extends \Codeception\Actor implements Context
      */
     public function iShouldNotSeeTheButton(string $arg1): AcceptanceTester
     {
-        $this->cantSee($arg1, 'button');
+        try {
+            $this->cantSee($arg1, 'button');
+        } catch (\Facebook\WebDriver\Exception\StaleElementReferenceException) {
+            $this->cantSee($arg1, 'button');
+        }
 
         return $this;
     }
@@ -64,7 +72,11 @@ class AcceptanceTester extends \Codeception\Actor implements Context
      */
     public function iShouldSeeTheButton(string $arg1): AcceptanceTester
     {
-        $this->see($arg1, 'button');
+        try {
+            $this->see($arg1, 'button');
+        } catch (\Facebook\WebDriver\Exception\StaleElementReferenceException) {
+            $this->see($arg1, 'button');
+        }
 
         return $this;
     }

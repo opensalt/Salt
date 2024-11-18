@@ -268,11 +268,11 @@ class Framework implements Context
         $creatorName = $this->creatorName;
 
         $I->iAmOnTheHomepage();
-        $I->clickWithLeftButton(['xpath' => "//span[text()='{$creatorName}']/../.."]);
+        $I->clickWithLeftButton(['xpath' => "//span[text()='{$creatorName}']/.."]);
 
         $frameworkName = $this->rememberedFramework;
         $I->waitForElementVisible("//span[text()='{$frameworkName}']");
-        $I->clickWithLeftButton(['xpath' => "//span[text()='{$frameworkName}']/../.."]);
+        $I->clickWithLeftButton(['xpath' => "//span[text()='{$frameworkName}']/.."]);
 
         $I->waitForElementNotVisible('#modalSpinner', 120);
         $I->waitForElementVisible('#itemSection h4.itemTitle', 120);
@@ -1556,11 +1556,11 @@ class Framework implements Context
         $creatorName = $this->creatorName;
 
         $I->iAmOnTheHomepage();
-        $I->clickWithLeftButton(['xpath' => "//span[text()='{$creatorName}']/../.."]);
+        $I->clickWithLeftButton(['xpath' => "//span[text()='{$creatorName}']/.."]);
 
         $frameworkName = $this->rememberedFramework;
         $I->waitForElementVisible("//span[text()='{$frameworkName}']");
-        $I->clickWithLeftButton(['xpath' => "//span[text()='{$frameworkName}']/../.."]);
+        $I->clickWithLeftButton(['xpath' => "//span[text()='{$frameworkName}']/.."]);
 
         $I->waitForElementNotVisible('#modalSpinner', 120);
         $I->waitForElementVisible('#itemSection h4.itemTitle', 120);
