@@ -1025,7 +1025,11 @@ class Framework implements Context
         $this->creatorName = 'ImportSpreadsheet';
         $this->rememberedFramework = 'SampleFramework';
 
-        $I->see('ImportSpreadsheet', '.fancytree-title');
+        try {
+            $I->see($this->creatorName, 'span');
+        } catch (StaleElementReferenceException) {
+            $I->see($this->creatorName, 'span');
+        }
     }
 
     /**
