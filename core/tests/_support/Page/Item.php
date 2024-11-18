@@ -411,7 +411,7 @@ class Item implements Context
 
         $I->amOnPage(self::$itemPath . $I->getItemId());
         $I->waitForElementVisible('//*[@id="itemInfo"]');
-        $I->seeElementInDOM('//img[@src="/assets/img/folder.png"]');
+        $I->seeElementInDOM('//img[@src="/static/img/folder.png"]');
     }
 
     /**
