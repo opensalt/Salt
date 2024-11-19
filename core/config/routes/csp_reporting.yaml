@@ -1,0 +1,4 @@
+nelmio_security:
+    path: /csp/report
+    defaults: { _controller: nelmio_security.csp_reporter_controller::indexAction }
+    methods:  [POST]
