@@ -56,6 +56,9 @@ nelmio_security:
                 enabled: false
             report-uri: '/csp/report'
             default-src: [ 'self' ]
+            connect-src:
+                - 'self'
+                - cdn.jsdelivr.net
             script-src:
                 - 'self'
                 - 'unsafe-inline'
@@ -68,10 +71,12 @@ nelmio_security:
                 - 'self'
                 - 'unsafe-inline'
                 - fonts.googleapis.com
+                - maxcdn.bootstrapcdn.com
             font-src:
                 - 'self'
                 - 'data:'
                 - fonts.gstatic.com
+                - maxcdn.bootstrapcdn.com
             frame-ancestors:
                 - 'self'
             block-all-mixed-content: true # defaults to false, blocks HTTP content over HTTPS transport
