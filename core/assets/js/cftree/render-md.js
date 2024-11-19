@@ -214,7 +214,7 @@ const render = (function() {
                         endPoint.line, cm);
                 }
             }
-            cm.focus();
+            cm.trigger('focus');
         }
     }
 

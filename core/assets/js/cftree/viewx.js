@@ -529,7 +529,7 @@ export default function (apx) {
                 if ("undefined" !== typeof apx.locks.mine.items[id] && "number" === typeof apx.locks.mine.items[id].warning) {
                     clearTimeout(apx.locks.mine.items[id].warning);
                     apx.locks.mine.items[id].timeout = 0;
-                    if ("undefined" !== typeof apx.locks.mine.warnings[id] && $.isFunction(apx.locks.mine.warnings[id].close)) {
+                    if ("undefined" !== typeof apx.locks.mine.warnings[id] && ("function" === typeof apx.locks.mine.warnings[id].close)) {
                         apx.locks.mine.warnings[id].close();
                     }
                 }
@@ -713,7 +713,7 @@ export default function (apx) {
                     if ("undefined" !== typeof apx.locks.mine.docs[id] && "number" === typeof apx.locks.mine.docs[id].warning) {
                         clearTimeout(apx.locks.mine.docs[id].warning);
                         apx.locks.mine.docs[id].timeout = 0;
-                        if ("undefined" !== typeof apx.locks.mine.warnings[id] && $.isFunction(apx.locks.mine.warnings[id].close)) {
+                        if ("undefined" !== typeof apx.locks.mine.warnings[id] && ("function" === typeof apx.locks.mine.warnings[id].close)) {
                             apx.locks.mine.warnings[id].close();
                         }
                     }
@@ -853,7 +853,7 @@ export default function (apx) {
                     apx.notifications.updates = data;
 
                     $.each(msg.changes, function (key, list) {
-                        if ($.isFunction(apx.notifications[key])) {
+                        if (("function" === typeof apx.notifications[key])) {
                             apx.notifications[key](list, msg);
                         } else {
                             console.log("function not found", key, list);
