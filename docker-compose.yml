@@ -6,7 +6,7 @@ services:
       cache_from:
         - opensalt/opensalt:cron-develop
     depends_on:
-      - php
+      - web
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
       #- "./crontab.json:/opt/crontab/config.json:rw"
@@ -14,23 +14,22 @@ services:
       LOG_FILE: /dev/stdout
     restart: unless-stopped
 
-  php:
-    image: opensalt/opensalt:core-3.x
+  web:
+    image: opensalt/opensalt:web-3.x
     build:
       context: ./core
-      target: salt_core_app
+      target: salt_core_prod
       args:
         - BUILD_NUMBER=${BUILD_NUMBER:-x}
         - BUILD_DATE=${BUILD_DATE:-0}
         - COMMIT=${COMMIT:-unknown}
         - VERSION=${VERSION:-3.3.0-dev}
-      cache_from:
-        - opensalt/opensalt:core-develop
     depends_on:
       - db
     environment:
       APP_ENV: "${APP_ENV:-prod}"
       APP_SECRET:
+      SERVER_NAME: ${SERVER_NAME:-localhost}, :80
       MYSQL_DATABASE:
       MYSQL_USER:
       MYSQL_PASSWORD:
@@ -38,6 +37,9 @@ services:
       DB_USE_RDS_CERT:
       MERCURE_PUBLISH_URL: "http://web/.well-known/mercure"
       MERCURE_JWT_TOKEN:
+      CADDY_MERCURE_JWT_SECRET: 669be013-251e-42e5-97cf-111d1c96a33e
+      MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       TRUSTED_PROXIES:
       CORS_ALLOW_ORIGIN:
       BRAND_LOGO_URL:
@@ -71,36 +73,6 @@ services:
       CASE_NETWORK_TOKEN_ENDPOINT:
       CASE_NETWORK_SCOPE:
     restart: unless-stopped
-
-#  pwa:
-#    build:
-#      context: ./pwa
-#      target: salt_core_pwa_prod
-#    environment:
-#      API_PLATFORM_CLIENT_GENERATOR_ENTRYPOINT: http://web
-
-  web:
-    image: opensalt/opensalt:web-3.x
-    build:
-      context: ./core
-      target: salt_core_caddy
-      args:
-        - BUILD_NUMBER=${BUILD_NUMBER:-x}
-        - BUILD_DATE=${BUILD_DATE:-0}
-        - COMMIT=${COMMIT:-unknown}
-        - VERSION=${VERSION:-3.2.0-dev}
-      cache_from:
-        - opensalt/opensalt:web-develop
-    depends_on:
-      - php
-#      - pwa
-    environment:
-#      PWA_UPSTREAM: pwa:3000
-      MERCURE_PUBLISHER_JWT_KEY: ${MERCURE_PUBLISHER_JWT_KEY:-!ChangeThisMercureHubJWTSecretKey!}
-      MERCURE_SUBSCRIBER_JWT_KEY: ${MERCURE_SUBSCRIBER_JWT_KEY:-!ChangeThisMercureHubJWTSecretKey!}
-      MERCURE_TRANSPORT_URL: 'local://local'
-    restart: unless-stopped
-    #user: caddy
     sysctls:
       - net.ipv4.ip_unprivileged_port_start=0
     cap_add:

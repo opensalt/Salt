@@ -4,4 +4,4 @@ cd $(dirname $0)/../..
 
 docker compose run --rm --no-deps \
     -u $(id -u):$(id -g) \
-    php "$@"
+    web "$@"

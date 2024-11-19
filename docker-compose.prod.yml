@@ -2,27 +2,8 @@ version: "3.4"
 
 # Production environment override
 services:
-  php:
+  web:
     environment:
       APP_ENV: prod
       APP_SECRET: ${APP_SECRET}
-
-  web:
-    environment:
-      MERCURE_PUBLISHER_JWT_KEY: ${MERCURE_PUBLISHER_JWT_KEY}
-      MERCURE_SUBSCRIBER_JWT_KEY: ${MERCURE_SUBSCRIBER_JWT_KEY}
-    # If not using a reverse-proxy in front of this then may need expose ports
-#    ports:
-#      # HTTP
-#      - target: 80
-#        published: 80
-#        protocol: tcp
-#      # HTTPS
-#      - target: 443
-#        published: 443
-#        protocol: tcp
-#      # HTTP/3
-#      - target: 443
-#        published: 443
-#        protocol: udp
 

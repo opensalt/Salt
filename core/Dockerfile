@@ -3,121 +3,81 @@
 # https://docs.docker.com/compose/compose-file/#target
 
 # Version and build of OpenSALT
-ARG VERSION=3.3.0
+ARG VERSION=3.3.1
 ARG BUILD_NUMBER=x
 ARG BUILD_DATE=0
 ARG COMMIT=unknown
 
-ARG NODE_VERSION=20
 ARG PHP_VERSION=8.3
-ARG CADDY_VERSION=2
+ARG FRANKENPHP_VERSION=1
+ARG NODE_VERSION=20
 
 # https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact
-#=======================================================================
-# "php" stage
-FROM php:${PHP_VERSION}-fpm-alpine AS salt_core_php
+#========================================================================
+# Versions
+FROM dunglas/frankenphp:${FRANKENPHP_VERSION}-php${PHP_VERSION} AS frankenphp_upstream
+
+#========================================================================
+# Base FrankenPHP image
+FROM frankenphp_upstream AS frankenphp_base
+
+WORKDIR /app
 
 # persistent / runtime deps
-RUN apk add --no-cache \
-		acl \
-		bash \
-		fcgi \
-		file \
-		gettext \
-		git \
-		gnu-libiconv \
-		supervisor \
-	;
-
-# install gnu-libiconv and set LD_PRELOAD env to make iconv work fully on Alpine image.
-# see https://github.com/docker-library/php/issues/240#issuecomment-763112749
-ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so
-
-
-ARG DOCKERIZE_VERSION=v0.6.1
-RUN curl -LsS https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-	  | tar -C /usr/local/bin -xzvf -
-
-ARG APCU_VERSION=5.1.23
+# hadolint ignore=DL3008
+RUN apt-get update && apt-get install --no-install-recommends -y \
+	acl \
+	bash \
+	file \
+	gettext \
+	git \
+	supervisor \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN set -eux; \
-	apk add --no-cache --virtual .build-deps \
-		$PHPIZE_DEPS \
-		bzip2-dev \
-		icu-dev \
-		libpng-dev \
-		libzip-dev \
-		mysql-dev \
-		libpq-dev \
-		zlib-dev \
-	; \
-	\
-	docker-php-ext-configure zip; \
-	docker-php-ext-install -j$(nproc) \
-		bcmath \
-		bz2 \
+	install-php-extensions \
+		@composer \
+		apcu \
 		gd \
 		intl \
-		mysqli \
 		opcache \
+		zip \
+		xsl \
+		bcmath \
+		bz2 \
+		mysqli \
 		pcntl \
 		pdo_mysql \
 		pdo_pgsql \
-		zip \
-	; \
-	pecl install \
-		apcu-${APCU_VERSION} \
-	; \
-	pecl clear-cache; \
-	docker-php-ext-enable \
-		apcu \
-		opcache \
-	; \
-	\
-	runDeps="$( \
-		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local/lib/php/extensions \
-			| tr ',' '\n' \
-			| sort -u \
-			| awk 'system("[ -e /usr/local/lib/" $1 " ]") == 0 { next } { print "so:" $1 }' \
-	)"; \
-	apk add --no-cache --virtual .api-phpexts-rundeps $runDeps; \
-	\
-	apk del .build-deps
+	;
 
-COPY docker/php/docker-healthcheck.sh /usr/local/bin/docker-healthcheck
-RUN chmod +x /usr/local/bin/docker-healthcheck
-HEALTHCHECK --interval=10s --timeout=3s --retries=3 --start-period=30s CMD ["docker-healthcheck"]
-
-#COPY docker/php/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
-#RUN chmod +x /usr/local/bin/docker-entrypoint
-#ENTRYPOINT ["docker-entrypoint"]
-
-# Install symfony-cli
-#ARG SYMFONY_CLI_VERSION=4.21.6
-#RUN curl -LsS https://github.com/symfony/cli/releases/download/v$SYMFONY_CLI_VERSION/symfony_linux_amd64  -o /usr/local/bin/symfony \
-#    && chmod a+x /usr/local/bin/symfony \
-#	&& symfony self-update -y
-
-# Install and configure composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+ARG DOCKERIZE_VERSION=v0.6.1
+RUN curl -LsS https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz \
+	  | tar -C /usr/local/bin -xzvf -
 
 # https://getcomposer.org/doc/03-cli.md#composer-allow-superuser
-ENV COMPOSER_ALLOW_SUPERUSER=1 \
-    PATH="${PATH}:/root/.composer/vendor/bin" \
-    COMPOSER_MEMORY_LIMIT=-1
-#    PATH=/composer/vendor/bin:$PATH
-#    COMPOSER_HOME=/composer
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
-RUN ln -s $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
-COPY docker/php/conf.d/*.ini $PHP_INI_DIR/conf.d/
-COPY docker/php/php-fpm.d/zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
+###> recipes ###
+###> doctrine/doctrine-bundle ###
+RUN set -eux; \
+	install-php-extensions pdo_pgsql
+###< doctrine/doctrine-bundle ###
+###< recipes ###
 
-#RUN composer global require \
-#        maglnet/composer-require-checker \
-#        insolita/unused-scanner \
-#            --prefer-dist --no-progress --no-suggest --classmap-authoritative \
-#        && composer clear-cache \
-#	&& chmod -R a+w ${COMPOSER_HOME}
+COPY --link frankenphp/conf.d/app.ini $PHP_INI_DIR/conf.d/
+COPY --link --chmod=755 frankenphp/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+COPY --link frankenphp/Caddyfile /etc/caddy/Caddyfile
+
+ENTRYPOINT ["docker-entrypoint"]
+
+HEALTHCHECK --start-period=10s CMD curl -f http://localhost:2019/metrics || exit 1
+CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile" ]
+
+
+#=======================================================================
+# "php" stage
+FROM frankenphp_base AS salt_core_php
 
 WORKDIR /srv/core
 
@@ -156,9 +116,9 @@ ARG APP_ENV=prod
 
 # copy only specifically what we need
 COPY .env \
-     composer.json composer.lock symfony.lock \
-     package.json vite.config.js yarn.lock \
-     codeception.dist.yml \
+	composer.json composer.lock symfony.lock \
+	package.json vite.config.js yarn.lock \
+	codeception.dist.yml \
 	 ./
 COPY assets/ assets/
 COPY bin/ bin/
@@ -215,60 +175,58 @@ COPY --from=salt_code_layer /srv/core/ ./
 VOLUME /srv/core/var
 VOLUME /srv/core/public/attachments
 
-USER www-data
-
 #=======================================================================
 FROM salt_core_app as salt_core_dev
 
-ARG XDEBUG_VERSION=3.3.2
+ENV APP_ENV=dev XDEBUG_MODE=off
+VOLUME /srv/core/var/
 
-USER root
+RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
+
 RUN set -eux; \
-	apk add --no-cache --virtual .build-deps $PHPIZE_DEPS linux-headers; \
-	pecl install xdebug-$XDEBUG_VERSION; \
-	docker-php-ext-enable xdebug; \
-	apk del .build-deps
-
-USER www-data
-
-#=======================================================================
-FROM caddy:2-builder-alpine AS salt_core_caddy_builder
-
-# install Mercure and Vulcain modules
-ARG XCADDY_SKIP_CLEANUP=0
-RUN xcaddy build \
-    --with github.com/dunglas/mercure/caddy \
-    --with github.com/dunglas/vulcain/caddy
-
-#=======================================================================
-FROM caddy:${CADDY_VERSION}-alpine AS salt_core_caddy
-
-RUN addgroup -g 1001 caddy; \
-    adduser -u 1001 -G caddy -D -s /sbin/nologin \
-        -g "Default Application User" caddy
-
-COPY --from=salt_core_caddy_builder /usr/bin/caddy /usr/bin/caddy
-COPY docker/caddy/Caddyfile /etc/caddy/Caddyfile
-COPY docker/caddy/docker-healthcheck /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-healthcheck
-HEALTHCHECK --interval=10s --timeout=3s --retries=3 --start-period=30s CMD ["docker-healthcheck"]
-
-RUN mkdir -p /data/caddy /config/caddy ;\
-    chown -R caddy:caddy /data/caddy /config/caddy
+	install-php-extensions \
+		xdebug \
+	;
 
 ARG VERSION
 ARG BUILD_NUMBER
-ARG BUILD_DATE
 ARG COMMIT
 
-LABEL org.opencontainers.image.title="OpenSALT Web Server" \
-      org.opencontainers.image.source="https://github.com/opensalt/opensalt" \
-      org.opencontainers.image.version=${VERSION}.${BUILD_NUMBER}+${BUILD_DATE}.${COMMIT}
+RUN echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S') > public/version.txt ; \
+    echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S').${COMMIT} > public/revision.txt
 
-WORKDIR /srv/core
-VOLUME /data/caddy
-VOLUME /config/caddy
+COPY --link frankenphp/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
 
-COPY --from=salt_core_app /srv/core/public public/
+CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile", "--watch" ]
 
-USER caddy
+#=======================================================================
+# Prod FrankenPHP image
+FROM frankenphp_base AS salt_core_prod
+
+ENV APP_ENV=prod
+ENV FRANKENPHP_CONFIG="import worker.Caddyfile"
+
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+COPY --link frankenphp/conf.d/app.prod.ini $PHP_INI_DIR/conf.d/
+COPY --link frankenphp/worker.Caddyfile /etc/caddy/worker.Caddyfile
+
+
+# copy sources
+COPY --link --from=salt_core_app /srv/core/ ./
+RUN rm -Rf frankenphp/
+
+RUN set -eux; \
+	mkdir -p var/cache var/log; \
+	chmod +x bin/console; sync; \
+	composer dump-autoload --classmap-authoritative; \
+	composer dump-env prod; \
+	composer run-script post-install-cmd; \
+	bin/console asset-map:compile;
+
+ARG VERSION
+ARG BUILD_NUMBER
+ARG COMMIT
+
+RUN echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S') > public/version.txt ; \
+    echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S').${COMMIT} > public/revision.txt

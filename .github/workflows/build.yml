@@ -26,7 +26,6 @@ jobs:
         run: |
           env
           cp -f .env.test .env
-          docker pull $REPO:core-develop
           docker pull $REPO:web-develop
           docker pull $REPO:cron-develop
           docker pull $REPO:db-develop
@@ -77,11 +76,9 @@ jobs:
         env:
           REPO: opensalt/opensalt
         run: |
-          docker tag opensalt/opensalt:core-3.x $REPO:core-develop
           docker tag opensalt/opensalt:web-3.x $REPO:web-develop
           docker tag opensalt/opensalt:cron-3.x $REPO:cron-develop
           docker tag opensalt/opensalt:db-3.x $REPO:db-develop
-          docker push $REPO:core-develop
           docker push $REPO:web-develop
           docker push $REPO:cron-develop
           docker push $REPO:db-develop
@@ -91,11 +88,9 @@ jobs:
         env:
           REPO: opensalt/opensalt
         run: |
-          docker tag opensalt/opensalt:core-3.x $REPO:core-latest
           docker tag opensalt/opensalt:web-3.x $REPO:web-latest
           docker tag opensalt/opensalt:cron-3.x $REPO:cron-latest
           docker tag opensalt/opensalt:db-3.x $REPO:db-latest
-          docker push $REPO:core-latest
           docker push $REPO:web-latest
           docker push $REPO:cron-latest
           docker push $REPO:db-latest
@@ -106,11 +101,9 @@ jobs:
           REPO: opensalt/opensalt
           TAG: ${GITHUB_REF/refs\/tags\//}
         run: |
-          docker tag opensalt/opensalt:core-3.x $REPO:core-${TAG}
           docker tag opensalt/opensalt:web-3.x $REPO:web-${TAG}
           docker tag opensalt/opensalt:cron-3.x $REPO:cron-${TAG}
           docker tag opensalt/opensalt:db-3.x $REPO:db-${TAG}
-          docker push $REPO:core-${TAG}
           docker push $REPO:web-${TAG}
           docker push $REPO:cron-${TAG}
           docker push $REPO:db-${TAG}

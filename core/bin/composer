@@ -9,4 +9,4 @@ fi
 docker compose run --rm --no-deps \
     -u $(id -u):$(id -g) \
     -v "$(pwd)/core/docker/data/composer:/.composer" \
-    php composer "$@"
+    web composer "$@"
