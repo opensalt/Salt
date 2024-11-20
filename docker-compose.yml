@@ -1,18 +1,44 @@
 services:
-  crontab:
-    image: opensalt/opensalt:cron-3.x
-    build:
-      context: ./core/docker/cron
-      cache_from:
-        - opensalt/opensalt:cron-develop
+  scheduler:
+    image: opensalt/opensalt:web-3.x
+    #command: ['php', 'bin/console', 'messenger:consume', '-vv', 'scheduler_default', 'async', '--limit=10', '--time-limit=3600', '--memory-limit=4096M']
+    command: ['php', 'bin/console', 'messenger:consume', 'scheduler_default', 'async', '--limit=10', '--time-limit=3600', '--memory-limit=4096M']
     depends_on:
-      - web
-    volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      #- "./crontab.json:/opt/crontab/config.json:rw"
+      db:
+        condition: service_healthy
     environment:
-      LOG_FILE: /dev/stdout
+      APP_ENV: "${APP_ENV:-prod}"
+      APP_SECRET:
+      SERVER_NAME: ${SERVER_NAME:-localhost}, :80
+      MYSQL_DATABASE:
+      MYSQL_USER:
+      MYSQL_PASSWORD:
+      MYSQL_HOST: "${MYSQL_HOST:-db}"
+      DB_USE_RDS_CERT:
+      MERCURE_URL: ${CADDY_MERCURE_URL:-http://web/.well-known/mercure}
+      MERCURE_PUBLIC_URL: https://${SERVER_NAME:-localhost}/.well-known/mercure
+      MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
+      MAILER_DSN:
+      USE_MAIL_FEATURE:
+      MAIL_FEATURE_FROM_EMAIL:
+      ATTACHMENT_URL_PREFIX:
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      AWS_S3_BUCKET:
+      AWS_S3_REGION:
+      AWS_S3_PREFIX:
+      BUCKET_PROVIDER:
+      LOCAL_FILESYSTEM_PATH:
+      CASE_NETWORK_CLIENT_ID:
+      CASE_NETWORK_CLIENT_SECRET:
+      CASE_NETWORK_TOKEN_ENDPOINT:
+      CASE_NETWORK_SCOPE:
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pgrep",  "-af",  "^php.*bin/console.*messenger:consume"]
+
 
   web:
     image: opensalt/opensalt:web-3.x
@@ -25,7 +51,8 @@ services:
         - COMMIT=${COMMIT:-unknown}
         - VERSION=${VERSION:-3.3.0-dev}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       APP_ENV: "${APP_ENV:-prod}"
       APP_SECRET:
@@ -91,8 +118,6 @@ services:
     image: opensalt/opensalt:db-3.x
     build:
       context: ./core/docker/mysql
-      cache_from:
-        - opensalt/opensalt:db-develop
     cap_add:
       - SYS_NICE # CAP_SYS_NICE
     environment:

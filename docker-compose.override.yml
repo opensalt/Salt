@@ -1,5 +1,10 @@
 # Development environment override
 services:
+  scheduler:
+    volumes:
+      - ./core:/srv/core:rw
+      - ./core/docker/php/conf.d/opcache.ini.dev:/usr/local/etc/php/conf.d/opcache.ini
+
   web:
     build:
       context: ./core

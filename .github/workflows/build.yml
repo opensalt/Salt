@@ -27,7 +27,6 @@ jobs:
           env
           cp -f .env.test .env
           docker pull $REPO:web-develop
-          docker pull $REPO:cron-develop
           docker pull $REPO:db-develop
 #      # In this step, this action saves a list of existing images,
 #      # the cache is created without them in the post run.
@@ -77,10 +76,8 @@ jobs:
           REPO: opensalt/opensalt
         run: |
           docker tag opensalt/opensalt:web-3.x $REPO:web-develop
-          docker tag opensalt/opensalt:cron-3.x $REPO:cron-develop
           docker tag opensalt/opensalt:db-3.x $REPO:db-develop
           docker push $REPO:web-develop
-          docker push $REPO:cron-develop
           docker push $REPO:db-develop
 
       - name: Push latest
@@ -89,10 +86,8 @@ jobs:
           REPO: opensalt/opensalt
         run: |
           docker tag opensalt/opensalt:web-3.x $REPO:web-latest
-          docker tag opensalt/opensalt:cron-3.x $REPO:cron-latest
           docker tag opensalt/opensalt:db-3.x $REPO:db-latest
           docker push $REPO:web-latest
-          docker push $REPO:cron-latest
           docker push $REPO:db-latest
 
       - name: Push release
@@ -102,10 +97,8 @@ jobs:
           TAG: ${GITHUB_REF/refs\/tags\//}
         run: |
           docker tag opensalt/opensalt:web-3.x $REPO:web-${TAG}
-          docker tag opensalt/opensalt:cron-3.x $REPO:cron-${TAG}
           docker tag opensalt/opensalt:db-3.x $REPO:db-${TAG}
           docker push $REPO:web-${TAG}
-          docker push $REPO:cron-${TAG}
           docker push $REPO:db-${TAG}
 
       - name: Bring down the stack

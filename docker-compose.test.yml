@@ -1,4 +1,8 @@
 services:
+  scheduler:
+    command: ['/bin/echo', 'Do not run in test']
+    restart: no
+
   db:
     volumes:
       - db_data:/var/lib/mysql:rw
