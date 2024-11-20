@@ -223,8 +223,7 @@ RUN set -eux; \
 	chmod +x bin/console; sync; \
 	composer dump-autoload --classmap-authoritative; \
 	composer dump-env prod; \
-	composer run-script post-install-cmd; \
-	bin/console asset-map:compile;
+	composer run-script post-install-cmd;
 
 ARG VERSION
 ARG BUILD_NUMBER
