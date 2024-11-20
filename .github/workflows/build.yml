@@ -55,7 +55,7 @@ jobs:
 
       - name: Bring up the web container
         run: |
-          docker compose up -d --wait --wait-timeout 30 web
+          docker compose up -d --no-recreate --wait --wait-timeout 30 web
           sleep 10
           docker compose ps
 
