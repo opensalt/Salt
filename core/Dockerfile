@@ -36,6 +36,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	vim \
 	&& rm -rf /var/lib/apt/lists/*
 
+COPY docker/scheduler/supervisord.conf /etc/supervisor/conf.d/
+
 RUN set -eux; \
 	install-php-extensions \
 		@composer \
@@ -73,7 +75,7 @@ COPY --link frankenphp/Caddyfile /etc/caddy/Caddyfile
 
 ENTRYPOINT ["docker-entrypoint"]
 
-HEALTHCHECK --start-period=10s CMD curl -f http://localhost:2019/metrics || exit 1
+HEALTHCHECK --start-period=30s CMD curl -f http://localhost:2019/metrics || exit 1
 CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile" ]
 
 
