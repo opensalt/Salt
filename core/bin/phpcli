@@ -2,6 +2,10 @@
 
 cd $(dirname $0)/../..
 
+string=''; for i in {0..31}; do string+=$(printf "%x" $(($RANDOM%16)) ); done;
+
+CONTAINER_NAME=php_${string}
+
 docker compose run --rm --no-deps \
     -u $(id -u):$(id -g) \
-    web "$@"
+    --name $CONTAINER_NAME web "$@"

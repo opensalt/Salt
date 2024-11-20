@@ -6,7 +6,10 @@ if [ ! -d core/docker/data/composer ]; then
     mkdir -p core/docker/data/composer
 fi
 
+string=''; for i in {0..31}; do string+=$(printf "%x" $(($RANDOM%16)) ); done;
+CONTAINER_NAME=php_${string}
+
 docker compose run --rm --no-deps \
     -u $(id -u):$(id -g) \
     -v "$(pwd)/core/docker/data/composer:/.composer" \
-    web composer "$@"
+    --name $CONTAINER_NAME web composer "$@"
