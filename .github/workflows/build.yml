@@ -47,8 +47,8 @@ jobs:
       - name: Bring up the stack
         run: |
           docker compose up -d
-          docker compose exec -T php dockerize -timeout 60s -wait tcp://db:3306 && sleep 5
-          docker compose exec -T php dockerize -timeout 60s -wait tcp://web:80
+          docker compose exec -T web dockerize -timeout 60s -wait tcp://db:3306 && sleep 5
+          docker compose exec -T web dockerize -timeout 60s -wait tcp://web:80
 
       - name: Initialize db
         run: |
@@ -61,7 +61,7 @@ jobs:
       - name: Failed
         if: ${{ failure() }}
         run: |
-          docker compose logs php web
+          docker compose logs web
 
       - name: Login to DockerHub
         if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main' || github.event_name == 'release'
