@@ -46,15 +46,16 @@ jobs:
 
       - name: Bring up the stack
         run: |
-          docker compose up -d db
+          docker compose up -d --wait --wait-timeout 60 db
           sleep 30
-          docker compose up -d
-          docker compose exec -T web dockerize -timeout 60s -wait tcp://db:3306 && sleep 10
+          docker compose up -d --wait --wait-timeout 30
+          sleep 10
+          docker compose ps
 
       - name: Initialize db
         run: |
-          ./core/bin/console --env=prod doctrine:migrations:migrate --no-interaction
-          ./core/bin/console --env=prod import:generic-csv tests/_data/test_items.csv
+          docker compose exec web ./bin/console --env=prod doctrine:migrations:migrate --no-interaction
+          docker compose exec web ./bin/console --env=prod import:generic-csv tests/_data/test_items.csv
 
       - name: Run tests
         run: ./core/bin/run-tests ${RUN_TEST_ARGS:-$DEFAULT_RUN_TEST_ARGS}
