@@ -44,17 +44,23 @@ jobs:
         run: |
           BUILD_NUMBER=${GITHUB_RUN_NUMBER} COMMIT=${GITHUB_SHA::8} make docker-build
 
-      - name: Bring up the stack
+      - name: Bring up db container
         run: |
           docker compose up -d --wait --wait-timeout 60 db
           sleep 30
-          docker compose up -d --wait --wait-timeout 30
+
+      - name: Initialize db schema
+        run: |
+          docker compose run --rm --no-deps web ./bin/console --env=prod doctrine:migrations:migrate --no-interaction
+
+      - name: Bring up the web container
+        run: |
+          docker compose up -d --wait --wait-timeout 30 web
           sleep 10
           docker compose ps
 
-      - name: Initialize db
+      - name: Initialize db data
         run: |
-          docker compose exec web ./bin/console --env=prod doctrine:migrations:migrate --no-interaction
           docker compose exec web ./bin/console --env=prod import:generic-csv tests/_data/test_items.csv
 
       - name: Run tests
