@@ -81,6 +81,7 @@
         "phpoffice/phpword": "^1.0",
         "ramsey/uuid": "^4.0",
         "ramsey/uuid-doctrine": "^2.0",
+        "runtime/frankenphp-symfony": "^0.2.0",
         "scheb/2fa": "^7.0",
         "stof/doctrine-extensions-bundle": "^1.7",
         "swaggest/json-schema": "^0.12.20",
@@ -189,7 +190,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "symfony/flex": true
+            "symfony/flex": true,
+            "symfony/runtime": true
         }
     },
     "conflict": {

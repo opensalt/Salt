@@ -29,15 +29,16 @@ services:
     environment:
       APP_ENV: "${APP_ENV:-prod}"
       APP_SECRET:
+      APP_RUNTIME: 'Runtime\\FrankenPhpSymfony\\Runtime'
       SERVER_NAME: ${SERVER_NAME:-localhost}, :80
       MYSQL_DATABASE:
       MYSQL_USER:
       MYSQL_PASSWORD:
       MYSQL_HOST: "${MYSQL_HOST:-db}"
       DB_USE_RDS_CERT:
-      MERCURE_PUBLISH_URL: "http://web/.well-known/mercure"
-      MERCURE_JWT_TOKEN:
-      CADDY_MERCURE_JWT_SECRET: 669be013-251e-42e5-97cf-111d1c96a33e
+      MERCURE_URL: ${CADDY_MERCURE_URL:-http://web/.well-known/mercure}
+      MERCURE_PUBLIC_URL: https://${SERVER_NAME:-localhost}/.well-known/mercure
+      MERCURE_JWT_SECRET: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       MERCURE_PUBLISHER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       MERCURE_SUBSCRIBER_JWT_KEY: ${CADDY_MERCURE_JWT_SECRET:-!ChangeThisMercureHubJWTSecretKey!}
       TRUSTED_PROXIES:

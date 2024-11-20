@@ -52,6 +52,9 @@ parameters:
     env(CASE_NETWORK_SCOPE): 'http://purl.imsglobal.org/casenetwork/case/v1p0/scope/all.readonly'
     env(MFA_ISSUER): 'OpenSALT'
     env(USE_MFA): false
+    env(MERCURE_JWT_SECRET): '!ChangeThisMercureHubJWTSecretKey!'
+    env(MERCURE_URL): 'http://web/.well-known/mercure'
+    env(MERCURE_PUBLIC_URL): null
 
     locale: en
     database_type: '%env(DB_TYPE)%'

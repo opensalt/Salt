@@ -84,7 +84,7 @@ class FrameworkAccessVoter extends Voter
         }
 
         // Allow users to view private frameworks of their org
-        if ($user->getOrg() === $subject->getOrg()) {
+        if ($user->getOrg()->getId() === $subject->getOrg()?->getId()) {
             return true;
         }
 
@@ -144,7 +144,7 @@ class FrameworkAccessVoter extends Voter
         }
 
         // Lastly check if the user is in the same organization
-        return $user->getOrg() === $subject->getOrg();
+        return $user->getOrg()->getId() === $subject->getOrg()?->getId();
     }
 
     private function canDeleteFramework(LsDoc $subject, TokenInterface $token): bool
