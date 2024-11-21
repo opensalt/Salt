@@ -154,11 +154,10 @@ RUN set -eux; \
 
 ARG VERSION
 ARG BUILD_NUMBER
-ARG BUILD_DATE
 ARG COMMIT
 
 RUN echo ${VERSION}.${BUILD_NUMBER} > public/version.txt ; \
-    echo ${VERSION}.${BUILD_NUMBER}+${BUILD_DATE}.${COMMIT} > public/revision.txt
+    echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S').${COMMIT} > public/revision.txt
 
 #=======================================================================
 FROM salt_core_php AS salt_core_app
@@ -192,44 +191,21 @@ RUN set -eux; \
 		xdebug \
 	;
 
-ARG VERSION
-ARG BUILD_NUMBER
-ARG COMMIT
-
-RUN echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S') > public/version.txt ; \
-    echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S').${COMMIT} > public/revision.txt
-
 COPY --link frankenphp/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
 
 CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile", "--watch" ]
 
 #=======================================================================
 # Prod FrankenPHP image
-FROM frankenphp_base AS salt_core_prod
+FROM salt_core_app AS salt_core_prod
 
 ENV APP_ENV=prod
-ENV FRANKENPHP_CONFIG="import worker.Caddyfile"
+#ENV FRANKENPHP_CONFIG="import worker.Caddyfile"
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 COPY --link frankenphp/conf.d/app.prod.ini $PHP_INI_DIR/conf.d/
-COPY --link frankenphp/worker.Caddyfile /etc/caddy/worker.Caddyfile
+#COPY --link frankenphp/worker.Caddyfile /etc/caddy/worker.Caddyfile
 
-
-# copy sources
-COPY --link --from=salt_core_app /srv/core/ ./
 RUN rm -Rf frankenphp/
 
-RUN set -eux; \
-	mkdir -p var/cache var/log; \
-	chmod +x bin/console; sync; \
-	composer dump-autoload --classmap-authoritative; \
-	composer dump-env prod; \
-	composer run-script post-install-cmd;
-
-ARG VERSION
-ARG BUILD_NUMBER
-ARG COMMIT
-
-RUN echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S') > public/version.txt ; \
-    echo ${VERSION}.${BUILD_NUMBER}+$(date -u '+%Y%m%d%H%M%S').${COMMIT} > public/revision.txt
