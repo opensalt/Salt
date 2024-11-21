@@ -3,6 +3,9 @@ services:
     command: ['/bin/echo', 'Do not run in test']
     restart: no
 
+  web:
+    depends_on: !reset []
+
   db:
     volumes:
       - db_data:/var/lib/mysql:rw
