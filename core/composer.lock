@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f01dec8a7247b1e67195946239da1f0",
+    "content-hash": "3938c55cd7761067d5ea63ba0c1480aa",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -6437,16 +6437,16 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "3.4.0",
+            "version": "3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "eec07c20b51cc785295a6feef81ada7feda755e7"
+                "reference": "fb74dcdfa5b538763ab980e977529bc783039aec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/eec07c20b51cc785295a6feef81ada7feda755e7",
-                "reference": "eec07c20b51cc785295a6feef81ada7feda755e7",
+                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/fb74dcdfa5b538763ab980e977529bc783039aec",
+                "reference": "fb74dcdfa5b538763ab980e977529bc783039aec",
                 "shasum": ""
             },
             "require": {
@@ -6535,9 +6535,9 @@
             ],
             "support": {
                 "issues": "https://github.com/PHPOffice/PhpSpreadsheet/issues",
-                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/3.4.0"
+                "source": "https://github.com/PHPOffice/PhpSpreadsheet/tree/3.5.0"
             },
-            "time": "2024-11-10T10:10:41+00:00"
+            "time": "2024-11-22T06:41:00+00:00"
         },
         {
             "name": "phpoffice/phpword",
@@ -19111,9 +19111,9 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tetranz/select2entity-bundle": 20,
         "ericmartel/codeception-email-mailtrap": 20,
-        "roave/security-advisories": 20,
-        "tetranz/select2entity-bundle": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -19130,6 +19130,6 @@
         "ext-mbstring": "*",
         "ext-random": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
