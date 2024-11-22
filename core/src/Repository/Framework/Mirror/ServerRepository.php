@@ -67,10 +67,12 @@ class ServerRepository extends ServiceEntityRepository
             ->andWhere('s.nextCheck < :now')
             ->andWhere('s.nextCheck IS NOT NULL')
             ->andWhere('s.checkServer = 1')
+            ->andWhere('s.status = :status')
             ->addOrderBy('s.priority', 'DESC')
             ->addOrderBy('s.lastCheck', 'ASC')
             ->getQuery()
             ->setParameter('now', new \DateTimeImmutable())
+            ->setParameter('status', Server::STATUS_ACTIVE)
             ->setMaxResults(1)
             ->getOneOrNullResult()
         ;

@@ -3,6 +3,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Framework\Mirror\OAuthCredential;
+use App\Entity\Framework\Mirror\Server;
 use App\Form\DTO\MirroredServerDTO;
 use Doctrine\ORM\EntityRepository;
 use League\Uri\UriString;
@@ -50,6 +51,15 @@ class MirroredServerDTOType extends AbstractType
                 'query_builder' => static fn (EntityRepository $repo) => $repo->createQueryBuilder('c')
                     ->orderBy('c.key', 'ASC')
                     ->addOrderBy('c.authenticationEndpoint', 'ASC'),
+            ])
+            ->add('status', ChoiceType::class, [
+                'label' => 'Status',
+                'help' => 'The "Suspended" status will disable automatic checking of frameworks on this server.',
+                'help_html' => true,
+                'choices' => [
+                    'Active' => Server::STATUS_ACTIVE,
+                    'Suspended' => Server::STATUS_SUSPENDED,
+                ],
             ])
         ;
 

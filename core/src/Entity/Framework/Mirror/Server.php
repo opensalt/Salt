@@ -12,11 +12,14 @@ use Gedmo\Mapping\Annotation as Gedmo;
 #[ORM\Entity(repositoryClass: ServerRepository::class)]
 class Server
 {
-    final public const TYPE_CASE_1_0 = 'CASE/1.0';
-    final public const TYPE_DIRECT = 'Direct URI/0.0';
+    final public const string TYPE_CASE_1_0 = 'CASE/1.0';
+    final public const string TYPE_DIRECT = 'Direct URI/0.0';
 
-    final public const URL_CASE_1_0_LIST = '/ims/case/v1p0/CFDocuments';
-    final public const URL_CASE_1_0_PACKAGE = '/ims/case/v1p0/CFPackages';
+    final public const string STATUS_ACTIVE = 'active';
+    final public const string STATUS_SUSPENDED = 'suspended';
+
+    final public const string URL_CASE_1_0_LIST = '/ims/case/v1p0/CFDocuments';
+    final public const string URL_CASE_1_0_PACKAGE = '/ims/case/v1p0/CFPackages';
 
     #[ORM\Column(name: 'id', type: 'integer')]
     #[ORM\Id]
@@ -56,6 +59,9 @@ class Server
      */
     #[ORM\OneToMany(mappedBy: 'server', targetEntity: Framework::class)]
     private Collection $frameworks;
+
+    #[ORM\Column(length: 255)]
+    private string $status = self::STATUS_ACTIVE;
 
     public function __construct(string $hostname, bool $addFoundFrameworks, ?OAuthCredential $credentials = null)
     {
@@ -196,5 +202,17 @@ class Server
         $this->nextCheck = $nextCheck;
 
         $this->priority = 0;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): static
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

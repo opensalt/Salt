@@ -3,26 +3,20 @@
 namespace App\Form\DTO;
 
 use App\Entity\Framework\Mirror\OAuthCredential;
+use App\Entity\Framework\Mirror\Server;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class MirroredServerDTO
 {
-    /**
-     * @var string
-     */
     #[Assert\NotNull]
     #[Assert\NotBlank]
     #[Assert\Url(requireTld: true)]
-    public $url;
+    public ?string $url = null;
 
-    /**
-     * @var bool
-     */
     #[Assert\NotNull]
-    public $autoAddFoundFrameworks = false;
+    public bool $autoAddFoundFrameworks = false;
 
-    /**
-     * @var OAuthCredential|null
-     */
-    public $credentials;
+    public ?OAuthCredential $credentials = null;
+
+    public string $status = Server::STATUS_ACTIVE;
 }

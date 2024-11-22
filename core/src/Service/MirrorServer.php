@@ -201,7 +201,10 @@ class MirrorServer
     private function addNewServer(MirroredServerDTO $dto): Server
     {
         $server = new Server($dto->url, $dto->autoAddFoundFrameworks, $dto->credentials);
-        $server->scheduleNextCheck();
+        $server->setStatus($dto->status);
+        if (Server::STATUS_ACTIVE === $dto->status) {
+            $server->scheduleNextCheck();
+        }
         $this->em->persist($server);
 
         return $server;
@@ -246,6 +249,7 @@ class MirrorServer
         } catch (AccessTokenRequestException $e) {
             /**
              * @var TransferException
+             *
              * @psalm-suppress UndefinedDocblockClass
              */
             $guzzleException = $e->getGuzzleException();
@@ -294,7 +298,9 @@ class MirrorServer
             $docList = $this->fetchDocumentList($server);
         } catch (\Throwable $e) {
             $this->warning('Error: Could not update framework list', ['exception' => $e->getMessage(), 'previousException' => $e->getPrevious()?->getMessage() ?? '']);
-            $server->scheduleNextCheck();
+            if (Server::STATUS_SUSPENDED !== $server->getStatus()) {
+                $server->scheduleNextCheck();
+            }
             $this->em->flush();
 
             return;
@@ -306,7 +312,9 @@ class MirrorServer
 
         $server->setLastCheck(new \DateTimeImmutable());
         $server->setPriority(0);
-        $server->scheduleNextCheck();
+        if (Server::STATUS_SUSPENDED !== $server->getStatus()) {
+            $server->scheduleNextCheck();
+        }
 
         $this->em->flush();
     }

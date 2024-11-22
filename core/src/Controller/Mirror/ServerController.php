@@ -99,6 +99,7 @@ class ServerController extends AbstractController
         $serverDto->url = $server->getUrl();
         $serverDto->autoAddFoundFrameworks = $server->isAddFoundFrameworks();
         $serverDto->credentials = $server->getCredentials();
+        $serverDto->status = $server->getStatus();
         $form = $this->createForm(MirroredServerDTOType::class, $serverDto);
         $form->handleRequest($request);
 
@@ -106,10 +107,18 @@ class ServerController extends AbstractController
             $server->setUrl($serverDto->url);
             $server->setCredentials($serverDto->credentials);
             $server->setAddFoundFrameworks($serverDto->autoAddFoundFrameworks);
+            $server->setStatus($serverDto->status);
+            if (Server::STATUS_SUSPENDED == $serverDto->status) {
+                $server->setNextCheck(null);
+            } else {
+                $server->scheduleNextCheck();
+            }
 
             $this->managerRegistry->getManager()->flush();
 
-            $mirrorService->updateFrameworkList($server);
+            if (Server::STATUS_ACTIVE === $serverDto->status) {
+                $mirrorService->updateFrameworkList($server);
+            }
 
             return $this->redirectToRoute('mirror_server_list', ['id' => $server->getId()]);
         }
@@ -222,7 +231,7 @@ class ServerController extends AbstractController
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('mirror_framework_disable', ['id' => $framework->getId()]))
             ->getForm()
-            ;
+        ;
     }
 
     private function createRefreshForm(Server $server): FormInterface

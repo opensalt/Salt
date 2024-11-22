@@ -1,4 +1,8 @@
 doctrine_migrations:
+    # Disalbe transactional migration by default
+    # https://www.doctrine-project.org/projects/doctrine-migrations/en/stable/explanation/implicit-commits.html
+    transactional: false
+    
     migrations_paths:
         # namespace is arbitrary but should be different from App\Migrations
         # as migrations classes should NOT be autoloaded
