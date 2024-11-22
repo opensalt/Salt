@@ -1668,7 +1668,7 @@ function ApxDocument(initializer, apx) {
                                 groupName = self.assocGroupIdHash[a.groupId].title;
                             }
                         }
-                        html += '<span class="label label-default">' + render.escaped(groupName) + '</span>';
+                        html += '<span class="badge text-bg-dark bg-opacity-75">' + render.escaped(groupName) + '</span>';
                     }
 
                     let annotation = '';
@@ -1859,7 +1859,7 @@ function ApxDocument(initializer, apx) {
                 docTitle = docTitle.replace(/\w+$/, "");
                 docTitle += "…";
             }
-            title += ' <span class="label label-default">' + render.escaped(docTitle) + '</span>';
+            title += ' <span class="badge text-bg-dark bg-opacity-75">' + render.escaped(docTitle) + '</span>';
         }
 
         return title;
