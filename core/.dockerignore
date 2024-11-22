@@ -9,10 +9,7 @@
 **/.gitattributes
 **/.gitignore
 **/.gitmodules
-**/docker-compose.*.yaml
-**/docker-compose.*.yml
-**/docker-compose.yaml
-**/docker-compose.yml
+**/docker-compose.*
 **/Dockerfile
 **/Thumbs.db
 .editorconfig
@@ -22,11 +19,13 @@
 .php_cs.cache
 build/
 docker/data/
-docker/db/data/
+docker/**/data/
+frameworks/
 helm/
 node_modules/
 public/build/
 public/bundles/
 tmp/
+tools/
 var/
 vendor/

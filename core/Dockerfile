@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	supervisor \
 	procps \
 	vim \
+	less \
 	&& rm -rf /var/lib/apt/lists/*
 
 COPY docker/scheduler/supervisord /etc/supervisor/conf.d/
@@ -50,13 +51,12 @@ RUN set -eux; \
 		xsl \
 		bcmath \
 		bz2 \
-		mysqli \
 		pcntl \
+		mysqli \
 		pdo_mysql \
-		pdo_pgsql \
 	;
 
-ARG DOCKERIZE_VERSION=v0.6.1
+ARG DOCKERIZE_VERSION=v0.8.0
 RUN curl -LsS https://github.com/jwilder/dockerize/releases/download/${DOCKERIZE_VERSION}/dockerize-alpine-linux-amd64-${DOCKERIZE_VERSION}.tar.gz \
 	  | tar -C /usr/local/bin -xzvf -
 
@@ -91,7 +91,7 @@ WORKDIR /srv/core
 FROM salt_core_php AS salt_core_vendors
 
 # prevent the reinstallation of vendors at every changes in the source code
-COPY composer.json composer.lock symfony.lock ./
+COPY --link composer.json composer.lock symfony.lock ./
 RUN set -eux; \
 	composer install --no-interaction --prefer-dist --no-autoloader --no-scripts --no-progress; \
 	composer clear-cache
@@ -102,12 +102,12 @@ FROM node:${NODE_VERSION} AS salt_core_js_build
 USER node
 WORKDIR /srv/core
 
-COPY package.json yarn.lock ./
+COPY --link package.json yarn.lock ./
 COPY --link --from=salt_core_vendors /srv/core/vendor/symfony/ux-vue/assets ./vendor/symfony/ux-vue/assets/
 RUN yarn install --non-interactive
 
-COPY vite.config.js ./
-COPY assets ./assets/
+COPY --link vite.config.js ./
+COPY --link assets ./assets/
 
 RUN mkdir -p public/build \
   && yarn build
@@ -119,21 +119,7 @@ FROM salt_core_php AS salt_code_layer
 # build for production
 ARG APP_ENV=prod
 
-# copy only specifically what we need
-COPY .env \
-	composer.json composer.lock symfony.lock \
-	package.json vite.config.js yarn.lock \
-	codeception.dist.yml \
-	 ./
-COPY assets/ assets/
-COPY bin/ bin/
-COPY config/ config/
-COPY migrations/ migrations/
-COPY public/ public/
-COPY src/ src/
-COPY templates/ templates/
-COPY translations/ translations/
-COPY tests/ tests/
+COPY --link . ./
 
 COPY --link --from=salt_core_vendors /srv/core/vendor/ ./vendor/
 # hack to avoid "Service 'php' failed to build : failed to export image: failed to create image: failed to get layer sha256:38c02bf8b1bff96084338f7e6835b713185e091467e11f08001d41375f078e0e: layer does not exist"
@@ -183,7 +169,6 @@ VOLUME /srv/core/public/attachments
 FROM salt_core_app AS salt_core_dev
 
 ENV APP_ENV=dev XDEBUG_MODE=off
-VOLUME /srv/core/var/
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
@@ -201,16 +186,13 @@ CMD [ "frankenphp", "run", "--config", "/etc/caddy/Caddyfile", "--watch" ]
 FROM salt_core_app AS salt_core_consumer
 
 ENV APP_ENV=prod
-#ENV FRANKENPHP_CONFIG="import worker.Caddyfile"
 
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-
 COPY --link frankenphp/conf.d/app.prod.ini $PHP_INI_DIR/conf.d/
-#COPY --link frankenphp/worker.Caddyfile /etc/caddy/worker.Caddyfile
 
 RUN rm -Rf frankenphp/
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
 #=======================================================================
 # Prod FrankenPHP image
