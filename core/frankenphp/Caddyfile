@@ -16,7 +16,7 @@
 	order php_server before file_server
 }
 
-{$CADDY_EXTRA_CONFIG}
+{$CADDY_EXTRA_CONFIG} 
 
 {$SERVER_NAME:localhost} {
 	header /* {
