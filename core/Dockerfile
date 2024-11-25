@@ -8,7 +8,7 @@ ARG BUILD_NUMBER=x
 ARG BUILD_DATE=0
 ARG COMMIT=unknown
 
-ARG PHP_VERSION=8.3
+ARG PHP_VERSION=8.4
 ARG FRANKENPHP_VERSION=1
 ARG NODE_VERSION=20
 
@@ -119,13 +119,13 @@ FROM salt_core_php AS salt_code_layer
 # build for production
 ARG APP_ENV=prod
 
-COPY --link . ./
+COPY . ./
 
-COPY --link --from=salt_core_vendors /srv/core/vendor/ ./vendor/
+COPY --from=salt_core_vendors /srv/core/vendor/ ./vendor/
 # hack to avoid "Service 'php' failed to build : failed to export image: failed to create image: failed to get layer sha256:38c02bf8b1bff96084338f7e6835b713185e091467e11f08001d41375f078e0e: layer does not exist"
 # as mentioned in https://github.com/moby/moby/issues/37965#issuecomment-426853382
 RUN true
-COPY --link --from=salt_core_js_build /srv/core/public/ ./public/
+COPY --from=salt_core_js_build /srv/core/public/ ./public/
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
@@ -174,7 +174,7 @@ RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 RUN set -eux; \
 	install-php-extensions \
-		xdebug \
+		xdebug-3.4.0beta1 \
 	;
 
 COPY --link frankenphp/conf.d/app.dev.ini $PHP_INI_DIR/conf.d/
