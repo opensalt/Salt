@@ -5467,20 +5467,20 @@
         },
         {
             "name": "milo/github-api",
-            "version": "v2.0.2",
+            "version": "v2.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/milo/github-api.git",
-                "reference": "d29b56887901cc1d62d81706647ee3b9f7af512c"
+                "reference": "60d84e16c0d941c5577b395a20838c910229c8b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/milo/github-api/zipball/d29b56887901cc1d62d81706647ee3b9f7af512c",
-                "reference": "d29b56887901cc1d62d81706647ee3b9f7af512c",
+                "url": "https://api.github.com/repos/milo/github-api/zipball/60d84e16c0d941c5577b395a20838c910229c8b3",
+                "reference": "60d84e16c0d941c5577b395a20838c910229c8b3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.0 <8.4"
+                "php": ">=8.0 <8.5"
             },
             "require-dev": {
                 "nette/tester": "^2.4"
@@ -5508,9 +5508,9 @@
             "description": "GitHub API easy access",
             "support": {
                 "issues": "https://github.com/milo/github-api/issues",
-                "source": "https://github.com/milo/github-api/tree/v2.0.2"
+                "source": "https://github.com/milo/github-api/tree/v2.0.3"
             },
-            "time": "2023-12-06T11:04:10+00:00"
+            "time": "2024-11-24T13:40:54+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -19111,9 +19111,9 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tetranz/select2entity-bundle": 20,
         "ericmartel/codeception-email-mailtrap": 20,
-        "roave/security-advisories": 20,
-        "tetranz/select2entity-bundle": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -19130,6 +19130,6 @@
         "ext-mbstring": "*",
         "ext-random": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
