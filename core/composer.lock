@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3938c55cd7761067d5ea63ba0c1480aa",
+    "content-hash": "ba355471e8ffee5d74e404736adc875a",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -14915,16 +14915,16 @@
         },
         {
             "name": "codeception/module-sequence",
-            "version": "3.0.0",
+            "version": "dev-php-8.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Codeception/module-sequence.git",
-                "reference": "9738e2eb06035a0975171a0aa3fce00d284b4dfb"
+                "url": "https://github.com/opensalt/module-sequence.git",
+                "reference": "e35f2002a80d38057f8beb8ee9f0851444817407"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/module-sequence/zipball/9738e2eb06035a0975171a0aa3fce00d284b4dfb",
-                "reference": "9738e2eb06035a0975171a0aa3fce00d284b4dfb",
+                "url": "https://api.github.com/repos/opensalt/module-sequence/zipball/e35f2002a80d38057f8beb8ee9f0851444817407",
+                "reference": "e35f2002a80d38057f8beb8ee9f0851444817407",
                 "shasum": ""
             },
             "require": {
@@ -14933,14 +14933,13 @@
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "src/Codeception/Util/sq.php"
-                ],
                 "classmap": [
                     "src/"
+                ],
+                "files": [
+                    "src/Codeception/Util/sq.php"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -14955,10 +14954,9 @@
                 "codeception"
             ],
             "support": {
-                "issues": "https://github.com/Codeception/module-sequence/issues",
-                "source": "https://github.com/Codeception/module-sequence/tree/3.0.0"
+                "source": "https://github.com/opensalt/module-sequence/tree/php-8.4"
             },
-            "time": "2022-05-31T05:45:36+00:00"
+            "time": "2024-11-25T15:50:08+00:00"
         },
         {
             "name": "codeception/module-symfony",
@@ -19111,6 +19109,7 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "codeception/module-sequence": 20,
         "ericmartel/codeception-email-mailtrap": 20,
         "roave/security-advisories": 20,
         "tetranz/select2entity-bundle": 20
