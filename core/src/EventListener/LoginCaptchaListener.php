@@ -12,7 +12,7 @@ class LoginCaptchaListener implements EventSubscriberInterface
 {
     private ?string $captchaSecret;
 
-    public function __construct(string $captchaSecret = null)
+    public function __construct(?string $captchaSecret = null)
     {
         $this->captchaSecret = $captchaSecret;
     }

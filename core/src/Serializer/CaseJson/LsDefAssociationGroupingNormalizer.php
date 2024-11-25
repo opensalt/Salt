@@ -16,7 +16,7 @@ final class LsDefAssociationGroupingNormalizer implements NormalizerInterface
     ) {
     }
 
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof LsDefAssociationGrouping;
     }
@@ -26,7 +26,7 @@ final class LsDefAssociationGroupingNormalizer implements NormalizerInterface
         return [LsDefAssociationGrouping::class => true];
     }
 
-    public function normalize(mixed $object, string $format = null, array $context = []): ?array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
     {
         if (!$object instanceof LsDefAssociationGrouping) {
             return null;

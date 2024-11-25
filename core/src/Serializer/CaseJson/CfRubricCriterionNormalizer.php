@@ -20,7 +20,7 @@ final class CfRubricCriterionNormalizer implements NormalizerAwareInterface, Nor
     ) {
     }
 
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof CfRubricCriterion;
     }
@@ -30,7 +30,7 @@ final class CfRubricCriterionNormalizer implements NormalizerAwareInterface, Nor
         return [CfRubricCriterion::class => true];
     }
 
-    public function normalize(mixed $object, string $format = null, array $context = []): ?array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
     {
         if (!$object instanceof CfRubricCriterion) {
             return null;

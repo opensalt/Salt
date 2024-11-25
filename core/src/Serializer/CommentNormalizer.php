@@ -7,7 +7,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 class CommentNormalizer implements NormalizerInterface
 {
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof Comment;
     }
@@ -17,7 +17,7 @@ class CommentNormalizer implements NormalizerInterface
         return [Comment::class => true];
     }
 
-    public function normalize(mixed $object, string $format = null, array $context = []): ?array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
     {
         if (!$object instanceof Comment) {
             throw new \InvalidArgumentException('Expecting a Comment');

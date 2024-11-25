@@ -7,7 +7,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 
 class CommandEvent extends GenericEvent
 {
-    public function __construct(CommandInterface $subject = null, array $arguments = [])
+    public function __construct(?CommandInterface $subject = null, array $arguments = [])
     {
         parent::__construct($subject, $arguments);
     }

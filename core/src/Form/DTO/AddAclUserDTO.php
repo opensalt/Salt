@@ -8,28 +8,19 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class AddAclUserDTO
 {
-    /**
-     * @var User
-     */
     #[Assert\Type(User::class)]
     #[Assert\NotNull]
-    public $user;
+    public ?User $user = null;
 
-    /**
-     * @var LsDoc
-     */
     #[Assert\Type(LsDoc::class)]
     #[Assert\NotNull]
-    public $lsDoc;
+    public LsDoc $lsDoc;
 
-    /**
-     * @var int
-     */
     #[Assert\Type('int')]
     #[Assert\NotNull]
-    public $access;
+    public int $access;
 
-    public function __construct(LsDoc $doc, int $access, User $user = null)
+    public function __construct(LsDoc $doc, int $access, ?User $user = null)
     {
         $this->lsDoc = $doc;
         $this->access = $access;

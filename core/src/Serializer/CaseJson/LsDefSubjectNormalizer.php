@@ -16,7 +16,7 @@ final class LsDefSubjectNormalizer implements NormalizerInterface
     ) {
     }
 
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof LsDefSubject;
     }
@@ -26,7 +26,7 @@ final class LsDefSubjectNormalizer implements NormalizerInterface
         return [LsDefSubject::class => true];
     }
 
-    public function normalize(mixed $object, string $format = null, array $context = []): ?array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
     {
         if (!$object instanceof LsDefSubject) {
             return null;

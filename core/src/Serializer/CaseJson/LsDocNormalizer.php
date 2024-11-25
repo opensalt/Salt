@@ -21,7 +21,7 @@ final class LsDocNormalizer implements NormalizerInterface
     ) {
     }
 
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof LsDoc && null === ($context['generate-package'] ?? null);
     }
@@ -31,7 +31,7 @@ final class LsDocNormalizer implements NormalizerInterface
         return [LsDoc::class => false];
     }
 
-    public function normalize(mixed $object, string $format = null, array $context = []): ?array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
     {
         if (!$object instanceof LsDoc) {
             return null;

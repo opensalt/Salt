@@ -58,7 +58,7 @@ class LsAssociationType extends AbstractType
             ])
         ;
 
-        $formModifier = static function (FormInterface $form, LsDoc $lsDoc = null) {
+        $formModifier = static function (FormInterface $form, ?LsDoc $lsDoc = null) {
             if ($lsDoc) {
                 $form->add('destinationLsItem', EntityType::class, [
                     'placeholder' => '- Select Statement From Document Below -',

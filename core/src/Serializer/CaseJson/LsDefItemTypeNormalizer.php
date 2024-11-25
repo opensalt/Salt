@@ -16,7 +16,7 @@ final class LsDefItemTypeNormalizer implements NormalizerInterface
     ) {
     }
 
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof LsDefItemType;
     }
@@ -26,7 +26,7 @@ final class LsDefItemTypeNormalizer implements NormalizerInterface
         return [LsDefItemType::class => true];
     }
 
-    public function normalize(mixed $object, string $format = null, array $context = []): ?array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
     {
         if (!$object instanceof LsDefItemType) {
             return null;

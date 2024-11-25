@@ -75,7 +75,7 @@ class Comment
         return $this->id;
     }
 
-    public function setParent(Comment $parent = null): Comment
+    public function setParent(?Comment $parent = null): ?Comment
     {
         $this->parent = $parent;
 

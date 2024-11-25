@@ -110,7 +110,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements E
         }
     }
 
-    public function start(Request $request, AuthenticationException $authException = null): Response
+    public function start(Request $request, ?AuthenticationException $authException = null): Response
     {
         // Return JSON-formatted error if request is an ajax call
         if ($request->isXmlHttpRequest() || 'json' === $request->getRequestFormat()) {

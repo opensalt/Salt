@@ -16,7 +16,7 @@ final class LsDefLicenceNormalizer implements NormalizerInterface
     ) {
     }
 
-    public function supportsNormalization(mixed $data, string $format = null, array $context = []): bool
+    public function supportsNormalization(mixed $data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof LsDefLicence;
     }
@@ -26,7 +26,7 @@ final class LsDefLicenceNormalizer implements NormalizerInterface
         return [LsDefLicence::class => true];
     }
 
-    public function normalize(mixed $object, string $format = null, array $context = []): ?array
+    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
     {
         if (!$object instanceof LsDefLicence) {
             return null;
