@@ -26,16 +26,19 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+            stateless: true
 
         session_check:
             pattern: ^/session/check
             methods: [GET]
             security: false
+            stateless: true
 
         read_api:
             pattern: ^/api/
             methods: [GET]
             security: false
+            stateless: true
 
         main:
             pattern: ^/
