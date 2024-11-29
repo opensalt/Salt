@@ -1472,9 +1472,9 @@ export default function (apx) {
     apx.edit.updateItemsAjaxDone = function (data) {
         // remove stray tooltips
         setTimeout(function () {
-            $('body').tooltip('hide');
-            $('#treeView').tooltip('hide');
-            $('#assocView').tooltip('hide');
+            bootstrap.Tooltip.getOrCreateInstance('body').hide();
+            bootstrap.Tooltip.getOrCreateInstance('#treeView').hide();
+            bootstrap.Tooltip.getOrCreateInstance('#assocView').hide();
         }, 1000);
 
         let copiedItem = false;

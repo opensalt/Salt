@@ -7,7 +7,7 @@ $.fn.select2.defaults.set('theme', 'bootstrap-5');
 //  $("#select2insidemodal").select2({
 //    dropdownParent: $("#myModal")
 //  });
-$('body').tooltip({
+bootstrap.Tooltip.getOrCreateInstance('body', {
     container: 'body',
     selector: '[data-bs-toggle="tooltip"]'
 });

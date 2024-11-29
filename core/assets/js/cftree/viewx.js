@@ -35,12 +35,12 @@ export default function (apx) {
         apx.markLogsAsRead();
         apx.copyFramework.init();
 
-        $('#treeView').tooltip({
+        bootstrap.Tooltip.getOrCreateInstance('#treeView', {
             'selector': '.fancytree-title',
             // "content": content,  // this is for popover
-            "title": function () {
+            "title": function (e) {
                 return ""; // TODO: Fix this, "this" seems to be null now in next line
-                let node = $.ui.fancytree.getNode(this);
+                let node = $.ui.fancytree.getNode(e);
                 return apx.treeDoc1.tooltipContent(node);
             },
             "delay": { "show": 200, "hide": 100 },
@@ -51,7 +51,7 @@ export default function (apx) {
         });
 
         // tooltips for associations with titles
-        $('#treeSideRight').tooltip({
+        bootstrap.Tooltip.getOrCreateInstance('#treeSideRight', {
             selector: '.itemDetailsAssociationTitle.annotated',
             "title": function () { return $(this).html(); },
             "delay": { "show": 200, "hide": 100 },

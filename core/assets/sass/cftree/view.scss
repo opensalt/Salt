@@ -335,6 +335,10 @@ div.fancytree-drag-helper span.fancytree-childcounter {
     text-align:left;
 }
 
+.tooltip-inner p {
+    margin-bottom: 0;
+}
+
 /* class for vertical-centered columns -- you have to apply this to all columns in a row for it to work */
 .vcenter {
     display: inline-block;

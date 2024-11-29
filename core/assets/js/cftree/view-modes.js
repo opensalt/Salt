@@ -327,7 +327,7 @@ export default function (apx) {
             });
 
             // tooltips for items with titles
-            $('#assocView').tooltip({
+            bootstrap.Tooltip.getOrCreateInstance('#assocView', {
                 selector: '.assocViewTitle',
                 "title": function () { return $(this).html(); },
                 "delay": { "show": 200, "hide": 100 },
@@ -513,9 +513,9 @@ export default function (apx) {
 
         // remove stray tooltips
         setTimeout(function () {
-            $('body').tooltip('hide');
-            $('#treeView').tooltip('hide');
-            $('#assocView').tooltip('hide');
+            bootstrap.Tooltip.getOrCreateInstance('body').hide();
+            bootstrap.Tooltip.getOrCreateInstance('#treeView').hide();
+            bootstrap.Tooltip.getOrCreateInstance('#assocView').hide();
         }, 100);
     };
 

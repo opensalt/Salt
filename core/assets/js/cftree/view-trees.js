@@ -264,8 +264,6 @@ export default function (apx) {
                         ;
                     let title = '';
 
-                    $('body > .tooltip').tooltip('hide');
-
                     if ('undefined' === typeof ref) {
                         return;
                     }
