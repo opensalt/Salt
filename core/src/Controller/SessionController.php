@@ -17,7 +17,7 @@ class SessionController extends AbstractController
     ) {
     }
 
-    #[Route(path: '/session/check')]
+    #[Route(path: '/session/check', name: 'session_check', stateless: true)]
     public function currentSession(Request $request, SessionRepository $repo): JsonResponse
     {
         if (null === ($sessionId = $request->cookies->get('session'))) {

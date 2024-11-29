@@ -27,7 +27,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements E
 {
     use TargetPathTrait;
 
-    final public const LOGIN_ROUTE = 'login';
+    final public const string LOGIN_ROUTE = 'login';
 
     public function __construct(
         private readonly UserRepository $userRepository,
@@ -73,7 +73,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements E
             }
         }
 
-        if (($targetPath = $this->getTargetPath($request->getSession(), $firewallName))
+        if (true !== $request->attributes->get('_stateless')
+            && ($targetPath = $this->getTargetPath($request->getSession(), $firewallName))
             && $targetPath !== $this->getLoginUrl($request)) {
             return new RedirectResponse($targetPath);
         }
@@ -99,6 +100,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements E
             !$event->isMainRequest()
             || $request->isXmlHttpRequest()
             || self::LOGIN_ROUTE === $request->attributes->get('_route')
+            || true === $request->attributes->get('_stateless')
             || !$request->hasSession()
         ) {
             return;
