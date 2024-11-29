@@ -10,7 +10,6 @@ function addBackdrop() {
 }
 
 function showWarning(warning) {
-    console.log('show warning');
     let classes = '';
     let message = '';
     let button = '<button class="btn btn-md btn-primary">Renew Session</button>';
@@ -96,7 +95,6 @@ function checkSession() {
         .then(json => json.json())
         .then((json) => {
             let remainingTime = json.remainingTime;
-            console.log('remaining time: ' + remainingTime);
 
             if (1 > remainingTime) {
                 showWarning('expired');
