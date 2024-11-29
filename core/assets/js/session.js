@@ -73,10 +73,12 @@ function showWarning(warning) {
 
 function removeWarning() {
     if (sessionModal) {
+        const modal = document.getElementById('sessionTimeoutModal');
+        modal.addEventListener('hidden.bs.modal', () => {
+            document.getElementById('sessionTimeoutModal').parentElement.remove();
+        });
         sessionModal.hide();
-        sessionModal.dispose();
         sessionModal = null;
-        document.getElementById('sessionTimeoutModal').remove();
     }
 }
 
