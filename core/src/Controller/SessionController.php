@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 class SessionController extends AbstractController
 {
     public function __construct(
-        #[Autowire(param: 'session_max_idle_time')] private readonly int $sessionMaxIdleTime = 3600
+        #[Autowire(param: 'session_max_idle_time')] private readonly int $sessionMaxIdleTime = 3600,
     ) {
     }
 
