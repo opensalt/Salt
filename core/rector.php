@@ -15,7 +15,7 @@ return RectorConfig::configure()
         __DIR__ . '/templates',
         __DIR__ . '/config',
     ])
-    ->withPhpVersion(\Rector\ValueObject\PhpVersion::PHP_83)
+    ->withPhpVersion(\Rector\ValueObject\PhpVersion::PHP_84)
     ->withPhpSets(php83: true)
     ->withSkip([
         __DIR__ . '/config/bundles.php',
