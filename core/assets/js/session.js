@@ -10,6 +10,8 @@ function addBackdrop() {
 }
 
 function showWarning(warning) {
+    removeWarning();
+
     let classes = '';
     let message = '';
     let button = '<button class="btn btn-md btn-primary">Renew Session</button>';
@@ -61,8 +63,6 @@ function showWarning(warning) {
             e.stopImmediatePropagation();
             renewSession();
         });
-
-    removeWarning();
 
     sessionModal = new bootstrap.Modal('#sessionTimeoutModal', {
         backdrop: 'static',
