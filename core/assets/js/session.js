@@ -1,103 +1,102 @@
+let sessionModal = null;
+
 function addBackdrop() {
-    if (0 === $('#sessionModalBackdrop').length) {
-        $('<style id="sessionModalBackdrop">#sessionTimeoutModal.in ~ .modal-backdrop { z-index: 1100; }</style>').appendTo('head');
+    if (!document.getElementById('sessionModalBackdrop')) {
+        const style = document.createElement('style');
+        style.id = 'sessionModalBackdrop';
+        style.innerText = '#sessionTimeoutModal.in ~ .modal-backdrop { z-index: 1100; }';
+        document.head.appendChild(style);
     }
 }
 
 function showWarning(warning) {
-    let modal = $('#sessionTimeoutModal');
+    console.log('show warning');
+    let classes = '';
+    let message = '';
+    let button = '<button class="btn btn-md btn-primary">Renew Session</button>';
 
-    if (0 === modal.length) {
-        let template = `
-<div class="modal fade" id="sessionTimeoutModal" tabindex="-1" role="dialog" aria-labelledby="sessionTimeoutLabel" style="z-index: 1110;">
+    switch (warning) {
+        case 'expired':
+            classes = 'bg-danger text-black';
+            message = 'Your session has expired.';
+            button = '';
+            break;
+
+        case 'warning-2':
+            classes = 'bg-warning text-black';
+            message = 'Your session is about to expired.';
+            break;
+
+        case 'warning':
+            classes = 'bg-warning text-black';
+            message = 'Your session is about to expired.';
+            break;
+
+        case 'info':
+            classes = 'bg-info text-black';
+            message = 'Your session will expire soon.'
+            break;
+    }
+
+    const template = `
+<div class="modal fade" id="sessionTimeoutModal" tabindex="-1" role="dialog" aria-label="Session Timeout Dialogue" style="z-index: 1110;">
    <div class="modal-dialog modal-lg" role="document">
        <div class="modal-content">
-           <div class="modal-body bg-info text-info text-center">
-               <h3>Your session is about to expire.</h3>
-               <button class="btn btn-md btn-primary">Renew Session</button>
+           <div class="modal-body ${classes} text-center">
+               <h3>${message}</h3>
+               ${button}
            </div>
        </div>
    </div>
 </div>
 `;
-        addBackdrop();
-        $('body').prepend(template);
-        modal = $('#sessionTimeoutModal');
-    }
 
-    modal.find('.modal-body')
-        .removeClass('bg-info text-info bg-warning text-warning bg-danger text-danger')
-        .find('button').remove();
+    addBackdrop();
+    const modalDiv = document.createElement('div');
+    modalDiv.innerHTML = template;
+    document.body.prepend(modalDiv);
 
-    switch (warning) {
-        case 'expired':
-            modal.find('.modal-body')
-                .addClass('bg-danger text-danger')
-
-                .find('h3')
-                .html('Your session has expired.');
-            break;
-
-        case 'warning-2':
-            modal.find('.modal-body')
-                .addClass('bg-warning text-warning')
-
-                .find('h3')
-                .html('Your session is about to expire.')
-            ;
-            break;
-
-        case 'warning':
-            modal.find('.modal-body')
-                .addClass('bg-warning text-warning')
-
-                .find('h3')
-                .html('Your session is about to expire.')
-                .after('<button class="btn btn-md btn-primary">Renew Session</button>')
-            ;
-            break;
-
-        case 'info':
-            modal.find('.modal-body')
-                .addClass('bg-info text-info')
-
-                .find('h3')
-                .html('Your session will expire soon.')
-                .after('<button class="btn btn-md btn-primary">Renew Session</button>')
-            ;
-            break;
-    }
-
-    modal.find('.modal-body button')
-        .one('click', (e) => {
+    document.querySelector('#sessionTimeoutModal button')
+        .addEventListener('click', (e) => {
             e.preventDefault();
             e.stopImmediatePropagation();
             renewSession();
         });
 
-    modal.modal({
+    removeWarning();
+
+    sessionModal = new bootstrap.Modal('#sessionTimeoutModal', {
         backdrop: 'static',
         keyboard: false
     });
+    sessionModal.show();
 }
 
 function removeWarning() {
-    $('#sessionTimeoutModal').modal('hide');
+    if (sessionModal) {
+        sessionModal.hide();
+        sessionModal.dispose();
+        sessionModal = null;
+        document.getElementById('sessionTimeoutModal').remove();
+    }
 }
 
 function renewSession() {
-    $.getJSON('/session/renew')
-        .done((json, textStatus, jqxhr) => {
+    fetch('/session/renew')
+        .then(json => json.json())
+        .then((json) => {
             checkSession();
         })
-        .fail((jqxhr, textStatus, error) => {
+        .catch(() => {
         });
 }
 
 function checkSession() {
-    $.getJSON('/session/check')
-        .done((json, textStatus, jqxhr) => {
+    fetch('/session/check')
+        .then(json => json.json())
+        .then((json) => {
             let remainingTime = json.remainingTime;
+            console.log('remaining time: ' + remainingTime);
 
             if (1 > remainingTime) {
                 showWarning('expired');
@@ -150,14 +149,14 @@ function checkSession() {
                 (remainingTime-300)*1000+100
             );
         })
-        .fail((jqxhr, textStatus, error) => {
+        .catch(() => {
             // No session exists, or is expired
             showWarning('expired');
         });
 }
 
 const check = () => {
-    if ($('html').hasClass('no-auth')) {
+    if (document.getElementsByTagName('html')[0].classList.contains('no-auth')) {
         // Only check authenticated sessions
 
         return;

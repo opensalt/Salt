@@ -151,11 +151,6 @@ services:
             $githubClientSecret: '%github_client_secret%'
             $githubRedirectUri: "@=container.hasParameter('github_redirect_uri') ? parameter('github_redirect_uri') : null"
 
-    App\Controller\SessionController:
-        tags: ['controller.service_arguments']
-        arguments:
-            $sessionMaxIdleTime: '%session_max_idle_time%'
-
     # LS Item Controller
     App\Controller\Framework\LsItemController:
         arguments:
