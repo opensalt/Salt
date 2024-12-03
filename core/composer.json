@@ -93,7 +93,7 @@
         "symfony/asset": "*",
         "symfony/asset-mapper": "7.1.*",
         "symfony/console": "*",
-        "symfony/doctrine-messenger": "7.1.*",
+        "symfony/doctrine-messenger": "7.2.*",
         "symfony/dotenv": "*",
         "symfony/expression-language": "*",
         "symfony/flex": "^2.0",
