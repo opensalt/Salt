@@ -30,9 +30,9 @@ final class CfRubricCriterionNormalizer implements NormalizerAwareInterface, Nor
         return [CfRubricCriterion::class => true];
     }
 
-    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): ?array
     {
-        if (!$object instanceof CfRubricCriterion) {
+        if (!$data instanceof CfRubricCriterion) {
             return null;
         }
 
@@ -43,36 +43,36 @@ final class CfRubricCriterionNormalizer implements NormalizerAwareInterface, Nor
         if (null !== ($context['add-case-context'] ?? null)) {
             unset($context['add-case-context']);
         }
-        $data = [
+        $return = [
             '@context' => (null !== $addContext)
                 ? 'https://purl.imsglobal.org/spec/case/v1p0/context/imscasev1p0_context_v1p0.jsonld'
                 : null,
             'type' => (null !== $addType)
                 ? 'CFRubricCriterion'
                 : null,
-            'identifier' => $object->getIdentifier(),
-            'uri' => $this->api1Uris->getUri($object),
-            'lastChangeDateTime' => $this->getLastChangeDateTime($object),
-            'CFItemURI' => $this->createLinkUri($object->getItem(), $context),
+            'identifier' => $data->getIdentifier(),
+            'uri' => $this->api1Uris->getUri($data),
+            'lastChangeDateTime' => $this->getLastChangeDateTime($data),
+            'CFItemURI' => $this->createLinkUri($data->getItem(), $context),
             'rubricId' => in_array('CfRubricCriterion', $context['groups'] ?? [], true)
-                ? $object->getRubric()?->getIdentifier()
+                ? $data->getRubric()?->getIdentifier()
                 : null,
-            'category' => $object->getCategory(),
-            'description' => $object->getDescription(),
-            'position' => $object->getPosition(),
-            'weight' => $object->getWeight(),
+            'category' => $data->getCategory(),
+            'description' => $data->getDescription(),
+            'position' => $data->getPosition(),
+            'weight' => $data->getWeight(),
         ];
 
         if ($addCriterionLevels) {
-            foreach ($object->getLevels() as $level) {
-                $data['CFRubricCriterionLevels'][] = $this->normalizer->normalize($level, $format, $context);
+            foreach ($data->getLevels() as $level) {
+                $return['CFRubricCriterionLevels'][] = $this->normalizer->normalize($level, $format, $context);
             }
         }
 
         if (in_array('opensalt', $context['groups'] ?? [], true)) {
-            $data['_opensalt'] = $object->getExtra();
+            $return['_opensalt'] = $data->getExtra();
         }
 
-        return Collection::removeEmptyElements($data);
+        return Collection::removeEmptyElements($return);
     }
 }

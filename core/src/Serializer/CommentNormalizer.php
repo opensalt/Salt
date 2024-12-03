@@ -17,26 +17,26 @@ class CommentNormalizer implements NormalizerInterface
         return [Comment::class => true];
     }
 
-    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): ?array
     {
-        if (!$object instanceof Comment) {
+        if (!$data instanceof Comment) {
             throw new \InvalidArgumentException('Expecting a Comment');
         }
 
         return [
-            'fullname' => $object->getFullname(),
-            'id' => $object->getId(),
-            'parent' => $object->getParentId(),
-            'content' => $object->getContent(),
-            'document' => $object->getDocument()?->getId(),
-            'item' => $object->getItem()?->getId(),
-            'upvote_count' => $object->getUpvoteCount(),
-            'created' => $object->getCreatedAt()->format('Y-m-d\TH:i:s+00:00'),
-            'modified' => $object->getUpdatedAt()->format('Y-m-d\TH:i:s+00:00'),
-            'file_mime_type' => $object->getFileMimeType(),
-            'file_url' => $object->getFileUrl(),
-            'created_by_current_user' => $object->isCreatedByCurrentUser(),
-            'user_has_upvoted' => $object->hasUserUpvoted(),
+            'fullname' => $data->getFullname(),
+            'id' => $data->getId(),
+            'parent' => $data->getParentId(),
+            'content' => $data->getContent(),
+            'document' => $data->getDocument()?->getId(),
+            'item' => $data->getItem()?->getId(),
+            'upvote_count' => $data->getUpvoteCount(),
+            'created' => $data->getCreatedAt()->format('Y-m-d\TH:i:s+00:00'),
+            'modified' => $data->getUpdatedAt()->format('Y-m-d\TH:i:s+00:00'),
+            'file_mime_type' => $data->getFileMimeType(),
+            'file_url' => $data->getFileUrl(),
+            'created_by_current_user' => $data->isCreatedByCurrentUser(),
+            'user_has_upvoted' => $data->hasUserUpvoted(),
         ];
     }
 }

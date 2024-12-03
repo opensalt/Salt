@@ -31,54 +31,54 @@ final class LsItemNormalizer implements NormalizerInterface
         return [LsItem::class => true];
     }
 
-    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): ?array
     {
-        if (!$object instanceof LsItem) {
+        if (!$data instanceof LsItem) {
             return null;
         }
 
         $jsonLd = $context['case-json-ld'] ?? null;
         $addContext = (null !== $jsonLd) ? ($context['add-case-context'] ?? null) : null;
         $addType = (null === $addContext) ? ($context['add-case-type'] ?? null) : $addContext;
-        $conceptKeywords = $object->getConceptKeywordsArray();
-        $conceptKeywordsUri = $object->getConcepts();
-        $data = [
+        $conceptKeywords = $data->getConceptKeywordsArray();
+        $conceptKeywordsUri = $data->getConcepts();
+        $ret = [
             '@context' => (null !== $addContext)
                 ? 'https://purl.imsglobal.org/spec/case/v1p0/context/imscasev1p0_context_v1p0.jsonld'
                 : null,
             'type' => (null !== $addType)
                 ? 'CFItem'
                 : null,
-            'identifier' => $object->getIdentifier(),
-            'uri' => $this->api1Uris->getUri($object),
-            'CFDocumentURI' => $this->createDocumentLinkUri($object->getLsDoc(), 'LsItem', $context),
-            'fullStatement' => $object->getFullStatement(),
-            'alternativeLabel' => $object->getAlternativeLabel(),
-            'CFItemType' => $object->getItemType()?->getTitle(),
-            'CFItemTypeURI' => $this->api1Uris->getLinkUri($object->getItemType()),
-            'humanCodingScheme' => $object->getHumanCodingScheme(),
-            'listEnumeration' => $object->getListEnumInSource(),
-            'abbreviatedStatement' => $object->getAbbreviatedStatement(),
+            'identifier' => $data->getIdentifier(),
+            'uri' => $this->api1Uris->getUri($data),
+            'CFDocumentURI' => $this->createDocumentLinkUri($data->getLsDoc(), 'LsItem', $context),
+            'fullStatement' => $data->getFullStatement(),
+            'alternativeLabel' => $data->getAlternativeLabel(),
+            'CFItemType' => $data->getItemType()?->getTitle(),
+            'CFItemTypeURI' => $this->api1Uris->getLinkUri($data->getItemType()),
+            'humanCodingScheme' => $data->getHumanCodingScheme(),
+            'listEnumeration' => $data->getListEnumInSource(),
+            'abbreviatedStatement' => $data->getAbbreviatedStatement(),
             'conceptKeywords' => count($conceptKeywords) > 0
                 ? $conceptKeywords
                 : null,
             'conceptKeywordsURI' => count($conceptKeywordsUri) > 0
                 ? $this->api1Uris->getLinkUri($conceptKeywordsUri[0])
                 : null,
-            'notes' => $object->getNotes(),
-            'language' => $object->getLanguage(),
-            'educationLevel' => $this->api1Uris->splitByComma($object->getEducationalAlignment()),
-            'licenseURI' => $this->api1Uris->getLinkUri($object->getLicence()),
-            'statusStartDate' => $this->toDate($object->getStatusStart()),
-            'statusEndDate' => $this->toDate($object->getStatusEnd()),
-            'lastChangeDateTime' => $this->getLastChangeDateTime($object),
-            'associationSet' => $this->createAssociationLinks($object, $context),
+            'notes' => $data->getNotes(),
+            'language' => $data->getLanguage(),
+            'educationLevel' => $this->api1Uris->splitByComma($data->getEducationalAlignment()),
+            'licenseURI' => $this->api1Uris->getLinkUri($data->getLicence()),
+            'statusStartDate' => $this->toDate($data->getStatusStart()),
+            'statusEndDate' => $this->toDate($data->getStatusEnd()),
+            'lastChangeDateTime' => $this->getLastChangeDateTime($data),
+            'associationSet' => $this->createAssociationLinks($data, $context),
         ];
 
         if (in_array('opensalt', $context['groups'] ?? [], true)) {
-            $data['_opensalt'] = $object->getExtra();
+            $ret['_opensalt'] = $data->getExtra();
         }
 
-        return Collection::removeEmptyElements($data);
+        return Collection::removeEmptyElements($ret);
     }
 }

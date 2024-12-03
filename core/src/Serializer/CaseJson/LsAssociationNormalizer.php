@@ -27,9 +27,9 @@ final class LsAssociationNormalizer implements NormalizerInterface
         return [LsAssociation::class => true];
     }
 
-    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): ?array
     {
-        if (!$object instanceof LsAssociation) {
+        if (!$data instanceof LsAssociation) {
             return null;
         }
 
@@ -37,31 +37,31 @@ final class LsAssociationNormalizer implements NormalizerInterface
         $addContext = (null !== $jsonLd) ? ($context['add-case-context'] ?? null) : null;
         $addType = (null === $addContext) ? ($context['add-case-type'] ?? null) : $addContext;
         $addLinkUriType = (($context['no-case-link-uri-type'] ?? null) !== null) ? null : $addContext;
-        $data = [
+        $ret = [
             '@context' => (null !== $addContext)
                 ? 'https://purl.imsglobal.org/spec/case/v1p0/context/imscasev1p0_context_v1p0.jsonld'
                 : null,
             'type' => (null !== $addType)
                 ? 'CFAssociation'
                 : null,
-            'identifier' => $object->getIdentifier(),
-            'uri' => $this->api1Uris->getUri($object),
-            'CFDocumentURI' => $this->createDocumentLinkUri($object->getLsDoc(), 'LsAssociation', $context),
-            'lastChangeDateTime' => $this->getLastChangeDateTime($object),
-            'sequenceNumber' => $object->getSequenceNumber(),
-            'CFAssociationGroupingURI' => $this->createLinkUri($object->getGroup(), $context),
-            'originNodeURI' => $this->createOutLink($object, 'origin', $context, null !== $addLinkUriType),
-            'associationType' => $object->getNormalizedType(),
-            'destinationNodeURI' => $this->createOutLink($object, 'destination', $context, null !== $addLinkUriType),
+            'identifier' => $data->getIdentifier(),
+            'uri' => $this->api1Uris->getUri($data),
+            'CFDocumentURI' => $this->createDocumentLinkUri($data->getLsDoc(), 'LsAssociation', $context),
+            'lastChangeDateTime' => $this->getLastChangeDateTime($data),
+            'sequenceNumber' => $data->getSequenceNumber(),
+            'CFAssociationGroupingURI' => $this->createLinkUri($data->getGroup(), $context),
+            'originNodeURI' => $this->createOutLink($data, 'origin', $context, null !== $addLinkUriType),
+            'associationType' => $data->getNormalizedType(),
+            'destinationNodeURI' => $this->createOutLink($data, 'destination', $context, null !== $addLinkUriType),
         ];
 
         if (in_array('opensalt', $context['groups'] ?? [], true)) {
-            $data['_opensalt'] = $object->getExtra();
-            $data['_opensalt']['subtype'] = $object->getSubtype();
-            $data['_opensalt']['annotation'] = $object->getAnnotation();
+            $ret['_opensalt'] = $data->getExtra();
+            $ret['_opensalt']['subtype'] = $data->getSubtype();
+            $ret['_opensalt']['annotation'] = $data->getAnnotation();
         }
 
-        return Collection::removeEmptyElements($data);
+        return Collection::removeEmptyElements($ret);
     }
 
     protected function createOutLink(LsAssociation $association, string $which, array $context, bool $addType = true): ?array

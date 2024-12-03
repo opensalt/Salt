@@ -38,9 +38,9 @@ final class CfPackageNormalizer implements NormalizerAwareInterface, NormalizerI
         return [LsDoc::class => false];
     }
 
-    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): ?array
     {
-        if (!$object instanceof LsDoc) {
+        if (!$data instanceof LsDoc) {
             return null;
         }
 
@@ -48,27 +48,27 @@ final class CfPackageNormalizer implements NormalizerAwareInterface, NormalizerI
         $addContext = (null !== $jsonLd) ? ($context['add-case-context'] ?? null) : null;
         unset($context['add-case-context'], $context['generate-package']);
         $context['no-association-links'] = true;
-        $data = [
+        $return = [
             '@context' => (null !== $addContext)
                 ? 'https://purl.imsglobal.org/spec/case/v1p0/context/imscasev1p0_context_v1p0.jsonld'
                 : null,
             'uri' => (null !== $jsonLd)
-                ? $this->api1Uris->getUri($object, 'api_v1p0_cfpackage')
+                ? $this->api1Uris->getUri($data, 'api_v1p0_cfpackage')
                 : null,
             'type' => (null !== $jsonLd)
                 ? 'CFPackage'
                 : null,
-            'CFDocument' => $this->normalizer->normalize($object, $format, $context),
+            'CFDocument' => $this->normalizer->normalize($data, $format, $context),
         ];
 
-        $items = $this->docRepository->findAllItemsForCFPackage($object, Query::HYDRATE_OBJECT);
+        $items = $this->docRepository->findAllItemsForCFPackage($data, Query::HYDRATE_OBJECT);
         foreach ($items as $key => $obj) {
             $this->entityManager->detach($obj);
-            $data['CFItems'][] = $this->normalizer->normalize($obj, $format, $context);
+            $return['CFItems'][] = $this->normalizer->normalize($obj, $format, $context);
             unset($items[$key]);
         }
 
-        $items = $this->docRepository->findAllAssociationsIterator($object, Query::HYDRATE_OBJECT);
+        $items = $this->docRepository->findAllAssociationsIterator($data, Query::HYDRATE_OBJECT);
         foreach ($items as $key => $obj) {
             $this->entityManager->detach($obj);
             if (!$this->canListDocument($obj, 'origin') ||
@@ -77,29 +77,29 @@ final class CfPackageNormalizer implements NormalizerAwareInterface, NormalizerI
                 continue;
             }
 
-            $data['CFAssociations'][] = $this->normalizer->normalize($obj, $format, $context);
+            $return['CFAssociations'][] = $this->normalizer->normalize($obj, $format, $context);
         }
 
         foreach (['CFConcepts', 'CFSubjects', 'CFLicenses', 'CFItemTypes', 'CFAssociationGroupings'] as $defType) {
             $defs = match ($defType) {
-                'CFConcepts' => $this->docRepository->findAllUsedConcepts($object, Query::HYDRATE_OBJECT),
-                'CFSubjects' => $object->getSubjects(),
-                'CFLicenses' => array_values($this->docRepository->findAllUsedLicences($object, Query::HYDRATE_OBJECT)),
-                'CFItemTypes' => $this->docRepository->findAllUsedItemTypes($object, Query::HYDRATE_OBJECT),
-                'CFAssociationGroupings' => $this->docRepository->findAllUsedAssociationGroups($object, Query::HYDRATE_OBJECT),
+                'CFConcepts' => $this->docRepository->findAllUsedConcepts($data, Query::HYDRATE_OBJECT),
+                'CFSubjects' => $data->getSubjects(),
+                'CFLicenses' => array_values($this->docRepository->findAllUsedLicences($data, Query::HYDRATE_OBJECT)),
+                'CFItemTypes' => $this->docRepository->findAllUsedItemTypes($data, Query::HYDRATE_OBJECT),
+                'CFAssociationGroupings' => $this->docRepository->findAllUsedAssociationGroups($data, Query::HYDRATE_OBJECT),
             };
 
             foreach ($defs as $obj) {
-                $data['CFDefinitions'][$defType][] = $this->normalizer->normalize($obj, $format, $context);
+                $return['CFDefinitions'][$defType][] = $this->normalizer->normalize($obj, $format, $context);
             }
         }
 
-        $items = $this->docRepository->findAllUsedRubrics($object, Query::HYDRATE_OBJECT);
+        $items = $this->docRepository->findAllUsedRubrics($data, Query::HYDRATE_OBJECT);
         foreach ($items as $obj) {
-            $data['CFRubrics'][] = $this->normalizer->normalize($obj, $format, $context);
+            $return['CFRubrics'][] = $this->normalizer->normalize($obj, $format, $context);
         }
 
-        return Collection::removeEmptyElements($data);
+        return Collection::removeEmptyElements($return);
     }
 
     public function setNormalizer(NormalizerInterface $normalizer): void

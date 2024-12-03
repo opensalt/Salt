@@ -26,35 +26,35 @@ final class LsDefItemTypeNormalizer implements NormalizerInterface
         return [LsDefItemType::class => true];
     }
 
-    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): ?array
     {
-        if (!$object instanceof LsDefItemType) {
+        if (!$data instanceof LsDefItemType) {
             return null;
         }
 
         $jsonLd = $context['case-json-ld'] ?? null;
         $addContext = (null !== $jsonLd) ? ($context['add-case-context'] ?? null) : null;
         $addType = (null === $addContext) ? ($context['add-case-type'] ?? null) : $addContext;
-        $data = [
+        $ret = [
             '@context' => (null !== $addContext)
                 ? 'https://purl.imsglobal.org/spec/case/v1p0/context/imscasev1p0_context_v1p0.jsonld'
                 : null,
             'type' => (null !== $addType)
                 ? 'CFItemType'
                 : null,
-            'identifier' => $object->getIdentifier(),
-            'uri' => $this->api1Uris->getUri($object),
-            'title' => $object->getTitle(),
-            'lastChangeDateTime' => $this->getLastChangeDateTime($object),
-            'description' => $object->getDescription() ?? $object->getTitle(),
-            'typeCode' => $object->getCode(),
-            'hierarchyCode' => $object->getHierarchyCode(),
+            'identifier' => $data->getIdentifier(),
+            'uri' => $this->api1Uris->getUri($data),
+            'title' => $data->getTitle(),
+            'lastChangeDateTime' => $this->getLastChangeDateTime($data),
+            'description' => $data->getDescription() ?? $data->getTitle(),
+            'typeCode' => $data->getCode(),
+            'hierarchyCode' => $data->getHierarchyCode(),
         ];
 
         if (in_array('opensalt', $context['groups'] ?? [], true)) {
-            $data['_opensalt'] = $object->getExtra();
+            $ret['_opensalt'] = $data->getExtra();
         }
 
-        return Collection::removeEmptyElements($data);
+        return Collection::removeEmptyElements($ret);
     }
 }

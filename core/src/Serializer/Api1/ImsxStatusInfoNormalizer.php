@@ -17,27 +17,27 @@ class ImsxStatusInfoNormalizer implements NormalizerInterface
         return [ImsxStatusInfo::class => true];
     }
 
-    public function normalize(mixed $object, ?string $format = null, array $context = []): array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): array
     {
-        if (!$object instanceof ImsxStatusInfo) {
+        if (!$data instanceof ImsxStatusInfo) {
             throw new \InvalidArgumentException('ImsxStatusInfo object expected');
         }
 
-        $data = [
-            'imsx_codeMajor' => $object->codeMajor,
-            'imsx_severity' => $object->severity,
-            'imsx_description' => $object->description,
+        $return = [
+            'imsx_codeMajor' => $data->codeMajor,
+            'imsx_severity' => $data->severity,
+            'imsx_description' => $data->description,
         ];
 
-        if (!empty($object->codeMinor)) {
-            foreach ($object->codeMinor->codeMinorField as $minor) {
-                $data['imsx_codeMinor']['imsx_codeMinorField'][] = [
+        if (!empty($data->codeMinor)) {
+            foreach ($data->codeMinor->codeMinorField as $minor) {
+                $return['imsx_codeMinor']['imsx_codeMinorField'][] = [
                     'ims_codeMinorFieldName' => $minor->name,
                     'ims_codeMinorFieldValue' => $minor->value,
                 ];
             }
         }
 
-        return $data;
+        return $return;
     }
 }

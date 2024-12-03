@@ -26,39 +26,39 @@ final class CfRubricCriterionLevelNormalizer implements NormalizerInterface
         return [CfRubricCriterionLevel::class => true];
     }
 
-    public function normalize(mixed $object, ?string $format = null, array $context = []): ?array
+    public function normalize(mixed $data, ?string $format = null, array $context = []): ?array
     {
-        if (!$object instanceof CfRubricCriterionLevel) {
+        if (!$data instanceof CfRubricCriterionLevel) {
             return null;
         }
 
         $jsonLd = $context['case-json-ld'] ?? null;
         $addContext = (null !== $jsonLd) ? ($context['add-case-context'] ?? null) : null;
         $addType = (null === $addContext) ? ($context['add-case-type'] ?? null) : $addContext;
-        $data = [
+        $return = [
             '@context' => (null !== $addContext)
                 ? 'https://purl.imsglobal.org/spec/case/v1p0/context/imscasev1p0_context_v1p0.jsonld'
                 : null,
             'type' => (null !== $addType)
                 ? 'CFRubricCriterionLevel'
                 : null,
-            'identifier' => $object->getIdentifier(),
-            'uri' => $this->api1Uris->getUri($object),
+            'identifier' => $data->getIdentifier(),
+            'uri' => $this->api1Uris->getUri($data),
             'rubricCriterionId' => in_array('CfRubricCriterionLevel', $context['groups'] ?? [], true)
-                ? $object->getCriterion()->getIdentifier()
+                ? $data->getCriterion()->getIdentifier()
                 : null,
-            'lastChangeDateTime' => $this->getLastChangeDateTime($object),
-            'description' => $object->getDescription(),
-            'feedback' => $object->getFeedback(),
-            'quality' => $object->getQuality(),
-            'score' => $object->getScore(),
-            'position' => $object->getPosition(),
+            'lastChangeDateTime' => $this->getLastChangeDateTime($data),
+            'description' => $data->getDescription(),
+            'feedback' => $data->getFeedback(),
+            'quality' => $data->getQuality(),
+            'score' => $data->getScore(),
+            'position' => $data->getPosition(),
         ];
 
         if (in_array('opensalt', $context['groups'] ?? [], true)) {
-            $data['_opensalt'] = $object->getExtra();
+            $return['_opensalt'] = $data->getExtra();
         }
 
-        return Collection::removeEmptyElements($data);
+        return Collection::removeEmptyElements($return);
     }
 }
