@@ -6,13 +6,10 @@ use App\Entity\User\User;
 use App\Repository\User\UserRepository;
 use Novaway\Bundle\FeatureFlagBundle\Manager\FeatureManager;
 use Scheb\TwoFactorBundle\Security\Http\Authenticator\TwoFactorAuthenticator;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
@@ -23,7 +20,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordC
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements EventSubscriberInterface
+class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
@@ -93,25 +90,6 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements E
         return $token;
     }
 
-    public function onKernelRequest(RequestEvent $event): void
-    {
-        $request = $event->getRequest();
-        if (
-            !$event->isMainRequest()
-            || $request->isXmlHttpRequest()
-            || self::LOGIN_ROUTE === $request->attributes->get('_route')
-            || true === $request->attributes->get('_stateless')
-            || !$request->hasSession()
-        ) {
-            return;
-        }
-
-        $targetPath = $this->getTargetPath($request->getSession(), 'main');
-        if (null === $targetPath && !str_ends_with($request->getUri(), '/2fa')) {
-            $this->saveTargetPath($request->getSession(), 'main', $request->getUri());
-        }
-    }
-
     public function start(Request $request, ?AuthenticationException $authException = null): Response
     {
         // Return JSON-formatted error if request is an ajax call
@@ -128,12 +106,5 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator implements E
         }
 
         return parent::start($request, $authException);
-    }
-
-    public static function getSubscribedEvents(): array
-    {
-        return [
-            KernelEvents::REQUEST => ['onKernelRequest'],
-        ];
     }
 }
