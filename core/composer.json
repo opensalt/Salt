@@ -91,7 +91,7 @@
         "stof/doctrine-extensions-bundle": "^1.7",
         "swaggest/json-schema": "^0.12.20",
         "symfony/asset": "*",
-        "symfony/asset-mapper": "7.1.*",
+        "symfony/asset-mapper": "7.2.*",
         "symfony/console": "*",
         "symfony/doctrine-messenger": "7.1.*",
         "symfony/dotenv": "*",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9f71e25899b9e55b0dae7af32f65a20",
+    "content-hash": "120f84935ea595a255d120ac09b0358b",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -8248,16 +8248,16 @@
         },
         {
             "name": "symfony/asset-mapper",
-            "version": "v7.1.9",
+            "version": "v7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset-mapper.git",
-                "reference": "bb1c2f5f394c84ce5b1ac8c94d0ac213ae3ce5f8"
+                "reference": "ffb733232bb6bb85ef6a994f47c817e7c2ecab9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/asset-mapper/zipball/bb1c2f5f394c84ce5b1ac8c94d0ac213ae3ce5f8",
-                "reference": "bb1c2f5f394c84ce5b1ac8c94d0ac213ae3ce5f8",
+                "url": "https://api.github.com/repos/symfony/asset-mapper/zipball/ffb733232bb6bb85ef6a994f47c817e7c2ecab9c",
+                "reference": "ffb733232bb6bb85ef6a994f47c817e7c2ecab9c",
                 "shasum": ""
             },
             "require": {
@@ -8307,7 +8307,7 @@
             "description": "Maps directories of assets & makes them available in a public directory with versioned filenames.",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/asset-mapper/tree/v7.1.9"
+                "source": "https://github.com/symfony/asset-mapper/tree/v7.2.0"
             },
             "funding": [
                 {
@@ -8323,7 +8323,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-20T11:08:58+00:00"
+            "time": "2024-11-20T11:17:29+00:00"
         },
         {
             "name": "symfony/cache",
@@ -19122,10 +19122,10 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tetranz/select2entity-bundle": 20,
         "codeception/module-sequence": 20,
         "ericmartel/codeception-email-mailtrap": 20,
-        "roave/security-advisories": 20,
-        "tetranz/select2entity-bundle": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -19142,6 +19142,6 @@
         "ext-mbstring": "*",
         "ext-random": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
