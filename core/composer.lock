@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9f71e25899b9e55b0dae7af32f65a20",
+    "content-hash": "5d6b946ca8243f4cbbaaf167e7170571",
     "packages": [
         {
             "name": "aws/aws-crt-php",
@@ -11725,16 +11725,16 @@
         },
         {
             "name": "symfony/scheduler",
-            "version": "v7.1.6",
+            "version": "v7.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/scheduler.git",
-                "reference": "26d10926d6b8a52897468e6e4fc5c447779af533"
+                "reference": "38a0d1edf50f5f7e1a137927da0e1ae7d0fd1788"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/scheduler/zipball/26d10926d6b8a52897468e6e4fc5c447779af533",
-                "reference": "26d10926d6b8a52897468e6e4fc5c447779af533",
+                "url": "https://api.github.com/repos/symfony/scheduler/zipball/38a0d1edf50f5f7e1a137927da0e1ae7d0fd1788",
+                "reference": "38a0d1edf50f5f7e1a137927da0e1ae7d0fd1788",
                 "shasum": ""
             },
             "require": {
@@ -11785,7 +11785,7 @@
                 "scheduler"
             ],
             "support": {
-                "source": "https://github.com/symfony/scheduler/tree/v7.1.6"
+                "source": "https://github.com/symfony/scheduler/tree/v7.2.0"
             },
             "funding": [
                 {
@@ -11801,7 +11801,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-14T06:12:26+00:00"
+            "time": "2024-10-14T08:51:37+00:00"
         },
         {
             "name": "symfony/security-bundle",
@@ -19122,10 +19122,10 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tetranz/select2entity-bundle": 20,
         "codeception/module-sequence": 20,
         "ericmartel/codeception-email-mailtrap": 20,
-        "roave/security-advisories": 20,
-        "tetranz/select2entity-bundle": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -19142,6 +19142,6 @@
         "ext-mbstring": "*",
         "ext-random": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

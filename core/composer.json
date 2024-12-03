@@ -111,7 +111,7 @@
         "symfony/property-info": "*",
         "symfony/proxy-manager-bridge": "*",
         "symfony/rate-limiter": "*",
-        "symfony/scheduler": "7.1.*",
+        "symfony/scheduler": "7.2.*",
         "symfony/security-bundle": "*",
         "symfony/security-csrf": "*",
         "symfony/serializer": "*",
