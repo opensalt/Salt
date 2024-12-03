@@ -103,7 +103,7 @@
         "symfony/lock": "*",
         "symfony/mailer": "*",
         "symfony/mercure-bundle": "^0.3.0",
-        "symfony/messenger": "7.1.*",
+        "symfony/messenger": "7.2.*",
         "symfony/mime": "*",
         "symfony/monolog-bundle": "^3.3",
         "symfony/process": "*",
