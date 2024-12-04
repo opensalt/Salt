@@ -1679,7 +1679,7 @@ function ApxDocument(initializer, apx) {
                         + removeBtn
                         + editBtn
                         + '<span class="itemDetailsAssociationTitle '+('' !== annotation ? 'annotated' : '')+'" title="'+annotation+'">'
-                        + self.associationDestItemTitle(a)
+                        + self.associationDestItemTitle(a).replace(/<a\b[^>]*>/gmi, '').replace(/<\/a>/gmi, '')
                         + '</span>'
                         + '</a>'
                     ;
