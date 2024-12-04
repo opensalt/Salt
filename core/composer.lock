@@ -2550,16 +2550,16 @@
         },
         {
             "name": "ecotone/ecotone",
-            "version": "1.239.0",
+            "version": "1.239.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecotoneframework/ecotone.git",
-                "reference": "f80352bab044851781938b96bb2a823ac6d8c83b"
+                "reference": "195b4c0202885e12e2309444736f11ada1cd0237"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/ecotone/zipball/f80352bab044851781938b96bb2a823ac6d8c83b",
-                "reference": "f80352bab044851781938b96bb2a823ac6d8c83b",
+                "url": "https://api.github.com/repos/ecotoneframework/ecotone/zipball/195b4c0202885e12e2309444736f11ada1cd0237",
+                "reference": "195b4c0202885e12e2309444736f11ada1cd0237",
                 "shasum": ""
             },
             "require": {
@@ -2581,7 +2581,7 @@
                     "repository": "ecotone"
                 },
                 "branch-alias": {
-                    "dev-main": "1.239.0-dev"
+                    "dev-main": "1.239.1-dev"
                 },
                 "license-info": {
                     "Apache-2.0": {
@@ -2599,7 +2599,7 @@
                         "../local_packages.json"
                     ]
                 },
-                "release-time": "2024-12-01 18:22:56"
+                "release-time": "2024-12-03 20:26:51"
             },
             "autoload": {
                 "psr-4": {
@@ -2630,7 +2630,7 @@
                 "service-bus"
             ],
             "support": {
-                "source": "https://github.com/ecotoneframework/ecotone/tree/1.239.0"
+                "source": "https://github.com/ecotoneframework/ecotone/tree/1.239.1"
             },
             "funding": [
                 {
@@ -2638,7 +2638,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-01T18:30:24+00:00"
+            "time": "2024-12-03T20:34:24+00:00"
         },
         {
             "name": "ecotone/enqueue",
@@ -2727,20 +2727,20 @@
         },
         {
             "name": "ecotone/jms-converter",
-            "version": "1.239.0",
+            "version": "1.239.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecotoneframework/jms-converter.git",
-                "reference": "0228063d8fe49a461d45e00d9d6174e4a0c501ca"
+                "reference": "37f19300b42f4b47fb8addc46cd5bc40e0d6349f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/jms-converter/zipball/0228063d8fe49a461d45e00d9d6174e4a0c501ca",
-                "reference": "0228063d8fe49a461d45e00d9d6174e4a0c501ca",
+                "url": "https://api.github.com/repos/ecotoneframework/jms-converter/zipball/37f19300b42f4b47fb8addc46cd5bc40e0d6349f",
+                "reference": "37f19300b42f4b47fb8addc46cd5bc40e0d6349f",
                 "shasum": ""
             },
             "require": {
-                "ecotone/ecotone": "~1.239.0",
+                "ecotone/ecotone": "~1.239.1",
                 "jms/serializer": "^3.17",
                 "symfony/cache": "^5.4|^6.1|^7.0"
             },
@@ -2756,7 +2756,7 @@
                     "repository": "jms-converter"
                 },
                 "branch-alias": {
-                    "dev-main": "1.239.0-dev"
+                    "dev-main": "1.239.1-dev"
                 },
                 "license-info": {
                     "Apache-2.0": {
@@ -2774,7 +2774,7 @@
                         "../local_packages.json"
                     ]
                 },
-                "release-time": "2024-12-01 18:22:56"
+                "release-time": "2024-12-03 20:26:51"
             },
             "autoload": {
                 "psr-4": {
@@ -2804,7 +2804,7 @@
                 "xml"
             ],
             "support": {
-                "source": "https://github.com/ecotoneframework/jms-converter/tree/1.239.0"
+                "source": "https://github.com/ecotoneframework/jms-converter/tree/1.239.1"
             },
             "funding": [
                 {
@@ -2812,7 +2812,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-01T18:30:42+00:00"
+            "time": "2024-12-03T20:34:36+00:00"
         },
         {
             "name": "ecotone/pdo-event-sourcing",
@@ -19122,10 +19122,10 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tetranz/select2entity-bundle": 20,
         "codeception/module-sequence": 20,
         "ericmartel/codeception-email-mailtrap": 20,
-        "roave/security-advisories": 20,
-        "tetranz/select2entity-bundle": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -19142,6 +19142,6 @@
         "ext-mbstring": "*",
         "ext-random": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
