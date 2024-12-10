@@ -56,6 +56,10 @@ doctrine:
                         prefix: App\Entity
                         dir: "%kernel.project_dir%/src/Entity"
                         is_bundle: false
+                    Domain:
+                        prefix: App\Domain
+                        dir: "%kernel.project_dir%/src/Domain"
+                        is_bundle: false
                     GedmoTree:
                         prefix: Gedmo\Tree\Entity
                         dir: "%kernel.project_dir%/vendor/gedmo/doctrine-extensions/src/Tree/Entity"

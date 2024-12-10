@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Entity\FrontMatter;
+namespace App\Domain\FrontMatter\Entity;
 
 use App\Domain\FrontMatter\DTO\FrontMatterDto;
 use App\Infrastructure\AddUserId;
-use App\Repository\FrontMatterRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Ecotone\Modelling\Attribute\Aggregate;

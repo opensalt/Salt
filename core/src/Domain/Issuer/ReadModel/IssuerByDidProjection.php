@@ -15,10 +15,10 @@ use Ecotone\Modelling\Attribute\EventHandler;
 use Ecotone\Modelling\Attribute\QueryHandler;
 
 #[Projection(name: self::NAME, fromStreams: Issuer::STREAM)]
-class IssuerListProjection
+class IssuerByDidProjection
 {
-    public const string NAME = 'issuer_list';
-    public const string QUERY_ALL_ISSUERS = 'getAllIssuers';
+    public const string NAME = 'issuer_did';
+    public const string QUERY_ISSUER_BY_DID = 'getIssuerByDid';
 
     public function __construct(
         #[Reference] private readonly DocumentStore $documentStore,
@@ -40,6 +40,10 @@ class IssuerListProjection
     #[EventHandler(IssuerWasAdded::NAME)]
     public function whenIssuerAdded(IssuerWasAdded $event): void
     {
+        if (!$event->did) {
+            return;
+        }
+
         $dto = new IssuerDto();
         $dto->id = $event->id->toRfc4122();
         $dto->name = $event->name;
@@ -50,7 +54,7 @@ class IssuerListProjection
 
         $this->documentStore->addDocument(
             self::NAME,
-            $event->id->toRfc4122(),
+            $dto->did,
             $dto
         );
     }
@@ -58,6 +62,10 @@ class IssuerListProjection
     #[EventHandler(IssuerWasUpdated::NAME)]
     public function whenIssuerUpdated(IssuerWasUpdated $event): void
     {
+        if (!$event->did) {
+            return;
+        }
+
         $dto = new IssuerDto();
         $dto->id = $event->id->toRfc4122();
         $dto->name = $event->name;
@@ -68,14 +76,14 @@ class IssuerListProjection
 
         $this->documentStore->updateDocument(
             self::NAME,
-            $event->id->toRfc4122(),
+            $dto->did,
             $dto
         );
     }
 
-    #[QueryHandler(self::QUERY_ALL_ISSUERS)]
-    public function getAllIssuers(): array
+    #[QueryHandler(self::QUERY_ISSUER_BY_DID)]
+    public function getIssuerByDid(array $query): array
     {
-        return $this->documentStore->getAllDocuments(self::NAME);
+        return $this->documentStore->getDocument(self::NAME, $query['did'] ?? null);
     }
 }

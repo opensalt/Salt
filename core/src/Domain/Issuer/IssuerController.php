@@ -5,14 +5,17 @@ namespace App\Domain\Issuer;
 use App\Domain\Issuer\Command\AddIssuerCommand;
 use App\Domain\Issuer\Command\UpdateIssuerCommand;
 use App\Domain\Issuer\DTO\IssuerDto;
+use App\Domain\Issuer\Entity\IssuerRepository;
 use App\Domain\Issuer\Form\IssuerAddType;
 use App\Domain\Issuer\Form\IssuerEditType;
+use App\Domain\Issuer\ReadModel\IssuerByDidProjection;
+use App\Domain\Issuer\ReadModel\IssuerListProjection;
 use App\Security\Permission;
-use Ecotone\EventSourcing\EventStore;
 use Ecotone\Modelling\CommandBus;
 use Ecotone\Modelling\QueryBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\AsController;
@@ -34,7 +37,7 @@ class IssuerController extends AbstractController
     #[IsGranted(Permission::ISSUER_REGISTRY_LIST)]
     public function list(): Response
     {
-        $issuers = $this->queryBus->sendWithRouting('getAllIssuers');
+        $issuers = $this->queryBus->sendWithRouting(IssuerListProjection::QUERY_ALL_ISSUERS);
         usort($issuers, function ($a, $b) {
             return $a->name <=> $b->name;
         });
@@ -42,6 +45,18 @@ class IssuerController extends AbstractController
         return $this->render('issuer/list.html.twig', [
             'issuers' => $issuers,
         ]);
+    }
+
+    #[Route('/registry/issuer/did/{id}', name: 'issuer_registry_by_did', methods: ['GET'])]
+    public function getIssuerByDid(string $did): Response
+    {
+        try {
+            $issuer = $this->queryBus->sendWithRouting(IssuerByDidProjection::QUERY_ISSUER_BY_DID, ['did' => $did]);
+        } catch (\Throwable) {
+            throw $this->createNotFoundException('Issuer not found');
+        }
+
+        return new JsonResponse($issuer);
     }
 
     #[Route('/registry/issuer/new', name: 'issuer_registry_new', methods: ['GET', 'POST'])]
@@ -117,7 +132,7 @@ class IssuerController extends AbstractController
     }
 
     #[Route('/registry/issuer/{id}', name: 'issuer_registry_show', methods: ['GET'])]
-    public function show(Request $request, string $id, EventStore $eventStore): Response
+    public function show(string $id): Response
     {
         $uuid = Uuid::fromString($id);
         $issuer = $this->repository->findBy($uuid);

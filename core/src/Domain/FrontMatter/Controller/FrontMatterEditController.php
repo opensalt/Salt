@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\FrontMatter;
+namespace App\Domain\FrontMatter\Controller;
 
 use App\Domain\FrontMatter\DTO\FrontMatterDto;
+use App\Domain\FrontMatter\Entity\FrontMatter;
+use App\Domain\FrontMatter\Entity\FrontMatterRepository;
 use App\Domain\FrontMatter\Form\FrontMatterType;
-use App\Entity\FrontMatter\FrontMatter;
-use App\Repository\FrontMatterRepository;
 use App\Security\Permission;
 use Ecotone\Modelling\CommandBus;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

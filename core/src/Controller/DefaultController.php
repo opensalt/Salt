@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\FrontMatterRepository;
+use App\Domain\FrontMatter\Entity\FrontMatterRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Attribute\Route;

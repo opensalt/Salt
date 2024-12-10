@@ -2,7 +2,7 @@
 
 namespace App\Domain\FrontMatter;
 
-use App\Entity\FrontMatter\FrontMatter;
+use App\Domain\FrontMatter\Entity\FrontMatter;
 use Doctrine\ORM\EntityManagerInterface;
 use Ecotone\Modelling\Attribute\CommandHandler;
 

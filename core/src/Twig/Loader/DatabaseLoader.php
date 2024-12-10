@@ -2,8 +2,8 @@
 
 namespace App\Twig\Loader;
 
-use App\Entity\FrontMatter\FrontMatter;
-use App\Repository\FrontMatterRepository;
+use App\Domain\FrontMatter\Entity\FrontMatter;
+use App\Domain\FrontMatter\Entity\FrontMatterRepository;
 use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
 use Twig\Error\LoaderError;
 use Twig\Loader\LoaderInterface;

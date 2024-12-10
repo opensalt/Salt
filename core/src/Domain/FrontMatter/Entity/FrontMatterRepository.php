@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Repository;
+namespace App\Domain\FrontMatter\Entity;
 
-use App\Entity\FrontMatter\FrontMatter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

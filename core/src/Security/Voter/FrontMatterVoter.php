@@ -2,7 +2,7 @@
 
 namespace App\Security\Voter;
 
-use App\Entity\FrontMatter\FrontMatter;
+use App\Domain\FrontMatter\Entity\FrontMatter;
 use App\Security\Permission;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;

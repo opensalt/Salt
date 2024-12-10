@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Issuer;
+namespace App\Domain\Issuer\Entity;
 
 use App\Domain\Issuer\Command\AddIssuerCommand;
 use App\Domain\Issuer\Command\UpdateIssuerCommand;

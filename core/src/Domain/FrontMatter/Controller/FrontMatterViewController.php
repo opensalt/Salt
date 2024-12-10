@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\FrontMatter;
+namespace App\Domain\FrontMatter\Controller;
 
+use App\Domain\FrontMatter\Entity\FrontMatterRepository;
 use App\Entity\Framework\LsDoc;
 use App\Repository\Framework\LsDocRepository;
-use App\Repository\FrontMatterRepository;
 use App\Security\Permission;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
