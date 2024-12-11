@@ -82,8 +82,9 @@ class IssuerByDidProjection
     }
 
     #[QueryHandler(self::QUERY_ISSUER_BY_DID)]
-    public function getIssuerByDid(array $query): array
+    public function getIssuerByDid(array $query): IssuerDto
     {
+        /** @var IssuerDto */
         return $this->documentStore->getDocument(self::NAME, $query['did'] ?? null);
     }
 }
