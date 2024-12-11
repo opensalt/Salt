@@ -121,7 +121,7 @@
                     </nav>
                 {%- endblock -%}
             </header>
-            <main class="content clearfix {% block mainclasses %}{% endblock %}" role="main">
+            <main class="content clearfix mb-3 {% block mainclasses %}{% endblock %}" role="main">
                 {% if app.request.hasPreviousSession %}
                     <div class="flash-messages">
                         {% for flash_message in app.session.flashBag.get('error') %}
