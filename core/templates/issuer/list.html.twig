@@ -8,19 +8,18 @@
     <h1>Issuer Registry List</h1>
 
     {% if issuers is not empty %}
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for issuer in issuers %}
-                    <tr>
-                        <td><a href="{{ path('issuer_registry_show', {'id': issuer.id}) }}">{{ issuer.name }}</a></td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="row row-cols-3 g-4">
+            {% for issuer in issuers %}
+                <div class="col card-group">
+                    <div class="card hover:secondary">
+                        <div class="card-body link-opacity-25-hover">
+                            <h3 class="card-title">{{ issuer.name }}</h3>
+                            <p class="card-text">{{ issuer.notes }}</p>
+                        </div>
+                        <a class="stretched-link " href="{{ path('issuer_registry_show', {'id': issuer.id}) }}"></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
 {% endblock %}

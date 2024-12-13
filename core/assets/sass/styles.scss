@@ -316,3 +316,9 @@ table.table thead th.sorting_desc:after {
 .text-right {
     @extend .text-end;
 }
+
+
+// Add hover effect (for issuer cards)
+.hover\:secondary:hover {
+    background-color: var(--bs-secondary-bg);
+}
