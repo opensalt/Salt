@@ -16,7 +16,7 @@
                             <h3 class="card-title">{{ issuer.name }}</h3>
                             <p class="card-text">{{ issuer.notes }}</p>
                         </div>
-                        <a class="stretched-link " href="{{ path('issuer_registry_show', {'id': issuer.id}) }}"></a>
+                        <a class="stretched-link visually-hidden-focusable" href="{{ path('issuer_registry_show', {'id': issuer.id}) }}">View {{ issuer.name }}</a>
                     </div>
                 </div>
             {% endfor %}
