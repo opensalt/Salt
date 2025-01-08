@@ -72,8 +72,11 @@ class CaseV1P0Controller extends AbstractController
             }
 
             $docs[] = $doc;
-            $lastModified = $doc->getUpdatedAt();
             ++$docCount;
+
+            if ($lastModified < $doc->getUpdatedAt()) {
+                $lastModified = $doc->getUpdatedAt();
+            }
         }
 
         $docs = array_slice($docs, $offset, $limit);
