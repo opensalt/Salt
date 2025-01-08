@@ -125,11 +125,6 @@ class FrameworkAccessVoter extends Voter
             return true;
         }
 
-        if (!$subject instanceof LsDoc) {
-            // If the subject is not a document then do not allow editing
-            return false;
-        }
-
         // Allow the owner to edit the framework
         if ($subject->getUser() === $user) {
             return true;

@@ -369,7 +369,7 @@ final class ExcelImport
         return $association;
     }
 
-    private function getCellValueOrNull(Worksheet $sheet, int $col, int $row)
+    private function getCellValueOrNull(Worksheet $sheet, int $col, int $row): mixed
     {
         if (!$sheet->cellExists([$col, $row])) {
             return null;
@@ -454,7 +454,7 @@ final class ExcelImport
         while (null !== $this->getCellValueOrNull($sheet, $column, 1)) {
             $customField = $this->getCellValueOrNull($sheet, $column, 1);
 
-            if (null !== $customField && in_array($customField, self::$itemCustomFields, true)) {
+            if (in_array($customField, self::$itemCustomFields, true)) {
                 $value = $this->getCellValueOrNull($sheet, $column, $row);
                 $item->setAdditionalField($customField, $value);
             }

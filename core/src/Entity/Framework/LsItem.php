@@ -424,10 +424,6 @@ class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterfa
             $conceptKeywords = [];
         }
 
-        if (array_reduce($conceptKeywords, static fn ($carry, $el): bool => $carry || !\is_string($el), false)) {
-            throw new \InvalidArgumentException('setConceptKeywords must be passed an array of strings.');
-        }
-
         $this->conceptKeywords = $conceptKeywords;
 
         return $this;
@@ -513,14 +509,6 @@ class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterfa
             $this->educationalAlignment = $educationalAlignment;
 
             return $this;
-        }
-
-        if (!is_array($educationalAlignment)) {
-            throw new \InvalidArgumentException('setEducationalAlignment must be passed a string or an array of strings.');
-        }
-
-        if (array_reduce($educationalAlignment, static fn ($carry, $el): bool => $carry || !\is_string($el), false)) {
-            throw new \InvalidArgumentException('setEducationalAlignment must be passed a string or an array of strings.');
         }
 
         $this->educationalAlignment = implode(',', $educationalAlignment);

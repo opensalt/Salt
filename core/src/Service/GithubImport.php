@@ -95,17 +95,15 @@ class GithubImport
 
             $lsItem = $this->parseCSVGithubStandard($lsDoc, $lsItemKeys, $lineContent);
 
-            if (null !== $lsItem) {
-                if (!empty($lsItem->getHumanCodingScheme())) {
-                    $humanCodingValues[$lsItem->getHumanCodingScheme()] = $i;
-                }
-
-                $seq = $lineContent[trim($lsItemKeys['sequenceNumber'] ?? null)] ?? null;
-                if (!is_numeric($seq)) {
-                    $seq = null;
-                }
-                $sequenceNumbers[$i] = $seq;
+            if (!empty($lsItem->getHumanCodingScheme())) {
+                $humanCodingValues[$lsItem->getHumanCodingScheme()] = $i;
             }
+
+            $seq = $lineContent[trim($lsItemKeys['sequenceNumber'] ?? null)] ?? null;
+            if (!is_numeric($seq)) {
+                $seq = null;
+            }
+            $sequenceNumbers[$i] = $seq;
 
             $lsItems[$i] = $lsItem;
         }

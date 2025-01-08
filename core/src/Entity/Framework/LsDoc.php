@@ -337,10 +337,6 @@ class LsDoc extends AbstractLsBase implements CaseApiInterface, LockableInterfac
             $subject = [$subject];
         }
 
-        if (array_reduce($subject, static fn ($carry, $el): bool => $carry || !\is_string($el), false)) {
-            throw new \InvalidArgumentException('setSubject must be passed an array of strings.');
-        }
-
         $this->subject = $subject;
 
         return $this;

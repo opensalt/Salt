@@ -111,7 +111,6 @@ trait AssociationLinkTrait
                     'isChildOf' => 'isParentOf',
                     default => throw new \InvalidArgumentException('Unknown association type'),
                 },
-                default => throw new \InvalidArgumentException('Expecting "origin" or "destination"'), // @phpstan-ignore match.unreachable
             },
             'title' => $targetLink['title'],
             'identifier' => $targetLink['identifier'],

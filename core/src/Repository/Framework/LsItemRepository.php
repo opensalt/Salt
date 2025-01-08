@@ -9,6 +9,8 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
+ * @extends ServiceEntityRepository<LsItem>
+ *
  * @method LsItem|null findOneByIdentifier(string $identifier)
  */
 class LsItemRepository extends ServiceEntityRepository

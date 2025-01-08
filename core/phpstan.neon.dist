@@ -14,7 +14,7 @@ parameters:
 	paths:
 		- './src'
 	symfony:
-		container_xml_path: './var/cache/dev/App_KernelDevDebugContainer.xml'
+		containerXmlPath: './var/cache/dev/App_KernelDevDebugContainer.xml'
 	doctrine:
 		objectManagerLoader: './tests/object-manager.php'
 		allowNullablePropertyForRequiredField: true
