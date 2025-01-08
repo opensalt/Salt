@@ -70,10 +70,6 @@ class CaseV1P0Controller extends AbstractController
                 && !$this->isGranted(Permission::FRAMEWORK_LIST, $doc)) {
                 continue;
             }
-            if (null !== $doc->getMirroredFramework()) {
-                // Do not show mirrored frameworks as available documents
-                continue;
-            }
 
             $docs[] = $doc;
             $lastModified = $doc->getUpdatedAt();
