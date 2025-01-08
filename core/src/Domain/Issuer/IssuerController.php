@@ -74,6 +74,7 @@ class IssuerController extends AbstractController
                     $issuer->did,
                     $issuer->contact,
                     $issuer->notes,
+                    $issuer->orgType,
                     $issuer->trusted
                 ));
 
@@ -117,6 +118,7 @@ class IssuerController extends AbstractController
                     $issuerDto->did,
                     $issuerDto->contact,
                     $issuerDto->notes,
+                    $issuerDto->orgType,
                     $issuerDto->trusted
                 ));
 

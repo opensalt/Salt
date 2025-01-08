@@ -16,6 +16,7 @@ final readonly class IssuerWasUpdated
         public ?string $did = null,
         public ?string $contact = null,
         public ?string $notes = null,
+        public ?string $orgType = null,
         public ?bool $trusted = null,
     ) {
     }

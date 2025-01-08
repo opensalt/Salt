@@ -4,6 +4,8 @@ namespace App\Domain\Issuer\Entity;
 
 use App\Domain\Issuer\Command\AddIssuerCommand;
 use App\Domain\Issuer\Command\UpdateIssuerCommand;
+use App\Domain\Issuer\Event\IssuerDidWasAdded;
+use App\Domain\Issuer\Event\IssuerDidWasRemoved;
 use App\Domain\Issuer\Event\IssuerWasAdded;
 use App\Domain\Issuer\Event\IssuerWasUpdated;
 use App\Infrastructure\AddUserId;
@@ -35,6 +37,7 @@ class Issuer
     private ?string $contact = null;
     private ?string $notes = null;
     private ?bool $trusted = null;
+    private ?string $orgType = null;
 
     public function getName(): string
     {
@@ -66,19 +69,32 @@ class Issuer
         return $this->id;
     }
 
+    public function getOrgType(): ?string
+    {
+        return $this->orgType;
+    }
+
     #[CommandHandler]
     public static function addIssuerToRegistry(AddIssuerCommand $command): array
     {
-        return [
+        $ret = [
             new IssuerWasAdded(
                 $command->id ?? Uuid::v7(),
                 $command->name,
                 $command->did,
                 $command->contact,
                 $command->notes,
+                $command->orgType,
                 $command->trusted
             ),
         ];
+
+        $newDids = preg_split('/\s*([\n\r])+/', $command->did ?? '');
+        foreach ($newDids as $add) {
+            $ret[] = new IssuerDidWasAdded($command->id, $add);
+        }
+
+        return $ret;
     }
 
     #[EventSourcingHandler]
@@ -89,22 +105,46 @@ class Issuer
         $this->did = $event->did ?? null;
         $this->contact = $event->contact ?? null;
         $this->notes = $event->notes ?? null;
+        $this->orgType = $event->orgType ?? null;
         $this->trusted = $event->trusted ?? null;
     }
 
     #[CommandHandler]
     public function update(UpdateIssuerCommand $command): array
     {
-        return [
+        $ret = [
             new IssuerWasUpdated(
                 $command->id,
                 $command->name,
                 $command->did,
                 $command->contact,
                 $command->notes,
+                $command->orgType,
                 $command->trusted
             ),
         ];
+
+        $oldDids = preg_split('/\s*([\n\r])+/', $this->did ?? '');
+        $newDids = preg_split('/\s*([\n\r])+/', $command->did ?? '');
+
+        $removed = array_diff($oldDids, $newDids);
+        $added = array_diff($newDids, $oldDids);
+
+        foreach ($removed as $remove) {
+            if ('' === $remove) {
+                continue; // Empty string, ignore it.
+            }
+            $ret[] = new IssuerDidWasRemoved($command->id, $remove);
+        }
+
+        foreach ($added as $add) {
+            if ('' === $add) {
+                continue; // Empty string, ignore it.
+            }
+            $ret[] = new IssuerDidWasAdded($command->id, $add);
+        }
+
+        return $ret;
     }
 
     #[EventSourcingHandler]

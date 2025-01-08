@@ -25,6 +25,10 @@
             <td>{{ issuer.trusted ? 'Yes' : ((issuer.trusted is null) ? 'Unknown' : 'No') }}</td>
         </tr>
         <tr>
+            <td>Organization Type</td>
+            <td>{{ issuer.orgType|default('Unknown') }}</td>
+        </tr>
+        <tr>
             <td>Notes</td>
             <td>{{ issuer.notes|default('None') }}</td>
         </tr>

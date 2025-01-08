@@ -4,8 +4,8 @@ namespace App\Domain\Issuer\ReadModel;
 
 use App\Domain\Issuer\DTO\IssuerDto;
 use App\Domain\Issuer\Entity\Issuer;
-use App\Domain\Issuer\Event\IssuerWasAdded;
-use App\Domain\Issuer\Event\IssuerWasUpdated;
+use App\Domain\Issuer\Event\IssuerDidWasAdded;
+use App\Domain\Issuer\Event\IssuerDidWasRemoved;
 use Ecotone\EventSourcing\Attribute\Projection;
 use Ecotone\EventSourcing\Attribute\ProjectionDelete;
 use Ecotone\EventSourcing\Attribute\ProjectionReset;
@@ -13,6 +13,7 @@ use Ecotone\Messaging\Attribute\Parameter\Reference;
 use Ecotone\Messaging\Store\Document\DocumentStore;
 use Ecotone\Modelling\Attribute\EventHandler;
 use Ecotone\Modelling\Attribute\QueryHandler;
+use Ecotone\Modelling\QueryBus;
 
 #[Projection(name: self::NAME, fromStreams: Issuer::STREAM)]
 class IssuerByDidProjection
@@ -22,6 +23,7 @@ class IssuerByDidProjection
 
     public function __construct(
         #[Reference] private readonly DocumentStore $documentStore,
+        #[Reference] private readonly QueryBus $queryBus,
     ) {
     }
 
@@ -37,54 +39,32 @@ class IssuerByDidProjection
         $this->documentStore->dropCollection(self::NAME);
     }
 
-    #[EventHandler(IssuerWasAdded::NAME)]
-    public function whenIssuerAdded(IssuerWasAdded $event): void
+    #[EventHandler(IssuerDidWasAdded::NAME)]
+    public function whenIssuerDidAdded(IssuerDidWasAdded $event): void
     {
-        if (!$event->did) {
-            return;
-        }
-
-        $dto = new IssuerDto();
-        $dto->id = $event->id->toRfc4122();
-        $dto->name = $event->name;
-        $dto->did = $event->did;
-        $dto->contact = $event->contact;
-        $dto->notes = $event->notes;
-        $dto->trusted = $event->trusted;
+        $dto = $this->queryBus->sendWithRouting(IssuerListProjection::QUERY_ISSUER_BY_ID, ['id' => $event->id]);
 
         $this->documentStore->addDocument(
             self::NAME,
-            $dto->did,
-            $dto
+            $event->did,
+            ['id' => $event->id->toRfc4122()]
         );
     }
 
-    #[EventHandler(IssuerWasUpdated::NAME)]
-    public function whenIssuerUpdated(IssuerWasUpdated $event): void
+    #[EventHandler(IssuerDidWasRemoved::NAME)]
+    public function whenIssuerDidRemoved(IssuerDidWasRemoved $event): void
     {
-        if (!$event->did) {
-            return;
-        }
-
-        $dto = new IssuerDto();
-        $dto->id = $event->id->toRfc4122();
-        $dto->name = $event->name;
-        $dto->did = $event->did;
-        $dto->contact = $event->contact;
-        $dto->notes = $event->notes;
-        $dto->trusted = $event->trusted;
-
-        $this->documentStore->updateDocument(
+        $this->documentStore->deleteDocument(
             self::NAME,
-            $dto->did,
-            $dto
+            $event->did
         );
     }
 
     #[QueryHandler(self::QUERY_ISSUER_BY_DID)]
     public function getIssuerByDid(array $query): IssuerDto
     {
-        /** @var IssuerDto */
-        return $this->documentStore->getDocument(self::NAME, $query['did'] ?? null);
+        $didRec = $this->documentStore->getDocument(self::NAME, $query['did'] ?? null);
+
+        return $this->queryBus->sendWithRouting(IssuerListProjection::QUERY_ISSUER_BY_ID, ['id' => $didRec['id']]);
     }
 }

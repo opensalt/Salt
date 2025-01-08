@@ -24,9 +24,13 @@ class IssuerEditType extends AbstractType
                 'label' => 'Name',
                 'required' => true,
             ])
-            ->add('did', TextType::class, [
-                'label' => 'DID',
+            ->add('did', TextareaType::class, [
+                'label' => 'DIDs',
+                'attr' => [
+                    'rows' => 5,
+                ],
                 'required' => false,
+                'help' => 'Enter one or more DIDs separated by newlines.',
             ])
             ->add('contact', TextType::class, [
                 'label' => 'Contact',
@@ -35,6 +39,21 @@ class IssuerEditType extends AbstractType
             ->add('trusted', ChoiceType::class, [
                 'label' => 'Is Trusted',
                 'choices' => ['Yes' => true, 'No' => false],
+                'required' => false,
+            ])
+            ->add('orgType', ChoiceType::class, [
+                'label' => 'Organization Type',
+                'choices' => [
+                    'K12 School' => 'K12 School',
+                    '2 Year College' => '2 Year College',
+                    '4 Year College' => '4 Year College',
+                    'University' => 'University',
+                    'Government Agency' => 'Government Agency',
+                    'Licensing Agency' => 'Licensing Agency',
+                    'Credentialing Agency' => 'Credentialing Agency',
+                    'Industry Organization' => 'Industry Organization',
+                    'Other' => 'Other',
+                ],
                 'required' => false,
             ])
             ->add('notes', TextareaType::class, [

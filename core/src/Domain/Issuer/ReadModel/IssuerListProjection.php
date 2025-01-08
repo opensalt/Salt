@@ -19,6 +19,7 @@ class IssuerListProjection
 {
     public const string NAME = 'issuer_list';
     public const string QUERY_ALL_ISSUERS = 'getAllIssuers';
+    public const string QUERY_ISSUER_BY_ID = 'getIssuerById';
 
     public function __construct(
         #[Reference] private readonly DocumentStore $documentStore,
@@ -46,6 +47,7 @@ class IssuerListProjection
         $dto->did = $event->did;
         $dto->contact = $event->contact;
         $dto->notes = $event->notes;
+        $dto->orgType = $event->orgType;
         $dto->trusted = $event->trusted;
 
         $this->documentStore->addDocument(
@@ -64,6 +66,7 @@ class IssuerListProjection
         $dto->did = $event->did;
         $dto->contact = $event->contact;
         $dto->notes = $event->notes;
+        $dto->orgType = $event->orgType;
         $dto->trusted = $event->trusted;
 
         $this->documentStore->updateDocument(
@@ -77,5 +80,12 @@ class IssuerListProjection
     public function getAllIssuers(): array
     {
         return $this->documentStore->getAllDocuments(self::NAME);
+    }
+
+    #[QueryHandler(self::QUERY_ISSUER_BY_ID)]
+    public function getIssuerByDid(array $query): IssuerDto
+    {
+        /** @var IssuerDto */
+        return $this->documentStore->getDocument(self::NAME, $query['id'] ?? null);
     }
 }

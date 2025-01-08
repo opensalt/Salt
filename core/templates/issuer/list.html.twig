@@ -13,10 +13,9 @@
                 <div class="col card-group">
                     <div class="card hover:secondary">
                         <div class="card-body link-opacity-25-hover">
-                            <h3 class="card-title">{{ issuer.name }}</h3>
+                            <a class="stretched-link h3 card-title link-underline link-underline-opacity-0" href="{{ path('issuer_registry_show', {'id': issuer.id}) }}">{{ issuer.name }}</a>
                             <p class="card-text">{{ issuer.notes }}</p>
                         </div>
-                        <a class="stretched-link visually-hidden-focusable" href="{{ path('issuer_registry_show', {'id': issuer.id}) }}">View {{ issuer.name }}</a>
                     </div>
                 </div>
             {% endfor %}
