@@ -6,7 +6,7 @@ use App\Entity\User\User;
 use Ecotone\Messaging\Attribute\Interceptor\Before;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class AddUserIdService
+readonly class AddUserIdService
 {
     public function __construct(
         private TokenStorageInterface $tokenStorage,
