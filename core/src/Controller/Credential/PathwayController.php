@@ -26,7 +26,7 @@ class PathwayController extends AbstractController
         $checked = $request->query->all('has');
 
         if (!str_starts_with($credential?->getItemType()?->getTitle() ?? '', 'Credential - ')) {
-            throw $this->createNotFoundException(('No pathway found'));
+            throw $this->createNotFoundException('No pathway found');
         }
 
         /*
