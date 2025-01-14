@@ -29,7 +29,7 @@ docker compose run --rm web bin/console doctrine:migrations:migrate --no-interac
   - The system now uses a messaging system to run background tasks.
     The cron jobs have been replaced by scheduled tasks.
 - The `php` service has been removed and incorporated into the `web` service.
-  - The Nginx -> PHP-FPM model using two containers has been replaced by using
+  - The Caddy -> PHP-FPM model using two containers has been replaced by using
     [Caddy](https://caddyserver.com) as the web server with a PHP module to
     execute the PHP code (using [FrankenPHP](https://frankenphp.dev) for the
     App Server).
