@@ -1,8 +1,6 @@
 services:
   scheduler:
     image: opensalt/opensalt:web-3.x
-    #command: ['php', 'bin/console', 'messenger:consume', '-vv', 'scheduler_default', 'async', '--limit=10', '--time-limit=3600', '--memory-limit=4096M']
-    #command: ['php', 'bin/console', 'messenger:consume', 'scheduler_default', 'async', '--limit=10', '--time-limit=3600', '--memory-limit=4096M']
     command: ['/usr/bin/supervisord']
     depends_on:
       db:
