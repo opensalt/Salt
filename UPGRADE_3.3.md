@@ -34,3 +34,16 @@ docker compose run --rm web bin/console doctrine:migrations:migrate --no-interac
     execute the PHP code (using [FrankenPHP](https://frankenphp.dev) for the
     App Server).
 
+
+# Environment variables
+
+## Define SERVER_NAME
+
+- A `SERVER_NAME` variable should be set with the public name of the server and
+  passed into the containers.
+
+## Mercure config changes
+
+- The environment variable `CADDY_MERCURE_JWT_SECRET` should now be set
+  instead of using `MERCURE_JWT_TOKEN`.
+  The token will be generated using the secret.
