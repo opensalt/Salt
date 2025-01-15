@@ -69,7 +69,6 @@
     "vite-plugin-symfony": "^7.0.5",
     "vue": "^3.0"
   },
-  "resolutions": {
-  },
+  "resolutions": {},
   "peerDependencies": {}
 }
