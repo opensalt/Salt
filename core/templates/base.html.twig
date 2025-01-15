@@ -3,15 +3,11 @@
 <html lang="{{ app.request.locale}}" xml:lang="{{ app.request.locale }}" xmlns= "http://www.w3.org/1999/xhtml" class="no-js {{ authClass }}">
     <head>
         <meta charset="utf-8" />
-        {% block xuacompatible %}
-            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        {% endblock %}
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta http-equiv="Content-Language" content="{{ app.request.locale }}">
         {% block viewport %}
             <meta name="viewport" content="width=device-width, initial-scale=1">
         {% endblock %}
         <title>{% block title %}OpenSALT™{% endblock %}</title>
+        <script>const x = document.getElementsByTagName("html")[0];x.className=x.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2");</script>
         {% block stylesheets %}
             {# vite_entry_link_tags('app') #}
             {{ vite_entry_link_tags('main') }}
@@ -22,13 +18,12 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
         <link rel="icon" type="image/png" href="{{ asset('favicon32.png') }}" sizes="32x32">
         <link rel="icon" type="image/png" href="{{ asset('favicon16.png') }}" sizes="16x16">
-        <link rel="manifest" href="{{ asset('manifest.json') }}">
+        <link rel="manifest" href="{{ asset('manifest.webmanifest') }}">
         <link rel="mask-icon" href="{{ asset('safari-pinned-tab.svg') }}" color="#22454f">
         <meta name="apple-mobile-web-app-title" content="OpenSALT">
         <meta name="application-name" content="OpenSALT">
         <meta name="theme-color" content="#ffffff">
         {#- <script src="{{ asset('js/modernizr.js') }}"></script> -#}
-        <script>var x=document.getElementsByTagName("html")[0];x.className=x.className.replace(/(^|\s)no-js(\s|$)/,"$1js$2");</script>
     </head>
     <body class="{% block bodyclasses %}{% endblock %}">
         <div class="container container--main">

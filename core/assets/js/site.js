@@ -1,5 +1,3 @@
-import 'html5-boilerplate/dist/js/plugins';
-
 import $ from './_jquerySetup';
 import 'jquery-ui-dist/jquery-ui';
 import 'jquery.fancytree/dist/jquery.fancytree-all';
