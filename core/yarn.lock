@@ -1107,9 +1107,10 @@ hasown@^2.0.0:
   dependencies:
     function-bind "^1.1.2"
 
-html5-boilerplate@6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/html5-boilerplate/-/html5-boilerplate-6.0.1.tgz#2243f5782d8138f835292d00e3639cd62caedf5a"
+html5-boilerplate@9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/html5-boilerplate/-/html5-boilerplate-9.0.1.tgz#176c50c67e42bb8649074e50d9d58531dd37ed67"
+  integrity sha512-VNWLXEMlHEITjbpwUiFF6dUHaflkaikZq62cuWXVZNDSVBNHscT352jaAU0OZm0aXTT1m+XKtDDUiYWZBVDRGA==
 
 htmlparser2@^8.0.0:
   version "8.0.2"
@@ -1178,9 +1179,9 @@ jquery-migrate@^3.3.2:
   integrity sha512-GGvcVWK3aei2/98r7pA4UkOYvs4xVeCGvquNXADFUp9+Sr6VeOw0ktlQ9z4YlBbEFpsXBlRioAgpH/fLWinj4Q==
 
 jquery-ui-dist@^1.13.1:
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/jquery-ui-dist/-/jquery-ui-dist-1.13.2.tgz#899fbb3c6210de19ace10657cf844a3b97f3be70"
-  integrity sha512-oVDRd1NLtTbBwpRKAYdIRgpWVDzeBhfy7Gu0RmY6JEaZtmBq6kDn1pm5SgDiAotrnDS+RoTRXO6xvcNTxA9tOA==
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/jquery-ui-dist/-/jquery-ui-dist-1.13.3.tgz#13c186eb403e660c96b9b7edb7ae1466eaef9974"
+  integrity sha512-qeTR3SOSQ0jgxaNXSFU6+JtxdzNUSJKgp8LCzVrVKntM25+2YBJW1Ea8B2AwjmmSHfPLy2dSlZxJQN06OfVFhg==
   dependencies:
     jquery ">=1.8.0 <4.0.0"
 
@@ -1189,15 +1190,10 @@ jquery.fancytree@=2.24.0:
   resolved "https://registry.yarnpkg.com/jquery.fancytree/-/jquery.fancytree-2.24.0.tgz#60442a65648515d3e652197693efc0646af57629"
   integrity sha512-rg64218vpFHG7cqPs8P+/hsRfEQx3yi6kLG/14lTZUDkdM66/k7bhVhoblOYYQ+JsHlu0xrCPO3eGkV4oCPdyA==
 
-"jquery@1.8 - 4", jquery@>=1.7, jquery@^3.5.0, jquery@^3.6.0:
+"jquery@1.8 - 4", jquery@>=1.7, "jquery@>=1.8.0 <4.0.0", jquery@^3.5.0, jquery@^3.6.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
   integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
-
-"jquery@>=1.8.0 <4.0.0":
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.3.tgz#23ed2ffed8a19e048814f13391a19afcdba160e6"
-  integrity sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==
 
 jquery@>=1.9.0:
   version "3.5.1"
