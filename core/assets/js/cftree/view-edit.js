@@ -100,7 +100,7 @@ export default function (apx) {
             $btnDelete.addClass('btn-disabled').attr('disabled', 'disabled');
             $ack.on('change keyup', function (e) {
                 if (isDelete.test($ack.val())) {
-                    $btnDelete.removeClass('btn-disabled').removeAttr('disabled');
+                    $btnDelete.removeClass('btn-disabled').prop('disabled', false);
                 } else {
                     $btnDelete.addClass('btn-disabled').attr('disabled', 'disabled');
                 }
