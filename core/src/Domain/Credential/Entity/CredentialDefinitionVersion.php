@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Credential;
+namespace App\Domain\Credential\Entity;
 
 use Symfony\Component\Uid\Uuid;
 

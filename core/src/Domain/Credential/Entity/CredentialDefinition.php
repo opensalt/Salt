@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Credential;
+namespace App\Domain\Credential\Entity;
 
 use App\Domain\Credential\Command\ChangeDefinitionContent;
 use App\Domain\Credential\Command\ChangeDefinitionHierarchy;
@@ -27,6 +27,7 @@ use Ecotone\Modelling\Attribute\EventSourcingAggregate;
 use Ecotone\Modelling\Attribute\EventSourcingHandler;
 use Ecotone\Modelling\Attribute\Identifier;
 use Ecotone\Modelling\WithAggregateVersioning;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\Router;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Uid\Uuid;
@@ -103,7 +104,7 @@ final class CredentialDefinition
         $verId = Uuid::v7();
         $createdAt = new \DateTimeImmutable();
         $content = $command->content;
-        $content['id'] = $router->generate('credential_show', ['id' => $id->toBase58(), 'versionId' => $verId->toBase58()], Router::ABSOLUTE_URL);
+        $content['id'] = $router->generate('credential_show', ['id' => $id->toBase58(), 'versionId' => $verId->toBase58()], UrlGeneratorInterface::ABSOLUTE_URL);
 
         return [new DraftCredentialDefinitionWasCreated(
             $command->hierarchyParent,

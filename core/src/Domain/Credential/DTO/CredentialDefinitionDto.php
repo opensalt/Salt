@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class CredentialDefinitionDto
 {
-    #[Assert\NotBlank(message: 'The hierarchy location must be provided.')]
+    #[Assert\NotBlank(message: 'The collection must be provided.')]
     public ?string $hierarchyParent = null;
 
     public ?Organization $organization = null;

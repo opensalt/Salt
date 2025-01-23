@@ -9,6 +9,8 @@ use App\Domain\Credential\Command\CreateCredentialDefinitionDraft;
 use App\Domain\Credential\Command\DeprecateCredentialDefinition;
 use App\Domain\Credential\Command\PublishCredentialDefinition;
 use App\Domain\Credential\DTO\CredentialDefinitionDto;
+use App\Domain\Credential\Entity\CredentialDefinition;
+use App\Domain\Credential\Entity\CredentialDefinitionRepository;
 use App\Domain\Credential\Form\CredentialDefinitionContentType;
 use App\Domain\Credential\Form\CredentialDefinitionCreateType;
 use App\Domain\Credential\Form\CredentialDefinitionHierarchyType;

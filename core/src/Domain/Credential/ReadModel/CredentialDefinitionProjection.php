@@ -2,7 +2,7 @@
 
 namespace App\Domain\Credential\ReadModel;
 
-use App\Domain\Credential\CredentialDefinition;
+use App\Domain\Credential\Entity\CredentialDefinition;
 use App\Domain\Credential\Event\DefinitionContentWasChanged;
 use App\Domain\Credential\Event\DefinitionHierarchyWasChanged;
 use App\Domain\Credential\Event\DefinitionOrganizationWasChanged;

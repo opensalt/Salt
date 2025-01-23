@@ -2,7 +2,7 @@
 
 namespace App\Security\Voter;
 
-use App\Domain\Credential\CredentialDefinition;
+use App\Domain\Credential\Entity\CredentialDefinition;
 use App\Entity\User\User;
 use App\Security\Permission;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
