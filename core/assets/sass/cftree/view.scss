@@ -234,11 +234,10 @@ span.fancytree-title {
     text-align:center;
     margin:15px 0 15px 0;
     line-height:2.8em;
-}
 
-.itemOptions .btn {
-    margin-left:2px;
-    margin-right:2px;
+    ul.dropdown-menu {
+        line-height: 1.3em;
+    }
 }
 
 #itemSection.lsDocItemSection {

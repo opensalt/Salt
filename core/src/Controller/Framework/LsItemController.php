@@ -12,6 +12,7 @@ use App\Command\Framework\RemoveChildCommand;
 use App\Command\Framework\UpdateItemCommand;
 use App\Entity\Framework\LsAssociation;
 use App\Entity\Framework\LsDefAssociationGrouping;
+use App\Entity\Framework\LsDefItemType;
 use App\Entity\Framework\LsDoc;
 use App\Entity\Framework\LsItem;
 use App\Entity\User\User;
@@ -19,10 +20,12 @@ use App\Exception\AlreadyLockedException;
 use App\Form\Command\ChangeLsItemParentCommand;
 use App\Form\Command\CopyToLsDocCommand;
 use App\Form\Type\LsDocListType;
+use App\Form\Type\LsItemJobType;
 use App\Form\Type\LsItemParentType;
 use App\Form\Type\LsItemType;
 use App\Security\Permission;
 use App\Service\BucketService;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -32,6 +35,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
@@ -63,14 +67,18 @@ class LsItemController extends AbstractController
     /**
      * Creates a new LsItem entity.
      */
+    #[Route(path: '/new/{doc}/PARENT', name: 'lsitem_new_top', methods: ['GET', 'POST'])]
     #[Route(path: '/new/{doc}/{parent}', name: 'lsitem_new', methods: ['GET', 'POST'])]
+    #[Route(path: '/new/{doc}/PARENT/{assocGroup}', name: 'lsitem_new_top_ag', methods: ['GET', 'POST'])]
     #[Route(path: '/new/{doc}/{parent}/{assocGroup}', name: 'lsitem_new_ag', methods: ['GET', 'POST'])]
     #[IsGranted(Permission::ITEM_ADD_TO, 'doc')]
     public function new(
         Request $request,
+        EntityManagerInterface $em,
         #[MapEntity(id: 'doc')] LsDoc $doc,
         #[MapEntity(id: 'parent')] ?LsItem $parent = null,
         #[MapEntity(id: 'assocGroup')] ?LsDefAssociationGrouping $assocGroup = null,
+        #[MapQueryParameter] ?string $itemType = null,
     ): Response {
         $ajax = $request->isXmlHttpRequest();
 
@@ -79,7 +87,17 @@ class LsItemController extends AbstractController
         $lsItem->setLsDoc($doc);
         $lsItem->setLsDocUri($doc->getUri());
 
-        $form = $this->createForm(LsItemType::class, $lsItem, ['ajax' => $ajax]);
+        $formType = match ($itemType) {
+            'job' => LsItemJobType::class,
+            default => LsItemType::class,
+        };
+
+        if (LsItemJobType::class === $formType) {
+            $jobItemType = $em->getRepository(LsDefItemType::class)->findOneByIdentifier(LsDefItemType::TYPE_JOB_IDENTIFIER);
+            $lsItem->setItemType($jobItemType);
+        }
+
+        $form = $this->createForm($formType, $lsItem, ['ajax' => $ajax]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -154,8 +172,13 @@ class LsItemController extends AbstractController
             );
         }
 
+        $formType = match ($lsItem->getItemType()?->getIdentifier()) {
+            LsDefItemType::TYPE_JOB_IDENTIFIER => LsItemJobType::class,
+            default => LsItemType::class,
+        };
+
         $deleteForm = $this->createDeleteForm($lsItem);
-        $editForm = $this->createForm(LsItemType::class, $lsItem, ['ajax' => $ajax]);
+        $editForm = $this->createForm($formType, $lsItem, ['ajax' => $ajax]);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

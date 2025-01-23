@@ -1428,7 +1428,7 @@ function ApxDocument(initializer, apx) {
 
                 html += '</li>';
             }
-            $jq.find("ul").html(html);
+            $jq.find("ul.lsItemDetailsMain").html(html);
 
             // kill any existing associations from the dom
             $(".lsItemAssociations").html("");
@@ -1555,7 +1555,7 @@ function ApxDocument(initializer, apx) {
                     ;
                 }
             }
-            $jq.find("ul").html(html);
+            $jq.find("ul.lsItemDetailsMain").html(html);
 
             /////////////////////////////////////
             // Show associations

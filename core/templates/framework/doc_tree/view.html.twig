@@ -178,9 +178,18 @@
                                                 <button type="button" id="toggleFolderBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-alt-document-disabled="true">
                                                     Make This Item a Parent
                                                 </button>
-                                                <button type="button" id="addChildBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addNewChildModal" data-alt-document-disabled="true">
-                                                    Add a New Child Item
-                                                </button>
+                                                <div class="btn-group" id="addChildBtn">
+                                                    <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addNewChildModal" data-alt-document-disabled="true">
+                                                        Add New Child Item
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <span class="visually-hidden">Toggle Dropdown</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-alt-document-disabled="true">Add general item</a></li>
+                                                        <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="job" data-alt-document-disabled="true">Add job</a></li>
+                                                    </ul>
+                                                </div>
                                             {% endif %}
                                             {% if not isDeprecated %}
                                                 <button type="button" id="addExemplarBtn" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addExemplarModal">
@@ -214,9 +223,18 @@
 
                                         {% if editorRights %}
                                             {% if isDraft %}
-                                                <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addNewChildModal" data-alt-document-disabled="true">
-                                                    Add New Child Item
-                                                </button>
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addNewChildModal" data-alt-document-disabled="true">
+                                                        Add New Child Item
+                                                    </button>
+                                                    <button type="button" class="btn btn-default btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <span class="visually-hidden">Toggle Dropdown</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-alt-document-disabled="true">Add general item</a></li>
+                                                        <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="job" data-alt-document-disabled="true">Add job</a></li>
+                                                    </ul>
+                                                </div>
                                                 <button type="button" class="btn btn-default btn-sm" data-bs-toggle="modal" data-bs-target="#addChildrenModal" data-alt-document-disabled="true">
                                                     Import Children
                                                 </button>

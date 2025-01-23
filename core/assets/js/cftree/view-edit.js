@@ -131,7 +131,7 @@ export default function (apx) {
     /** Edit an item */
     apx.edit.prepareItemEditModal = function () {
         let $modal = $('#editItemModal');
-        let statementMde, notesMde;
+        let statementMde = null, notesMde = null;
 
         $modal.find('.modal-body').html(apx.spinner.html("Loading Form"));
         $modal.on('shown.bs.modal', function (e) {
@@ -150,21 +150,34 @@ export default function (apx) {
                         },
                         numberDisplayed: 20
                     });
-                    $('#ls_item_itemType').select2entity({
-                        dropdownParent: $('#ls_item_itemType').closest('div')
-                    });
 
-                    statementMde = render.mde($('#ls_item_fullStatement')[0]);
-                    notesMde = render.mde($('#ls_item_notes')[0]);
+                    let itemType = 'default';
+                    const itemTypeElement = $('#ls_item_itemType');
+                    if (itemTypeElement.length) {
+                        itemTypeElement.select2entity({
+                            dropdownParent: itemTypeElement.closest('div')
+                        });
+                    } else {
+                        itemType = 'job';
+                    }
+
                     const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
+                    const fullStatementElement = $('#ls_item_fullStatement');
+                    if (itemType === 'default' && fullStatementElement.length) {
+                        statementMde = render.mde(fullStatementElement[0]);
 
-                    inlineAttachment.editors.codemirror4.attach(
-                        statementMde.codemirror, { uploadUrl: path }
-                    );
+                        inlineAttachment.editors.codemirror4.attach(
+                            statementMde.codemirror, {uploadUrl: path}
+                        );
+                    }
 
-                    inlineAttachment.editors.codemirror4.attach(
-                        notesMde.codemirror, { uploadUrl: path }
-                    );
+                    const notesElement = $('#ls_item_notes');
+                    if (notesElement.length) {
+                        notesMde = render.mde(notesElement[0]);
+                        inlineAttachment.editors.codemirror4.attach(
+                            notesMde.codemirror, {uploadUrl: path}
+                        );
+                    }
                 }
             );
         }).on('hide.bs.modal', function (e) {
@@ -191,6 +204,8 @@ export default function (apx) {
             if (null !== statementMde) {
                 statementMde.toTextArea();
                 statementMde = null;
+            }
+            if (null !== notesMde) {
                 notesMde.toTextArea();
                 notesMde = null;
             }
@@ -199,10 +214,14 @@ export default function (apx) {
         $modal.find('.btn-save').on('click', function (e) {
             $modal.data('mode', 'save');
             apx.spinner.showModal("Updating item");
-            statementMde.toTextArea();
-            statementMde = null;
-            notesMde.toTextArea();
-            notesMde = null;
+            if (null !== statementMde) {
+                statementMde.toTextArea();
+                statementMde = null;
+            }
+            if (null !== notesMde) {
+                notesMde.toTextArea();
+                notesMde = null;
+            }
             $.ajax({
                 url: apx.path.lsitem_edit.replace('ID', apx.mainDoc.currentItem.id),
                 method: 'POST',
@@ -248,20 +267,34 @@ export default function (apx) {
                     },
                     numberDisplayed: 20
                 });
-                $('#ls_item_itemType').select2entity({
-                    dropdownParent: $('#ls_item_itemType').closest('div')
-                });
-                statementMde = render.mde($('#ls_item_fullStatement')[0]);
-                notesMde = render.mde($('#ls_item_notes')[0]);
+
+                let itemType = 'default';
+                const itemTypeElement = $('#ls_item_itemType');
+                if (itemTypeElement.length) {
+                    itemTypeElement.select2entity({
+                        dropdownParent: itemTypeElement.closest('div')
+                    });
+                } else {
+                    itemType = 'job';
+                }
+
                 const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
+                const fullStatementElement = $('#ls_item_fullStatement');
+                if (itemType === 'default' && fullStatementElement.length) {
+                    statementMde = render.mde(fullStatementElement[0]);
 
-                inlineAttachment.editors.codemirror4.attach(
-                    statementMde.codemirror, { uploadUrl: path }
-                );
+                    inlineAttachment.editors.codemirror4.attach(
+                        statementMde.codemirror, {uploadUrl: path}
+                    );
+                }
 
-                inlineAttachment.editors.codemirror4.attach(
-                    notesMde.codemirror, { uploadUrl: path }
-                );
+                const notesElement = $('#ls_item_notes');
+                if (notesElement.length) {
+                    notesMde = render.mde(notesElement[0]);
+                    inlineAttachment.editors.codemirror4.attach(
+                        notesMde.codemirror, {uploadUrl: path}
+                    );
+                }
             });
         });
     };
@@ -284,13 +317,23 @@ export default function (apx) {
             return path;
         }
 
-        let statementMde,
-            notesMde;
+        let statementMde = null,
+            notesMde = null,
+            itemType = '',
+            itemTypeQuery = ''
+        ;
         let $modal = $('#addNewChildModal');
         $modal.find('.modal-body').html(apx.spinner.html("Loading Form"));
         $modal.on('shown.bs.modal', function (e) {
+            itemType = '';
+            itemTypeQuery = '';
+            if (e.relatedTarget && e.relatedTarget.dataset && e.relatedTarget.dataset.itemType) {
+                itemType = e.relatedTarget.dataset.itemType;
+                itemTypeQuery = '?itemType='+itemType;
+            }
+
             $modal.find('.modal-body').load(
-                getPath(),
+                getPath()+itemTypeQuery,
                 null,
                 function (responseText, textStatus, jqXHR) {
                     $('#ls_item_educationalAlignment').multiselect({
@@ -299,20 +342,30 @@ export default function (apx) {
                         },
                         numberDisplayed: 20
                     });
-                    $('#ls_item_itemType').select2entity({
-                        dropdownParent: $('#ls_item_itemType').closest('div')
-                    });
-                    statementMde = render.mde($('#ls_item_fullStatement')[0]);
-                    notesMde = render.mde($('#ls_item_notes')[0]);
+                    const itemTypeElement = $('#ls_item_itemType');
+                    if (itemTypeElement.length) {
+                        itemTypeElement.select2entity({
+                            dropdownParent: itemTypeElement.closest('div')
+                        });
+                    }
+
                     const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
+                    const fullStatementElement = $('#ls_item_fullStatement');
+                    if (itemType !== 'job' && fullStatementElement.length) {
+                        statementMde = render.mde(fullStatementElement[0]);
 
-                    inlineAttachment.editors.codemirror4.attach(
-                        statementMde.codemirror, { uploadUrl: path }
-                    );
+                        inlineAttachment.editors.codemirror4.attach(
+                            statementMde.codemirror, {uploadUrl: path}
+                        );
+                    }
 
-                    inlineAttachment.editors.codemirror4.attach(
-                        notesMde.codemirror, { uploadUrl: path }
-                    );
+                    const notesElement = $('#ls_item_notes');
+                    if (notesElement.length) {
+                        notesMde = render.mde(notesElement[0]);
+                        inlineAttachment.editors.codemirror4.attach(
+                            notesMde.codemirror, {uploadUrl: path}
+                        );
+                    }
                 }
             );
         }).on('hide.bs.modal', function (e) {
@@ -322,6 +375,9 @@ export default function (apx) {
             if (null !== statementMde) {
                 statementMde.toTextArea();
                 statementMde = null;
+            }
+
+            if (null !== notesMde) {
                 notesMde.toTextArea();
                 notesMde = null;
             }
@@ -337,7 +393,7 @@ export default function (apx) {
             }
             notesMde = null;
             $.ajax({
-                url: getPath(),
+                url: getPath()+itemTypeQuery,
                 method: 'POST',
                 data: $modal.find('form[name=ls_item]').serialize()
             }).done(function (data, textStatus, jqXHR) {
@@ -362,17 +418,24 @@ export default function (apx) {
                 $('#ls_item_itemType').select2entity({
                     dropdownParent: $('#ls_item_itemType').closest('div')
                 });
-                statementMde = render.mde($('#ls_item_fullStatement')[0]);
-                notesMde = render.mde($('#ls_item_notes')[0]);
+
                 const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
+                const fullStatementElement = $('#ls_item_fullStatement');
+                if (itemType !== 'job' && fullStatementElement.length) {
+                    statementMde = render.mde(fullStatementElement[0]);
 
-                inlineAttachment.editors.codemirror4.attach(
-                    statementMde.codemirror, { uploadUrl: path }
-                );
+                    inlineAttachment.editors.codemirror4.attach(
+                        statementMde.codemirror, {uploadUrl: path}
+                    );
+                }
 
-                inlineAttachment.editors.codemirror4.attach(
-                    notesMde.codemirror, { uploadUrl: path }
-                );
+                const notesElement = $('#ls_item_notes');
+                if (notesElement.length) {
+                    notesMde = render.mde(notesElement[0]);
+                    inlineAttachment.editors.codemirror4.attach(
+                        notesMde.codemirror, {uploadUrl: path}
+                    );
+                }
             });
         });
     };

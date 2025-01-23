@@ -88,7 +88,7 @@ class CaseV1P0Controller extends AbstractController
             return $response;
         }
 
-        $groups = ['default', 'LsDoc'];
+        $groups = ['default', 'LsDoc', 'CASE-1.0'];
         if ('updatedAt' === $sort) {
             $groups[] = 'updatedAt';
         }
@@ -125,7 +125,7 @@ class CaseV1P0Controller extends AbstractController
 
         $response->setContent(
             $this->serializer->serialize($obj, 'json', [
-                'groups' => ['default', 'CfPackage'],
+                'groups' => ['default', 'CfPackage', 'CASE-1.0'],
                 'json_encode_options' => \JSON_UNESCAPED_SLASHES|\JSON_PRESERVE_ZERO_FRACTION,
                 'generate-package' => 'v1p0',
             ])
@@ -189,7 +189,7 @@ class CaseV1P0Controller extends AbstractController
                 'CFItem' => $item,
                 'CFAssociations' => $associations,
             ], 'json', [
-                'groups' => ['default', 'LsItem', 'LsAssociation'],
+                'groups' => ['default', 'LsItem', 'LsAssociation', 'CASE-1.0'],
                 'json_encode_options' => \JSON_UNESCAPED_SLASHES|\JSON_PRESERVE_ZERO_FRACTION,
             ])
         );
@@ -256,7 +256,7 @@ class CaseV1P0Controller extends AbstractController
         $className = substr(strrchr($obj::class, '\\'), 1);
         $response->setContent(
             $this->serializer->serialize($obj, 'json', [
-                'groups' => ['default', $className],
+                'groups' => ['default', $className, 'CASE-1.0'],
                 'json_encode_options' => \JSON_UNESCAPED_SLASHES|\JSON_PRESERVE_ZERO_FRACTION,
             ])
         );
@@ -282,7 +282,7 @@ class CaseV1P0Controller extends AbstractController
         $className = substr(strrchr($obj::class, '\\'), 1);
         $response->setContent(
             $this->serializer->serialize([$collection => [$obj]], 'json', [
-                'groups' => ['default', $className],
+                'groups' => ['default', $className, 'CASE-1.0'],
                 'json_encode_options' => \JSON_UNESCAPED_SLASHES|\JSON_PRESERVE_ZERO_FRACTION,
             ])
         );

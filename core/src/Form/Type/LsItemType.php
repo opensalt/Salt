@@ -90,9 +90,10 @@ class LsItemType extends AbstractType
             ]);
         }
 
-        $builder->get('educationalAlignment')
+        $builder
+            ->get('educationalAlignment')
             ->addModelTransformer(new EducationAlignmentTransformer($this->em))
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
