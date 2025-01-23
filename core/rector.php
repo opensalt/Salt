@@ -15,8 +15,12 @@ return RectorConfig::configure()
         __DIR__ . '/templates',
         __DIR__ . '/config',
     ])
-    ->withPhpVersion(\Rector\ValueObject\PhpVersion::PHP_84)
+    ->withPhpVersion(\Rector\ValueObject\PhpVersion::PHP_83)
     ->withPhpSets(php83: true)
+    ->withComposerBased(
+        symfony: true,
+        twig: true,
+    )
     ->withSkip([
         __DIR__ . '/config/bundles.php',
         RemoveUnusedVariableInCatchRector::class,
@@ -39,14 +43,19 @@ return RectorConfig::configure()
         strictBooleans: true
     )
     ->withAttributesSets(
+        /*
         symfony: true,
         doctrine: true,
+         */
     )
     ->withSets([
         \Rector\Set\ValueObject\LevelSetList::UP_TO_PHP_83,
-        \Rector\Symfony\Set\SymfonySetList::SYMFONY_71,
+        //\Rector\Symfony\Set\SymfonySetList::SYMFONY_72,
         \Rector\Symfony\Set\SymfonySetList::SYMFONY_CODE_QUALITY,
         //SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
+    ])
+    ->withRules([
+        // \Rector\TypeDeclaration\Rector\StmtsAwareInterface\DeclareStrictTypesRector::class,
     ])
     //->withTypeCoverageLevel(1)
     //->withDeadCodeLevel(1)
