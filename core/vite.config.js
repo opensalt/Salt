@@ -27,6 +27,13 @@ export default defineConfig({
             stimulus: true,
         }),
     ],
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: 'legacy'
+            }
+        }
+    },
     build: {
         alias: [
             {

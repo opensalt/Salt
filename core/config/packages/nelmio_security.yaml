@@ -64,12 +64,14 @@ nelmio_security:
                 - 'unsafe-inline'
                 - 'data:'
                 - 'blob:'
+                - unpkg.com
             img-src:
                 - '*'
                 - 'data:'
             style-src:
                 - 'self'
                 - 'unsafe-inline'
+                - unpkg.com
                 - fonts.googleapis.com
                 - maxcdn.bootstrapcdn.com
             font-src:
