@@ -126,7 +126,7 @@ class SystemLogs implements Context
      */
     public function iEnterInTheSytemLogSearchField($term)
     {
-        $this->I->fillField('#systemLogTable_filter input', $term);
+        $this->I->fillField('#systemLogTable_wrapper .dt-search input', $term);
     }
 
     /**

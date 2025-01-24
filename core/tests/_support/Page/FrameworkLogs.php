@@ -77,7 +77,7 @@ class FrameworkLogs implements Context
      */
     public function iEnterInTheLogSearchField($term)
     {
-        $this->I->fillField('#logTable_filter input', $term);
+        $this->I->fillField('#logTable_wrapper .dt-search input', $term);
     }
 
     /**
