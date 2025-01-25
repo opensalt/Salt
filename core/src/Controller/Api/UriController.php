@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Entity\Framework\LsAssociation;
 use App\Entity\Framework\LsDoc;

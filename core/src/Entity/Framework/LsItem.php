@@ -400,7 +400,7 @@ class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterfa
 
     public function getFullStatement(): ?string
     {
-        return $this->fullStatement;
+        return $this->fullStatement ?? null;
     }
 
     public function setAbbreviatedStatement(?string $abbreviatedStatement): static

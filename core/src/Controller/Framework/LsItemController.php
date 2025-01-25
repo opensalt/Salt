@@ -10,6 +10,7 @@ use App\Command\Framework\DeleteItemCommand;
 use App\Command\Framework\LockItemCommand;
 use App\Command\Framework\RemoveChildCommand;
 use App\Command\Framework\UpdateItemCommand;
+use App\DTO\ItemType\JobDto;
 use App\Entity\Framework\LsAssociation;
 use App\Entity\Framework\LsDefAssociationGrouping;
 use App\Entity\Framework\LsDefItemType;
@@ -25,7 +26,6 @@ use App\Form\Type\LsItemParentType;
 use App\Form\Type\LsItemType;
 use App\Security\Permission;
 use App\Service\BucketService;
-use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,9 +41,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-/**
- * LsItem controller.
- */
 #[Route(path: '/cfitem')]
 class LsItemController extends AbstractController
 {
@@ -55,18 +52,12 @@ class LsItemController extends AbstractController
     ) {
     }
 
-    /**
-     * Lists all LsItem entities.
-     */
     #[Route(path: '/', name: 'lsitem_index', methods: ['GET'])]
     public function index(): Response
     {
         return $this->render('framework/ls_item/index.html.twig', []);
     }
 
-    /**
-     * Creates a new LsItem entity.
-     */
     #[Route(path: '/new/{doc}/PARENT', name: 'lsitem_new_top', methods: ['GET', 'POST'])]
     #[Route(path: '/new/{doc}/{parent}', name: 'lsitem_new', methods: ['GET', 'POST'])]
     #[Route(path: '/new/{doc}/PARENT/{assocGroup}', name: 'lsitem_new_top_ag', methods: ['GET', 'POST'])]
@@ -74,7 +65,6 @@ class LsItemController extends AbstractController
     #[IsGranted(Permission::ITEM_ADD_TO, 'doc')]
     public function new(
         Request $request,
-        EntityManagerInterface $em,
         #[MapEntity(id: 'doc')] LsDoc $doc,
         #[MapEntity(id: 'parent')] ?LsItem $parent = null,
         #[MapEntity(id: 'assocGroup')] ?LsDefAssociationGrouping $assocGroup = null,
@@ -87,27 +77,16 @@ class LsItemController extends AbstractController
         $lsItem->setLsDoc($doc);
         $lsItem->setLsDocUri($doc->getUri());
 
-        $formType = match ($itemType) {
-            'job' => LsItemJobType::class,
-            default => LsItemType::class,
-        };
-
-        if (LsItemJobType::class === $formType) {
-            $jobItemType = $em->getRepository(LsDefItemType::class)->findOneByIdentifier(LsDefItemType::TYPE_JOB_IDENTIFIER);
-            $lsItem->setItemType($jobItemType);
-        }
-
-        $form = $this->createForm($formType, $lsItem, ['ajax' => $ajax]);
-        $form->handleRequest($request);
+        $form = $this->getNewItemForm($itemType, $lsItem, $request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $command = new AddItemCommand($lsItem, $doc, $parent, $assocGroup);
+                $this->processValidNewItemForm($itemType, $form, $lsItem);
+                $command = new AddItemCommand($lsItem, $lsItem->getLsDoc(), $parent, $assocGroup);
                 $this->sendCommand($command);
 
                 // retrieve isChildOf assoc id for the new item
-                /** @var LsAssociation $assoc */
-                $assoc = $this->managerRegistry->getRepository(LsAssociation::class)->findOneBy(['originLsItem' => $lsItem]);
+                $assoc = $this->managerRegistry->getRepository(LsAssociation::class)->findOneBy(['originLsItem' => $lsItem, 'type' => LsAssociation::CHILD_OF]);
 
                 if ($ajax) {
                     // if ajax call, return the item as json
@@ -120,21 +99,16 @@ class LsItemController extends AbstractController
             }
         }
 
-        $ret = [
-            'lsItem' => $lsItem,
-            'form' => $form->createView(),
-        ];
-
+        $response = null;
         if ($ajax && $form->isSubmitted()) {
-            return $this->render('framework/ls_item/new.html.twig', $ret, new Response('', Response::HTTP_UNPROCESSABLE_ENTITY));
+            $response = new Response('', Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        return $this->render('framework/ls_item/new.html.twig', $ret);
+        return $this->render('framework/ls_item/new.html.twig', [
+            'form' => $form->createView(),
+        ], $response);
     }
 
-    /**
-     * Finds and displays a LsItem entity.
-     */
     #[Route(path: '/{id}.{_format}', name: 'lsitem_show', defaults: ['_format' => 'html'], methods: ['GET'])]
     public function show(LsItem $lsItem, string $_format = 'html'): Response
     {
@@ -153,9 +127,6 @@ class LsItemController extends AbstractController
         ]);
     }
 
-    /**
-     * Displays a form to edit an existing LsItem entity.
-     */
     #[Route(path: '/{id}/edit', name: 'lsitem_edit', methods: ['GET', 'POST'])]
     #[IsGranted(Permission::ITEM_EDIT, 'lsItem')]
     public function edit(Request $request, LsItem $lsItem, #[CurrentUser] User $user): Response
@@ -172,17 +143,11 @@ class LsItemController extends AbstractController
             );
         }
 
-        $formType = match ($lsItem->getItemType()?->getIdentifier()) {
-            LsDefItemType::TYPE_JOB_IDENTIFIER => LsItemJobType::class,
-            default => LsItemType::class,
-        };
-
-        $deleteForm = $this->createDeleteForm($lsItem);
-        $editForm = $this->createForm($formType, $lsItem, ['ajax' => $ajax]);
-        $editForm->handleRequest($request);
+        $editForm = $this->getEditItemForm($lsItem, $request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             try {
+                $this->processValidEditItemForm($lsItem, $editForm);
                 $command = new UpdateItemCommand($lsItem);
                 $this->sendCommand($command);
 
@@ -197,6 +162,8 @@ class LsItemController extends AbstractController
             }
         }
 
+        $deleteForm = $this->createDeleteForm($lsItem);
+
         $ret = [
             'lsItem' => $lsItem,
             'edit_form' => $editForm->createView(),
@@ -210,9 +177,6 @@ class LsItemController extends AbstractController
         return $this->render('framework/ls_item/edit.html.twig', $ret);
     }
 
-    /**
-     * Deletes a LsItem entity.
-     */
     #[Route(path: '/{id}', name: 'lsitem_delete', methods: ['DELETE'])]
     #[IsGranted(Permission::ITEM_EDIT, 'lsItem')]
     public function delete(Request $request, LsItem $lsItem): RedirectResponse
@@ -230,9 +194,6 @@ class LsItemController extends AbstractController
         return $this->redirectToRoute('lsitem_index');
     }
 
-    /**
-     * Creates a form to delete a LsItem entity.
-     */
     private function createDeleteForm(LsItem $lsItem): FormInterface
     {
         return $this->createFormBuilder()
@@ -242,9 +203,6 @@ class LsItemController extends AbstractController
         ;
     }
 
-    /**
-     * Export an LsItem entity.
-     */
     #[Route(path: '/{id}/export', name: 'lsitem_export', defaults: ['_format' => 'json'], methods: ['GET'])]
     public function export(LsItem $lsItem): Response
     {
@@ -253,9 +211,6 @@ class LsItemController extends AbstractController
         ]);
     }
 
-    /**
-     * Remove a child LSItem.
-     */
     #[Route(path: '/{id}/removeChild/{child}', name: 'lsitem_remove_child', methods: ['POST'])]
     #[IsGranted(Permission::ITEM_EDIT, 'lsItem')]
     public function removeChild(
@@ -268,9 +223,6 @@ class LsItemController extends AbstractController
         return $this->render('framework/ls_item/remove_child.html.twig', []);
     }
 
-    /**
-     * Copy an LsItem to a new LsDoc.
-     */
     #[Route(path: '/{id}/copy', name: 'lsitem_copy_item', methods: ['GET', 'POST'])]
     #[IsGranted(Permission::ITEM_EDIT, 'lsItem')]
     public function copy(Request $request, LsItem $lsItem): Response
@@ -314,9 +266,6 @@ class LsItemController extends AbstractController
         return $this->render('framework/ls_item/copy.html.twig', $ret);
     }
 
-    /**
-     * Displays a form to change the parent of an existing LsItem entity.
-     */
     #[Route(path: '/{id}/parent', name: 'lsitem_change_parent', methods: ['GET', 'POST'])]
     #[IsGranted(Permission::ITEM_EDIT, 'lsItem')]
     public function changeParent(Request $request, LsItem $lsItem): Response
@@ -353,9 +302,6 @@ class LsItemController extends AbstractController
         return $this->render('framework/ls_item/change_parent.html.twig', $ret);
     }
 
-    /**
-     * Upload attachment to LsItem entity.
-     */
     #[Route(path: '/{id}/upload_attachment', name: 'lsitem_upload_attachment', methods: ['POST'])]
     #[IsGranted(Permission::ITEM_ADD_TO, 'doc')]
     public function uploadAttachment(Request $request, LsDoc $doc, BucketService $bucket): Response
@@ -402,7 +348,7 @@ class LsItemController extends AbstractController
                     'assocDoc' => $assoc->getLsDocIdentifier(),
                     'assocId' => $assoc->getId(),
                     'identifier' => $assoc->getIdentifier(),
-                    //'groupId' => $assoc->getGroup()?->getId(),
+                    // 'groupId' => $assoc->getGroup()?->getId(),
                     'dest' => ['doc' => $assoc->getLsDocIdentifier(), 'item' => $destItem, 'uri' => $destItem],
                 ];
                 if ($assoc->getGroup()) {
@@ -419,5 +365,86 @@ class LsItemController extends AbstractController
         $response->headers->set('Cache-Control', 'no-cache');
 
         return $response;
+    }
+
+    private function getNewItemForm(?string $itemType, LsItem $lsItem, Request $request): FormInterface
+    {
+        switch ($itemType) {
+            case 'job':
+                $jobItemInfo = $lsItem->getExtraProperty('extendedItem');
+                $jobItem = new JobDto($lsItem->getAbbreviatedStatement(), $lsItem->getFullStatement(), $jobItemInfo['ceterms:subjectWebPage'] ?? null);
+                $form = $this->createForm(LsItemJobType::class, $jobItem);
+                break;
+
+            default:
+                $ajax = $request->isXmlHttpRequest();
+                $form = $this->createForm(LsItemType::class, $lsItem, ['ajax' => $ajax]);
+                break;
+        }
+
+        $form->handleRequest($request);
+
+        return $form;
+    }
+
+    private function processValidNewItemForm(?string $itemType, FormInterface $form, LsItem $lsItem): void
+    {
+        switch ($itemType) {
+            case 'job':
+                $jobItemType = $this->managerRegistry->getRepository(LsDefItemType::class)->findOneByIdentifier(LsDefItemType::TYPE_JOB_IDENTIFIER);
+                $lsItem->setItemType($jobItemType);
+
+                $this->processValidEditItemForm($lsItem, $form);
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    private function getEditItemForm(LsItem $lsItem, Request $request): FormInterface
+    {
+        $itemType = $lsItem->getItemType()?->getIdentifier();
+
+        switch ($itemType) {
+            case LsDefItemType::TYPE_JOB_IDENTIFIER:
+                $jobItemInfo = $lsItem->getExtraProperty('extendedItem');
+                $jobItem = new JobDto($lsItem->getAbbreviatedStatement(), $lsItem->getFullStatement(), $jobItemInfo['ceterms:subjectWebPage'] ?? null);
+                $form = $this->createForm(LsItemJobType::class, $jobItem);
+                break;
+
+            default:
+                $ajax = $request->isXmlHttpRequest();
+                $form = $this->createForm(LsItemType::class, $lsItem, ['ajax' => $ajax]);
+                break;
+        }
+
+        $form->handleRequest($request);
+
+        return $form;
+    }
+
+    private function processValidEditItemForm(LsItem $lsItem, FormInterface $form): void
+    {
+        $itemType = $lsItem->getItemType()?->getIdentifier();
+
+        switch ($itemType) {
+            case LsDefItemType::TYPE_JOB_IDENTIFIER:
+                /** @var JobDto $jobItem */
+                $jobItem = $form->getData();
+                $lsItem->setAbbreviatedStatement($jobItem->abbreviatedStatement);
+                $lsItem->setFullStatement($jobItem->fullStatement);
+                $jobItemInfo = [
+                    'type' => 'job',
+                ];
+                if ($jobItem->webpage) {
+                    $jobItemInfo['ceterms:subjectWebpage'] = $jobItem->webpage;
+                }
+                $lsItem->setExtraProperty('extendedItem', $jobItemInfo);
+                break;
+
+            default:
+                break;
+        }
     }
 }

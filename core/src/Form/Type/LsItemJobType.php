@@ -2,15 +2,16 @@
 
 namespace App\Form\Type;
 
-use App\Entity\Framework\LsItem;
+use App\DTO\ItemType\JobDto;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @extends AbstractType<LsItem>
+ * @extends AbstractType<JobDto>
  */
 class LsItemJobType extends AbstractType
 {
@@ -20,19 +21,17 @@ class LsItemJobType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        if (!$options['ajax']) {
-            $builder
-                ->add('uri')
-                ->add('lsDoc')
-            ;
-        }
-
         $builder
             ->add('abbreviatedStatement', TextType::class, [
                 'label' => 'Title',
             ])
             ->add('fullStatement', TextareaType::class, [
                 'label' => 'Description',
+            ])
+            ->add('webpage', UrlType::class, [
+                'label' => 'Webpage',
+                'required' => false,
+                'help' => 'Webpage that describes this job.',
             ])
         ;
     }
@@ -45,8 +44,7 @@ class LsItemJobType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => LsItem::class,
-            'ajax' => false,
+            'data_class' => JobDto::class,
         ]);
     }
 }
