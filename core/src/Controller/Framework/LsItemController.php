@@ -370,22 +370,28 @@ class LsItemController extends AbstractController
 
     private function getNewItemForm(?string $itemType, LsItem $lsItem, Request $request): FormInterface
     {
+        $args = [];
         switch ($itemType) {
             case 'job':
                 $itemDto = JobDto::fromItem($lsItem);
-                $form = $this->createForm($itemDto::ITEM_TYPE_FORM, $itemDto);
+                $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
             case 'course':
                 $itemDto = CourseDto::fromItem($lsItem);
-                $form = $this->createForm($itemDto::ITEM_TYPE_FORM, $itemDto);
+                $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
             default:
-                $ajax = $request->isXmlHttpRequest();
-                $form = $this->createForm(LsItemType::class, $lsItem, ['ajax' => $ajax]);
+                $itemDto = $lsItem;
+                $args = [
+                    'ajax' => $request->isXmlHttpRequest(),
+                ];
+                $formType = LsItemType::class;
                 break;
         }
+
+        $form = $this->createForm($formType, $itemDto, $args);
 
         $form->handleRequest($request);
 
@@ -413,32 +419,28 @@ class LsItemController extends AbstractController
         $itemType = $lsItem->getItemType();
         $isSystemValue = $itemType?->getExtraProperty('system-value');
 
-        if (true !== $isSystemValue) {
-            $ajax = $request->isXmlHttpRequest();
-            $form = $this->createForm(LsItemType::class, $lsItem, ['ajax' => $ajax]);
-            $form->handleRequest($request);
+        $itemTypeIdentifier = (true === $isSystemValue) ? $itemType?->getIdentifier() : null;
 
-            return $form;
-        }
-
-        $itemTypeIdentifier = $itemType?->getIdentifier();
-
+        $args = [];
         switch ($itemTypeIdentifier) {
             case LsDefItemType::TYPE_JOB_IDENTIFIER:
                 $itemDto = JobDto::fromItem($lsItem);
-                $form = $this->createForm($itemDto::ITEM_TYPE_FORM, $itemDto);
+                $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
             case LsDefItemType::TYPE_COURSE_IDENTIFIER:
                 $itemDto = CourseDto::fromItem($lsItem);
-                $form = $this->createForm($itemDto::ITEM_TYPE_FORM, $itemDto);
+                $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
             default:
-                $ajax = $request->isXmlHttpRequest();
-                $form = $this->createForm(LsItemType::class, $lsItem, ['ajax' => $ajax]);
+                $args = ['ajax' => $request->isXmlHttpRequest()];
+                $itemDto = $lsItem;
+                $formType = LsItemType::class;
                 break;
         }
+
+        $form = $this->createForm($formType, $itemDto, $args);
 
         $form->handleRequest($request);
 
