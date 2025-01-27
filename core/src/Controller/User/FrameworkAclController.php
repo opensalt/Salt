@@ -58,7 +58,12 @@ class FrameworkAclController extends AbstractController
         /** @var \ArrayIterator $iterator */
         $iterator = $acls->getIterator();
         $iterator->uasort(fn (UserDocAcl $a, UserDocAcl $b) => strcasecmp($a->getUser()->getUserIdentifier(), $b->getUser()->getUserIdentifier()));
-        $acls = new ArrayCollection(iterator_to_array($iterator));
+        /** @var array<array-key, UserDocAcl> $userArray */
+        $userArray = iterator_to_array($iterator);
+        $acls = match ($userArray) {
+            [] => new ArrayCollection(),
+            default => new ArrayCollection($userArray)
+        };
 
         $deleteForms = [];
         foreach ($acls as $acl) {
