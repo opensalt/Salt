@@ -10,6 +10,8 @@ use App\Command\Framework\DeleteItemCommand;
 use App\Command\Framework\LockItemCommand;
 use App\Command\Framework\RemoveChildCommand;
 use App\Command\Framework\UpdateItemCommand;
+use App\DTO\ItemType\CourseDto;
+use App\DTO\ItemType\ItemTypeInterface;
 use App\DTO\ItemType\JobDto;
 use App\Entity\Framework\LsAssociation;
 use App\Entity\Framework\LsDefAssociationGrouping;
@@ -371,9 +373,13 @@ class LsItemController extends AbstractController
     {
         switch ($itemType) {
             case 'job':
-                $jobItemInfo = $lsItem->getExtraProperty('extendedItem');
-                $jobItem = new JobDto($lsItem->getAbbreviatedStatement(), $lsItem->getFullStatement(), $jobItemInfo['ceterms:subjectWebPage'] ?? null);
-                $form = $this->createForm(LsItemJobType::class, $jobItem);
+                $itemDto = JobDto::fromItem($lsItem);
+                $form = $this->createForm($itemDto::ITEM_TYPE_FORM, $itemDto);
+                break;
+
+            case 'course':
+                $itemDto = CourseDto::fromItem($lsItem);
+                $form = $this->createForm($itemDto::ITEM_TYPE_FORM, $itemDto);
                 break;
 
             default:
@@ -389,28 +395,44 @@ class LsItemController extends AbstractController
 
     private function processValidNewItemForm(?string $itemType, FormInterface $form, LsItem $lsItem): void
     {
-        switch ($itemType) {
-            case 'job':
-                $jobItemType = $this->managerRegistry->getRepository(LsDefItemType::class)->findOneByIdentifier(LsDefItemType::TYPE_JOB_IDENTIFIER);
-                $lsItem->setItemType($jobItemType);
+        $item = $form->getData();
 
-                $this->processValidEditItemForm($lsItem, $form);
-                break;
+        if ($item instanceof LsItem) {
+            return;
+        }
 
-            default:
-                break;
+        if ($item instanceof ItemTypeInterface) {
+            $jobItemType = $this->managerRegistry->getRepository(LsDefItemType::class)->findOneByIdentifier($item::ITEM_TYPE_IDENTIFIER);
+            $lsItem->setItemType($jobItemType);
+
+            $this->processValidEditItemForm($lsItem, $form);
         }
     }
 
     private function getEditItemForm(LsItem $lsItem, Request $request): FormInterface
     {
-        $itemType = $lsItem->getItemType()?->getIdentifier();
+        $itemType = $lsItem->getItemType();
+        $isSystemValue = $itemType?->getExtraProperty('system-value');
 
-        switch ($itemType) {
+        if (true !== $isSystemValue) {
+            $ajax = $request->isXmlHttpRequest();
+            $form = $this->createForm(LsItemType::class, $lsItem, ['ajax' => $ajax]);
+            $form->handleRequest($request);
+
+            return $form;
+        }
+
+        $itemTypeIdentifier = $itemType?->getIdentifier();
+
+        switch ($itemTypeIdentifier) {
             case LsDefItemType::TYPE_JOB_IDENTIFIER:
-                $jobItemInfo = $lsItem->getExtraProperty('extendedItem');
-                $jobItem = new JobDto($lsItem->getAbbreviatedStatement(), $lsItem->getFullStatement(), $jobItemInfo['ceterms:subjectWebPage'] ?? null);
-                $form = $this->createForm(LsItemJobType::class, $jobItem);
+                $itemDto = JobDto::fromItem($lsItem);
+                $form = $this->createForm($itemDto::ITEM_TYPE_FORM, $itemDto);
+                break;
+
+            case LsDefItemType::TYPE_COURSE_IDENTIFIER:
+                $itemDto = CourseDto::fromItem($lsItem);
+                $form = $this->createForm($itemDto::ITEM_TYPE_FORM, $itemDto);
                 break;
 
             default:
@@ -426,25 +448,15 @@ class LsItemController extends AbstractController
 
     private function processValidEditItemForm(LsItem $lsItem, FormInterface $form): void
     {
-        $itemType = $lsItem->getItemType()?->getIdentifier();
+        $item = $form->getData();
 
-        switch ($itemType) {
-            case LsDefItemType::TYPE_JOB_IDENTIFIER:
-                /** @var JobDto $jobItem */
-                $jobItem = $form->getData();
-                $lsItem->setAbbreviatedStatement($jobItem->abbreviatedStatement);
-                $lsItem->setFullStatement($jobItem->fullStatement);
-                $jobItemInfo = [
-                    'type' => 'job',
-                ];
-                if ($jobItem->webpage) {
-                    $jobItemInfo['ceterms:subjectWebpage'] = $jobItem->webpage;
-                }
-                $lsItem->setExtraProperty('extendedItem', $jobItemInfo);
-                break;
+        if ($item instanceof LsItem) {
+            return;
+        }
 
-            default:
-                break;
+        if ($item instanceof ItemTypeInterface) {
+            $jobItem = $form->getData();
+            $jobItem->applyToItem($lsItem);
         }
     }
 }
