@@ -82,7 +82,7 @@ class LsItemController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->processValidNewItemForm($itemType, $form, $lsItem);
+                $this->processValidNewItemForm($form, $lsItem);
                 $command = new AddItemCommand($lsItem, $lsItem->getLsDoc(), $parent, $assocGroup);
                 $this->sendCommand($command);
 
@@ -398,20 +398,9 @@ class LsItemController extends AbstractController
         return $form;
     }
 
-    private function processValidNewItemForm(?string $itemType, FormInterface $form, LsItem $lsItem): void
+    private function processValidNewItemForm(FormInterface $form, LsItem $lsItem): void
     {
-        $item = $form->getData();
-
-        if ($item instanceof LsItem) {
-            return;
-        }
-
-        if ($item instanceof ItemTypeInterface) {
-            $jobItemType = $this->managerRegistry->getRepository(LsDefItemType::class)->findOneByIdentifier($item::ITEM_TYPE_IDENTIFIER);
-            $lsItem->setItemType($jobItemType);
-
-            $this->processValidEditItemForm($lsItem, $form);
-        }
+        $this->processValidEditItemForm($lsItem, $form);
     }
 
     private function getEditItemForm(LsItem $lsItem, Request $request): FormInterface
@@ -456,6 +445,11 @@ class LsItemController extends AbstractController
         }
 
         if ($item instanceof ItemTypeInterface) {
+            if (null === $lsItem->getItemType()) {
+                $jobItemType = $this->managerRegistry->getRepository(LsDefItemType::class)->findOneByIdentifier($item::ITEM_TYPE_IDENTIFIER);
+                $lsItem->setItemType($jobItemType);
+            }
+
             $jobItem = $form->getData();
             $jobItem->applyToItem($lsItem);
         }
