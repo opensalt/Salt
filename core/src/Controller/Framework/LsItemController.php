@@ -23,7 +23,6 @@ use App\Exception\AlreadyLockedException;
 use App\Form\Command\ChangeLsItemParentCommand;
 use App\Form\Command\CopyToLsDocCommand;
 use App\Form\Type\LsDocListType;
-use App\Form\Type\LsItemJobType;
 use App\Form\Type\LsItemParentType;
 use App\Form\Type\LsItemType;
 use App\Security\Permission;

@@ -62,7 +62,7 @@ class FrameworkAclController extends AbstractController
         $userArray = iterator_to_array($iterator);
         $acls = match ($userArray) {
             [] => new ArrayCollection(),
-            default => new ArrayCollection($userArray)
+            default => new ArrayCollection($userArray),
         };
 
         $deleteForms = [];
