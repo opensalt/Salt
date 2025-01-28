@@ -19,6 +19,8 @@ class JobDto implements ItemTypeInterface
         public ?string $abbreviatedStatement = null,
         #[Assert\NotBlank()]
         public ?string $fullStatement = null,
+        public ?string $codedNotation = null,
+        public ?string $keywords = null,
         #[Assert\Url(message: 'The webpage must be a valid URL.', requireTld: true)]
         public ?string $webpage = null,
     ) {
@@ -31,6 +33,8 @@ class JobDto implements ItemTypeInterface
         return new self(
             $item->getAbbreviatedStatement(),
             $item->getFullStatement(),
+            $item->getHumanCodingScheme(),
+            $item->getConceptKeywordsString(),
             $jobItemInfo[self::WEBPAGE_KEY] ?? null
         );
     }
@@ -39,6 +43,8 @@ class JobDto implements ItemTypeInterface
     {
         $item->setAbbreviatedStatement($this->abbreviatedStatement);
         $item->setFullStatement($this->fullStatement);
+        $item->setHumanCodingScheme($this->codedNotation);
+        $item->setConceptKeywordsString($this->keywords);
         $jobItemInfo = [
             'type' => 'job',
         ];

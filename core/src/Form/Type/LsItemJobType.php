@@ -28,10 +28,19 @@ class LsItemJobType extends AbstractType
             ->add('fullStatement', TextareaType::class, [
                 'label' => 'Description',
             ])
+            ->add('codedNotation', TextType::class, [
+                'label' => 'Coded Notation',
+                'required' => false,
+            ])
+            ->add('keywords', TextType::class, [
+                'label' => 'Keywords',
+                'required' => false,
+                'help' => 'Separate keywords with a comma (,)',
+            ])
             ->add('webpage', UrlType::class, [
                 'label' => 'Webpage',
                 'required' => false,
-                'help' => 'Webpage that describes this job.',
+                'help' => 'Webpage that describes this job',
             ])
         ;
     }
