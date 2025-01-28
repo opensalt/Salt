@@ -2,14 +2,13 @@
 
 namespace App\DTO\ItemType;
 
-use App\Entity\Framework\LsDefItemType;
 use App\Entity\Framework\LsItem;
 use App\Form\Type\LsItemJobType;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class JobDto implements ItemTypeInterface
 {
-    public const string ITEM_TYPE_IDENTIFIER = LsDefItemType::TYPE_JOB_IDENTIFIER;
+    public const int ITEM_TYPE_IDENTIFIER = LsItem::TYPES['job'];
     public const string ITEM_TYPE_FORM = LsItemJobType::class;
     public const string WEBPAGE_KEY = 'ceterms:subjectWebpage';
 

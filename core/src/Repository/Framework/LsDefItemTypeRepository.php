@@ -56,14 +56,12 @@ class LsDefItemTypeRepository extends AbstractLsDefinitionRepository
             ->orderBy('t.title')
             ->setMaxResults($limit + 1)
             ->setFirstResult(($page - 1) * $limit)
-            ->andWhere('t.identifier != :jobIdentifier')
-            ->setParameter('jobIdentifier', LsDefItemType::TYPE_JOB_IDENTIFIER)
         ;
 
         if (!empty($search)) {
             $qb->andWhere('t.title LIKE :search')
                 ->setParameter('search', '%'.$search.'%')
-                ;
+            ;
         }
 
         /** @var LsDefItemType[] $results */

@@ -3,13 +3,13 @@
 namespace App\DTO\ItemType;
 
 use App\Entity\Framework\LsItem;
-use App\Form\Type\LsItemCourseType;
+use App\Form\Type\LsItemAssessmentType;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CourseDto implements ItemTypeInterface
+class AssessmentDto implements ItemTypeInterface
 {
-    public const int ITEM_TYPE_IDENTIFIER = LsItem::TYPES['course'];
-    public const string ITEM_TYPE_FORM = LsItemCourseType::class;
+    public const int ITEM_TYPE_IDENTIFIER = LsItem::TYPES['assessment'];
+    public const string ITEM_TYPE_FORM = LsItemAssessmentType::class;
     public const string WEBPAGE_KEY = 'ceterms:subjectWebpage';
     public const string DELIVERY_TYPE_KEY = 'ceterms:deliveryType';
 
@@ -19,11 +19,11 @@ class CourseDto implements ItemTypeInterface
         public ?string $name = null,
         #[Assert\NotBlank()]
         public ?string $description = null,
-        #[Assert\Url(requireTld: true)]
-        public ?string $webpage = null,
-        public ?string $codedNotation = null,
-        public ?string $inLanguage = null,
         public ?string $deliveryType = null,
+        public ?string $inLanguage = null,
+        public ?string $keywords = null,
+        #[Assert\Url(message: 'The webpage must be a valid URL.', requireTld: true)]
+        public ?string $webpage = null,
     ) {
     }
 
@@ -34,10 +34,10 @@ class CourseDto implements ItemTypeInterface
         return new self(
             $item->getAbbreviatedStatement(),
             $item->getFullStatement(),
-            $jobItemInfo[self::WEBPAGE_KEY] ?? null,
-            $item->getHumanCodingScheme(),
+            $jobItemInfo[self::DELIVERY_TYPE_KEY] ?? null,
             $item->getLanguage(),
-            $jobItemInfo[self::DELIVERY_TYPE_KEY] ?? null
+            $item->getConceptKeywordsString(),
+            $jobItemInfo[self::WEBPAGE_KEY] ?? null,
         );
     }
 
@@ -45,10 +45,10 @@ class CourseDto implements ItemTypeInterface
     {
         $item->setAbbreviatedStatement($this->name);
         $item->setFullStatement($this->description);
-        $item->setHumanCodingScheme($this->codedNotation);
+        $item->setConceptKeywordsString($this->keywords);
         $item->setLanguage($this->inLanguage);
         $itemInfo = [
-            'type' => 'course',
+            'type' => 'assessment',
         ];
         if ($this->webpage) {
             $itemInfo[self::WEBPAGE_KEY] = $this->webpage;

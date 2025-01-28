@@ -9,9 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: LsDefItemTypeRepository::class)]
 class LsDefItemType extends AbstractLsDefinition implements CaseApiInterface
 {
-    public const string TYPE_JOB_IDENTIFIER = '27b1b616-d9cb-11ef-881e-b04f1302c2ee';
-    public const string TYPE_COURSE_IDENTIFIER = '461cc782-dcda-11ef-a68b-b04f1302c2ee';
-
     #[ORM\Column(name: 'code', type: 'string', length: 255, nullable: true)]
     private ?string $code = null;
 

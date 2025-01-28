@@ -10,12 +10,12 @@ use App\Command\Framework\DeleteItemCommand;
 use App\Command\Framework\LockItemCommand;
 use App\Command\Framework\RemoveChildCommand;
 use App\Command\Framework\UpdateItemCommand;
+use App\DTO\ItemType\AssessmentDto;
 use App\DTO\ItemType\CourseDto;
 use App\DTO\ItemType\ItemTypeInterface;
 use App\DTO\ItemType\JobDto;
 use App\Entity\Framework\LsAssociation;
 use App\Entity\Framework\LsDefAssociationGrouping;
-use App\Entity\Framework\LsDefItemType;
 use App\Entity\Framework\LsDoc;
 use App\Entity\Framework\LsItem;
 use App\Entity\User\User;
@@ -382,6 +382,11 @@ class LsItemController extends AbstractController
                 $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
+            case 'assessment':
+                $itemDto = AssessmentDto::fromItem($lsItem);
+                $formType = $itemDto::ITEM_TYPE_FORM;
+                break;
+
             default:
                 $itemDto = $lsItem;
                 $args = [
@@ -405,20 +410,22 @@ class LsItemController extends AbstractController
 
     private function getEditItemForm(LsItem $lsItem, Request $request): FormInterface
     {
-        $itemType = $lsItem->getItemType();
-        $isSystemValue = $itemType?->getExtraProperty('system-value');
-
-        $itemTypeIdentifier = (true === $isSystemValue) ? $itemType?->getIdentifier() : null;
+        $itemTypeIdentifier = $lsItem->getDiscriminator();
 
         $args = [];
         switch ($itemTypeIdentifier) {
-            case LsDefItemType::TYPE_JOB_IDENTIFIER:
+            case LsItem::TYPES['job']:
                 $itemDto = JobDto::fromItem($lsItem);
                 $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
-            case LsDefItemType::TYPE_COURSE_IDENTIFIER:
+            case LsItem::TYPES['course']:
                 $itemDto = CourseDto::fromItem($lsItem);
+                $formType = $itemDto::ITEM_TYPE_FORM;
+                break;
+
+            case LsItem::TYPES['assessment']:
+                $itemDto = AssessmentDto::fromItem($lsItem);
                 $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
@@ -445,11 +452,7 @@ class LsItemController extends AbstractController
         }
 
         if ($item instanceof ItemTypeInterface) {
-            if (null === $lsItem->getItemType()) {
-                $jobItemType = $this->managerRegistry->getRepository(LsDefItemType::class)->findOneByIdentifier($item::ITEM_TYPE_IDENTIFIER);
-                $lsItem->setItemType($jobItemType);
-            }
-
+            $lsItem->setDiscriminator($item::ITEM_TYPE_IDENTIFIER);
             $jobItem = $form->getData();
             $jobItem->applyToItem($lsItem);
         }

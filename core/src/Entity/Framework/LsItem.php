@@ -14,9 +14,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(name: 'ls_item')]
 #[ORM\Entity(repositoryClass: LsItemRepository::class)]
 #[UniqueEntity('uri')]
+#[ORM\Index(name: 'type_idx', columns: ['discriminator'])]
 class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterface
 {
     use AccessAdditionalFieldTrait;
+
+    public const array TYPES = [
+        'default' => 0,
+        'job' => 1,
+        'course' => 2,
+        'assessment' => 3,
+    ];
 
     #[ORM\Column(name: 'ls_doc_identifier', type: 'string', length: 300, nullable: false)]
     #[Assert\NotBlank]
@@ -30,6 +38,9 @@ class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterfa
     #[ORM\ManyToOne(targetEntity: LsDoc::class, inversedBy: 'lsItems')]
     #[Assert\NotBlank]
     private LsDoc $lsDoc;
+
+    #[ORM\Column(name: 'discriminator', options: ['default' => 0])]
+    private int $discriminator = 0;
 
     #[ORM\Column(name: 'human_coding_scheme', type: 'string', length: 80, nullable: true)]
     #[Assert\Length(max: 80)]
@@ -345,6 +356,18 @@ class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterfa
         $uri = preg_replace('#^local:#', '', $uri);
 
         return $uri;
+    }
+
+    public function getDiscriminator(): int
+    {
+        return $this->discriminator;
+    }
+
+    public function setDiscriminator(int $discriminator): static
+    {
+        $this->discriminator = $discriminator;
+
+        return $this;
     }
 
     /**
