@@ -21,8 +21,8 @@ final class Version20250123204700 extends AbstractMigration
             INSERT INTO ls_def_item_type (identifier, uri, extra, updated_at, changed_at, title, description, code, hierarchy_code)
                                    VALUES(:identifier, :uri, :extra, NOW(), NOW(), :title, :description, :code, :hierarchy_code)
          ', [
-            'identifier' => LsDefItemType::TYPE_COURSE_IDENTIFIER,
-            'uri' => 'local:'.LsDefItemType::TYPE_COURSE_IDENTIFIER,
+            'identifier' => '461cc782-dcda-11ef-a68b-b04f1302c2ee',
+            'uri' => 'local:461cc782-dcda-11ef-a68b-b04f1302c2ee',
             'extra' => '{"system-value": true, "system-class": "Course"}',
             'title' => 'Course',
             'description' => 'Represents a course',
@@ -30,12 +30,12 @@ final class Version20250123204700 extends AbstractMigration
             'hierarchy_code' => 'course',
         ]);
 
-        $this->addSql('UPDATE ls_def_item_type SET extra = :extra WHERE identifier = :identifier', ['identifier' => LsDefItemType::TYPE_JOB_IDENTIFIER, 'extra' => '{"system-value": true, "system-class": "Job"}']);
+        $this->addSql('UPDATE ls_def_item_type SET extra = :extra WHERE identifier = :identifier', ['identifier' => '461cc782-dcda-11ef-a68b-b04f1302c2ee', 'extra' => '{"system-value": true, "system-class": "Job"}']);
     }
 
     public function down(Schema $schema): void
     {
-        $this->addSql('DELETE IGNORE FROM ls_def_item_type WHERE identifier = :identifier', ['identifier' => LsDefItemType::TYPE_COURSE_IDENTIFIER]);
+        $this->addSql('DELETE IGNORE FROM ls_def_item_type WHERE identifier = :identifier', ['identifier' => '461cc782-dcda-11ef-a68b-b04f1302c2ee']);
     }
 
     public function isTransactional(): bool
