@@ -1,5 +1,8 @@
 on:
   push:
+    branches:
+      - '**'
+      - '!dependabot/**'
   release:
     types: [published]
 
