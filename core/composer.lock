@@ -9065,16 +9065,16 @@
         },
         {
             "name": "symfony/doctrine-messenger",
-            "version": "v7.2.2",
+            "version": "v7.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-messenger.git",
-                "reference": "1abbc58849847e6b43c042b17046371ef397be19"
+                "reference": "55cd0f79415b3ae18587df903926c8e5d2b51f25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-messenger/zipball/1abbc58849847e6b43c042b17046371ef397be19",
-                "reference": "1abbc58849847e6b43c042b17046371ef397be19",
+                "url": "https://api.github.com/repos/symfony/doctrine-messenger/zipball/55cd0f79415b3ae18587df903926c8e5d2b51f25",
+                "reference": "55cd0f79415b3ae18587df903926c8e5d2b51f25",
                 "shasum": ""
             },
             "require": {
@@ -9117,7 +9117,7 @@
             "description": "Symfony Doctrine Messenger Bridge",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/doctrine-messenger/tree/v7.2.2"
+                "source": "https://github.com/symfony/doctrine-messenger/tree/v7.2.3"
             },
             "funding": [
                 {
@@ -9133,7 +9133,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-30T19:00:17+00:00"
+            "time": "2025-01-07T09:39:55+00:00"
         },
         {
             "name": "symfony/dotenv",
@@ -10727,16 +10727,16 @@
         },
         {
             "name": "symfony/messenger",
-            "version": "v7.2.1",
+            "version": "v7.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/messenger.git",
-                "reference": "cc0e820c02a0a887a88ddb52b7c4de4634677ce6"
+                "reference": "8e5b72deb81e57c8868eb9fe7b1dcb4af694ef10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/messenger/zipball/cc0e820c02a0a887a88ddb52b7c4de4634677ce6",
-                "reference": "cc0e820c02a0a887a88ddb52b7c4de4634677ce6",
+                "url": "https://api.github.com/repos/symfony/messenger/zipball/8e5b72deb81e57c8868eb9fe7b1dcb4af694ef10",
+                "reference": "8e5b72deb81e57c8868eb9fe7b1dcb4af694ef10",
                 "shasum": ""
             },
             "require": {
@@ -10794,7 +10794,7 @@
             "description": "Helps applications send and receive messages to/from other applications or via message queues",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/messenger/tree/v7.2.1"
+                "source": "https://github.com/symfony/messenger/tree/v7.2.3"
             },
             "funding": [
                 {
@@ -10810,7 +10810,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-07T08:08:50+00:00"
+            "time": "2025-01-17T10:17:27+00:00"
         },
         {
             "name": "symfony/mime",
@@ -19263,10 +19263,10 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tetranz/select2entity-bundle": 20,
         "codeception/module-sequence": 20,
         "ericmartel/codeception-email-mailtrap": 20,
-        "roave/security-advisories": 20,
-        "tetranz/select2entity-bundle": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -19283,6 +19283,6 @@
         "ext-mbstring": "*",
         "ext-random": "*"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
