@@ -10402,16 +10402,16 @@
         },
         {
             "name": "symfony/lock",
-            "version": "v7.2.0",
+            "version": "v7.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/lock.git",
-                "reference": "07212a5994a30e3667e95e5b16b2dda0685aff84"
+                "reference": "4f6e8b0e03e4a76095f7d058d72e72d30d5f59e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/lock/zipball/07212a5994a30e3667e95e5b16b2dda0685aff84",
-                "reference": "07212a5994a30e3667e95e5b16b2dda0685aff84",
+                "url": "https://api.github.com/repos/symfony/lock/zipball/4f6e8b0e03e4a76095f7d058d72e72d30d5f59e5",
+                "reference": "4f6e8b0e03e4a76095f7d058d72e72d30d5f59e5",
                 "shasum": ""
             },
             "require": {
@@ -10460,7 +10460,7 @@
                 "semaphore"
             ],
             "support": {
-                "source": "https://github.com/symfony/lock/tree/v7.2.0"
+                "source": "https://github.com/symfony/lock/tree/v7.2.3"
             },
             "funding": [
                 {
@@ -10476,7 +10476,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-25T15:34:29+00:00"
+            "time": "2025-01-17T06:59:03+00:00"
         },
         {
             "name": "symfony/mailer",
@@ -19263,10 +19263,10 @@
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "tetranz/select2entity-bundle": 20,
         "codeception/module-sequence": 20,
         "ericmartel/codeception-email-mailtrap": 20,
-        "roave/security-advisories": 20,
-        "tetranz/select2entity-bundle": 20
+        "roave/security-advisories": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
@@ -19283,6 +19283,6 @@
         "ext-mbstring": "*",
         "ext-random": "*"
     },
-    "platform-dev": {},
-    "plugin-api-version": "2.6.0"
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
 }
