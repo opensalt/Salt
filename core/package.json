@@ -57,7 +57,7 @@
     "@hotwired/stimulus": "^3.0.0",
     "@rollup/plugin-commonjs": "^28.0.1",
     "@rollup/plugin-inject": "^5.0.5",
-    "@symfony/stimulus-bridge": "^3.2.0",
+    "@symfony/stimulus-bridge": "^4.0.0",
     "@symfony/ux-vue": "file:vendor/symfony/ux-vue/assets",
     "@vitejs/plugin-vue": "^5.1.5",
     "sass-embedded": "^1.80.3",
