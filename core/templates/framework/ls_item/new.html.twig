@@ -5,8 +5,13 @@
         <h1>LsItem creation</h1>
     {% endif %}
 
+    {% if form._isCredentialForm is defined %}
+        <div id="ob3-definer"></div>
+    {% endif %}
+
     {{ form_start(form) }}
         {{ form_widget(form) }}
+
         {% if not app.request.xmlHttpRequest %}
             <input class="btn btn-primary" type="submit" value="Create" />
         {% endif %}

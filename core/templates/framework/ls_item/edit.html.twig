@@ -5,8 +5,13 @@
         <h1>LsItem edit</h1>
     {% endif %}
 
+    {% if edit_form._isCredentialForm is defined %}
+        <div id="ob3-definer"></div>
+    {% endif %}
+
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
+
         {% if not app.request.xmlHttpRequest %}
             <p class="text-right">
                 <input class="btn btn-primary" type="submit" value="Save Changes" />

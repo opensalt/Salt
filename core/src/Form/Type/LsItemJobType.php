@@ -22,10 +22,10 @@ class LsItemJobType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('abbreviatedStatement', TextType::class, [
+            ->add('title', TextType::class, [
                 'label' => 'Title',
             ])
-            ->add('fullStatement', TextareaType::class, [
+            ->add('description', TextareaType::class, [
                 'label' => 'Description',
             ])
             ->add('codedNotation', TextType::class, [

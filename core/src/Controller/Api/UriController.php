@@ -125,6 +125,10 @@ class UriController extends AbstractController
             if (str_starts_with($type ?? '', 'Credential - ') && in_array($request->getRequestFormat(), ['html', 'jsonld'])) {
                 return $this->renderCredentialView($obj, $request, $response);
             }
+
+            if (LsItem::TYPES['credential'] === $obj->getDiscriminator() && 'jsonld' === $request->getRequestFormat()) {
+                return new JsonResponse(json5_decode($obj->getExtraProperty('extendedItem')['ob3']));
+            }
         }
 
         $className = $isPackage ? 'CFPackage' : substr(strrchr($obj::class, '\\'), 1);

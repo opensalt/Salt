@@ -22,6 +22,8 @@
         {% endif %}
         {% if isPackage %}
             <strong>CFPackage</strong> found for the following CFDocument:
+        {% elseif objectType == 'CFItem' and obj.discriminator == constant('App\\Entity\\Framework\\LsItem::TYPES').credential %}
+            {# <strong>Credential</strong> found: #}
         {% else %}
            <strong>{{ objectType }}</strong> found:
         {% endif %}
@@ -44,7 +46,11 @@
         {% endif %}
     </p>
 
-    {{ include('uri/_table.html.twig', {data: serialized, parent: 'top'}) }}
+    {% if objectType == 'CFItem' and obj.discriminator == constant('App\\Entity\\Framework\\LsItem::TYPES').credential %}
+        {{ include('uri/_item_credential_view.html.twig', {def: obj}) }}
+    {% else %}
+        {{ include('uri/_table.html.twig', {data: serialized, parent: 'top'}) }}
+    {% endif %}
 
 {% endblock %}
 

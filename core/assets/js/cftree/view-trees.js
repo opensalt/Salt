@@ -313,9 +313,9 @@ export default function (apx) {
                 // if user doubleclicks on a node, open the node, then simulate clicking the "Edit" button for it
                 dblclick: function (event, data) {
                     if (apx.treeDoc1.isDocNode(data.node)) {
-                        $(".btn[data-bs-target='#editDocModal']").click();
+                        $(".btn[data-bs-target='#editDocModal']").trigger('click')
                     } else {
-                        $(".btn[data-bs-target='#editItemModal']").click();
+                        $(".btn[data-bs-target='#editItemModal']").trigger('click')
                     }
 
                     // return false to cancel default processing (i.e. opening folders)

@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
     {{ parent() }}
+    {{ vite_entry_link_tags('credentialcss') }}
     {% if isFeatureEnabled('comments') %}
       {{ vite_entry_link_tags('commentcss') }}
     {% endif %}
@@ -189,6 +190,7 @@
                                                         <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-alt-document-disabled="true">Add general item</a></li>
                                                         <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="assessment" data-alt-document-disabled="true">Add assessment</a></li>
                                                         <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="course" data-alt-document-disabled="true">Add course</a></li>
+                                                        <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="credential" data-alt-document-disabled="true">Add credential</a></li>
                                                         <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="job" data-alt-document-disabled="true">Add job</a></li>
                                                     </ul>
                                                 </div>
@@ -236,6 +238,7 @@
                                                         <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-alt-document-disabled="true">Add general item</a></li>
                                                         <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="assessment" data-alt-document-disabled="true">Add assessment</a></li>
                                                         <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="course" data-alt-document-disabled="true">Add course</a></li>
+                                                        <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="credential" data-alt-document-disabled="true">Add credential</a></li>
                                                         <li><a class="dropdown-item" data-bs-toggle="modal" href="#addNewChildModal" data-item-type="job" data-alt-document-disabled="true">Add job</a></li>
                                                     </ul>
                                                 </div>

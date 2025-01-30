@@ -12,6 +12,7 @@ use App\Command\Framework\RemoveChildCommand;
 use App\Command\Framework\UpdateItemCommand;
 use App\DTO\ItemType\AssessmentDto;
 use App\DTO\ItemType\CourseDto;
+use App\DTO\ItemType\CredentialDto;
 use App\DTO\ItemType\ItemTypeInterface;
 use App\DTO\ItemType\JobDto;
 use App\Entity\Framework\LsAssociation;
@@ -387,6 +388,11 @@ class LsItemController extends AbstractController
                 $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
+            case 'credential':
+                $itemDto = CredentialDto::fromItem($lsItem);
+                $formType = $itemDto::ITEM_TYPE_FORM;
+                break;
+
             default:
                 $itemDto = $lsItem;
                 $args = [
@@ -426,6 +432,11 @@ class LsItemController extends AbstractController
 
             case LsItem::TYPES['assessment']:
                 $itemDto = AssessmentDto::fromItem($lsItem);
+                $formType = $itemDto::ITEM_TYPE_FORM;
+                break;
+
+            case LsItem::TYPES['credential']:
+                $itemDto = CredentialDto::fromItem($lsItem);
                 $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 

@@ -129,6 +129,37 @@ export default function (apx) {
         });
     };
 
+    let saveDefinitionListener = null;
+    let ob3DefinerEl = null;
+    const teardownOb3Definer = () => {
+        if (saveDefinitionListener) {
+            ob3DefinerEl.removeEventListener('saveDefinition', saveDefinitionListener);
+            saveDefinitionListener = null;
+        }
+        if (ob3DefinerEl) {
+            window.dispatchEvent(new CustomEvent('ob3-close'));
+            ob3DefinerEl = null;
+        }
+    };
+    const setupOb3Definer = (modal) => {
+        ob3DefinerEl = document.getElementById('ob3-definer');
+        if (ob3DefinerEl) {
+            ob3DefinerEl.dataset['achievement'] = document.getElementById('ls_item_credential').value;
+            window.dispatchEvent(new CustomEvent('ob3-open', {'detail': {'selector': '#ob3-definer'}}));
+            $('#ob3-definer button[type="submit"]').hide();
+            saveDefinitionListener = (e) => {
+                document.getElementById('ls_item_credential').value = e.detail;
+                teardownOb3Definer();
+                if (modal === 'new') {
+                    $('#addNewChildModal .btn-save').trigger('click');
+                } else {
+                    $('#editItemModal .btn-save').trigger('click');
+                }
+            };
+            ob3DefinerEl.addEventListener('saveDefinition', saveDefinitionListener);
+        }
+    };
+
     /** Edit an item */
     apx.edit.prepareItemEditModal = function () {
         let $modal = $('#editItemModal');
@@ -145,6 +176,8 @@ export default function (apx) {
                     if ($modal.find('form[name="ls_item"]').length) {
                         $modal.find('.modal-footer .btn-save').show();
                     }
+
+                    setupOb3Definer('edit');
                     $('#ls_item_educationalAlignment').multiselect({
                         optionLabel: function (element) {
                             return $(element).html() + ' - ' + $(element).data('title');
@@ -152,19 +185,16 @@ export default function (apx) {
                         numberDisplayed: 20
                     });
 
-                    let itemType = 'default';
                     const itemTypeElement = $('#ls_item_itemType');
                     if (itemTypeElement.length) {
                         itemTypeElement.select2entity({
                             dropdownParent: itemTypeElement.closest('div')
                         });
-                    } else {
-                        itemType = 'job';
                     }
 
                     const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
                     const fullStatementElement = $('#ls_item_fullStatement');
-                    if (itemType === 'default' && fullStatementElement.length) {
+                    if (fullStatementElement.length) {
                         statementMde = mde(fullStatementElement[0]);
 
                         inlineAttachment.editors.codemirror4.attach(
@@ -198,6 +228,8 @@ export default function (apx) {
                         apx.locks.mine.warnings[id].close();
                     }
                 }
+
+                teardownOb3Definer();
             }
             $modal.data('mode', 'close');
         }).on('hidden.bs.modal', function (e) {
@@ -213,8 +245,16 @@ export default function (apx) {
         });
 
         $modal.find('.btn-save').on('click', function (e) {
+            if (ob3DefinerEl) {
+                // Submit the OB3 Definer Widget and let it click again without the widget set
+                $('#ob3-definer button[type="submit"]').click();
+
+                return;
+            }
+
             $modal.data('mode', 'save');
             apx.spinner.showModal("Updating item");
+
             if (null !== statementMde) {
                 statementMde.toTextArea();
                 statementMde = null;
@@ -262,6 +302,7 @@ export default function (apx) {
                 $('#ls_item_itemType').select2('destroy');
                 $modal.find('.modal-body').html(jqXHR.responseText);
 
+                setupOb3Definer('edit');
                 $('#ls_item_educationalAlignment').multiselect({
                     optionLabel: function (element) {
                         return $(element).html() + ' - ' + $(element).data('title');
@@ -276,7 +317,7 @@ export default function (apx) {
                         dropdownParent: itemTypeElement.closest('div')
                     });
                 } else {
-                    itemType = 'job';
+                    itemType = 'other';
                 }
 
                 const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
@@ -337,6 +378,7 @@ export default function (apx) {
                 getPath()+itemTypeQuery,
                 null,
                 function (responseText, textStatus, jqXHR) {
+                    setupOb3Definer('new');
                     $('#ls_item_educationalAlignment').multiselect({
                         optionLabel: function (element) {
                             return $(element).html() + ' - ' + $(element).data('title');
@@ -352,7 +394,7 @@ export default function (apx) {
 
                     const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
                     const fullStatementElement = $('#ls_item_fullStatement');
-                    if (itemType !== 'job' && fullStatementElement.length) {
+                    if (fullStatementElement.length) {
                         statementMde = mde(fullStatementElement[0]);
 
                         inlineAttachment.editors.codemirror4.attach(
@@ -371,6 +413,7 @@ export default function (apx) {
             );
         }).on('hide.bs.modal', function (e) {
             $('#ls_item_itemType').select2('destroy');
+            teardownOb3Definer();
         }).on('hidden.bs.modal', function (e) {
             $modal.find('.modal-body').html(apx.spinner.html("Loading Form"));
             if (null !== statementMde) {
@@ -384,6 +427,13 @@ export default function (apx) {
             }
         });
         $modal.find('.btn-save').on('click', function (e) {
+            if (ob3DefinerEl) {
+                // Submit the OB3 Definer Widget and let it click again without the widget set
+                $('#ob3-definer button[type="submit"]').click();
+
+                return;
+            }
+
             apx.spinner.showModal("Creating item");
             if (statementMde) {
                 statementMde.toTextArea();
@@ -407,22 +457,24 @@ export default function (apx) {
                 $("#noItemsInstructions").hide();
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 apx.spinner.hideModal();
-                $('#ls_item_itemType').select2('destroy');
+                const itemTypeElement = $('#ls_item_itemType');
+                itemTypeElement.select2('destroy');
                 $modal.find('.modal-body').html(jqXHR.responseText);
 
+                setupOb3Definer('new');
                 $('#ls_item_educationalAlignment').multiselect({
                     optionLabel: function (element) {
                         return $(element).html() + ' - ' + $(element).data('title');
                     },
                     numberDisplayed: 20
                 });
-                $('#ls_item_itemType').select2entity({
-                    dropdownParent: $('#ls_item_itemType').closest('div')
+                itemTypeElement.select2entity({
+                    dropdownParent: itemTypeElement.closest('div')
                 });
 
                 const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
                 const fullStatementElement = $('#ls_item_fullStatement');
-                if (itemType !== 'job' && fullStatementElement.length) {
+                if (fullStatementElement.length) {
                     statementMde = mde(fullStatementElement[0]);
 
                     inlineAttachment.editors.codemirror4.attach(

@@ -15,9 +15,9 @@ class JobDto implements ItemTypeInterface
     public function __construct(
         #[Assert\NotBlank()]
         #[Assert\Length(max: 255)]
-        public ?string $abbreviatedStatement = null,
+        public ?string $title = null,
         #[Assert\NotBlank()]
-        public ?string $fullStatement = null,
+        public ?string $description = null,
         public ?string $codedNotation = null,
         public ?string $keywords = null,
         #[Assert\Url(message: 'The webpage must be a valid URL.', requireTld: true)]
@@ -40,8 +40,8 @@ class JobDto implements ItemTypeInterface
 
     public function applyToItem(LsItem $item): void
     {
-        $item->setAbbreviatedStatement($this->abbreviatedStatement);
-        $item->setFullStatement($this->fullStatement);
+        $item->setAbbreviatedStatement($this->title);
+        $item->setFullStatement($this->description);
         $item->setHumanCodingScheme($this->codedNotation);
         $item->setConceptKeywordsString($this->keywords);
         $jobItemInfo = [
