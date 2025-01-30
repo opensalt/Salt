@@ -12,7 +12,7 @@ nelmio_cors:
         origin_regex: false
         forced_allow_origin_value: null
     paths:
-        '^/ims/case/v1p0/':
+        '^(/ims/case/|/uri/)':
             forced_allow_origin_value: '*'
             allow_origin: ['*']
             allow_headers:
