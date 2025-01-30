@@ -43,9 +43,10 @@ export default function(apx){
         },
 
         copyFrameworkRequestSuccess(data) {
-            $("#copyFrameworkModal .alert-success").find("a.js-docDestination")
+            const modal = $("#copyFrameworkModal .alert-success");
+            modal.find("a.js-docDestination")
                 .attr("href", apx.path.lsDoc.replace('ID', data.docDestinationId));
-            $("#copyFrameworkModal .alert-success").removeClass("d-none");
+            modal.removeClass("d-none");
             $("#copyFrameworkModal .file-loading").addClass("d-none");
             apx.copyFramework.resetModalAfterRequest();
         },

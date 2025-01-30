@@ -1,6 +1,7 @@
 import 'inline-attachment/src/inline-attachment.js';
 import 'inline-attachment/src/codemirror-4.inline-attachment.js';
 import render from './render-md';
+import mde from './mde';
 import bootbox from 'bootbox';
 
 import { empty } from './utils';
@@ -164,7 +165,7 @@ export default function (apx) {
                     const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
                     const fullStatementElement = $('#ls_item_fullStatement');
                     if (itemType === 'default' && fullStatementElement.length) {
-                        statementMde = render.mde(fullStatementElement[0]);
+                        statementMde = mde(fullStatementElement[0]);
 
                         inlineAttachment.editors.codemirror4.attach(
                             statementMde.codemirror, {uploadUrl: path}
@@ -173,7 +174,7 @@ export default function (apx) {
 
                     const notesElement = $('#ls_item_notes');
                     if (notesElement.length) {
-                        notesMde = render.mde(notesElement[0]);
+                        notesMde = mde(notesElement[0]);
                         inlineAttachment.editors.codemirror4.attach(
                             notesMde.codemirror, {uploadUrl: path}
                         );
@@ -281,7 +282,7 @@ export default function (apx) {
                 const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
                 const fullStatementElement = $('#ls_item_fullStatement');
                 if (itemType === 'default' && fullStatementElement.length) {
-                    statementMde = render.mde(fullStatementElement[0]);
+                    statementMde = mde(fullStatementElement[0]);
 
                     inlineAttachment.editors.codemirror4.attach(
                         statementMde.codemirror, {uploadUrl: path}
@@ -290,7 +291,7 @@ export default function (apx) {
 
                 const notesElement = $('#ls_item_notes');
                 if (notesElement.length) {
-                    notesMde = render.mde(notesElement[0]);
+                    notesMde = mde(notesElement[0]);
                     inlineAttachment.editors.codemirror4.attach(
                         notesMde.codemirror, {uploadUrl: path}
                     );
@@ -352,7 +353,7 @@ export default function (apx) {
                     const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
                     const fullStatementElement = $('#ls_item_fullStatement');
                     if (itemType !== 'job' && fullStatementElement.length) {
-                        statementMde = render.mde(fullStatementElement[0]);
+                        statementMde = mde(fullStatementElement[0]);
 
                         inlineAttachment.editors.codemirror4.attach(
                             statementMde.codemirror, {uploadUrl: path}
@@ -361,7 +362,7 @@ export default function (apx) {
 
                     const notesElement = $('#ls_item_notes');
                     if (notesElement.length) {
-                        notesMde = render.mde(notesElement[0]);
+                        notesMde = mde(notesElement[0]);
                         inlineAttachment.editors.codemirror4.attach(
                             notesMde.codemirror, {uploadUrl: path}
                         );
@@ -422,7 +423,7 @@ export default function (apx) {
                 const path = '/cfitem/' + apx.mainDoc.doc.id + '/upload_attachment';
                 const fullStatementElement = $('#ls_item_fullStatement');
                 if (itemType !== 'job' && fullStatementElement.length) {
-                    statementMde = render.mde(fullStatementElement[0]);
+                    statementMde = mde(fullStatementElement[0]);
 
                     inlineAttachment.editors.codemirror4.attach(
                         statementMde.codemirror, {uploadUrl: path}
@@ -431,7 +432,7 @@ export default function (apx) {
 
                 const notesElement = $('#ls_item_notes');
                 if (notesElement.length) {
-                    notesMde = render.mde(notesElement[0]);
+                    notesMde = mde(notesElement[0]);
                     inlineAttachment.editors.codemirror4.attach(
                         notesMde.codemirror, {uploadUrl: path}
                     );

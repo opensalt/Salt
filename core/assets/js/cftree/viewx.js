@@ -106,7 +106,7 @@ export default function (apx) {
 
         // parse query string
         apx.query = {};
-        let arr = document.location.search.substr(1).split("&");
+        let arr = document.location.search.substring(1).split("&");
         for (let i = 0; i < arr.length; ++i) {
             let line = arr[i].split("=");
             apx.query[line[0]] = line[1];
@@ -782,7 +782,7 @@ export default function (apx) {
         },
 
         reload: function (list) {
-            window.location.reload(true);
+            window.location.reload();
         },
 
         redirect: function (list) {
