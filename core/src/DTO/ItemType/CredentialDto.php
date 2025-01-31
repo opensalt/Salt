@@ -32,6 +32,9 @@ class CredentialDto implements ItemTypeInterface
         $credentialInfo = json5_decode($this->credential, true);
         $item->setAbbreviatedStatement($credentialInfo['name'] ?? null);
         $item->setFullStatement($credentialInfo['description'] ?? null);
+        $item->setHumanCodingScheme($credentialInfo['humanCode'] ?? null);
+        $item->setLanguage($credentialInfo['inLanguage'] ?? null);
+        $item->setConceptKeywordsArray($credentialInfo['tag'] ?? null);
 
         $itemInfo = [
             'type' => 'credential',
