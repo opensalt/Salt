@@ -4,5 +4,8 @@ framework:
         paths:
             - assets/
         excluded_patterns:
+            - '*/icons/**/LICENSE'
+            - '*/assets/styles/_*.scss'
+            - '*/assets/styles/**/_*.scss'
             - '*/assets/sass/**'
             - '*/assets/js/**'

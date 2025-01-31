@@ -259,8 +259,8 @@ table.table thead th.sorting_desc:after {
         //display: inline-block;
         width: 1rem;
         height: 1rem;
-        -webkit-mask: url(../icons/fa-solid/landmark.svg);
-        mask: url(../icons/fa-solid/landmark.svg);
+        -webkit-mask: url(../icons/tdesign/institution-filled.svg);
+        mask: url(../icons/tdesign/institution-filled.svg);
         background-color: rgba(var(--bs-primary-rgb));
         //-webkit-mask-size: cover;
         //mask-size: cover;
@@ -273,7 +273,7 @@ table.table thead th.sorting_desc:after {
     }
 
     li {
-        list-style-image: url(../icons/fa6-solid/bars-staggered.svg);
+        list-style-image: url(../icons/ph/graph-fill.svg);
     }
 }
 
