@@ -33,6 +33,7 @@ use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,6 +52,7 @@ class LsItemController extends AbstractController
     public function __construct(
         private readonly ?string $bucketProvider,
         private readonly ManagerRegistry $managerRegistry,
+        private readonly HtmlSanitizerInterface $htmlSanitizer,
     ) {
     }
 
@@ -464,8 +466,8 @@ class LsItemController extends AbstractController
 
         if ($item instanceof ItemTypeInterface) {
             $lsItem->setDiscriminator($item::ITEM_TYPE_IDENTIFIER);
-            $jobItem = $form->getData();
-            $jobItem->applyToItem($lsItem);
+            $specializedItem = $form->getData();
+            $specializedItem->applyToItem($lsItem, $this->htmlSanitizer);
         }
     }
 }

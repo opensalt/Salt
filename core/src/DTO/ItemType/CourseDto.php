@@ -4,6 +4,7 @@ namespace App\DTO\ItemType;
 
 use App\Entity\Framework\LsItem;
 use App\Form\Type\LsItemCourseType;
+use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CourseDto implements ItemTypeInterface
@@ -41,7 +42,7 @@ class CourseDto implements ItemTypeInterface
         );
     }
 
-    public function applyToItem(LsItem $item): void
+    public function applyToItem(LsItem $item, HtmlSanitizerInterface $htmlSanitizer): void
     {
         $item->setAbbreviatedStatement($this->name);
         $item->setFullStatement($this->description);

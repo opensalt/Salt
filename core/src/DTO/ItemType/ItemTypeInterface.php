@@ -3,6 +3,7 @@
 namespace App\DTO\ItemType;
 
 use App\Entity\Framework\LsItem;
+use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
 
 interface ItemTypeInterface
 {
@@ -11,5 +12,5 @@ interface ItemTypeInterface
 
     public static function fromItem(LsItem $item): self;
 
-    public function applyToItem(LsItem $item): void;
+    public function applyToItem(LsItem $item, HtmlSanitizerInterface $htmlSanitizer): void;
 }

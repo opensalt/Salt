@@ -31,6 +31,7 @@ class LsItemCourseType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'help' => 'Description of this course.',
+                'sanitize_html' => true,
             ])
             ->add('webpage', UrlType::class, [
                 'label' => 'Webpage',

@@ -4,6 +4,7 @@ namespace App\DTO\ItemType;
 
 use App\Entity\Framework\LsItem;
 use App\Form\Type\LsItemJobType;
+use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class JobDto implements ItemTypeInterface
@@ -38,7 +39,7 @@ class JobDto implements ItemTypeInterface
         );
     }
 
-    public function applyToItem(LsItem $item): void
+    public function applyToItem(LsItem $item, HtmlSanitizerInterface $htmlSanitizer): void
     {
         $item->setAbbreviatedStatement($this->title);
         $item->setFullStatement($this->description);

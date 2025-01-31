@@ -27,6 +27,7 @@ class LsItemJobType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
+                'sanitize_html' => true,
             ])
             ->add('codedNotation', TextType::class, [
                 'label' => 'Coded Notation',

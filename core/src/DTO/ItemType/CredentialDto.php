@@ -4,6 +4,7 @@ namespace App\DTO\ItemType;
 
 use App\Entity\Framework\LsItem;
 use App\Form\Type\LsItemCredentialType;
+use Symfony\Component\HtmlSanitizer\HtmlSanitizerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CredentialDto implements ItemTypeInterface
@@ -27,9 +28,21 @@ class CredentialDto implements ItemTypeInterface
         );
     }
 
-    public function applyToItem(LsItem $item): void
+    public function applyToItem(LsItem $item, HtmlSanitizerInterface $htmlSanitizer): void
     {
         $credentialInfo = json5_decode($this->credential, true);
+        dump($credentialInfo);
+        $description = $credentialInfo['description'] ?? null;
+        if (null !== $description) {
+            $credentialInfo['description'] = $htmlSanitizer->sanitizeFor('div', $description);
+        }
+        $narrative = $credentialInfo['criteria']['narrative'] ?? null;
+        if (null !== $narrative) {
+            $credentialInfo['criteria']['narrative'] = $htmlSanitizer->sanitizeFor('div', $narrative);
+        }
+        dump($description, $narrative);
+        dump($credentialInfo);
+
         $item->setAbbreviatedStatement($credentialInfo['name'] ?? null);
         $item->setFullStatement($credentialInfo['description'] ?? null);
         $item->setHumanCodingScheme($credentialInfo['humanCode'] ?? null);
@@ -39,7 +52,7 @@ class CredentialDto implements ItemTypeInterface
         $itemInfo = [
             'type' => 'credential',
         ];
-        $itemInfo[self::CREDENTIAL_KEY] = $this->credential;
+        $itemInfo[self::CREDENTIAL_KEY] = json_encode($credentialInfo, JSON_THROW_ON_ERROR|JSON_UNESCAPED_SLASHES);
         $item->setExtraProperty('extendedItem', $itemInfo);
     }
 }

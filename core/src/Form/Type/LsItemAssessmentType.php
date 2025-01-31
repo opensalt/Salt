@@ -29,6 +29,7 @@ class LsItemAssessmentType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
+                'sanitize_html' => true,
             ])
             ->add('deliveryType', ChoiceType::class, [
                 'label' => 'Delivery Type',
