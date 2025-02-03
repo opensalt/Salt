@@ -62,16 +62,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.339.3",
+            "version": "3.339.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "2ceb0a5b4c0dcd3c5ca6ea7480f3da62bd4fd588"
+                "reference": "7ca04301a620c9400d00108fa338ad37acf19247"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/2ceb0a5b4c0dcd3c5ca6ea7480f3da62bd4fd588",
-                "reference": "2ceb0a5b4c0dcd3c5ca6ea7480f3da62bd4fd588",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/7ca04301a620c9400d00108fa338ad37acf19247",
+                "reference": "7ca04301a620c9400d00108fa338ad37acf19247",
                 "shasum": ""
             },
             "require": {
@@ -154,9 +154,9 @@
             "support": {
                 "forum": "https://github.com/aws/aws-sdk-php/discussions",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.339.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.339.5"
             },
-            "time": "2025-01-30T19:18:55+00:00"
+            "time": "2025-02-03T19:04:31+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -1164,97 +1164,6 @@
                 }
             ],
             "time": "2024-04-18T06:56:21+00:00"
-        },
-        {
-            "name": "doctrine/common",
-            "version": "3.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/common.git",
-                "reference": "d9ea4a54ca2586db781f0265d36bea731ac66ec5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/d9ea4a54ca2586db781f0265d36bea731ac66ec5",
-                "reference": "d9ea4a54ca2586db781f0265d36bea731ac66ec5",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/persistence": "^2.0 || ^3.0 || ^4.0",
-                "php": "^7.1 || ^8.0"
-            },
-            "require-dev": {
-                "doctrine/coding-standard": "^9.0 || ^10.0",
-                "doctrine/collections": "^1",
-                "phpstan/phpstan": "^1.4.1",
-                "phpstan/phpstan-phpunit": "^1",
-                "phpunit/phpunit": "^7.5.20 || ^8.5 || ^9.0",
-                "squizlabs/php_codesniffer": "^3.0",
-                "symfony/phpunit-bridge": "^6.1",
-                "vimeo/psalm": "^4.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\Common\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
-                    "name": "Roman Borschel",
-                    "email": "roman@code-factory.org"
-                },
-                {
-                    "name": "Benjamin Eberlei",
-                    "email": "kontakt@beberlei.de"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com"
-                },
-                {
-                    "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                },
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com"
-                }
-            ],
-            "description": "PHP Doctrine Common project is a library that provides additional functionality that other Doctrine projects depend on such as better reflection support, proxies and much more.",
-            "homepage": "https://www.doctrine-project.org/projects/common.html",
-            "keywords": [
-                "common",
-                "doctrine",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/doctrine/common/issues",
-                "source": "https://github.com/doctrine/common/tree/3.5.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcommon",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2025-01-01T22:12:03+00:00"
         },
         {
             "name": "doctrine/data-fixtures",
@@ -2528,21 +2437,21 @@
         },
         {
             "name": "ecotone/dbal",
-            "version": "1.244.0",
+            "version": "1.244.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecotoneframework/dbal.git",
-                "reference": "d3e69c23d828671f3c58d61b79dad7a5f7951b24"
+                "reference": "b0365314f75ee0174c83d369e47c6ddb586b9633"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/dbal/zipball/d3e69c23d828671f3c58d61b79dad7a5f7951b24",
-                "reference": "d3e69c23d828671f3c58d61b79dad7a5f7951b24",
+                "url": "https://api.github.com/repos/ecotoneframework/dbal/zipball/b0365314f75ee0174c83d369e47c6ddb586b9633",
+                "reference": "b0365314f75ee0174c83d369e47c6ddb586b9633",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.12.0|^3.0",
-                "ecotone/enqueue": "~1.244.0",
+                "ecotone/enqueue": "~1.244.3",
                 "enqueue/dbal": "^0.10.17"
             },
             "require-dev": {
@@ -2550,7 +2459,7 @@
                 "doctrine/cache": "^1.0.0|^2.0",
                 "doctrine/orm": "^2.11|^3.0",
                 "doctrine/persistence": "^2.5|^3.4",
-                "ecotone/jms-converter": "~1.244.0",
+                "ecotone/jms-converter": "~1.244.3",
                 "phpstan/phpstan": "^1.8",
                 "phpunit/phpunit": "^9.6",
                 "symfony/expression-language": "^6.0|^7.0",
@@ -2562,7 +2471,7 @@
                     "repository": "dbal"
                 },
                 "branch-alias": {
-                    "dev-main": "1.244.0-dev"
+                    "dev-main": "1.244.3-dev"
                 },
                 "license-info": {
                     "Apache-2.0": {
@@ -2580,7 +2489,7 @@
                         "../local_packages.json"
                     ]
                 },
-                "release-time": "2025-01-28 08:01:48"
+                "release-time": "2025-02-02 15:24:42"
             },
             "autoload": {
                 "psr-4": {
@@ -2605,7 +2514,7 @@
                 "ecotone"
             ],
             "support": {
-                "source": "https://github.com/ecotoneframework/dbal/tree/1.244.0"
+                "source": "https://github.com/ecotoneframework/dbal/tree/1.244.3"
             },
             "funding": [
                 {
@@ -2613,20 +2522,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-28T08:09:27+00:00"
+            "time": "2025-02-02T15:32:26+00:00"
         },
         {
             "name": "ecotone/ecotone",
-            "version": "1.244.0",
+            "version": "1.244.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecotoneframework/ecotone.git",
-                "reference": "bb01cbde197a493b798e802559883423ac6a8608"
+                "reference": "d8f2097d4b5f407256480b4a1fe9ca8726c9316d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/ecotone/zipball/bb01cbde197a493b798e802559883423ac6a8608",
-                "reference": "bb01cbde197a493b798e802559883423ac6a8608",
+                "url": "https://api.github.com/repos/ecotoneframework/ecotone/zipball/d8f2097d4b5f407256480b4a1fe9ca8726c9316d",
+                "reference": "d8f2097d4b5f407256480b4a1fe9ca8726c9316d",
                 "shasum": ""
             },
             "require": {
@@ -2648,7 +2557,7 @@
                     "repository": "ecotone"
                 },
                 "branch-alias": {
-                    "dev-main": "1.244.0-dev"
+                    "dev-main": "1.244.3-dev"
                 },
                 "license-info": {
                     "Apache-2.0": {
@@ -2666,7 +2575,7 @@
                         "../local_packages.json"
                     ]
                 },
-                "release-time": "2025-01-28 08:01:48"
+                "release-time": "2025-02-02 15:24:42"
             },
             "autoload": {
                 "psr-4": {
@@ -2697,7 +2606,7 @@
                 "service-bus"
             ],
             "support": {
-                "source": "https://github.com/ecotoneframework/ecotone/tree/1.244.0"
+                "source": "https://github.com/ecotoneframework/ecotone/tree/1.244.3"
             },
             "funding": [
                 {
@@ -2705,24 +2614,24 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-28T08:09:10+00:00"
+            "time": "2025-02-02T15:31:55+00:00"
         },
         {
             "name": "ecotone/enqueue",
-            "version": "1.244.0",
+            "version": "1.244.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecotoneframework/enqueue.git",
-                "reference": "ac68248fab9011440ec5f731489debb7c35dfe64"
+                "reference": "f3d52d81512aad8b0ac015ac3a5ad5d487c423f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/enqueue/zipball/ac68248fab9011440ec5f731489debb7c35dfe64",
-                "reference": "ac68248fab9011440ec5f731489debb7c35dfe64",
+                "url": "https://api.github.com/repos/ecotoneframework/enqueue/zipball/f3d52d81512aad8b0ac015ac3a5ad5d487c423f7",
+                "reference": "f3d52d81512aad8b0ac015ac3a5ad5d487c423f7",
                 "shasum": ""
             },
             "require": {
-                "ecotone/ecotone": "~1.244.0",
+                "ecotone/ecotone": "~1.244.3",
                 "enqueue/dsn": "^0.10.4",
                 "queue-interop/queue-interop": "^0.8"
             },
@@ -2739,7 +2648,7 @@
                     "repository": "enqueue"
                 },
                 "branch-alias": {
-                    "dev-main": "1.244.0-dev"
+                    "dev-main": "1.244.3-dev"
                 },
                 "license-info": {
                     "Apache-2.0": {
@@ -2757,7 +2666,7 @@
                         "../local_packages.json"
                     ]
                 },
-                "release-time": "2025-01-28 08:01:48"
+                "release-time": "2025-02-02 15:24:42"
             },
             "autoload": {
                 "psr-4": {
@@ -2782,7 +2691,7 @@
                 "enqueue"
             ],
             "support": {
-                "source": "https://github.com/ecotoneframework/enqueue/tree/1.244.0"
+                "source": "https://github.com/ecotoneframework/enqueue/tree/1.244.3"
             },
             "funding": [
                 {
@@ -2790,24 +2699,24 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-28T08:09:13+00:00"
+            "time": "2025-02-02T15:32:16+00:00"
         },
         {
             "name": "ecotone/jms-converter",
-            "version": "1.244.0",
+            "version": "1.244.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecotoneframework/jms-converter.git",
-                "reference": "8f149bf9add6ce8a552346999d8c83a2a614df83"
+                "reference": "e83e4c6f6e81be0eedb1473040c67476d41aa25c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/jms-converter/zipball/8f149bf9add6ce8a552346999d8c83a2a614df83",
-                "reference": "8f149bf9add6ce8a552346999d8c83a2a614df83",
+                "url": "https://api.github.com/repos/ecotoneframework/jms-converter/zipball/e83e4c6f6e81be0eedb1473040c67476d41aa25c",
+                "reference": "e83e4c6f6e81be0eedb1473040c67476d41aa25c",
                 "shasum": ""
             },
             "require": {
-                "ecotone/ecotone": "~1.244.0",
+                "ecotone/ecotone": "~1.244.3",
                 "jms/serializer": "^3.17",
                 "symfony/cache": "^5.4|^6.1|^7.0"
             },
@@ -2823,7 +2732,7 @@
                     "repository": "jms-converter"
                 },
                 "branch-alias": {
-                    "dev-main": "1.244.0-dev"
+                    "dev-main": "1.244.3-dev"
                 },
                 "license-info": {
                     "Apache-2.0": {
@@ -2841,7 +2750,7 @@
                         "../local_packages.json"
                     ]
                 },
-                "release-time": "2025-01-28 08:01:48"
+                "release-time": "2025-02-02 15:24:42"
             },
             "autoload": {
                 "psr-4": {
@@ -2871,7 +2780,7 @@
                 "xml"
             ],
             "support": {
-                "source": "https://github.com/ecotoneframework/jms-converter/tree/1.244.0"
+                "source": "https://github.com/ecotoneframework/jms-converter/tree/1.244.3"
             },
             "funding": [
                 {
@@ -2879,24 +2788,24 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-28T08:09:27+00:00"
+            "time": "2025-02-02T15:32:37+00:00"
         },
         {
             "name": "ecotone/pdo-event-sourcing",
-            "version": "1.244.0",
+            "version": "1.244.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecotoneframework/pdo-event-sourcing.git",
-                "reference": "7c039bc81348fc5f52008f0bc4830946c1298b59"
+                "reference": "ba12408cfac79b8a86d3e463598e705dd6c50642"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/pdo-event-sourcing/zipball/7c039bc81348fc5f52008f0bc4830946c1298b59",
-                "reference": "7c039bc81348fc5f52008f0bc4830946c1298b59",
+                "url": "https://api.github.com/repos/ecotoneframework/pdo-event-sourcing/zipball/ba12408cfac79b8a86d3e463598e705dd6c50642",
+                "reference": "ba12408cfac79b8a86d3e463598e705dd6c50642",
                 "shasum": ""
             },
             "require": {
-                "ecotone/dbal": "~1.244.0",
+                "ecotone/dbal": "~1.244.3",
                 "prooph/pdo-event-store": "^1.15.1"
             },
             "require-dev": {
@@ -2910,7 +2819,7 @@
                     "repository": "pdo-event-sourcing"
                 },
                 "branch-alias": {
-                    "dev-main": "1.244.0-dev"
+                    "dev-main": "1.244.3-dev"
                 },
                 "license-info": {
                     "Apache-2.0": {
@@ -2928,7 +2837,7 @@
                         "../local_packages.json"
                     ]
                 },
-                "release-time": "2025-01-28 08:01:48"
+                "release-time": "2025-02-02 15:24:42"
             },
             "autoload": {
                 "psr-4": {
@@ -2953,7 +2862,7 @@
                 "ecotone"
             ],
             "support": {
-                "source": "https://github.com/ecotoneframework/pdo-event-sourcing/tree/1.244.0"
+                "source": "https://github.com/ecotoneframework/pdo-event-sourcing/tree/1.244.3"
             },
             "funding": [
                 {
@@ -2961,24 +2870,24 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-28T08:08:53+00:00"
+            "time": "2025-02-02T15:31:17+00:00"
         },
         {
             "name": "ecotone/symfony-bundle",
-            "version": "1.244.0",
+            "version": "1.244.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ecotoneframework/symfony-bundle.git",
-                "reference": "8b8a444e7058a8c58475b1db87207824cf9e804c"
+                "reference": "371d6492c1dc8f7b5ef85af58e0244d26309fb50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ecotoneframework/symfony-bundle/zipball/8b8a444e7058a8c58475b1db87207824cf9e804c",
-                "reference": "8b8a444e7058a8c58475b1db87207824cf9e804c",
+                "url": "https://api.github.com/repos/ecotoneframework/symfony-bundle/zipball/371d6492c1dc8f7b5ef85af58e0244d26309fb50",
+                "reference": "371d6492c1dc8f7b5ef85af58e0244d26309fb50",
                 "shasum": ""
             },
             "require": {
-                "ecotone/ecotone": "~1.244.0",
+                "ecotone/ecotone": "~1.244.3",
                 "symfony/console": "^5.4|^6.0|^7.0",
                 "symfony/dependency-injection": ">=v5.4.19 <6.0.0 || >=v6.0.19 <6.1.0 || >=v6.1.11 <6.2.0 || >=v6.2.5 <7.0.0 || >=v7.0.0 <8.0.0",
                 "symfony/framework-bundle": "^5.4|^6.0|^7.0"
@@ -2990,7 +2899,7 @@
                 "behat/behat": "^3.10",
                 "doctrine/doctrine-bundle": "^2.7.2",
                 "doctrine/orm": "^2.11|^3.0",
-                "ecotone/dbal": "~1.244.0",
+                "ecotone/dbal": "~1.244.3",
                 "friends-of-behat/symfony-extension": "<=2.4.2|^2.5",
                 "monolog/monolog": "^2.9|^3.3.1",
                 "phpstan/phpstan": "^1.8",
@@ -3008,7 +2917,7 @@
                     "repository": "symfony"
                 },
                 "branch-alias": {
-                    "dev-main": "1.244.0-dev"
+                    "dev-main": "1.244.3-dev"
                 },
                 "license-info": {
                     "Apache-2.0": {
@@ -3026,7 +2935,7 @@
                         "../local_packages.json"
                     ]
                 },
-                "release-time": "2025-01-28 08:01:48"
+                "release-time": "2025-02-02 15:24:42"
             },
             "autoload": {
                 "psr-4": {
@@ -3058,7 +2967,7 @@
                 "symfony"
             ],
             "support": {
-                "source": "https://github.com/ecotoneframework/symfony-bundle/tree/1.244.0"
+                "source": "https://github.com/ecotoneframework/symfony-bundle/tree/1.244.3"
             },
             "funding": [
                 {
@@ -3066,7 +2975,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-28T08:09:08+00:00"
+            "time": "2025-02-02T15:31:33+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -3469,25 +3378,24 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v3.17.1",
+            "version": "v3.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine-extensions/DoctrineExtensions.git",
-                "reference": "eabb45018c5a4362b46c5beae3881261da89f900"
+                "reference": "964db6c4fb5b0fc8aa25cc31b17471b4963460c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine-extensions/DoctrineExtensions/zipball/eabb45018c5a4362b46c5beae3881261da89f900",
-                "reference": "eabb45018c5a4362b46c5beae3881261da89f900",
+                "url": "https://api.github.com/repos/doctrine-extensions/DoctrineExtensions/zipball/964db6c4fb5b0fc8aa25cc31b17471b4963460c6",
+                "reference": "964db6c4fb5b0fc8aa25cc31b17471b4963460c6",
                 "shasum": ""
             },
             "require": {
                 "behat/transliterator": "^1.2",
                 "doctrine/collections": "^1.2 || ^2.0",
-                "doctrine/common": "^2.13 || ^3.0",
                 "doctrine/deprecations": "^1.0",
                 "doctrine/event-manager": "^1.2 || ^2.0",
-                "doctrine/persistence": "^2.2 || ^3.0",
+                "doctrine/persistence": "^2.2 || ^3.0 || ^4.0",
                 "php": "^7.4 || ^8.0",
                 "psr/cache": "^1 || ^2 || ^3",
                 "psr/clock": "^1",
@@ -3495,6 +3403,7 @@
             },
             "conflict": {
                 "doctrine/annotations": "<1.13 || >=3.0",
+                "doctrine/common": "<2.13 || >=4.0",
                 "doctrine/dbal": "<3.7 || >=5.0",
                 "doctrine/mongodb-odm": "<2.3 || >=3.0",
                 "doctrine/orm": "<2.14.0 || 2.16.0 || 2.16.1 || >=4.0"
@@ -3502,17 +3411,18 @@
             "require-dev": {
                 "doctrine/annotations": "^1.13 || ^2.0",
                 "doctrine/cache": "^1.11 || ^2.0",
+                "doctrine/common": "^2.13 || ^3.0",
                 "doctrine/dbal": "^3.7 || ^4.0",
                 "doctrine/doctrine-bundle": "^2.3",
                 "doctrine/mongodb-odm": "^2.3",
                 "doctrine/orm": "^2.14.0 || ^3.0",
                 "friendsofphp/php-cs-fixer": "^3.14.0",
                 "nesbot/carbon": "^2.71 || ^3.0",
-                "phpstan/phpstan": "^1.11",
-                "phpstan/phpstan-doctrine": "^1.4",
-                "phpstan/phpstan-phpunit": "^1.4",
+                "phpstan/phpstan": "^2.1.1",
+                "phpstan/phpstan-doctrine": "^2.0.1",
+                "phpstan/phpstan-phpunit": "^2.0.3",
                 "phpunit/phpunit": "^9.6",
-                "rector/rector": "^1.1",
+                "rector/rector": "^2.0.6",
                 "symfony/console": "^5.4 || ^6.0 || ^7.0",
                 "symfony/doctrine-bridge": "^5.4 || ^6.0 || ^7.0",
                 "symfony/phpunit-bridge": "^6.0 || ^7.0",
@@ -3574,7 +3484,7 @@
             "support": {
                 "email": "gediminas.morkevicius@gmail.com",
                 "issues": "https://github.com/doctrine-extensions/DoctrineExtensions/issues",
-                "source": "https://github.com/doctrine-extensions/DoctrineExtensions/tree/v3.17.1",
+                "source": "https://github.com/doctrine-extensions/DoctrineExtensions/tree/v3.18.0",
                 "wiki": "https://github.com/Atlantic18/DoctrineExtensions/tree/main/doc"
             },
             "funding": [
@@ -3595,7 +3505,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-07T22:30:27+00:00"
+            "time": "2025-02-01T22:28:13+00:00"
         },
         {
             "name": "google/recaptcha",
@@ -16743,12 +16653,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "b6841f6613aeea6dbf722ac1663e6409653873d5"
+                "reference": "4015f7fbd4aedd2ebe19143e26e9f64fafae8d88"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/b6841f6613aeea6dbf722ac1663e6409653873d5",
-                "reference": "b6841f6613aeea6dbf722ac1663e6409653873d5",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/4015f7fbd4aedd2ebe19143e26e9f64fafae8d88",
+                "reference": "4015f7fbd4aedd2ebe19143e26e9f64fafae8d88",
                 "shasum": ""
             },
             "conflict": {
@@ -16847,6 +16757,7 @@
                 "codeigniter4/framework": "<4.5.8",
                 "codeigniter4/shield": "<1.0.0.0-beta8",
                 "codiad/codiad": "<=2.8.4",
+                "components/jquery": ">=1.0.3,<3.5",
                 "composer/composer": "<1.10.27|>=2,<2.2.24|>=2.3,<2.7.7",
                 "concrete5/concrete5": "<9.3.4",
                 "concrete5/core": "<8.5.8|>=9,<9.1",
@@ -17226,7 +17137,7 @@
                 "phpmyfaq/phpmyfaq": "<3.2.5|==3.2.5|>=3.2.10,<=4.0.1",
                 "phpoffice/common": "<0.2.9",
                 "phpoffice/phpexcel": "<1.8.1",
-                "phpoffice/phpspreadsheet": "<1.29.8|>=2,<2.1.7|>=2.2,<2.3.6|>=3,<3.8",
+                "phpoffice/phpspreadsheet": "<1.29.9|>=2,<2.1.8|>=2.2,<2.3.7|>=3,<3.9",
                 "phpseclib/phpseclib": "<2.0.47|>=3,<3.0.36",
                 "phpservermon/phpservermon": "<3.6",
                 "phpsysinfo/phpsysinfo": "<3.4.3",
@@ -17605,7 +17516,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-30T23:05:03+00:00"
+            "time": "2025-02-03T16:05:30+00:00"
         },
         {
             "name": "sebastian/cli-parser",
