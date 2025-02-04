@@ -15,6 +15,7 @@ use App\DTO\ItemType\CourseDto;
 use App\DTO\ItemType\CredentialDto;
 use App\DTO\ItemType\ItemTypeInterface;
 use App\DTO\ItemType\JobDto;
+use App\DTO\ItemType\OrganizationDto;
 use App\Entity\Framework\LsAssociation;
 use App\Entity\Framework\LsDefAssociationGrouping;
 use App\Entity\Framework\LsDoc;
@@ -395,6 +396,11 @@ class LsItemController extends AbstractController
                 $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 
+            case 'organization':
+                $itemDto = OrganizationDto::fromItem($lsItem);
+                $formType = $itemDto::ITEM_TYPE_FORM;
+                break;
+
             default:
                 $itemDto = $lsItem;
                 $args = [
@@ -439,6 +445,11 @@ class LsItemController extends AbstractController
 
             case LsItem::TYPES['credential']:
                 $itemDto = CredentialDto::fromItem($lsItem);
+                $formType = $itemDto::ITEM_TYPE_FORM;
+                break;
+
+            case LsItem::TYPES['organization']:
+                $itemDto = OrganizationDto::fromItem($lsItem);
                 $formType = $itemDto::ITEM_TYPE_FORM;
                 break;
 

@@ -25,6 +25,7 @@ class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterfa
         'course' => 2,
         'assessment' => 3,
         'credential' => 4,
+        'organization' => 5,
     ];
 
     #[ORM\Column(name: 'ls_doc_identifier', type: 'string', length: 300, nullable: false)]
