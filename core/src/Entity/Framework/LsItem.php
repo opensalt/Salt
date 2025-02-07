@@ -38,6 +38,7 @@ class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterfa
     private ?string $lsDocUri = null;
 
     #[ORM\ManyToOne(targetEntity: LsDoc::class, inversedBy: 'lsItems')]
+    #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     private LsDoc $lsDoc;
 
@@ -111,19 +112,19 @@ class LsItem extends AbstractLsBase implements CaseApiInterface, LockableInterfa
     /**
      * @var Collection<array-key, LsAssociation>
      */
-    #[ORM\OneToMany(mappedBy: 'originLsItem', targetEntity: LsAssociation::class, cascade: ['persist'], indexBy: 'id')]
+    #[ORM\OneToMany(targetEntity: LsAssociation::class, mappedBy: 'originLsItem', cascade: ['persist'], indexBy: 'id')]
     private Collection $associations;
 
     /**
      * @var Collection<array-key, LsAssociation>
      */
-    #[ORM\OneToMany(mappedBy: 'destinationLsItem', targetEntity: LsAssociation::class, cascade: ['persist'], indexBy: 'id')]
+    #[ORM\OneToMany(targetEntity: LsAssociation::class, mappedBy: 'destinationLsItem', cascade: ['persist'], indexBy: 'id')]
     private Collection $inverseAssociations;
 
     /**
      * @var Collection<array-key, CfRubricCriterion>
      */
-    #[ORM\OneToMany(mappedBy: 'item', targetEntity: CfRubricCriterion::class)]
+    #[ORM\OneToMany(targetEntity: CfRubricCriterion::class, mappedBy: 'item')]
     private Collection $criteria;
 
     public function __construct(UuidInterface|string|null $identifier = null)
