@@ -130,6 +130,7 @@ class UriController extends AbstractController
                 $credential = json5_decode($obj->getExtraProperty('extendedItem')['ob3'], true);
                 $iri = $this->api1Uris->getUri($obj);
                 $idAdded = array_merge(['@context' => [], 'id' => $iri], $credential);
+
                 return new JsonResponse($idAdded);
             }
         }
