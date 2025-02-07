@@ -8,7 +8,7 @@ use App\Entity\Framework\Package;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-class Api1Uris
+readonly class Api1Uris
 {
     public function __construct(
         private RouterInterface $router,
@@ -18,7 +18,7 @@ class Api1Uris
 
     public function getUri(?IdentifiableInterface $obj, ?string $route = null): ?string
     {
-        return $this->generateUri($obj, $route, false);
+        return $this->generateUri($obj, $route);
     }
 
     public function getApiUrl(?IdentifiableInterface $obj, ?string $route = null): ?string
@@ -43,7 +43,7 @@ class Api1Uris
 
         $uri = $obj->getUri();
 
-        if (!preg_match('/^local:/', $uri)) {
+        if (!str_starts_with($uri, 'local:')) {
             return $this->generateRemoteUri($uri, $route);
         }
 
@@ -136,7 +136,7 @@ class Api1Uris
 
         $identifier = $obj->{'get'.$selector.'NodeIdentifier'}();
 
-        if (preg_match('/^local:/', $uri)) {
+        if (str_starts_with($uri, 'local:')) {
             $uri = $this->uriGenerator->getPublicUriForIdentifier($identifier);
         }
 

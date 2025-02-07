@@ -127,7 +127,10 @@ class UriController extends AbstractController
             }
 
             if (LsItem::TYPES['credential'] === $obj->getDiscriminator() && 'jsonld' === $request->getRequestFormat()) {
-                return new JsonResponse(json5_decode($obj->getExtraProperty('extendedItem')['ob3']));
+                $credential = json5_decode($obj->getExtraProperty('extendedItem')['ob3'], true);
+                $iri = $this->api1Uris->getUri($obj);
+                $idAdded = array_merge(['@context' => [], 'id' => $iri], $credential);
+                return new JsonResponse($idAdded);
             }
         }
 
