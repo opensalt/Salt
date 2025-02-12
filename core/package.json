@@ -64,9 +64,11 @@
     "sass-migrator": "^2.2.0",
     "url": "^0.11.4",
     "vite": "^6.0.11",
-    "vite-plugin-symfony": "^7.0.5",
+    "vite-plugin-symfony": "^8.0.1",
     "vue": "^3.0"
   },
-  "resolutions": {},
+  "resolutions": {
+    "esbuild": ">=0.25.0"
+  },
   "peerDependencies": {}
 }
